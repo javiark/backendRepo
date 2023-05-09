@@ -1,5 +1,6 @@
 const express = require(`express`);
 const app = express();
+const productRoutes=require("./routes/product.routes")
 
 
 
@@ -10,8 +11,8 @@ app.get("/", (request, response) => {
     })
 });
 
-app.get("/products", (req,res)=>{
-    res.status(200).send(`Productos solicitados correctamente`);
-})
+//Definir rutas a usar por mi app express
+app.use(productRoutes)
+
 
 module.exports = app;
