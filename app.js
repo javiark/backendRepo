@@ -3,11 +3,10 @@ const app = express();
 
 
 
-app.get("/", (request, response)=>{
+app.get("/", (request, response) => {
     response.send({
-        msg:"bienvenido a mi servidor expresso",
-        on:true
-
+        msg: `Bienvenidos a mi servidor express`,
+        ok: true
     })
 });
 
