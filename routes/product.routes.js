@@ -1,13 +1,12 @@
 const express=require("express");
 const router=express.Router();
+const productController = requiere("./../controllers/product.controller")
 
 //Obtener todos los productos
 
-router.get("/products", (req,res)=>{
-    res.status(200).send(`Productos solicitados correctamente`);
-})
+router.get("/products",productController.getAllProducts) // cuando se llame esa ruta, vas a ejecutar dentro de product controller la funcion get all products
 
-// Obtener un producto especifico (por categoria)
+// Obtener un producto especifico (por cate)
 //Añadir producto
 //Eliminar producto
 //Modificar producto
