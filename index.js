@@ -1,6 +1,6 @@
 const app = require("./app");
 
-const port = 4001;
+const port = 4000;
 const dbURL = `mongodb+srv://javier778:javiark778@javiark.qbwamon.mongodb.net/?retryWrites=true&w=majority` // me conecto a mongodv
 const mongoose = require ("mongoose"); // llamo a la libreria mongoose
 
