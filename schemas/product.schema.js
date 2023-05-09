@@ -7,4 +7,6 @@ const proudctSchema = new Schema({
     description: String
 }) //propiedades que quiero q se guarden. Si sobran cosas las va a quitar
 
+
+ //coleccion de productos
 module.exports = mongoose.model("Product", proudctSchema) // nombre del modelo "products" ( se cambia a minuscula y con s ). Se hace una tabla

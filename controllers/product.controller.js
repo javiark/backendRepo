@@ -1,22 +1,26 @@
 const Product=require("./../schemas/product.schema")
 const getAllProducts = (req,res)=>{
 
-    Product.find().then(function(productos){ //Find me devuelve los productos, busca de la coleccion productos, una vez que logre leerlos vamos a ejecutar una funcion. La funcion me devuelve los productos que hay obtenido
+    Product.find().then(function(productos){ //Find me devuelve los productos, busca de la coleccion productos, una vez que logre leerlos vamos a ejecutar una funcion. La funcion me devuelve los productos que hay obtenido. Esquema que armamos en mongoose product. Find lo busca en mongoatlas.
         res.status(200).send({
             msg: `Productos obtenidos correctamente`,
             productos: productos // devuelvo los productos. Viene un array de los productos
         });
     }).catch((error)=>{
-        console.log("")
+        console.log(error)
     })
+}
 
+function addProducts(req,res){
+    res.status(200).send("Añadir producto")
 
 }
 
 function deleteProduct(req, res){
     res.status(200).send("Producto borrado correctamente!!!")
-
 }
+
+
 
 
 module.exports={
