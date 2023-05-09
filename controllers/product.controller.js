@@ -4,8 +4,10 @@ const getAllProducts = (req,res)=>{
     Product.find().then(function(productos){ //Find me devuelve los productos, busca de la coleccion productos, una vez que logre leerlos vamos a ejecutar una funcion. La funcion me devuelve los productos que hay obtenido
         res.status(200).send({
             msg: `Productos obtenidos correctamente`,
-            productos: productos // devuelvo los productos
+            productos: productos // devuelvo los productos. Viene un array de los productos
         });
+    }).catch((error)=>{
+        console.log("")
     })
 
 

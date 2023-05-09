@@ -1,7 +1,7 @@
 const app = require("./app");
 
-const port = 4500;
-const dbURL = `mongodb+srv://javier778:javiark778@javiark.qbwamon.mongodb.net/?retryWrites=true&w=majority` // me conecto a mongodv
+const port = 3000;
+const dbURL = `mongodb+srv://javier778:javiark778@javiark.qbwamon.mongodb.net/eit-61543?retryWrites=true&w=majority` // me conecto a mongodv// nombre de base de dato eit-61543
 const mongoose = require ("mongoose"); // llamo a la libreria mongoose
 
 mongoose.connect(dbURL)
