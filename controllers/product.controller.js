@@ -16,13 +16,26 @@ function addProduct(req,res){
     // console.log(req.body); // obtengo la info del metodo body, viene con POST nomas
     const product = new Product(req.body);
     // console.log(product)
-    product.save().then(function(product){// es una peticion ascincrona, tengo que esperar. El metodo save me devuelve el producto guardado.
+                product.save()
 
-    }).catch (error=>{
-        console.log(error);
-        res.status(500).send("El producto no se pudo guardar")
-    })
-    res.status(200).send("Añadir producto")
+                    .then(function(product){// es una peticion ascincrona, tengo que esperar. El metodo save me devuelve el producto guardado.
+                        // if(!producto){
+                        //     console.log("no espero")
+                        //     return res.status(200).send(`Algo va a fallar`) // con return no se sigue leyendo lo de abajo
+                        // }
+                        // console.log("termino el guardado del producto")
+                        res.status(200).send({
+                            msg:"Producto guardado correctamente",
+                            product
+                        })
+
+        })
+        .catch (error=>{
+            console.log(error);
+            res.status(500).send(" El producto no se pudo guardar")
+        })
+    //     console.log("no espero")
+    // res.status(200).send(`Algo va a fallar`)
 
 }
 
