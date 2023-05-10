@@ -8,7 +8,7 @@ router.get("/products", productController.getAllProducts) // cuando se llame esa
 
 // Obtener un producto especifico (por cate)
 //Añadir producto
-router.
+
 //Eliminar producto
 router.delete("/products", productController.deleteProduct) // llamo a delete en postman
 //Modificar producto
