@@ -11,7 +11,9 @@ const getAllProducts = (req,res)=>{
     })
 }
 
-function addProducts(req,res){
+function addProduct(req,res){
+    console.log("body")
+    console.log(req.body); // obtengo la info del metodo body, viene con POST nomas
     res.status(200).send("Añadir producto")
 
 }
@@ -25,5 +27,6 @@ function deleteProduct(req, res){
 
 module.exports={
     getAllProducts, // igual a getAllProduct : getAllProduct
-    deleteProduct
+    deleteProduct,
+    addProduct
 }
