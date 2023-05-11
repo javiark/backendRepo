@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const proudctSchema = new Schema({
-    name: String,
-    price: Number,
+    name: {type: String, required:true, minLength:5, maxLength:30 },
+    price: {type: Number, required:true, min:0, max:1000000},
     description: String
 }) //propiedades que quiero q se guarden. Si sobran cosas las va a quitar
 
