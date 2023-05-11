@@ -42,7 +42,24 @@ function addProduct(req,res){
 }
 
 function deleteProduct(req, res){
-    res.status(200).send("Producto borrado correctamente!!!")
+    const id = req.params.id;
+    Product.findByIdAndDelete(id)
+        .then((deleted)=>{
+            if(!deleted){
+                return res.status(404).send("No se encontro el producto a borrar")
+            }
+            return res.status(200).send({
+                msg:"Producto borrado correctamente",
+                deleted
+            })
+        })
+        .catch(error=>{
+            console.log(error);
+            return res.status(500).send({
+                msg:"Error al borrar el producto",
+            })
+        })
+
 }
 
 

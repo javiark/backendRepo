@@ -12,7 +12,7 @@ router.get("/products", productController.getAllProducts) // cuando se llame esa
 router.post("/product", productController.addProduct)
 
 //Eliminar producto
-router.delete("/products", productController.deleteProduct) // llamo a delete en postman
+router.delete("/product/:id", productController.deleteProduct) // llamo a delete en postman. nombreDeParam seria el id del producto a borrar
 //Modificar producto
 
 module.exports=router;
