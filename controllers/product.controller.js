@@ -62,11 +62,40 @@ function deleteProduct(req, res){
 
 }
 
+function getProduct(req, res){
+    // console.log(req.query)
+    const id= req.query.id;
 
+    if(!id){
+        return res.status(400).send ({
+              msg:"Es necesario que mande un ID"
+         })
+    }   
+    Product.findById(id).then((product)=>{
+        //Dos casos posibles en una peticion correcta
+            //a-El ide proporcionado no corresponde a ningun producto
+            if(!product){
+                return res.status(404).send({
+                    msg:"No se encontro el producto"
+                })
+            }
+            //b- Se encontro el producto
+            return res.status(200).send({
+                msg:"Producto encontrado!",
+                product
+            })
 
+    }).catch((error)=>{
+        console.log(error);
+        return res.status(500).send({
+            msg:"Error al obtener producto"
+        })
+    })
+}
 
 module.exports={
     getAllProducts, // igual a getAllProduct : getAllProduct
     deleteProduct,
-    addProduct
+    addProduct,
+    getProduct
 }

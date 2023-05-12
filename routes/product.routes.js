@@ -7,12 +7,14 @@ const productController = require("./../controllers/product.controller");
 
 router.get("/products", productController.getAllProducts) // cuando se llame esa ruta, vas a ejecutar dentro de product controller la funcion get all products. Con get solcitio informacion al servidor
 
-// Obtener un producto especifico (por cate)
+// Obtener un producto especifico 
+router.get("/product", productController.getProduct)
+
 //Añadir producto
 router.post("/product", productController.addProduct)
 
 //Eliminar producto
-router.delete("/product/:id", productController.deleteProduct) // llamo a delete en postman. nombreDeParam seria el id del producto a borrar
+router.delete("/product", productController.deleteProduct) // llamo a delete en postman. nombreDeParam seria el id del producto a borrar
 //Modificar producto
 
 module.exports=router;
