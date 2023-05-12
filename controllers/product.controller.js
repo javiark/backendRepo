@@ -84,7 +84,7 @@ function getProduct(req, res){
                 msg:"Producto encontrado!",
                 product
             })
-
+                //si el producto no tiene los caracteres adecuados
     }).catch((error)=>{
         console.log(error);
         return res.status(500).send({
