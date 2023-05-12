@@ -1,13 +1,25 @@
 const User = require("../schemas/user.schema"); // ../ es a partir de donde nos encontramos
+const bcrypt=require("bcrypt");
+const saltRounds=10;
+
 
 async function postUser(req,res){
 
     try{
         // console.log(req.body);
         const user = new User(req.body)
+
         user.role="CLIENT_ROLE" // eduti desde la base de datos mongocompass los Admin
+
+        //Codificamos el password con una libreria bcrypt
+
+        const passwordHash=await bcrypt.hash(user.password, saltRounds)
+
+        user.password = passwordHash;
+
         const newUser = await user.save() // el metodo save es asincrono, es algo que tengo que esperar
         // console.log(user)
+
         
         
     
