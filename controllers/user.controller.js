@@ -1,10 +1,31 @@
-const User = require("../schema/user.schema"); // ../ es a partir de donde nos encontramos
+const User = require("../schemas/user.schema"); // ../ es a partir de donde nos encontramos
 
-function postUser(req,res){
-    console.log(req.body);
+async function postUser(req,res){
 
-    return res.send("POST USER")
+    try{
+        // console.log(req.body);
+        const user = new User(req.body)
+
+        const newUser = await user.save() // el metodo save es asincrono, es algo que tengo que esperar
+        // console.log(user)
+        
+    
+        return res.send({
+            msg:"Usuario creado correctamente",
+            user: newUser
+        });
+
+    } catch (error){
+        console.log(error)
+        return res.status(201).send({
+            msg:"Error al crear el usuario",
+        })
+    }
 }
+
+
+
+
 
 function getUser(req,res){
     const id = req.params.id;
@@ -28,5 +49,6 @@ module.exports={
     getUser,
     getAllUser,
     deleteUser,
-    updateUser
+    updateUser,
+    postUser
 }
