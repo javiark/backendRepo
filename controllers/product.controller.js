@@ -65,6 +65,7 @@ function deleteProduct(req, res){
 function getProduct(req, res){
     // console.log(req.query)
     const id= req.query.id;
+    const idParam=req.params.idParam;
 
     if(!id){
         return res.status(400).send ({
