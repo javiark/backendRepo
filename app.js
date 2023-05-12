@@ -15,11 +15,7 @@ app.get("/", (request, response) => {
 });
 
 //Definir rutas a usar por mi app express
-app.use([
-    productRoutes,
-    userRoutes
-
-])
+app.use("/api",[productRoutes,userRoutes])
 
 
 
