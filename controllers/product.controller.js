@@ -64,15 +64,16 @@ function deleteProduct(req, res){
 
 function getProduct(req, res){
     // console.log(req.query)
-    const id= req.query.id; // con query param puedo mandar lo que quiero, en el orden que quiero
+    const idParam= req.query.id; // con query param puedo mandar lo que quiero, en el orden que quiero
 
-    if(!id){
+    if(!idParam){
         return res.status(400).send ({
               msg:"Es necesario que mande un ID"
          })
     }   
-    Product.findById(id).then((product)=>{
+    Product.findById(idParam).then((product)=>{
         //Dos casos posibles en una peticion correcta
+
             //a-El ide proporcionado no corresponde a ningun producto
             if(!product){
                 return res.status(404).send({
