@@ -1,6 +1,7 @@
 const express = require(`express`);
 const app = express();
 const productRoutes=require("./routes/product.routes")
+const userRoutes = require("./routes/user.routes")
 
 //middlewares
 app.use(express.json());
@@ -14,7 +15,12 @@ app.get("/", (request, response) => {
 });
 
 //Definir rutas a usar por mi app express
-app.use(productRoutes)
+app.use([
+    productRoutes,
+    userRoutes
+
+])
+
 
 
 module.exports = app;
