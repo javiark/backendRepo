@@ -12,6 +12,8 @@ router.get("/users", userController.getAllUser)
 
 
 //DELETE - Borrar usuario
+router.delete("/users/:id", userController.deleteUser)
 //PUT-Actualizar usuario
+router.put("/users/:id", userController.updateUser)
 
 module.exports = router;

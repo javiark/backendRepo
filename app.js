@@ -4,15 +4,16 @@ const productRoutes=require("./routes/product.routes")
 const userRoutes = require("./routes/user.routes")
 
 //middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended:true}))
+// app.use(express.json());
+// app.use(express.urlencoded({ extended:true}))
 
-app.get("/", (request, response) => {
-    response.send({
-        msg: `Bienvenidos a mi servidor express`,
-        ok: true
-    })
-});
+// app.get("/", (request, response) => {
+//     response.send({
+//         msg: `Bienvenidos a mi servidor express`,
+//         ok: true
+//     })
+// });
+
 
 //Definir rutas a usar por mi app express
 app.use("/api",[productRoutes,userRoutes])
@@ -20,3 +21,4 @@ app.use("/api",[productRoutes,userRoutes])
 
 
 module.exports = app;
+//Definir rutas a usar por mi app express
