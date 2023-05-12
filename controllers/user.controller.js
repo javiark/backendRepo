@@ -1,4 +1,8 @@
+const User = require("../schema/user.schema"); // ../ es a partir de donde nos encontramos
+
 function postUser(req,res){
+    console.log(req.body);
+
     return res.send("POST USER")
 }
 

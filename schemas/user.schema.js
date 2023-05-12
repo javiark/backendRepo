@@ -28,5 +28,7 @@ const UserSchema = new Schema({
             // gender: {type:String, required:true}
             date:{ type: Date},
             image:{type: String},
-            createdAt:{type: Date, default: Date.now}
+            createdAt:{type: Date, default: Date.now} // se crea automaticamente
 })
+
+module.exports = mongoose.model("User", UserSchema);
