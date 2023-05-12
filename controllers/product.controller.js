@@ -64,7 +64,7 @@ function deleteProduct(req, res){
 
 function getProduct(req, res){
     // console.log(req.query)
-    const id= req.query.id;
+    const id= req.query.id; // con query param puedo mandar lo que quiero, en el orden que quiero
 
     if(!id){
         return res.status(400).send ({
