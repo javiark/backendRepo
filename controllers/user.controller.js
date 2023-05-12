@@ -5,9 +5,10 @@ async function postUser(req,res){
     try{
         // console.log(req.body);
         const user = new User(req.body)
-
+        user.role="CLIENT_ROLE" // eduti desde la base de datos mongocompass los Admin
         const newUser = await user.save() // el metodo save es asincrono, es algo que tengo que esperar
         // console.log(user)
+        
         
     
         return res.send({
