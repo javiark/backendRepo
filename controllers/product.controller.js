@@ -65,15 +65,15 @@ function deleteProduct(req, res){
 function getProduct(req, res){
     // console.log(req.query)
     const id= req.query.id;
-    const idParam=req.params.idParam;
 
-    if(!id){
+    if(!idParam){
         return res.status(400).send ({
               msg:"Es necesario que mande un ID"
          })
     }   
-    Product.findById(id).then((product)=>{
+    Product.findById(idParam).then((product)=>{
         //Dos casos posibles en una peticion correcta
+
             //a-El ide proporcionado no corresponde a ningun producto
             if(!product){
                 return res.status(404).send({
@@ -94,9 +94,38 @@ function getProduct(req, res){
     })
 }
 
+async function updateProduct(req,res){
+    try{
+        const id=req.query.id;
+        const data = req.body
+        // return res.status(200).send(`Id obtenido por query param${id}`)
+    
+        const newProduct=await Product.findByIdAndUpdate(id,data, {new:true})  //espera el objeto nuevo. El data es lo que viene del body mandado desde el postman.  Con el await se espera. Peticion asincrona
+        // console.log(newProduct)
+        if(!newProduct){
+            return res.status(404).send({ // con el return se corta
+                msg:"El producto no se actualizo"
+            })
+        }
+        return res.status(200).send({
+            msg:"Producto actualizado",
+            newProduct: newProduct
+        })
+           
+    } catch(error){
+        console.log(error);
+        return res.status(500).send({
+            msg:" No se pudo actualizar el producto",
+        })
+        
+    }
+
+
+}
 module.exports={
     getAllProducts, // igual a getAllProduct : getAllProduct
     deleteProduct,
     addProduct,
-    getProduct
+    getProduct,
+    updateProduct
 }
