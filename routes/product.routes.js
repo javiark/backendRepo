@@ -18,7 +18,7 @@ router.post("/product", productController.addProduct)
 //Eliminar producto
 router.delete("/product", productController.deleteProduct) // llamo a delete en postman. nombreDeParam seria el id del producto a borrar
 //Modificar producto
-router.put("product/:id", productController.updateProduct)
+router.put("/product", productController.updateProduct)
 
 
 

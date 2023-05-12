@@ -94,9 +94,15 @@ function getProduct(req, res){
     })
 }
 
+function updateProduct(req,res){
+    const id=req.query.id
+    return res.status(200).send(`Id obtenido por query param${id}`)
+
+}
 module.exports={
     getAllProducts, // igual a getAllProduct : getAllProduct
     deleteProduct,
     addProduct,
-    getProduct
+    getProduct,
+    updateProduct
 }
