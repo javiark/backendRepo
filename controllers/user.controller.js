@@ -97,7 +97,15 @@ function getUser(req,res){
 }
 
 function getAllUser(req,res){
-    return res.send(`GET ALL USERS`)
+    // return res.send(`GET ALL USERS`)
+    try {
+        const users = await User.find();
+
+        if(!users) return res.status(404).send ({msg:"No se encontraron usuarios"})
+
+    } catch (error){
+
+    }
 }
 
 function deleteUser(req, res){
@@ -105,6 +113,7 @@ function deleteUser(req, res){
 }
 
 function updateUser(req, res){
+    // const id = req.params.id;
     return res.send("UPDATE USER")
 }
 
