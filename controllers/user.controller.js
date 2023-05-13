@@ -96,17 +96,23 @@ function getUser(req,res){
     return res.send(`GET USER by ID: ${id}`)
 }
 
-function getAllUser(req,res){
+async function getAllUser(req, res){
     // return res.send(`GET ALL USERS`)
-    try {
-        const users = await User.find();
+
+    try{
+        const user = await User.find();
 
         if(!users) return res.status(404).send ({msg:"No se encontraron usuarios"})
-
-    } catch (error){
-
+    }catch(error){
+        console.log(error);
+        // return res.status(500).send({msg:"No se encontraron usuarios"})
+        return responseCreator(500,"Error al obtener usuarios")
     }
-}
+
+        }
+
+
+
 
 function deleteUser(req, res){
     return res.send("DELETE USER")
@@ -115,6 +121,11 @@ function deleteUser(req, res){
 function updateUser(req, res){
     // const id = req.params.id;
     return res.send("UPDATE USER")
+}
+
+//como para no repetir todo el tiempo lo mismo creo una funcion
+function responseCreator (code, msg, obj){ // el obj devuelve la propiedad, por ejemplo si es usuarios devuelve usuarios
+    return res.status(code).send({msg, [obj]:obj })
 }
 
 module.exports={
