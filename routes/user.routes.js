@@ -8,6 +8,8 @@ router.post("/users", userController.postUser);
 router.get("/users/:id", userController.getUser)
 //GET-Leer usuario
 router.get("/users", userController.getAllUser)
+// POST - Login
+router.post("/login", userController.login)
 
 
 

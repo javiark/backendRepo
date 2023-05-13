@@ -3,6 +3,7 @@ const bcrypt=require("bcrypt");
 const saltRounds=10;
 
 
+
 async function postUser(req,res){
 
     try{
@@ -37,6 +38,55 @@ async function postUser(req,res){
 }
 
 
+const login = async(req, res)=>{
+    try {
+            //emil y contraseña
+        const emailLogin = req.body.email;
+        const passwordLogin = req.body.password;
+        //Chequeo que me hayan enviado todos los datos requeridos para el login
+        if(!emailLogin || !passwordLogin){
+            return res.status(400).send({msg:"Datos del login incompletos"})
+        }
+        //Buscar si existe un usuario con dicho email
+        const user = await User.findOne( { email: emailLogin }) // el await espera si encuentra algo. Si encuentra un usuario se guarda todo el objeto user
+
+        if (!user){
+            return res.status(404).send({msg:"Datos de ingreso incorrectos"})
+        }
+
+        //Comprobamos si el usuario obtenido con su propiedad password coincide con el passw del passw que me envia en el login
+        const result = await bcrypt.compare(passwordLogin, user.password) // para comprobar si el alfabeta plano es igual al hasheado. passwordLogin - pass plano.  user.password - pass hasheado. El await devuelve una promesa
+
+        if(!result){
+
+            res.status(404).send({msg:"Datos de ingreso incorrectos"})
+        }
+
+        return res.status(200).send({
+            msg:"Login correcto",
+            user:user,
+        })
+
+
+
+    } catch (error){
+        console.log(error);
+        return res.status(500)("No se pudo realizar el login")
+    }
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
 
 
 
@@ -63,5 +113,6 @@ module.exports={
     getAllUser,
     deleteUser,
     updateUser,
-    postUser
+    postUser,
+    login
 }
