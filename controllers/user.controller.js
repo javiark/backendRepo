@@ -51,7 +51,7 @@ const login = async(req, res)=>{
         const user = await User.findOne( { email: emailLogin }) // el await espera si encuentra algo. Si encuentra un usuario se guarda todo el objeto user
 
         if (!user){
-            return res.status(404).send({msg:"Datos de ingreso incorrectos"})
+            return res.status(404).send({msg:"Datos de ingreso incorrectos"}) // siempre que damos una respuesta hay que pone un return y corto la funcion
         }
 
         //Comprobamos si el usuario obtenido con su propiedad password coincide con el passw del passw que me envia en el login
@@ -59,8 +59,10 @@ const login = async(req, res)=>{
 
         if(!result){
 
-            res.status(404).send({msg:"Datos de ingreso incorrectos"})
+            return res.status(404).send({msg:"Datos de ingreso incorrectos"})
         }
+
+        user.password=undefined; // borramos a user la propiedad password para q no me la devuelva en el login
 
         return res.status(200).send({
             msg:"Login correcto",
