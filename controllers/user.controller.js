@@ -70,7 +70,6 @@ const login = async(req, res)=>{
         })
 
 
-
     } catch (error){
         console.log(error);
         return res.status(500)("No se pudo realizar el login")
