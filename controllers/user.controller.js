@@ -94,9 +94,10 @@ async function getUser(req, res) {
 
 
     try {
-        const user = await User.findById(id);
-        if(!user) responseCreator(res, 404, "No se encontro el usuario")
-        responseCreator(res, 200, "Usuario encontrado", {user})
+        const user = await User.findById(id, { password: 0 }); // con 0 no devuelve el password, con 1 me trae solo esas propiedades
+        if (!user) return responseCreator(res, 404, "No se encontro el usuario");
+        // user.password=undefined; // como para que no mande el password
+        return responseCreator(res, 200, "Usuario encontrado", { user })
 
 
     } catch (error) {
@@ -125,21 +126,74 @@ async function getAllUser(req, res) {
 
 
 
-function deleteUser(req, res) {
+async function deleteUser(req, res) {
+    // return res.send("DELETE USER")
     try {
+        const id = req.params.id;
+        const deletedUser = await User.findByIdAndDelete(id)
+        if (!deleteUser) return responseCreator(res, 404, "No se encontro el usuario");
+        // user.password=undefined; // como para que no mande el password
+        return responseCreator(res, 200, "Usuario borrado correctamente", { deletedUser })
 
-        return res.send("DELETE USER")
+
+
     } catch (error) {
         console.log(error)
-        return responseCreator(res, 500, "mensaje del error",)
+        return responseCreator(res, 500, "No se pudo eliminar el usuario");
     }
 }
 
 
 
-function updateUser(req, res) {
+async function updateUser(req, res) {
     // const id = req.params.id;
-    return res.send("UPDATE USER")
+    // return res.send("UPDATE USER")
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        data.password = undefined;
+        // if( data.password){
+        //     data.password = await bcrypt.hash(data.password, saltRounds)
+        // }
+        const updateUser = await User.findByIdAndUpdate(id, data, { new: true })
+
+        if (!updateUser) return responseCreator(res, 404, "No se pudo actualizar")
+
+        return responseCreator(res, 200, "Usuario actualizado correctamente", { updateUser })
+    } catch (error) {
+        console.log(error);
+        return responseCreator(res, 500, "Error al actualizar el usuario")
+    }
+
+}
+
+async function updatePassword(req, res) {
+    try {
+        const id = req.params.id;
+
+        const oldPassword=req.body.oldPassword;
+        
+        let newPassword=req.body.oldPassword;
+
+        const user = await User.findById(id);
+
+        if(!user) return responseCreator(res, 404, "No se encontro el usuario");
+
+        const pwdCompare = await bcrypt.compare(oldPassword, user.password);
+
+        if(!pwdCompare) return responseCreator(res, 401, "No se pudo moficiar la contraseña");
+
+        newPassword = await bcrypt.hash(newPassword, saltRounds );
+
+        await User.findByIdAndUpdate(id,{ passowrd: newPassword});
+
+        return responseCreator(res, 200, "Password actualizado correctamente!")
+
+    } catch (error) {
+        console.log(error);
+        return responseCreator(res, 500, "No se pudo actualizaar el usuario")
+    }
+
 }
 
 
