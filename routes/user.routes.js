@@ -17,5 +17,7 @@ router.post("/login", userController.login)
 router.delete("/users/:id", userController.deleteUser)
 //PUT-Actualizar usuario
 router.put("/users/:id", userController.updateUser)
+router.put("/users/:id/password", userController.updatePassword)
+
 
 module.exports = router;

@@ -172,7 +172,7 @@ async function updatePassword(req, res) {
         const id = req.params.id;
 
         const oldPassword=req.body.oldPassword;
-        
+
         let newPassword=req.body.oldPassword;
 
         const user = await User.findById(id);
@@ -208,5 +208,7 @@ module.exports = {
     deleteUser,
     updateUser,
     postUser,
-    login
+    login,
+    updatePassword
+    
 }
