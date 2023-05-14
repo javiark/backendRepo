@@ -125,10 +125,9 @@ async function getAllUser(req, res) {
 
 
 
-
-async function deleteUser(req, res) {
+function deleteUser(req, res) {
     try {
-        const user = await User.findById(id);
+
         return res.send("DELETE USER")
     } catch (error) {
         console.log(error)
