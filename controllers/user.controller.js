@@ -1,7 +1,10 @@
 const User = require("../schemas/user.schema"); // ../ es a partir de donde nos encontramos
+const secret = require("../config/secret"); //https://jwt.io/
 const { responseCreator } = require("../utils/utils") // entre comillas puedo poner varios
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const jwt = require("jsonwebtoken");
+
 
 
 
@@ -38,7 +41,6 @@ async function postUser(req, res) {
     }
 }
 
-
 const login = async (req, res) => {
     try {
         //emil y contraseña
@@ -46,13 +48,19 @@ const login = async (req, res) => {
         const passwordLogin = req.body.password;
         //Chequeo que me hayan enviado todos los datos requeridos para el login
         if (!emailLogin || !passwordLogin) {
-            return res.status(400).send({ msg: "Datos del login incompletos" })
+            return res.status(400).send({
+                msg: "Datos del login incompletos"
+            })
         }
         //Buscar si existe un usuario con dicho email
-        const user = await User.findOne({ email: emailLogin }) // el await espera si encuentra algo. Si encuentra un usuario se guarda todo el objeto user
+        const user = await User.findOne({
+            email: emailLogin
+        }) // el await espera si encuentra algo. Si encuentra un usuario se guarda todo el objeto user
 
         if (!user) {
-            return res.status(404).send({ msg: "Datos de ingreso incorrectos" }) // siempre que damos una respuesta hay que pone un return y corto la funcion
+            return res.status(404).send({
+                msg: "Datos de ingreso incorrectos"
+            }) // siempre que damos una respuesta hay que pone un return y corto la funcion
         }
 
         //Comprobamos si el usuario obtenido con su propiedad password coincide con el passw del passw que me envia en el login
@@ -60,14 +68,20 @@ const login = async (req, res) => {
 
         if (!result) {
 
-            return res.status(404).send({ msg: "Datos de ingreso incorrectos" })
+            return res.status(404).send({
+                msg: "Datos de ingreso incorrectos"
+            })
         }
 
         user.password = undefined; // borramos a user la propiedad password para q no me la devuelva en el login
 
+        const token = jwt.sign(user.toJSON(), secret); // puedo ponerle cuando expira. Ver documentacion
+        console.log(token)
+
         return res.status(200).send({
             msg: "Login correcto",
-            user: user,
+            user,
+            token
         })
 
 
@@ -76,16 +90,7 @@ const login = async (req, res) => {
         return res.status(500)("No se pudo realizar el login")
     }
 
-
-
-
-
-
-
-
-
 }
-
 
 async function getUser(req, res) {
     const id = req.params.id;
@@ -124,8 +129,6 @@ async function getAllUser(req, res) {
 
 }
 
-
-
 async function deleteUser(req, res) {
     // return res.send("DELETE USER")
     try {
@@ -142,8 +145,6 @@ async function deleteUser(req, res) {
         return responseCreator(res, 500, "No se pudo eliminar el usuario");
     }
 }
-
-
 
 async function updateUser(req, res) {
     // const id = req.params.id;
@@ -171,27 +172,27 @@ async function updatePassword(req, res) {
     try {
         const id = req.params.id;
 
-        const oldPassword=req.body.oldPassword;
+        const oldPassword = req.body.oldPassword;
 
-        let newPassword=req.body.oldPassword;
+        let newPassword = req.body.oldPassword;
 
         const user = await User.findById(id);
 
-        if(!user) return responseCreator(res, 404, "No se encontro el usuario");
+        if (!user) return responseCreator(res, 404, "No se encontro el usuario.");
 
         const pwdCompare = await bcrypt.compare(oldPassword, user.password);
 
-        if(!pwdCompare) return responseCreator(res, 401, "No se pudo moficiar la contraseña");
+        if (!pwdCompare) return responseCreator(res, 401, "No se pudo moficiar la contraseña.");
 
-        newPassword = await bcrypt.hash(newPassword, saltRounds );
+        newPassword = await bcrypt.hash(newPassword, saltRounds);
 
-        await User.findByIdAndUpdate(id,{ passowrd: newPassword});
+        await User.findByIdAndUpdate(id, { passowrd: newPassword });
 
-        return responseCreator(res, 200, "Password actualizado correctamente!")
+        return responseCreator(res, 200, "¨Password actualizado correctamente")
 
     } catch (error) {
         console.log(error);
-        return responseCreator(res, 500, "No se pudo actualizaar el usuario")
+        return responseCreator(res, 500, "No se pudo actualizar el usuario")
     }
 
 }
@@ -210,5 +211,5 @@ module.exports = {
     postUser,
     login,
     updatePassword
-    
+
 }

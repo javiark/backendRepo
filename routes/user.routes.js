@@ -1,13 +1,16 @@
 const express = require("express")
 const router = express.Router();
 const userController=require("../controllers/user.controller")
+const jwVerify=require("../middlewares/jwtVerify")
+
+//GET-Leer usuario
+router.get("/users", jwVerify,userController.getAllUser)
 
 //POST- Crear usuario
 router.post("/users", userController.postUser);
 //GET-Leer usuario
 router.get("/users/:id", userController.getUser)
-//GET-Leer usuario
-router.get("/users", userController.getAllUser)
+
 // POST - Login
 router.post("/login", userController.login)
 
@@ -17,8 +20,6 @@ router.post("/login", userController.login)
 router.delete("/users/:id", userController.deleteUser)
 //PUT-Actualizar usuario
 router.put("/users/:id", userController.updateUser)
-router.put("/users/:id/password", userController.updatePassword)
-
 router.patch("/users/:id/password", userController.updatePassword)
 
 

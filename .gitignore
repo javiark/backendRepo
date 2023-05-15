@@ -1,1 +1,2 @@
 /node_modules
+# /config/secret.js //para no subir el archivo secret a github
