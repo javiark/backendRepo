@@ -172,9 +172,11 @@ async function updatePassword(req, res) {
     try {
         const id = req.params.id;
 
-        const oldPassword = req.body.oldPassword;
 
-        let newPassword = req.body.oldPassword;
+        const oldPassword = req.body.oldPassword;
+        // console.log(oldPassword)
+
+        let newPassword = req.body.newPassword;
 
         const user = await User.findById(id);
 
@@ -188,7 +190,7 @@ async function updatePassword(req, res) {
 
         await User.findByIdAndUpdate(id, { passowrd: newPassword });
 
-        return responseCreator(res, 200, "¨Password actualizado correctamente")
+        return responseCreator(res, 200, "Password actualizado correctamente!")
 
     } catch (error) {
         console.log(error);
