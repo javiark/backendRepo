@@ -97,6 +97,9 @@ function getProduct(req, res) {
 async function updateProduct(req, res) {
     try {
         const id = req.query.id;
+        if(id !==req.user._id){
+            return responseCreator(res, 401, "No puede modificar este usuario")
+        }
         const data = req.body
         // return res.status(200).send(`Id obtenido por query param${id}`)
 
