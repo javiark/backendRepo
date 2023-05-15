@@ -81,7 +81,7 @@ const login = async (req, res) => {
         user.password = undefined; // borramos a user la propiedad password para q no me la devuelva en el login
 
         const token = jwt.sign(user.toJSON(), secret); // puedo ponerle cuando expira. Ver documentacion
-        console.log(token)
+        // console.log(token)
 
         return res.status(200).send({
             msg: "Login correcto",
