@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = require("../config/secret");
+const secret = process.env.JWT_SECRET;
 const { responseCreator} = require("../utils/utils")
 
 

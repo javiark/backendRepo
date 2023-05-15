@@ -1,6 +1,10 @@
 const User = require("../schemas/user.schema"); // ../ es a partir de donde nos encontramos
-const secret = require("../config/secret"); //https://jwt.io/
-const { responseCreator } = require("../utils/utils") // entre comillas puedo poner varios
+
+const secret = process.env.JWT_SECRET; //https://jwt.io/
+
+const { 
+    responseCreator } 
+    = require("../utils/utils") // entre comillas puedo poner varios
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
@@ -43,6 +47,7 @@ async function postUser(req, res) {
 
 const login = async (req, res) => {
     try {
+        console.log(req.body);
         //emil y contraseña
         const emailLogin = req.body.email;
         const passwordLogin = req.body.password;
@@ -93,13 +98,21 @@ const login = async (req, res) => {
 }
 
 async function getUser(req, res) {
-    const id = req.params.id;
+    const id = req.params.id
+    // console.log(req.user);
+    // console.log( req.user._id, req.params.id ); // para verificiar si los id son iguales. Si no es admin role
+
+    if(req.user.role!=="ADMIN_ROLE" && req.user._id!== id){ // sino es admin role y los id no son iguals no los dejo avanzar.Tienen que cumplrirse ambas condiciones y ahi freno
+        return responseCreator(res,401,"No puede obtener este usuario")
+    }
+
     // return res.send(`GET USER by ID: ${id}`)
 
 
 
     try {
-        const user = await User.findById(id, { password: 0 }); // con 0 no devuelve el password, con 1 me trae solo esas propiedades
+        const user = await User.findById(id, { password: 0, __v:0 }); // con 0 no devuelve el password, con 1 me trae solo esas propiedades
+        // console.log(user)
         if (!user) return responseCreator(res, 404, "No se encontro el usuario");
         // user.password=undefined; // como para que no mande el password
         return responseCreator(res, 200, "Usuario encontrado", { user })

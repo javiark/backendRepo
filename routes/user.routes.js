@@ -6,14 +6,15 @@ const isAdmin =require("../middlewares/isAdmin")
 
 //GET-Leer usuario
 router.get("/users", jwVerify,userController.getAllUser)
+//GET-Leer usuario
+router.get("/users/:id", jwVerify,userController.getUser)
 
 //GET-Leer todos los usuarios
-router.get("/userAll",userController.getAllUser)
+// router.get("/userAll",userController.getAllUser)
 
 //POST- Crear usuario
 router.post("/users", userController.postUser);
-//GET-Leer usuario
-router.get("/users/:id", userController.getUser)
+
 
 // POST - Login
 router.post("/login", userController.login)
@@ -24,6 +25,7 @@ router.post("/login", userController.login)
 router.delete("/users/:id", [jwVerify, isAdmin ], userController.deleteUser)
 //PUT-Actualizar usuario
 router.put("/users/:id", userController.updateUser)
+
 router.patch("/users/:id/password", userController.updatePassword)
 
 
