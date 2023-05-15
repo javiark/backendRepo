@@ -19,5 +19,7 @@ router.delete("/users/:id", userController.deleteUser)
 router.put("/users/:id", userController.updateUser)
 router.put("/users/:id/password", userController.updatePassword)
 
+router.patch("/users/:id/password", userController.updatePassword)
+
 
 module.exports = router;
