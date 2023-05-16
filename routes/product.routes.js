@@ -8,7 +8,7 @@ const productController = require("./../controllers/product.controller");
 router.get("/products", productController.getAllProducts) // cuando se llame esa ruta, vas a ejecutar dentro de product controller la funcion get all products. Con get solcitio informacion al servidor
 
 // Obtener un producto especifico 
-router.get("/product/:id", productController.getProduct) // nose si va sin :id. Chequear
+router.get("/product", productController.getProduct) // nose si va sin :id. Chequear
 
 //Añadir producto
 router.post("/product", productController.addProduct)

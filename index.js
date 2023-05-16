@@ -1,10 +1,13 @@
+require("dotenv").config();
 const app = require("./app");
 
-const port = 4000;
-const dbURL = `mongodb+srv://javier778:javiark778@javiark.qbwamon.mongodb.net/eit-61543?retryWrites=true&w=majority` // me conecto a mongodv// nombre de base de dato eit-61543
+
+const port = process.env.PORT;
+const DB_URL= process.env.MONGODB_CONNECTION;
+
 const mongoose = require ("mongoose"); // llamo a la libreria mongoose
 
-mongoose.connect(dbURL)
+mongoose.connect(DB_URL)
     .then(()=>{ //cuando esto se conecte entonces se ejecuta la funcion
         console.log(`\x1b[35m Conexión a la DB satisfactoria \x1b[37m`); // si sale bien la conexion a datos. 
 
