@@ -6,23 +6,19 @@ const isAdmin =require("../middlewares/isAdmin")
 
 //GET-Leer usuario
 router.get("/users", [jwVerify, isAdmin ],userController.getAllUser) // solo me deja obtenerlos si es admin
+
 //GET-Leer usuario
 router.get("/users/:id", jwVerify,userController.getUser)
-
-//GET-Leer todos los usuarios
-// router.get("/userAll",userController.getAllUser)
 
 //POST- Crear usuario
 router.post("/users", userController.postUser);
 
-
 // POST - Login
 router.post("/login", userController.login)
 
-
-
 //DELETE - Borrar usuario
 router.delete("/users/:id", [jwVerify, isAdmin ], userController.deleteUser)
+
 //PUT-Actualizar usuario
 router.put("/users/:id", userController.updateUser)
 
