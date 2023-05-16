@@ -5,7 +5,7 @@ const jwVerify=require("../middlewares/jwtVerify");
 const isAdmin =require("../middlewares/isAdmin")
 
 //GET-Leer usuario
-router.get("/users", jwVerify,userController.getAllUser)
+router.get("/users", [jwVerify, isAdmin ],userController.getAllUser) // solo me deja obtenerlos si es admin
 //GET-Leer usuario
 router.get("/users/:id", jwVerify,userController.getUser)
 
