@@ -8,6 +8,9 @@ router.get("/orders", ordersController.getOrders);
 //Get order by ID
 router.get("/orders/:id", ordersController. getOrdersById);
 
+//Get user orders. Busco las ordenes de un usuario
+router.get("/orders/user/:id", ordersController.getUserOrders);
+
 //Create order
 router.post("/orders", ordersController.createOrder);
 

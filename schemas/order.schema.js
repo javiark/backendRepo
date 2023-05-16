@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
     products: [
         {    
-            productId:{ type: Schema.Types.ObjectId, ref:"Product", require: true}, // con el ID me traigo todos los datos del producto. El nombre Product como lo tenemos definido en product schema
+            product:{ type: Schema.Types.ObjectId, ref:"Product", require: true}, // con el ID me traigo todos los datos del producto. El nombre Product como lo tenemos definido en product schema
             quantity: { type: Number, require: true, default: 1},
             price: { type: Number, require: true},
 

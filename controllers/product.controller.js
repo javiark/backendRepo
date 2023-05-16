@@ -15,7 +15,7 @@ function addProduct(req, res) {
     // console.log("body")
     // console.log(req.body); // obtengo la info del metodo body, viene con POST nomas
     const product = new Product(req.body);
-    console.log(product)
+    // console.log(product)
     // console.log(product)
     product.save()
 
