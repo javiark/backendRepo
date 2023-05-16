@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-    product: [
+    products: [
         {    
             productId:{ type: Schema.Types.ObjectId, ref:"Product", require: true}, // con el ID me traigo todos los datos del producto. El nombre Product como lo tenemos definido en product schema
             quantity: { type: Number, require: true, default: 1},
@@ -12,8 +12,8 @@ const orderSchema = new Schema({
     ],
     total: { type: Number, require: true, min:1},
     userId:{ type:Schema.Types.ObjectId, ref: "User", require: true },
-    createdAt: { type: Date, require: true, default: Date.now},
-    status:{ type: String, enum: ["onhold","inprogress", "done"] }, // si esta en proceso, si esta despachado o entregado. Con enum defino los status q pueden cargar, si mandan otro tira error
+    createdAt: { type: Date, require: true, default: Date.now}, // al tener default lo crea por defecto
+    status:{ type: String, enum: ["onhold","inprogress", "done"], default:"onhold" }, // si esta en proceso, si esta despachado o entregado. Con enum defino los status q pueden cargar, si mandan otro tira error
     // updatedAt //cuando se cambio el status
     // metodo de pago
     // estado del pago

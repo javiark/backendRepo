@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
+
+
+
+
+
 const proudctSchema = new Schema({
     name: {type: String, required:true},
     description: {type:String, required:true},
@@ -12,7 +18,7 @@ const proudctSchema = new Schema({
     category:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Category",
-        required:true,
+        // required:true,
     },
     createAt:{type:Number, default:Date.now()},
     
