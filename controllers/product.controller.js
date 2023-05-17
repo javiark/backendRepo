@@ -1,13 +1,29 @@
 const Product = require("./../schemas/product.schema")
 const { responseCreator } = require("../utils/utils")
 
-const getAllProducts = (req, res) => {
+async function getAllProducts (req, res)  {
+    try {
+        const itemLimit = 5; // cuantos elementos me muestra
+        const itemsToSkip = itemLimit * (req.query.skip-1) || 0; // cuantos elementos voy a saltear         // item a saltear por limite de pagina = 5 * 0
 
-    Product.find().then(function (productos) { //Find me devuelve los productos, busca de la coleccion productos, una vez que logre leerlos vamos a ejecutar una funcion. La funcion me devuelve los productos que hay obtenido. Esquema que armamos en mongoose product. Find lo busca en mongoatlas.
-        return responseCreator(res, 200, `Productos obtenidos correctamente`, { productos })// devuelvo los productos. Viene un array de los productos
-    }).catch((error) => {
-        console.log(error)
-    })
+            const productos = await Product.find()
+                                            // .limit(itemLimit)// le pongo un limite cuanto quiero que me traiga
+                                            // .skip(itemsToSkip) // le pongo un limite cuanto quiero que me saltee. Si quiero que me traiga a partir del 5, le pongo 5
+            const total= await Product.countDocuments();
+
+        if (!productos) return res.status(404).send({ msg: "No se encontraron productos" })
+
+        return responseCreator(res, 200, "productos obtenidos correctamente", {productos, total})
+    } catch (error) {
+        console.log(error);
+        return responseCreator(res, 500,"Error al encontrar los productos" )
+    }
+
+    // Product.find().then(function (productos) { //Find me devuelve los productos, busca de la coleccion productos, una vez que logre leerlos vamos a ejecutar una funcion. La funcion me devuelve los productos que hay obtenido. Esquema que armamos en mongoose product. Find lo busca en mongoatlas.
+    //     return responseCreator(res, 200, `Productos obtenidos correctamente`, { productos })// devuelvo los productos. Viene un array de los productos
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
 }
 
 function addProduct(req, res) {
@@ -15,7 +31,7 @@ function addProduct(req, res) {
     // console.log("body")
     // console.log(req.body); // obtengo la info del metodo body, viene con POST nomas
     const product = new Product(req.body);
-    console.log(product)
+    // console.log(product)
     // console.log(product)
     product.save()
 
@@ -97,7 +113,7 @@ function getProduct(req, res) {
 async function updateProduct(req, res) {
     try {
         const id = req.query.id;
-        if(id !==req.user._id){
+        if (id !== req.user._id) {
             return responseCreator(res, 401, "No puede modificar este usuario")
         }
         const data = req.body

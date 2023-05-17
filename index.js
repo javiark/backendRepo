@@ -28,5 +28,3 @@ mongoose.connect(DB_URL)
 
 
 
-
-
