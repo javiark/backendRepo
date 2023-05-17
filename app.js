@@ -4,6 +4,7 @@ const productRoutes=require("./routes/product.routes")
 const userRoutes = require("./routes/user.routes")
 const orderRoutes=require("./routes/orders.routes")
 const categoryRoutes=require("./routes/category.routes")
+const upload_routes = require('./routes/upload.routes');
 const cors = require ("cors");
 
 //middlewares
@@ -24,7 +25,9 @@ app.use(cors());
 app.use("/api",[productRoutes,
                 userRoutes, 
                 orderRoutes,
-                categoryRoutes])
+                categoryRoutes,
+                upload_routes
+            ])
 
 
 
