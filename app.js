@@ -3,6 +3,7 @@ const app = express();
 const productRoutes=require("./routes/product.routes")
 const userRoutes = require("./routes/user.routes")
 const orderRoutes=require("./routes/orders.routes")
+const categoryRoutes=require("./routes/category.routes")
 const cors = require ("cors");
 
 //middlewares
@@ -20,7 +21,10 @@ app.use(cors());
 
 
 //Definir rutas a usar por mi app express
-app.use("/api",[productRoutes,userRoutes, orderRoutes])
+app.use("/api",[productRoutes,
+                userRoutes, 
+                orderRoutes,
+                categoryRoutes])
 
 
 
