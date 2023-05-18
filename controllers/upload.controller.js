@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
         // const fileName=`${Date.now()}.${fileExt}`
         
         const fileName=`${uuidv4()}.${fileExt}` // va a ser un numero random con la extension jpg. la libreria uuidv4 genera un id unico
-        req.image=fileName; // de aca saco la imagen, el nombre
+        req.body.image = fileName; // de aca saco la imagen, el nombre
         callback(null,fileName) //transforma el datenow en string
     }
 })

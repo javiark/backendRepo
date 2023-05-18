@@ -30,12 +30,11 @@ async function addProduct(req, res) {
     console.log(req.body);
     console.log(req.file);
    // lo asigno yo al generar el nombre de la imagen uuid
-   console.log(req.image);
 
 
     try {
         const product = new Product(req.body);
-        product.image=req.image;
+        // product.image=req.image;
 
         await product.save();
     
