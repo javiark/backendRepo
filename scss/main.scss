@@ -1,0 +1,29 @@
+@import "abstracts/variables";
+//BASE
+@import "base/reset";
+@import "base/typography";
+
+//COMPONENTS
+@import "components/card";
+@import "components/alert";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/main";
+@import "components/logo_whatsapp";
+@import "components/utilities";
+
+//PAGES
+@import "pages/home";
+@import "pages/contact";
+@import "layout/forms";
+@import "pages/about-us";
+@import "pages/location";
+@import "pages/admin-product";
+@import "pages/admin-user";
+@import "pages/orders"
+
+
+
+
+
+

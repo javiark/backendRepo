@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    // color: #fff;
+}
+
+html {
+    font-size: 16px;
+    color: #535353;
+}
+
+@media screen and (max-width: 500px) {
+    html { font-size: 15px;
+
+    }
+    .logoWP {
+        height: 7rem;
+
+    }
+}
+

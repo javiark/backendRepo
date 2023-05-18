@@ -11,7 +11,7 @@ const cors = require ("cors");
 
 //Cargar configuracion de plantillas de Javascript
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static("public")); // lo unico que se comparte es el public. Se puede leer la carpeta public. Se envia al front
 //middlewares
 app.use(express.json());
 // app.use(express.urlencoded({ extended:true}))

@@ -1,0 +1,123 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-dark-gray;
+    justify-content: space-between;
+    // padding-right:5rem;  
+    
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-right: 5rem;
+
+    
+   
+ 
+     
+    &__logo{
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        
+   
+    }
+
+    &__contact-item {
+        list-style: none;   
+    }
+    &__column { 
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+    }
+
+
+
+    &__contact-link {
+        color: white;
+        padding: .25rem;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        color:#535353;   
+    }
+
+    &__contact-link:hover{
+       font-weight: 300;
+    //    background-color: #003fee;
+    }
+
+    &__contact-icon {
+        font-size: 1.75rem;
+        &--facebook {
+            color: #38529a;
+        }
+        &--instagram {
+            color: #f14d59;
+        }
+        &--linkedin {
+            color: #0077b6;
+        }
+        &--phone{
+            color: #10e0108f;
+        }
+        // &--phone:hover{
+        //     box-shadow: 0 0 5px #10e0108f;
+        //     transition: all 0.5s ease;
+        // }
+
+        
+
+        &--location{
+            color: #003fee;
+        }
+        &--email{
+            color: rgb(255, 254, 254);
+        }
+        &--home{
+            color:rgb(6, 125, 180);
+        }
+    }
+}
+
+
+@media screen and (min-width: 600px) {
+    .footer {
+        flex-direction: row;
+    }
+
+
+
+}
+
+@media screen and (max-width: 500px) {
+    .footer {
+        &__contact-link {
+
+            padding: .1rem;
+        }
+        
+        &__column{
+            padding: .3rem 1.5rem;
+        }
+        &__company-name{
+            font-size: 1.3rem;
+        }
+        &__copyrigth{
+            font-size: .7rem;
+        }
+  
+        &__logo{
+
+            padding-bottom: 0.3rem;
+            height:5rem;
+            width: 12rem;
+            display: flex;
+            justify-content: space-evenly;
+            object-fit: cover;
+            
+       
+        }}
+}
+
+
+
