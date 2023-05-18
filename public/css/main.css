@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+.product-form {
+    padding: 2rem;
+    border: 3px solid salmon;
+    margin: 10px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;    
+    /* padding: 2rem;
+    border: 3px solid salmon; */
+}
+.product-form > div {
+    margin-bottom: 1rem;
+}
+
+.submit-btn {
+    padding: .5rem 1rem;
+    border: 2px solid rgb(159, 241, 35);
+    color: white;
+    background-color: green;
+}
+
+.edit-btn{
+    background-color: dodgerblue;
+    border-color: skyblue;
+}
+
+
+.table-container {
+    width: 100vw;
+    overflow-x: scroll;
+}
+
+.table-product {
+    border-collapse: collapse;
+}
+
+.table-product thead tr {
+    background-color: dodgerblue;
+    color: white;
+    
+}
+.table-product th, .table-product td {
+    border: 1px solid skyblue;
+    font-size: .75rem;
+}
+
+.table-product tr td:not(:first-child) {
+    padding: .5rem;
+    
+}
+.table-product tbody tr:nth-child(odd) {
+    background-color: rgb(236, 250, 255);
+}
+.table-product tr th {
+    padding: .5rem;
+}
+.product__img {
+    width: 50px;
+    object-fit: cover;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+.product__desc {
+    width: 30%;
+}
+.product__price {
+    font-weight: bold;
+
+}
+.product__info-icon.disabled{
+    filter: grayscale(1);
+    opacity: .5;
+    pointer-events: none; 
+}
+.product__info{
+    font-size: 1.25rem !important;
+}
+.product__info, .product__actions {
+    vertical-align: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+.product__action-btn {
+    background-color: rgb(254, 33, 33);
+    border: none;
+    padding: 0.25rem;
+    border-radius: 2px;
+    color: white;
+}
+
+.product__action-btn:hover {
+    background-color: rgb(199, 1, 1);
+}
+
+.btn-edit {
+    background-color: rgb(73, 162, 250); 
+}
+.btn-edit:hover {
+    background-color: rgb(8, 131, 255); 
+}
+
+.btn-favorite {
+    background-color: rgb(253, 247, 230); 
+}
+.btn-favorite.active{
+    background-color: rgb(250,193,30);
+}
+.btn-favorite:hover {
+    background-color: rgb(218, 147, 6); 
+}
+
+
+@media screen and (min-width: 1000px) {
+    .container {
+        flex-direction: row;
+    }
+    .table-container {
+        overflow-x: auto;
+    }
+}
