@@ -1,10 +1,13 @@
 const express=require("express");
 const router=express.Router();
-const productController = require("./../controllers/product.controller");
+const productController = require("../controllers/product.controller");
+const uploadController = require('../controllers/upload.controller');
+// const uploadController = require('../controllers/upload.controller');
+
+//leer
+router.get("/products", uploadController.uploadProduct)
 
 //Obtener todos los productos
-
-
 router.get("/products", productController.getAllProducts) // cuando se llame esa ruta, vas a ejecutar dentro de product controller la funcion get all products. Con get solcitio informacion al servidor
 
 // Obtener un producto especifico 
