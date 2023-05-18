@@ -1,6 +1,47 @@
 
 
-let Products =JSON.parse(localStorage.getItem('Products')) || [];
+let Products = [];
+const selectCategoryHTML = document.getElementById("category")
+
+const URL = 'http://localhost:5000/api';
+
+(async function cargarCategorias() {
+    try {
+        const response = await axios.get(`${URL}/category`)
+        console.log(response) //los elementos estan en response.data.categories. 
+        console.log(response.data.categories)
+        const categories = response.data.categories;   
+    } catch (error) {
+        console.log(error);
+    }
+
+})()
+
+async function cargarProductos() {
+    try {
+        const respuesta = await axios.get(`${URL}/products`);
+        // Products = data.products;
+        console.log(respuesta)
+        renderizarTabla()
+    } catch (error) {
+        console.log(error);
+
+    }
+
+}
+
+cargarProductos()
+async function arrayCateories(){
+    const response = await axios.get(`${URL}/category`)
+    const categories = response.data.categories;
+    selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
+    categories.forEach((cat)=>{
+        console.log(cat)
+        selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
+    })}
+arrayCateories()
+
+
 let favorites = [];
 
 // const editButtons = document.querySelectorAll(".btn-edit");
@@ -11,7 +52,7 @@ let favorites = [];
 //     title: localStorage.getItem("Products")
 // })
 
-const productForm=document.getElementById("add-product");
+const productForm = document.getElementById("add-product");
 const submitBtn = document.getElementById("submit-btn");
 
 
@@ -24,8 +65,8 @@ let editIndex;
 //2- Definir una función para iterar el array
 function renderizarTabla() {
     tableBody.innerHTML = '';
-    if(Products.length===0){
-        tableBody.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+    if (Products.length === 0) {
+        tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
     //3- Iterar el array para acceder a cada producto
@@ -47,12 +88,12 @@ function renderizarTabla() {
                                 <span 
                                     class="
                                             product__info-icon 
-                                            ${ producto.stock ? '' : 'disabled' }
+                                            ${producto.stock ? '' : 'disabled'}
                                     "
                                 > 
                                   📦
                                 </span>
-                                <span class="product__info-icon  ${ producto.joystick ? '' : 'disabled' }">
+                                <span class="product__info-icon  ${producto.joystick ? '' : 'disabled'}">
                                     🎮
                                 </span>
                             </td>
@@ -64,7 +105,7 @@ function renderizarTabla() {
                                 <button class="product__action-btn btn-edit"  onclick="editProduct(${index})">
                                     <i class="fa-solid fa-pencil"></i>
                                 </button>
-                                <button class="product__action-btn btn-favorite ${producto.favorite===true ? 'active':''}" onclick="setFavoriteProduct(${index})">
+                                <button class="product__action-btn btn-favorite ${producto.favorite === true ? 'active' : ''}" onclick="setFavoriteProduct(${index})">
                                     <i class="fa-regular fa-star"></i>
                                 </button>
                             
@@ -88,7 +129,7 @@ function addProduct(evt) {
     // console.log(elements.stock.checked)
     // console.dir(elements.name);
     // console.dir(elements.price);
-    
+
     const newProduct = {
         name: elements.name.value,
         description: elements.description.value,
@@ -109,26 +150,27 @@ function addProduct(evt) {
 
 
     if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
-        Products[editIndex]=newProduct
-        swal ({
-            title:"el producto se edito correctamente",
-            icon:"info"
+        Products[editIndex] = newProduct
+        swal({
+            title: "el producto se edito correctamente",
+            icon: "info"
         })
     } else {
-        Products.push(newProduct);}
-        swal({
-            title:"el producto se agrego correctamente",
-            icon: "success",
-        })
+        Products.push(newProduct);
+    }
+    swal({
+        title: "el producto se agrego correctamente",
+        icon: "success",
+    })
 
     //Guardarlo en el localStorage
     localStorage.setItem('Products', JSON.stringify(Products))
-                        //(nombreKey, dataValue)
+    //(nombreKey, dataValue)
 
-    editIndex=undefined; // para que se vacie
+    editIndex = undefined; // para que se vacie
     submitBtn.classList.remove("edit-btn");
     submitBtn.innerText = "Cargar Prodcuto"
- 
+
     renderizarTabla();
 
     evt.target.reset()
@@ -138,36 +180,30 @@ function addProduct(evt) {
 
 
 function deleteProduct(indice) {
+    // swal({
+    //     title: "Borrar producto",
+    //     text: `Esta seguro que desea borrar el producto ${Product[index].name}`
+    //     icon:`warning`,
+    //     buttons: {
+    //         cancel:"Cancelar",
+    //         delete:"Borrar",
+    //     }
+    // })
+
+    Products.splice(indice, 1);
+    localStorage.setItem("Products", JSON.stringify(Products))
     swal({
-        title: "Borrar producto",
-        text: `Esta seguro que desea borrar el producto ${Product[index].name}`,
-        icon:`warning`,
-        buttons: {
-            cancel:"Cancelar",
-            delete:"Borrar",
-        }
-    }).then(value => {
-        if (value==="delete"){
-            Products.splice(indice, 1);
-            localStorage.setItem("Products",JSON.stringify(Products))
-            swal({
-                title:"Elemento borrado correctamente",
-                icon:"error"
-        
-            });
-            renderizarTabla(); 
+        title: "Elemento borrado correctamente",
+        icon: "error"
 
-        }else {
-            return ; //return null
-        }
-    })
-
+    });
+    renderizarTabla();
 
 }
 
 
 
-function editProduct(idx){
+function editProduct(idx) {
     submitBtn.classList.add("edit-btn");
     submitBtn.innerText = "Modificar Prodcuto"
 
@@ -175,51 +211,25 @@ function editProduct(idx){
 
 
     // console.table(product);
-    const el=productForm.elements;
+    const el = productForm.elements;
     el.description.value = product.description;
-    el.name.value=product.name;
-    el.price.value=product.price;
-    el.image.value=product.image;
-    el.stock.checked=product.stock;
-    el.joystick.checked=product.joystick;
+    el.name.value = product.name;
+    el.price.value = product.price;
+    el.image.value = product.image;
+    el.stock.checked = product.stock;
+    el.joystick.checked = product.joystick;
     // console.log("indice", idx)
     // console.log("product:", product)
-    editIndex=idx;
+    editIndex = idx;
 }
 
 function setFavoriteProduct(index) {
     //Checkear si en el array productos hay algun producto cuyo indice sea distinto al elegido con la propiedad favorite: true tenemos que setearla en falso.
     // Setear el producto elegido como favorite: true
-
-
-    Products.forEach((prod,idx)=>{
-        if(index===idx) prod.favorite = true;
+    Products.forEach((prod, idx) => {
+        if (index === idx) prod.favorite = true;
         else prod.favorite = false;
     });
-
-    //--------------------------------------------------------
-    // const favCount = 0;
-    // const prodFiltradosFavoritos= Products.forEach(prod => {
-    //     if(prod.favorite) {
-    //         favCount++
-    //     }
-    // })
-
-    //     if (favCount >= 3){
-    //     favorites.shift();
-    // }
-    // favorites.push(index)
-    //---------------------------------------------
-    //otra forma
-    // prodFiltradosFavoritos.length >=3
-
-    // console.log(index)
-
-    // if (favorite.length >= 3){
-    //     favorite.shift();
-    // }
-    // favorites.push(index)
-
 
     localStorage.setItem("favorites", JSON.stringify(favorites))
     renderizarTabla();

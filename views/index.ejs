@@ -8,65 +8,63 @@
     <h1><%= title  %></h1>
 
     <div class="container">
-        <form id="add-product" class="product-form" onsubmit="addProduct(event)">
-            <div class="input-box">
-                <label for="nameLabel">Producto</label>
-                <input type="text" name="name" id="nameLabel" required>
-            </div>
-            <div class="input-box">
-                <label for="descLabel">Descripción</label>
-                <textarea name="description" id="descLabel" rows="5" required>
-                </textarea>
-            </div>
-    
-            <div class="input-box">
-                <label for="priceLabel">Precio</label>
-                <input type="number" name="price" id="priceLabel" required>
-            </div>
-    
-            <div class="input-box">
-                <label for="imgLabel">Imagen</label>
-                <input type="url" name="image" id="imgLabel" required value="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/TVULFPUK4VHBBPNHF2Z2WTFJPI.jpg">
-            </div>
-    
-            <div class="input-box">
-                <label for="stockLabel">Stock</label>
-                <input type="checkbox" name="stock" id="stockLabel">
-            </div>
-            <div class="input-box">
-                <label for="joystickLabel">Joystick</label>
-                <input type="checkbox" name="joystick" id="joystickLabel">
-            </div>
-            <div class="input-box">
-                <select name="games" id="game">
-                    <option value="" selected></option>
-                    <option value="god_of_war">God of War</option>
-                    <option value="sonic">Sonic</option>
-                    <option value="mario_bros">Mario Bros</option>
-                    <option value="uncharted">Uncharted</option>
-                </select>
-            </div>
-            <button type="submit" class="submit-btn" id="submit-btn">Cargar Producto</button>
-        </form>
-        <div class="table-container">
-            <table class="table-product">
-                <thead>
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Producto</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Accesorios</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    
-                </tbody>
-            </table>
-        </div>
-        
-    </div>
+      <form id="add-product" class="product-form" onsubmit="addProduct(event)"
+      >
+          <div class="input-box">
+              <label for="nameLabel">Producto</label>
+              <input type="text" name="name" id="nameLabel" required>
+          </div>
+          <div class="input-box">
+              <label for="descLabel">Descripción</label>
+              <textarea name="description" id="descLabel" rows="5" required>
+              </textarea>
+          </div>
+  
+          <div class="input-box">
+              <label for="priceLabel">Precio</label>
+              <input type="number" name="price" id="priceLabel" required>
+          </div>
+  
+          <div class="input-box">
+              <label for="imgLabel">Imagen</label>
+              <input type="url" name="image" id="imgLabel" required value="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/TVULFPUK4VHBBPNHF2Z2WTFJPI.jpg">
+          </div>
+  
+          <div class="input-box">
+              <label for="stockLabel">Stock</label>
+              <input type="checkbox" name="stock" id="stockLabel">
+          </div>
+          <div class="input-box">
+              <label for="joystickLabel">Joystick</label>
+              <input type="checkbox" name="joystick" id="joystickLabel">
+          </div>
+          <div class="input-box">
+              <select name="games" id="category">
+                  <option value="" selected></option>
+
+              </select>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn">Cargar Producto</button>
+      </form>
+      <div class="table-container">
+          <table class="table-product">
+              <thead>
+                  <tr>
+                      <th>Imagen</th>
+                      <th>Producto</th>
+                      <th>Descripción</th>
+                      <th>Precio</th>
+                      <th>Accesorios</th>
+                      <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody id="table-body">
+                  
+              </tbody>
+          </table>
+      </div>
+      
+  </div>
     <%- include('partials/footer') %>
         <!-- AXIOS -->
 
