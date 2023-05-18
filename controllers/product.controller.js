@@ -1,4 +1,4 @@
-const Product = require("./../schemas/product.schema")
+const Product = require("../schemas/product.schema")
 const { responseCreator } = require("../utils/utils")
 
 async function getAllProducts (req, res)  {
@@ -80,44 +80,25 @@ function deleteProduct(req, res) {
 
 }
 
-function getProduct(req, res) {
-    // console.log(req.query)
-    const idParam = req.query.id;
-
-    if (!idParam) {
-        return res.status(400).send({
-            msg: "Es necesario que mande un ID"
-        })
-    }
-    Product.findById(idParam).then((product) => {
-        //Dos casos posibles en una peticion correcta
-
-        //a-El ide proporcionado no corresponde a ningun producto
-        if (!product) {
-            return res.status(404).send({
-                msg: "No se encontro el producto"
-            })
-        }
-        //b- Se encontro el producto
+async function getProduct(req, res) {
+    try {
+        const product = await Product.findById(req.params.id);
         return res.status(200).send({
-            msg: "Producto encontrado!",
+            msg: `Producto encontrado`,
+            ok: true,
             product
-        })
-        //si el producto no tiene los caracteres adecuados
-    }).catch((error) => {
-        console.log(error);
-        return res.status(500).send({
-            msg: "Error al obtener producto"
-        })
-    })
+        });
+    } catch (error) {
+    console.log(error);
+     return responseCreator(res, 400, `Error al obtener productos` )
+    }
 }
+
+//Acordarse de llamar con queryparams. Mandarlo por Body raw y Jason
 
 async function updateProduct(req, res) {
     try {
         const id = req.query.id;
-        if (id !== req.user._id) {
-            return responseCreator(res, 401, "No puede modificar este usuario")
-        }
         const data = req.body
         // return res.status(200).send(`Id obtenido por query param${id}`)
 
@@ -140,11 +121,11 @@ async function updateProduct(req, res) {
         })
 
     }
-
-
 }
+
+
 module.exports = {
-    getAllProducts, // igual a getAllProduct : getAllProduct
+    getAllProducts, 
     deleteProduct,
     addProduct,
     getProduct,
