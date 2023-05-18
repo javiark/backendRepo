@@ -57,6 +57,8 @@ function addProduct(req, res) {
 }
 
 
+
+
 function deleteProduct(req, res) {
     const id = req.params.id;
     Product.findByIdAndDelete(id)

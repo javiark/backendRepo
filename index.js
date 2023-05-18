@@ -9,11 +9,10 @@ const mongoose = require ("mongoose"); // llamo a la libreria mongoose
 
 mongoose.connect(DB_URL)
     .then(()=>{ //cuando esto se conecte entonces se ejecuta la funcion
-        console.log(`\x1b[35m Conexión a la DB satisfactoria \x1b[37m`); // si sale bien la conexion a datos. 
-
-        //Poner en marcha mi servidor express
-        app.listen(port, () => { // llamada asincrona
-            console.log(`\x1b[36m Servidor funcionando en puerto ${port} \x1b[37m`);
+        
+        console.log(`\x1b[93m Conexión a la DB correcta!!! \x1b[37m`);
+        app.listen(port, ()=> {
+            console.log(`\x1b[95m Servidor express escuchando en el puerto ${port} \x1b[37m`)
         })
     })
         // console.log("Linea ejecutada");
