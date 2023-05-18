@@ -26,34 +26,32 @@ async function getAllProducts (req, res)  {
     // })
 }
 
-function addProduct(req, res) {
+async function addProduct(req, res) {
+    console.log(req.body);
+    console.log(req.file);
+   // lo asigno yo al generar el nombre de la imagen uuid
+   console.log(req.image);
 
-    // console.log("body")
-    // console.log(req.body); // obtengo la info del metodo body, viene con POST nomas
-    const product = new Product(req.body);
-    // console.log(product)
-    // console.log(product)
-    product.save()
 
-        .then(function (product) {// es una peticion ascincrona, tengo que esperar. El metodo save me devuelve el producto guardado.
-            // if(!producto){
-            //     console.log("no espero")
-            //     return res.status(200).send(`Algo va a fallar`) // con return no se sigue leyendo lo de abajo
-            // }
-            // console.log("termino el guardado del producto")
-            res.status(200).send({
-                msg: "Producto guardado correctamente",
-                product
-            })
+    try {
+        const product = new Product(req.body);
+        product.image=req.image;
 
+        await product.save();
+    
+        return res.status(200).send({
+            ok: true,
+            msg: `Producto agregado correctamente`,
+            product
         })
-        .catch(error => {
-            console.log(error);
-            res.status(500).send(" El producto no se pudo guardar")
+        
+    } catch (error) {
+        return res.status(200).send({
+            ok: false,
+            msg: `No se agregó el productop`,
+            error
         })
-    //     console.log("no espero")
-    // res.status(200).send(`Algo va a fallar`)
-
+    }
 }
 
 

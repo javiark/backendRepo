@@ -22,7 +22,8 @@ app.use(cors());
 
 
 //Definir rutas a usar por mi app express
-app.use("/api",[productRoutes,
+app.use("/api",[
+                productRoutes,
                 userRoutes, 
                 orderRoutes,
                 categoryRoutes,
