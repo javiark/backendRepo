@@ -130,7 +130,7 @@ function renderizarTabla(arrayProductos) {
 
 }
 
-// renderizarTabla();
+renderizarTabla();
 
 //****ADD EDIT PRODUCT*** */
 
