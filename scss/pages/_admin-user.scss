@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+.adminContainer{
+    padding-top: 5rem;
+}
+.header1{
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+.inputBox{
+    width: 20rem;
+    border-radius: 0.3rem;
+    border: none;
+    height: 1.5rem;
+}
+
+.inputBoxText{
+    width: 20rem;
+    border-radius: 0.3rem;
+    border: none;
+    height: 5rem;
+}
+.inputBoxTextDetail{
+    width: 20rem;
+    border-radius: 0.3rem;
+    border: none;
+    height: 15rem;
+}
+.user-form {
+
+    padding: 0rem 1rem 0rem 1rem;
+    border: 0px solid salmon;
+    margin:     1px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;    
+    /* padding: 2rem;
+    border: 3px solid salmon; */
+}
+.user-form > div {
+    margin-bottom: 1rem;
+}
+
+.submit-btn {
+    padding: .5rem 1rem;
+    width: 20rem;
+    border: 2px solid rgb(51, 87, 2);
+    color: white;
+    background-color: green;
+    visibility: hidden;
+
+}
+.visible{
+    visibility: visible;
+}
+.submit-btn:hover{
+    background-color: rgb(1, 105, 1);
+}
+
+.edit-btn{
+    background-color: dodgerblue;
+    border-color: skyblue;
+}
+
+
+.table-container {
+    width: 100vw;
+    overflow-x: scroll;
+}
+
+.table-product {
+    border-collapse: collapse;
+    &__text-center{
+        text-align: center;
+    }
+}
+
+.table-product thead tr {
+    background-color: dodgerblue;
+    color: white;
+    
+}
+.table-product th, .table-product td {
+    border: 1px solid skyblue;
+    font-size: .75rem;
+}
+
+.table-product tr td:not(:first-child) {
+    padding: .5rem;
+    
+}
+.table-product tbody tr:nth-child(odd) {
+    background-color: rgb(236, 250, 255);
+}
+.table-product tr th {
+    padding: .5rem;
+}
+.user{
+    &__img{
+        width: 50px;
+        object-fit: cover;
+        height: 50px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+    &__name{
+        width: 10%;
+        vertical-align: center;
+        text-align: center;
+    }
+    &__desc {
+        width: 30%;
+        vertical-align: center;
+        text-align: center;
+    }
+    &__price {
+        font-weight: bold;
+    }
+    &__price {
+        font-weight: bold;
+    }
+    &__info-icon.disabled{
+        filter: grayscale(1);
+        opacity: .5;
+        pointer-events: none; 
+    }
+    &__info{
+        font-size: 1.25rem ;
+    }
+    &__action-btnDetail {
+        background-color: rgb(254, 33, 33) ;
+        border: none ;
+        padding: 0.25rem ;
+        border-radius: 2px ;
+        color: rgb(241, 241, 241) ;
+    }
+    &__action-btnDetail:hover {
+        background-color: rgb(199, 1, 1) !important;
+        cursor: pointer;
+    }
+    // &__action-btn{
+    //     background-color: rgb(73, 162, 250); 
+    //     cursor: pointer;
+    //     border: none;
+    //     color: white;
+    //     font-size: 1.2rem;
+
+    // }
+    &__action-btn{
+        background-color: rgb(254, 33, 33);
+        border: none;
+        padding: 0.25rem;
+        border-radius: 2px;
+        color: white; 
+        cursor: pointer;
+    }
+    &__btn-edit{
+        background-color: rgb(73, 162, 250); 
+    }
+    &__btn-edit:hover {
+        background-color: rgb(8, 131, 255); 
+    }
+    &__btn-favorite {
+        background-color: rgb(253, 247, 230); 
+    }
+    &__btn-favorite:hover {
+        background-color: rgb(247, 217, 155); 
+    }
+}
+
+
+.user__info, .user__actions {
+    vertical-align: center;
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    
+}
+
+
+.btn-edit {
+    background-color: rgb(73, 162, 250) !important; 
+
+    
+}
+.btn-edit:hover {
+    background-color: rgb(8, 131, 255); 
+}
+
+.btn-favorite {
+    background-color: rgb(253, 247, 230); 
+}
+.btn-favorite.active{
+    background-color: rgb(250,193,30);
+}
+.btn-favorite:hover {
+    background-color: rgb(218, 147, 6); 
+}
+
+.mainDetail{
+    background-color: rgb(235, 234, 234);
+    flex-grow: 1;
+}
+.containerDetail{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    &__description{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5rem ;
+        margin-left: 2rem;
+
+    }
+    &__imageContainer{
+        // border: solid 1px red;
+        width: 25rem;
+        height: 30rem;
+        margin-left: 5rem;
+        margin-top: 5rem;
+        text-align: center;
+        overflow: hidden;
+        
+    }
+    &__image{
+        width: 25rem;
+        overflow: hidden;
+        background-size: cover;
+    }
+    &__container{
+        flex-grow: 1;
+        width: 30rem;
+    }
+
+    &__descriptionLarge{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem ;
+        margin-left: 2rem;
+        width: 54rem;
+    }
+    &__title{
+        justify-content: center;
+        font-weight: 500;
+        font-size: 1.1rem;
+        font-weight: 400;
+
+    }
+    &__btn-add  {
+        // padding: 1rem 1.5rem;
+        background-color: #00000034;
+        color: white;
+        border-radius: 4px;
+        border: 0;
+        cursor: pointer;
+        font-size: 1rem;
+        height: 1.8rem;
+        text-align:center;
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+    }
+    &__btn-add:hover {
+        box-shadow: 0 0 4px #858585;
+        transition: all 0.5s ease;
+    }
+    &__btn-buy  {
+        // padding: 1rem 1.5rem;
+        background-color: #c3a343;
+        color: white;
+        border-radius: 4px;
+        border: 0;
+        cursor: pointer;
+        font-size: 1rem;
+        height: 1.8rem;
+        text-align:center;
+        pointer-events: none;   
+
+    }
+    &__btn-buy:hover{
+        box-shadow: 0 0 5px #858585;
+        transition: all 0.5s ease;
+    }
+    &__detail{
+        padding-bottom: 1rem;
+    }
+}
+
+.final-price{
+    text-align: right;
+    background-color:#32579e;
+    color: white;
+}
+.final-price-number{
+    text-align: center;
+    background-color:#32579e;
+    color: white;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .container {
+        flex-direction: row;
+    }
+    .table-container {
+        overflow-x: auto;
+    }
+}
