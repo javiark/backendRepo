@@ -609,6 +609,15 @@ body {
     margin-bottom: 18rem;
   }
 }
+.product__img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: brown;
+  border: 1px solid 0;
+}
+
 @media screen and (min-width: 1000px) {
   .section-cards__header {
     display: flex;

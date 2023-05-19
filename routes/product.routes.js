@@ -11,7 +11,7 @@ router.post("/product", uploadController.uploadProduct, productController.addPro
 router.get("/products", productController.getAllProducts) // cuando se llame esa ruta, vas a ejecutar dentro de product controller la funcion get all products. Con get solcitio informacion al servidor
 
 // Obtener un producto especifico 
-router.get("/product/:id", productController.getProduct) // nose si va sin :id. Chequear
+router.get("/product/:id", productController.getProduct) // nose si va sin :id. Chequear. 
 
 //Añadir producto
 // router.post("/product", productController.addProduct)
@@ -20,7 +20,7 @@ router.get("/product/:id", productController.getProduct) // nose si va sin :id. 
 
 //Eliminar producto
 router.delete("/product/:id", productController.deleteProduct) // llamo a delete en postman. nombreDeParam seria el id del producto a borrar
-//Modificar producto
+//Modificar producto. Hay que chequear con el token. Json Verify, los middlewares
 router.put("/product", productController.updateProduct)
 
 

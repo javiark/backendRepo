@@ -1,9 +1,11 @@
 
 
-let Products = [];
+let products = [];
+const token = localStorage.getItem('token');
 const selectCategoryHTML = document.getElementById("category")
 
 const URL = 'http://localhost:5000/api';
+const URL_public ='http://localhost:5000';
 
 (async function cargarCategorias() {
     try {
@@ -21,8 +23,9 @@ async function cargarProductos() {
     try {
         const respuesta = await axios.get(`${URL}/products`);
         // Products = data.products;
-        console.log(respuesta)
-        renderizarTabla()
+        // console.log(respuesta.data.productos.name)
+        products=respuesta.data.productos
+        renderizarTabla(products)
     } catch (error) {
         console.log(error);
 
@@ -31,6 +34,8 @@ async function cargarProductos() {
 }
 
 cargarProductos()
+
+
 async function arrayCateories(){
     const response = await axios.get(`${URL}/category`)
     const categories = response.data.categories;
@@ -63,24 +68,32 @@ let editIndex;
 
 
 //2- Definir una función para iterar el array
-function renderizarTabla() {
+function renderizarTabla(arrayProductos) {
+    console.log(arrayProductos.length)
     tableBody.innerHTML = '';
-    if (Products.length === 0) {
+    if (arrayProductos.length === 0) {
         tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
     //3- Iterar el array para acceder a cada producto
-    Products.forEach((producto, index) => {
+    arrayProductos.forEach((producto, index) => {
         // let imageSrc = '/assets/images/no-product.png';
 
         // if(producto.image) {
         //     imageSrc = producto.image;
         // }
 
-        let imageSrc = producto.image ? producto.image : '/assets/images/no-product.png';
+        // si hay product.image buscamos en upload/product la imagen, sino ponemos la imagen no product.png
+        let imageSrc = producto.image ? `${URL_public}/upload/product/${producto.image}` : '/assets/images/no-product.png';
         //4- Introducir dentro del tbody una fila por producto con sus respectivas celdas
+        // "${product.image ? URL+`/`+product.image}" pregunta si tiene esa imagen la renderiza, sino pinta con la imagen no-product.png
+        // para borrar toma espera el id del producto ${producto._id}
+        // va con dos comillas pq no se interpreta como un numer 
         const tableRow = `<tr class="product">
-                            <td class="product__img-cell"><img class="product__img" src="${imageSrc}" alt="${producto.name}"></td>
+                            <td class="product__img-cell"><img class="product__img" 
+                            src="${imageSrc}" 
+                            alt="${producto.name}">
+                            </td>
                             <td class="product__name" onclick="editName(${index}")>${producto.name}</td>
                             <td class="product__desc">${producto.description}</td>
                             <td class="product__price">$ ${producto.price}</td>
@@ -98,7 +111,7 @@ function renderizarTabla() {
                                 </span>
                             </td>
                             <td class="product__actions">
-                                <button class="product__action-btn" onclick="deleteProduct(${index})">
+                                <button class="product__action-btn" onclick="deleteProduct('${producto._id}')"> 
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
@@ -117,97 +130,109 @@ function renderizarTabla() {
 
 }
 
-renderizarTabla();
+// renderizarTabla();
 
 //****ADD EDIT PRODUCT*** */
 
-function addProduct(evt) {
-    evt.preventDefault();
-    console.dir(evt.target);
-    const elements = evt.target.elements;
+// async function addProduct(evt) {
 
-    // console.log(elements.stock.checked)
-    // console.dir(elements.name);
-    // console.dir(elements.price);
+//     try {
+//         evt.preventDefault();
+//         console.dir(evt.target);
+//         const elements = evt.target.elements;
 
-    const newProduct = {
-        name: elements.name.value,
-        description: elements.description.value,
-        price: elements.price.valueAsNumber,
-        image: elements.image.value,
-        stock: elements.stock.checked,
-        joystick: elements.joystick.checked,
-        games: elements.games.value
-    };
+//         // console.log(elements.stock.checked);
+//         // console.dir(elements.name);
+//         // console.dir(elements.price)
+//         const formFile = new FormData(evt.target);
 
+//         // TODO: remover Observar que tengo
+//         const obj = Object.fromEntries(formFile);
+//         console.log(obj);
 
-    // const newFormData = new FormData(evt.target);
-    // const newProductFormData = Object.fromEntries(newFormData);
-    // newProductFormData.stock = newProductFormData.stock === "on" ? true : false;
-    // newProductFormData.joystick = newProductFormData.joystick === "on" ? true : false;
-    // newProductFormData.price = +newProductFormData.price
+//         // la envio a axios en el metodo post
+//         const { data} = await axios.post(`${URL}/product`, formFile, {
+//             headers: {
+//                 Authorization: token
+//             }
+//         });
+//         console.log(data)
+//         cargarProductos();
 
+//     } catch (error) {
+//         console.log(error)
+//     }
+   
 
+// }
 
-    if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
-        Products[editIndex] = newProduct
-        swal({
-            title: "el producto se edito correctamente",
-            icon: "info"
-        })
-    } else {
-        Products.push(newProduct);
+async function addProduct(evt) {
+
+    try {
+        evt.preventDefault();
+        console.dir(evt.target);
+        const elements = evt.target.elements;
+
+        // console.log(elements.stock.checked);
+        // console.dir(elements.name);
+        // console.dir(elements.price)
+        const formFile = new FormData(evt.target);
+
+        // TODO: remover Observar que tengo
+        const obj = Object.fromEntries(formFile);
+        console.log(obj);
+
+        // la envio a axios en el metodo post
+        const { data} = await axios.post(`${URL}/product`, formFile);
+        console.log(data)
+        cargarProductos();
+
+    } catch (error) {
+        console.log(error)
     }
+   
+
+}
+
+
+
+
+async function deleteProduct(id) {
+    console.log(id)
     swal({
-        title: "el producto se agrego correctamente",
-        icon: "success",
+        title: `Borrar producto`,
+        text: `Esta seguro que desea borrar el producto   `,
+        icon: 'warning',
+        buttons: {
+            cancel: `Cancelar`,
+            delete: `Borrar`
+        }
+    }).then(async function(value) {
+        if(value === `delete`) {
+            // ? LLAMADA AL BACKEND axios.delete
+            try {
+                const respuesta = await axios.delete(`${URL}/product/${id}`)
+                cargarProductos()
+            } catch (error) {
+                console.log(error)
+            }
+            swal({
+                title: `Elemento borrado correctamente`,
+                icon: 'error'
+            })
+            renderizarTabla();
+        } 
     })
-
-    //Guardarlo en el localStorage
-    localStorage.setItem('Products', JSON.stringify(Products))
-    //(nombreKey, dataValue)
-
-    editIndex = undefined; // para que se vacie
-    submitBtn.classList.remove("edit-btn");
-    submitBtn.innerText = "Cargar Prodcuto"
-
-    renderizarTabla();
-
-    evt.target.reset()
-    elements.name.focus();
-}
-
-
-
-function deleteProduct(indice) {
-    // swal({
-    //     title: "Borrar producto",
-    //     text: `Esta seguro que desea borrar el producto ${Product[index].name}`
-    //     icon:`warning`,
-    //     buttons: {
-    //         cancel:"Cancelar",
-    //         delete:"Borrar",
-    //     }
-    // })
-
-    Products.splice(indice, 1);
-    localStorage.setItem("Products", JSON.stringify(Products))
-    swal({
-        title: "Elemento borrado correctamente",
-        icon: "error"
-
-    });
-    renderizarTabla();
+    
 
 }
-
 
 
 function editProduct(idx) {
     submitBtn.classList.add("edit-btn");
     submitBtn.innerText = "Modificar Prodcuto"
 
-    let product = Products[idx];
+    let product = products[idx];
 
 
     // console.table(product);
@@ -221,12 +246,15 @@ function editProduct(idx) {
     // console.log("indice", idx)
     // console.log("product:", product)
     editIndex = idx;
+
+    // ** VAMOS A MANDAR ESTE OBJETO AL BACKEND AL ENDPOINT DE HACER EL PUT, UNA VEZ RESUELTO EL LLAMADO (AWAIT), VUELVEN A PEDIR LOS PRODUCTOS.
+    // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
 }
 
 function setFavoriteProduct(index) {
     //Checkear si en el array productos hay algun producto cuyo indice sea distinto al elegido con la propiedad favorite: true tenemos que setearla en falso.
     // Setear el producto elegido como favorite: true
-    Products.forEach((prod, idx) => {
+    products.forEach((prod, idx) => {
         if (index === idx) prod.favorite = true;
         else prod.favorite = false;
     });
