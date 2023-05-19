@@ -16,4 +16,7 @@ router.get("/contact", (req, res) => {
 
 }); // devuelve la pagina index
 
+// para chequear si esta logueada o no la persona. Proteguemos la ruta
+// router.get("/admin-product", (req, res)={return res.render("admi-product")})
+
 module.exports = router;

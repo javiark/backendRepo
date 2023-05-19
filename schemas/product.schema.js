@@ -14,7 +14,7 @@ const proudctSchema = new Schema({
         ref:"Category",
         required:true,
     },
-    createAt:{type:Number, default:Date.now()},
+    createAt:{type:Number, default:Date.now},
     
 }) //propiedades que quiero q se guarden. Si sobran cosas las va a quitar
 

@@ -108,11 +108,10 @@ async function getUser(req, res) {
 
     // return res.send(`GET USER by ID: ${id}`)
 
-
-
     try {
         const user = await User.findById(id, { password: 0, __v:0 }); // con 0 no devuelve el password, con 1 me trae solo esas propiedades
         // console.log(user)
+    
         if (!user) return responseCreator(res, 404, "No se encontro el usuario");
         // user.password=undefined; // como para que no mande el password
         return responseCreator(res, 200, "Usuario encontrado", { user })

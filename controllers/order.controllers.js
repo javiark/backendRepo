@@ -10,6 +10,7 @@ async function createOrder(req, res) { // se hace async pq pide algo del backend
         const body = req.body;
 
         const data = new Order(body);
+        // data.totalPrice = await verifyOrderAndCalculate(req.body.products);
 
         const newOrder = await data.save();
 
@@ -59,12 +60,50 @@ async function getOrdersById(req, res) {
 
 }
 
-async function updateOrders(req, res) {
-    responseCreator(res, 200, "Orden actualizada correctamente");
+//----------CHEQUEAR
+async function verifyOrderAndCalculate(orderProducts) {
+    let total = 0;	
+    for (const prod of orderProducts) {
+        const product = await Product.findById(prod.product);
+
+        if(!product) throw new Error('Producto no encontrado');
+
+        // check stock
+        // if(product.stock < orderProduct.quantity) throw new Error('No hay suficiente stock');
+        if(product.price !== prod.price) throw new Error('El precio del producto no coincide');
+        total += prod.price * prod.quantity;
+    };
+    return total;
 }
 
+//----------CHEQUEAR
+async function updateOrders(req, res) {
+    // responseCreator(res, 200, "Orden actualizada correctamente");
+    try {
+        const id = req.params.id;
+        const order = req.body;
+        order.totalPrice = await verifyOrderAndCalculate(order.orderProducts);
+        const updatedOrder = await Order.findByIdAndUpdate(id, order, { new: true });
+        if(!updatedOrder) throw new Error('Error al actualizar la orden');
+        return res.status(200).send(updatedOrder)
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error instanceof Error ? error.message : 'Error al actualizar la orden')
+    }
+}
+
+//----------CHEQUEAR
 async function deleteOrders(req, res) {
-    responseCreator(res, 200, "Orden eliminada correctamente");
+    // responseCreator(res, 200, "Orden eliminada correctamente");
+    try {
+        const id = req.params.id;
+        const deletedOrder = await Order.findByIdAndDelete(id);
+        if(!deletedOrder) throw new Error('Error al eliminar la orden');
+        return res.status(200).send(deletedOrder)
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error instanceof Error ? error.message : 'Error al eliminar la orden')
+    }
 }
 
 async function getUserOrders(req, res){
@@ -85,6 +124,7 @@ module.exports = {
     getOrdersById,
     updateOrders,
     deleteOrders,
-    getUserOrders
+    getUserOrders,
+    verifyOrderAndCalculate
 
 }

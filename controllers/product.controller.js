@@ -18,14 +18,10 @@ async function getAllProducts (req, res)  {
         console.log(error);
         return responseCreator(res, 500,"Error al encontrar los productos" )
     }
-
-    // Product.find().then(function (productos) { //Find me devuelve los productos, busca de la coleccion productos, una vez que logre leerlos vamos a ejecutar una funcion. La funcion me devuelve los productos que hay obtenido. Esquema que armamos en mongoose product. Find lo busca en mongoatlas.
-    //     return responseCreator(res, 200, `Productos obtenidos correctamente`, { productos })// devuelvo los productos. Viene un array de los productos
-    // }).catch((error) => {
-    //     console.log(error)
-    // })
 }
 
+
+//-------------------
 async function addProduct(req, res) {
     console.log(req.body);
     console.log(req.file);
