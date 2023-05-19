@@ -2,76 +2,80 @@
 <html lang="en">
 <%- include('partials/head', { tabTitle: "Principal" }) %>
 
-  <body>
+    <body>
 
-    <%- include('partials/header') %>
- 
-     <!-- =================INFO=================  -->
+        <%- include('partials/header') %>
 
-     <main class="main">
-      <section class="section-cards">
-          <header class="section-cards__header">
-              <div class="section-cards__title-container">
-                  <h1 class="section-cards__title">
-                      INFORMACIÓN IMPORTANTE
-                  </h1>
-                  <p class="section-cards__subtitle">
-                      CHEQUEÁ EL MÍNIMO PARA TU ZONA Y DÍAS DE ENTREGA / DEMORA MÍNIMA: 48 HORAS / HORARIOS SUJETOS AL RECORRIDO / ANTES DEL ENVÍO, CONFIRMAREMOS POR MAIL EL DÍA DE ENTREGA / NO REALIZAMOS ENTREGAS DENTRO DE BARRIOS CERRADOS, SOLO EN LA ENTRADA :)
-                  </p>
-              </div>
-              <div class="section-cards__products-search-container">
-                  
-                  <div class="product-search">
-                      <label for="" ></label>
-                      <div>
-                          <input type="text" class="product-search__input" placeholder="Buscar..." autofocus  onkeyup="metodoFilter(event)" >
+            <!-- =================INFO=================  -->
 
-                      </div>
+            <main class="main">
+                <section class="section-cards">
+                    <header class="section-cards__header">
+                        <div class="section-cards__title-container">
+                            <h1 class="section-cards__title">
+                                INFORMACIÓN IMPORTANTE
+                            </h1>
+                            <p class="section-cards__subtitle">
+                                CHEQUEÁ EL MÍNIMO PARA TU ZONA Y DÍAS DE ENTREGA / DEMORA MÍNIMA: 48 HORAS / HORARIOS
+                                SUJETOS AL RECORRIDO / ANTES DEL ENVÍO, CONFIRMAREMOS POR MAIL EL DÍA DE ENTREGA / NO
+                                REALIZAMOS ENTREGAS DENTRO DE BARRIOS CERRADOS, SOLO EN LA ENTRADA :)
+                            </p>
+                        </div>
+                        <div class="section-cards__products-search-container">
 
-                  </div>
+                            <div class="product-search">
+                                <label for=""></label>
+                                <div>
+                                    <input type="text" class="product-search__input" placeholder="Buscar..." autofocus
+                                        onkeyup="metodoFilter(event)">
 
-                  <div class="section-cards__products-count" id="productsCount">
+                                </div>
 
-                  </div>
-              </div>
-          </header>
-          <h1 class="section-cards__category">
-              PRODUCTOS
-          </h1>
-          <div class="cards-container" id="card-container">
+                            </div>
 
-          </div>
+                            <div class="section-cards__products-count" id="productsCount">
 
-      </section>
-     
-  </main>
+                            </div>
+                        </div>
+                    </header>
+                    <h1 class="section-cards__category">
+                        PRODUCTOS
+                    </h1>
+                    <div class="cards-container" id="card-container">
+
+                    </div>
+
+                </section>
+
+            </main>
 
 
-      <%- include('partials/footer') %>
+            <%- include('partials/footer') %>
 
 
-        
-    <!-- watsapp logo -->
 
-        <div class="whatsapp-container">
-          <a href="https://walink.co/1565a1" target="_blank">
-              <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png" alt="whatsapp logo" class="logoWP">
-          </a>
-      </div>
+                <!-- watsapp logo -->
 
-        <!-- AXIOS -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="/js/adminUser.js"></script>
-        <script src="/js//date.js"></script>
-        <script src="/js/header.js"></script>
-        <script src="/js/alert.js"></script>
-        <script src="/js/index.js"></script>
-        <script src="/js/loginUserAvatar.js"></script> 
-        <script src="/js/filter.js"></script>
-        <script src="/js/btnBuy.js"></script>
-        <script src="/js/cartUpdate.js"></script>
-        <script src="/js//orderFinal.js"></script>
-  </body>
+                <div class="whatsapp-container">
+                    <a href="https://walink.co/1565a1" target="_blank">
+                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                            alt="whatsapp logo" class="logoWP">
+                    </a>
+                </div>
+
+                <!-- AXIOS -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="/js/adminUser.js"></script>
+                <script src="/js//date.js"></script>
+                <script src="/js/header.js"></script>
+                <script src="/js/alert.js"></script>
+                <script src="/js/index.js"></script>
+                <script src="/js/loginUserAvatar.js"></script>
+                <script src="/js/filter.js"></script>
+                <script src="/js/btnBuy.js"></script>
+                <script src="/js/cartUpdate.js"></script>
+                <script src="/js//orderFinal.js"></script>
+    </body>
 
 </html>
