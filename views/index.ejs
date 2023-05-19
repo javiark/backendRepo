@@ -5,74 +5,73 @@
   <body>
 
     <%- include('partials/header') %>
-      <h1>
-        <%= title %>
-      </h1>
+ 
+     <!-- =================INFO=================  -->
 
-      <div class="container">
-        <form id="add-product" class="product-form" onsubmit="addProduct(event)">
-          <div class="input-box">
-            <label for="nameLabel">Producto</label>
-            <input type="text" name="name" id="nameLabel" required>
-          </div>
-          <div class="input-box">
-            <label for="descLabel">Descripción</label>
-            <textarea name="description" id="descLabel" rows="5" required>
-              </textarea>
+     <main class="main">
+      <section class="section-cards">
+          <header class="section-cards__header">
+              <div class="section-cards__title-container">
+                  <h1 class="section-cards__title">
+                      INFORMACIÓN IMPORTANTE
+                  </h1>
+                  <p class="section-cards__subtitle">
+                      CHEQUEÁ EL MÍNIMO PARA TU ZONA Y DÍAS DE ENTREGA / DEMORA MÍNIMA: 48 HORAS / HORARIOS SUJETOS AL RECORRIDO / ANTES DEL ENVÍO, CONFIRMAREMOS POR MAIL EL DÍA DE ENTREGA / NO REALIZAMOS ENTREGAS DENTRO DE BARRIOS CERRADOS, SOLO EN LA ENTRADA :)
+                  </p>
+              </div>
+              <div class="section-cards__products-search-container">
+                  
+                  <div class="product-search">
+                      <label for="" ></label>
+                      <div>
+                          <input type="text" class="product-search__input" placeholder="Buscar..." autofocus  onkeyup="metodoFilter(event)" >
+
+                      </div>
+
+                  </div>
+
+                  <div class="section-cards__products-count" id="productsCount">
+
+                  </div>
+              </div>
+          </header>
+          <h1 class="section-cards__category">
+              PRODUCTOS
+          </h1>
+          <div class="cards-container" id="card-container">
+
           </div>
 
-          <div class="input-box">
-            <label for="priceLabel">Precio</label>
-            <input type="number" name="price" id="priceLabel" required>
-          </div>
+      </section>
+     
+  </main>
 
-          <div class="input-box">
-            <label for="imgLabel">Imagen</label>
-            <input type="url" name="file" id="imgLabel" required
-              value="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/TVULFPUK4VHBBPNHF2Z2WTFJPI.jpg">
-          </div>
 
-          <div class="input-box">
-            <label for="stockLabel">Stock</label>
-            <input type="checkbox" name="stock" id="stockLabel">
-          </div>
-          <div class="input-box">
-            <label for="joystickLabel">Joystick</label>
-            <input type="checkbox" name="joystick" id="joystickLabel">
-          </div>
-          <div class="input-box">
-            <select name="games" id="category">
-              <option value="" selected></option>
-
-            </select>
-          </div>
-          <button type="submit" class="submit-btn" id="submit-btn">Cargar Producto</button>
-        </form>
-        <div class="table-container">
-          <table class="table-product">
-            <thead>
-              <tr>
-                <th>Imagen</th>
-                <th>Producto</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Accesorios</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-
-            </tbody>
-          </table>
-        </div>
-
-      </div>
       <%- include('partials/footer') %>
-        <!-- AXIOS -->
 
+
+        
+    <!-- watsapp logo -->
+
+        <div class="whatsapp-container">
+          <a href="https://walink.co/1565a1" target="_blank">
+              <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png" alt="whatsapp logo" class="logoWP">
+          </a>
+      </div>
+
+        <!-- AXIOS -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="/js/product.js"></script>
+        <script src="/js/adminUser.js"></script>
+        <script src="/js//date.js"></script>
+        <script src="/js/header.js"></script>
+        <script src="/js/alert.js"></script>
+        <script src="/js/index.js"></script>
+        <script src="/js/loginUserAvatar.js"></script> 
+        <script src="/js/filter.js"></script>
+        <script src="/js/btnBuy.js"></script>
+        <script src="/js/cartUpdate.js"></script>
+        <script src="/js//orderFinal.js"></script>
   </body>
 
 </html>
