@@ -1,0 +1,248 @@
+.header {
+    position: fixed;
+    // position: absolute;
+    width: 100%;
+    top: 0;
+}
+.loginName{
+    color:black;
+    font-size: 0.7rem;
+   
+    
+
+}
+.navbar {
+    height: 50px;
+    background-color: $color-bg-secondary;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &__logo {
+        height: 45px;
+        
+    }
+
+    &__menu-label {
+        color: $color-text-ligth;
+        // margin-left: auto;
+        height: 42px;
+        background-color:#C3A343;
+        border-radius: 5px;
+        width: 42px;
+        margin-right: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__menu-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+    }
+
+    &__menu-btn:checked ~ &__nav-links-container {
+            height: calc(100vh - 50px);
+    }
+
+   
+
+    
+
+    &__menu-icon {
+        height: 2px;
+        background-color: $color-text-ligth;
+        width: 18px;
+        position: relative;
+
+        &::after, &::before {
+            content: '';
+            height: 2px;
+            background-color: $color-text-ligth;
+            position: absolute;
+            width: 100%;
+            transition: all .2s ease-out;
+        }
+        &::after {
+            top: 5px;
+        }
+        &::before {
+            top: -5px;
+        }
+    }
+
+    &__menu-btn:checked ~ &__menu-label &__menu-icon {
+        background: transparent;
+        &::after {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        &::before {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+    }
+
+    &__nav-links-container {
+        list-style: none;
+        position: absolute;
+        top: 50px;
+        background-color: $color-bg-secondary;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        transition: all .2s ease-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // background-color: crimson;
+        // color: blue;
+    }
+
+    &__nav-item {
+        padding: 1.25rem 1rem;
+        text-align: center;
+
+        &:not(:last-child) {
+            border-bottom: 2px solid rgb(156, 156, 156);
+
+        }
+    }
+    &__nav-item1 {
+      
+        padding: 1.25rem 1rem;
+        text-align: center;
+        // font-weight: 700;
+        // background-color: #C3A343;
+        &:not(:last-child) {
+            border-bottom: 2px solid rgb(156, 156, 156);
+        }
+    }
+    &__nav-link {
+        color: black;
+        cursor: pointer;
+        font-size:1rem;
+
+       
+    }
+    &__nav-link-login {
+        color: black;
+        font-size:0.8rem;
+ 
+    }
+
+    &__nav-link1 {
+        color: black;
+        cursor: pointer;
+        font-size:1rem;   
+        padding-bottom: 0.1rem; 
+        font-weight: 500;
+        // padding-left: 10rem; 
+    }
+    &__nav-link:hover {
+        color: #C3A343;
+        font-weight: 400;
+    }
+    &__nav-link1:hover {
+        color: #C3A343;
+        font-weight: bold;
+    }
+
+}
+.fa-cart-shopping{
+    color: orange;
+    font-size: 1.5rem;
+    margin-right: .5rem;
+    position: relative;
+}
+
+.user-navbar {
+    
+    margin-left: auto;
+    color: white;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: 0 1rem;
+
+
+    &__avatar-container{
+        background-color: #C3A343;
+        display: flex;
+        flex-direction: center;
+        text-align: center;
+        width: 300px;  
+    }
+    &__user-avatar-container{
+        text-align: center;
+    }
+    &__user-avatar {
+        
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // text-align: center;
+        width: 1.8rem;
+        opacity: 1;
+        color: orange;
+        margin-left: auto;
+       
+}
+   
+    &__cart-icon-container {
+        color: orange;
+        font-size: 1.5rem;
+        margin-right: .5rem;
+        position: relative;
+    }
+    &__cart-badge{
+        position: absolute;
+        top: -5px;
+        right: -3px;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: .7rem;
+        text-align: center;
+        padding-top: 1.55px;
+
+
+    }
+}
+.rojo{
+    color: red;
+}
+
+@media screen and (min-width: 600px) {
+    .navbar {
+
+        &__menu-label, &__menu-btn {
+            display: none;
+        }
+        &__nav-links-container {
+            position: static;
+            flex-direction: row;
+            height: 100% !important;
+            width: auto;
+            // background-color: #C3A343;
+        }
+    }
+    .user-navbar {
+        order: 3;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .navbar {
+        &__nav-link-login{
+            font-size: 0.5rem;
+        }
+
+}}

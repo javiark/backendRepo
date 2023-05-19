@@ -1,0 +1,34 @@
+.main {
+    margin-top:50px;
+    // padding: 1.5rem 0;
+    background-color: rgb(235, 234, 234);
+    // width: fit-content;
+    
+    padding-bottom:11rem;
+    // position: absolute;
+    min-height: 100vh;
+}
+
+.main4 {
+    // margin-top:50px;
+    // padding: 1.5rem 0;
+    background-color: rgb(235, 234, 234);
+
+    
+    
+    padding-bottom:0rem;
+    // position: absolute;
+    min-height: 100vh;
+}
+
+
+
+.section-cards {
+    &__title-container h1{
+        font-size: 25px;
+        
+    } 
+}
+
+
+

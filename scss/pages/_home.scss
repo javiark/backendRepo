@@ -1,0 +1,152 @@
+.section-cards {
+    &__title{
+        margin-top: 0.5rem;
+    }
+    &__products-count{
+        padding-top: 1rem;
+        font-size: 1rem;
+        // color: red;
+    }
+
+    &__header {
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    &__subtitle {
+        color: #444;
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    &__products-search-container {
+        margin-top: 0.5rem;
+        padding: 1rem;
+        background-color: rgb(230, 230, 230);
+        border-radius: 1rem;
+        font-size: 1.2rem;
+        
+    }
+    &__category {
+        padding-left: 1rem;
+    }
+
+    .cards-container {
+        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+
+}
+
+.section-cards-detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards-container-detail{
+    width: 25rem;
+}
+
+
+
+
+.fa-magnifying-glass {
+    cursor: pointer;
+    font-size: 17px;
+    color:#c3a343;
+    
+}
+
+
+.product-search {
+    &__input{
+        border: none;
+        height: 1.8rem;
+        font-weight: 500;
+        border-radius: 0.3rem;
+        padding-left: 1rem;
+        color:#b4b4b4;
+        font-size: 0.8rem;
+
+        width: 23rem;
+    }
+    &__input1{
+        border: none;
+        height: 1.8rem;
+        font-weight: 500;
+        border-radius: 0.3rem;
+        padding-left: 1rem;
+        color:#504f4f;
+        font-size: 0.8rem;
+        width: 23rem;
+        padding-top: 1rem;
+    }
+    &__btnDiv{
+        padding: 0.5rem;
+    }
+    &__btn{
+        background-color: #c3a343;
+        border: none;
+        color: white;
+        height: 2rem;
+        width: 4rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        
+    }
+    }
+.btn-inicio{
+    display: flex;
+    justify-content: center;
+
+
+
+    &__boton{
+        text-align: center;
+        padding-top: 0.7rem;
+        height: 3rem;
+        width: 10rem;
+        margin: 1.5rem;
+        background-color: rgb(240, 240, 240);
+        border:solid rgb(193, 193, 193)  2px;
+        border-radius: 0.5rem;
+        color: rgb(193, 193, 193);
+        cursor: pointer;
+    }
+
+}
+
+
+@media screen and (max-width: 500px) {
+    // .main{
+    //     margin-bottom: 5rem;
+    //     background-color: crimson;
+    // }
+    .section-cards {
+        margin-bottom: 18rem;}
+}
+
+.product__img{
+    width:70px;
+    height: 70px;
+    border-radius:50%;
+    object-fit:cover;
+    background-color: brown;
+    border: 1px solid blue($color: #000000);
+}
+
+
+
+@media screen and (min-width: 1000px) {
+    .section-cards {
+
+
+        &__header {
+            display: flex;
+            
+        }
+
+    }
+}
