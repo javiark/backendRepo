@@ -1,39 +1,78 @@
-<input type="checkbox" class="navbar__menu-btn" id="menu-btn">
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', { tabTitle: 'Contacto' }) %>
 
-<label for="menu-btn" class="navbar__menu-label">
-    <span class="navbar__menu-icon"></span>
-</label>
+<body>
 
-<ul class="navbar__nav-links-container" id="navbar-list">
-    <li class="navbar__nav-item">
-        <a href="/index.html" class="navbar__nav-link">Inicio</a>
-    </li>
-    <li class="navbar__nav-item">
-        <a href="/pages/contact/contact.html" class="navbar__nav-link">Contacto</a>
-    </li>
-    <li class="navbar__nav-item">
-        <a href="/pages/about-us/about-us.html" class="navbar__nav-link">Nosotros</a>
-    </li>
-    <li class="navbar__nav-item">
-        <a href="/pages/register/register.html" class="navbar__nav-link" target="_self">Registro</a>
-    </li>
-    <li class="navbar__nav-item" id="sign-in">
-        <a href="/pages/login/login.html" class="navbar__nav-link" target="_blank">Login</a>
-    </li>
-</ul>
-</nav>
+    <%- include('partials/header') %>
 
-</header>
+        <!-- =================TITULO=================  -->
+        <div class="main2">
+            <div class="Contact-Container">
+                <div class="Contact">
+                    <h1>Contácanos!</h1>
+                    <div class="formContact-Container">
+                        <form class="formContact">
+                            <div>
+                                <label for="idInputName">Nombre y Apellido</label> <br>
+                                <input class="formContact__Nombre" type="text" name="fullName" id="idInputName"
+                                    minlength="8" maxlength="40" size="50" autofocus autocomplete="on" required>
+                            </div>
+
+                            <div>
+                                <label for="emailInput">Email</label> <br>
+                                <input class="formContact__Email" type="email" name="email" id="emailInput"
+                                    minlength="4" maxlength="30" placeholder="nombre@ejemplo.com" required
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            </div>
+                            <div>
+                                <label for="consultas">Consulta</label> <br>
+                                <textarea class="formContact__Consults" name="consults" rows="5" cols="20" required
+                                    minlength="10" maxlength="100"></textarea>
+                            </div>
+                            <button type="submit" class="btn">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="Contact">
+                    <h1>Visítanos</h1>
+                    <div class="formContact-Container">
+
+                        <iframe class="Contact__IframeContact"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6523.027673099489!2d-58.233304067521054!3d-35.16874360175135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2c82b26cf970f%3A0x7fd9a3cc12336a4f!2sLarrea%2C%20Coronel%20Brandsen%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1671469508425!5m2!1ses-419!2sar"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
 
 
-<!-- =================TITULO=================  -->
-<section class="mainLocation">
 
-<div class="ContactLocation">
-<h1>Visítanos</h1>
-<div class="iframeLocation">
-<iframe class="Contact__Iframe"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6523.027673099489!2d-58.233304067521054!3d-35.16874360175135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2c82b26cf970f%3A0x7fd9a3cc12336a4f!2sLarrea%2C%20Coronel%20Brandsen%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1671469508425!5m2!1ses-419!2sar" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-</div>
 
-</section>
+        </div>
+
+        <%- include('partials/footer') %>
+
+            <!-- watsapp logo -->
+
+            <div class="whatsapp-container">
+                <!-- <a class="go-top" href="#home">
+            <i class="fa-solid fa-circle-up"></i>
+        </a> -->
+                <a href="https://walink.co/1565a1" target="_blank">
+                    <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                        alt="whatsapp logo" class="logoWP">
+                </a>
+            </div>
+
+            <script src="/js/loginUserAvatar.js"></script>
+            <script src="/js/alert.js"></script>
+            <script src="/js/header.js"></script>
+            <script src="/js/cartUpdate.js"></script>
+            <script src="/js/orders.js"></script>
+
+
+</body>
+
+</html>
