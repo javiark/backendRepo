@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { tabTitle: 'Administracion de Productos' }) %>
+
+    <body>
+
+        <%- include('partials/header') %>
+
+            <!-- =================TITULO=================  -->
+
+            <div class="main">
+                <div class="adminContainer">
+                    <h1 class="header1">ADMINISTRACION DE PRODUCTOS</h1>
+                    <div class="container">
+                        <form id="add-product" class="product-form" onsubmit="addProduct(event)">
+                            <div class="input-box">
+                                <label for="nameLabel">Producto</label>
+                                <input type="text" name="name" id="nameLabel" required class="inputBox">
+                            </div>
+                            <div class="input-box">
+                                <label for="descLabel">Descripción</label>
+                                <textarea name="description" id="descLabel" rows="4" required class="inputBoxText">
+                            </textarea>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="priceLabel">Precio</label>
+                                <input type="number" name="price" id="priceLabel" required class="inputBox">
+                            </div>
+
+                            <div class="input-box">
+                                <label for="imgLabel">Imagen</label>
+                                <input type="url" name="image" id="imgLabel" required class="inputBox">
+                            </div>
+                            <div class="input-box">
+                                <label for="descLabel">Detalle</label>
+                                <textarea name="detail" id="descLabel" rows="8" required class="inputBoxTextDetail">
+                            </textarea>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="stockLabel">Stock</label>
+                                <input type="checkbox" name="stock" id="stockLabel">
+                            </div>
+
+
+                            <button type="submit" class="submit-btn-products" id="submit-btn">Cargar Producto</button>
+                        </form>
+                        <div class="table-container">
+                            <table class="table-product">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Producto</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Detalle</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <%- include('partials/footer') %>
+
+                <!-- watsapp logo -->
+
+                <div class="whatsapp-container">
+                    <a href="https://walink.co/1565a1" target="_blank">
+                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                            alt="whatsapp logo" class="logoWP">
+                    </a>
+                </div>
+
+                <!-- =================JS=================  -->
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="/js/alert.js"></script>
+                <script src="/js/header.js"></script>
+                <script src="/js/products.js"></script>
+                <script src="/js/isAdmin.js"></script>
+                <script src="/js/cartUpdate.js"></script>
+                <script src="/js/loginUserAvatar.js"></script>>
+
+
+
+
+    </body>
+
+</html>

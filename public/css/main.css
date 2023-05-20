@@ -377,6 +377,10 @@ body {
   bottom: 0;
   padding-right: 5rem;
 }
+.footer__linkIG {
+  color: #535353;
+  cursor: pointer;
+}
 .footer__logo {
   display: flex;
   justify-content: center;

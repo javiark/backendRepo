@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', { tabTitle: 'Nosotros' }) %>
+
+<body>
+
+    <%- include('partials/header') %>
+
+        <!-- =================TITULO=================  -->
+        
+    <main class="main">
+        <section class="section-info">
+            <header class="section-info__header">
+                <div class="section-info__title-container">
+                    <h1 class="section-info__title">
+                        SOBRE EL ABASCAY
+                    </h1>
+                    <p class="section-info__subtitle">
+                        Somos Rosario y Consuelo, madre e hija, quienes llevamos adelante El Abascay, un pequeño emprendimiento familiar desarrollado en Brandsen, Provincia de Buenos Aires. Desde hace varios años nos dedicamos a la producción de leche y hace poco nos animamos a emprender la elaboración de quesos artesanales, buscando darle valor a lo que hacemos. 
+                    </p><br>
+                    <p class="section-info__subtitle">
+                        La mayoría de los quesos que consumimos en Argentina está marcados por la tradición quesera europea. Con el paso de los años, los argentinos los fuimos incorporando a nuestro día a día y les fuimos dando nuestra propia identidad. El queso se convirtió es un alimento fundamental a la hora de servir la mesa o compartir un momento. En El Abascay hacemos quesos no solo porque nos encantan sino porque también buscamos reivindicar a este producto tan noble y tan nuestro. Y porque queremos llevar a sus mesas alimentos reales y de buena calidad, manteniendo el respeto por la tierra y los animales.  
+                    </p>
+
+                </div>
+                <div >
+                    <img src="/assets/images/rosarioyConsuelo.jpg" alt="AbascaFundadoras" class="imageAboutUs">
+                </div>
+                <div class="section-info__video">
+                     <iframe src="https://www.youtube.com/embed/TBRru-E2Euo" alt="VideoAbascay" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="section-info__videoIframe"></iframe>
+                </div>
+
+            </section>
+    </main>
+
+
+
+        <%- include('partials/footer') %>
+
+        <!-- watsapp logo -->
+
+        <div class="whatsapp-container">
+            <a href="https://walink.co/1565a1" target="_blank">
+                <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                    alt="whatsapp logo" class="logoWP">
+            </a>
+        </div>
+
+        <!-- =================JS=================  -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/js/alert.js"></script>
+        <script src="/js/header.js"></script>
+        <script src="/js/orders.js"></script>
+        <script src="/js/loginUserAvatar.js"></script>
+        <script src="/js/cartUpdate.js"></script>
+
+
+
+</body>
+
+</html>
