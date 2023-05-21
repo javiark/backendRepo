@@ -69,7 +69,7 @@ let editIndex;
 
 //2- Definir una función para iterar el array
 function renderizarTabla(arrayProductos) {
-    console.log(arrayProductos.length)
+    // console.log(arrayProductos.length)
     tableBody.innerHTML = '';
     if (arrayProductos.length === 0) {
         tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
@@ -170,7 +170,7 @@ async function addProduct(evt) {
 
     try {
         evt.preventDefault();
-        console.dir(evt.target);
+        // console.dir(evt.target);
         const elements = evt.target.elements;
 
         // console.log(elements.stock.checked);

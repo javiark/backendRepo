@@ -23,8 +23,8 @@ async function getAllProducts (req, res)  {
 
 //-------------------
 async function addProduct(req, res) {
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
    // lo asigno yo al generar el nombre de la imagen uuid
 
 
