@@ -9,7 +9,7 @@ function renderHeaderLinks(){
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if(currentUser) { // si el local storage (currentUser) existe
-        signIn.innerHTML = `<div onclick="logout()" href="/pages/login/login.html" class="navbar__nav-link" target="_blank">Logout</div>`
+        signIn.innerHTML = `<div onclick="logout()" href="/login" class="navbar__nav-link" target="_blank">Logout</div>`
 
         if(currentUser.role ==="ADMIN_ROLE"){
 

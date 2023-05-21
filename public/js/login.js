@@ -1,5 +1,9 @@
 //1-a guardo el formulario en una variable
 const loginForm=document.getElementById("loginForm");
+users=[];
+
+const URL = 'http://localhost:5000/api';
+const URL_public ='http://localhost:5000';
 
 //1 - Obtener los datos del formulario
 loginForm.addEventListener("submit",(event)=>{
