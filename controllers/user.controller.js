@@ -30,8 +30,6 @@ async function postUser(req, res) {
         // console.log(user)
 
 
-
-
         return res.send({
             msg: "Usuario creado correctamente",
             user: newUser
@@ -44,7 +42,6 @@ async function postUser(req, res) {
         })
     }
 }
-
 const login = async (req, res) => {
     try {
         console.log(req.body);
@@ -222,7 +219,6 @@ module.exports = {
     getAllUser,
     deleteUser,
     updateUser,
-    postUser,
     login,
     updatePassword
 

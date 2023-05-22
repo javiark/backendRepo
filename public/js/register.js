@@ -10,12 +10,24 @@
     //f-Limpiamos el formulario, podemos llevar al usuario a la pagina de Login
 
     //----------------INICIo--------------
+// let users = [];
 
 //1- Obtener formulario y almacenarlo en una variable de JS
 const registerForm= document.querySelector("#registerForm");
 
     //b-Obtener boton de submit
 const registerBtn = document.getElementById("registerSubmit");
+
+
+async function registerUser(evt){
+    try{
+        evt.preventDefault();
+        console.dir(evt.target);
+    } catch (error){
+    console.log(error);
+    return responseCreator(res, 500, "El usuario no se pudo registrar")
+    }
+}
 
 
 //2-Vamos a escuchar el evento directamente en JS
@@ -123,106 +135,3 @@ function checkIfUserExist(users, emailToSearch){
 
 }
 const avatar=document.getElementById("avatar")
-// console.log(avatar)
-// function avatar{}
-
-
-
-/*function showAlert(text, type){
-    //*VAMOS A HACER NUESTRO ALERT
-    const alertDialog = document.createElement("div");
-    //crea un elemento HTML node
-    alertDialog.classList.add("alert-dialog");
-    //Añade una clase
-
-    if(type ==="error"){
-        alertDialog.style.backgroundColor="red";
-    }
-    if(type ==="warning"){
-        alertDialog.style.backgroundColor="orange";
-    }
-
-    // alertDialog.innerText=text;
-    
-    // alertDialog.innerText = "Se agrego el usuario correctamente!";
-
-    // document.querySelector("body").appendChild(alertDialog)
-// para demorar su aparicion luego de aberlo creado lineas anterior con documento createElemnt
-    setTimeout(()=>
-    alertDialog.classList.add("show"),10)
-
-    setTimeout(()=>{
-        // alertDialog.remove();
-        alertDialog.classList.remove("show")
-        setTimeout(()=>
-        alertDialog.remove())
-        // window.location.href="/page/login/login.html"
-    },3000) // a los tres segundos se le agrega la clase hidden y se oculta
-}*/
-
-
-//Funciones con parametros nombrados
-/*
-function customFont({color, size, weight}){
-    const divTexto = document.createElement("p");
-    divTexto.innerText="Un texto a modificar";
-
-    divTexto.style.color = color ? color:"blue"; //le aplico por defecto un azul sino viene el color
-    divTexto.style.fontSize = size || "16px"; // otra forma de hacerlo
-    divTexto.style.fontWeight = weight ? weight:500;
-
-    document.body.appendChild(divTexto)
-
-}
-
-
-//!--------------3 OPCIONES DE FILTRAR PARA NO REPETIR EL EMAIL-------------------------
- //*============Solucion1
-    // users.forEach(usr => {
-
-    //     if(usr.email === el.email.value){
-    //         console.warn("el usuario ya existe");
-    //         userEmailExist=true;
-    //         return;
-    //         console.warn("1")
-    //         console.warn("1")
-    //         console.warn("1")
-    //         console.warn("1")
-    //         // userEmailExist = true;
-    //     }
-    //     // console.log("ForEach : Fuera del if")
-    // })
-    // if(userEmailExist){
-    //     console.warn("El usuario ya existe");
-    //     return
-    // }
-
-        // *============Solucion 2
-        // const userExist=users.find(user=>{
-        
-
-        //     if(user.mail === el.email.value){
-        //         return true;
-        //     }
-        //     return false  //no es necesario ya que sino lo defino se hace un returna undefined (es falso)
-        // })
-    
-        // if(userExist){
-        //     showAlert("El email ya se encuentr registrado", "error")
-        //     return;
-        // }
-
-            // // *============Solucion 3
-            // const indexOfUser = users.findIndex(usuario =>{
-            //     if(usuario.email===el.email.value){
-            //         return true
-            //     }
-            //    })
-        
-            //    if(indexOfUser >=0){  // la posicion 0 se considera falso
-            //     console.warn("El usuario ya existe findeIndex");
-            //     return;
-            //    }
-              
-
-*/

@@ -10,14 +10,14 @@
 
  <main class="main1">
     <section class="register">
-        <form class="register__form" id="registerForm" enctype="multipart/form-data">
+        <form class="register__form" id="registerForm" enctype="multipart/form-data" onsubmit="postUser(event)">
             <div class="register__casillero">
                 <label for="idInputName" class="register__text1">Nombre</label><br>
                 <input type="text" name="fullName" id="idInputName" required class="register__box" minlength="3" maxlength="40" size="50" autofocus >
             </div>
             <div class="register__casillero">
-                <label for="idInputName" class="register__text1">Apellido</label><br>
-                <input type="text" name="surname" id="idInputName" required class="register__box" minlength="3" maxlength="40" size="50" autofocus >
+                <label for="idInputSurname" class="register__text1">Apellido</label><br>
+                <input type="text" name="surname" id="idInputSurname" required class="register__box" minlength="3" maxlength="40" size="50" autofocus >
             </div>
 
             <div class="register__casillero">
@@ -345,8 +345,11 @@
                 </div>
 
                 <!-- =================JS=================  -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                <script src="/js//date.js"></script>
+                <script src="/js/register"></script>
+                <script src="/js/registerUser.js"></script>
+                <script src="/js/date.js"></script>
                 <script src="/js/header.js"></script>
                 <script src="/js/alert.js"></script>
                 <script src="/js/loginUserAvatar.js"></script>
