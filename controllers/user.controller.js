@@ -72,9 +72,7 @@ const login = async (req, res) => {
 
         if (!result) {
 
-            return res.status(404).send({
-                msg: "Datos de ingreso incorrectos"
-            })
+            return responseCreator(res, 404, "Datos Ingresados incorrectos")
         }
 
         user.password = undefined; // borramos a user la propiedad password para q no me la devuelva en el login

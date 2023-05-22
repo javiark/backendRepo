@@ -10,66 +10,31 @@ const URL_public = 'http://localhost:5000';
 
 
 
-// async function login(evt){
-//     try {
-//     return res.send(`DELETE USER`);
-//     } catch (error) {
-//     console.log(error);
-//      return responseCreator(res, 500, "no se creo el usuario" )
-//     }
-// }
 
 
 
 
-
-
-async function loginUser(req, res) {
+async function loginUser(evt) {
     try {
-        //Recibir datos del usuario que intenta loguearse (body)
-        const emailBody = req.body.email;
-        const passwordBody = req.body.password;
-        console.log(passwordBody)
-        //Buscar si existe un usuario con ese email
-        const user = await User.findOne({ email: emailBody })
-        //El usuario no existe devuelvo que no se encontro usuario
-        if (!user) {
-            return res.status(404).send(`Login incorrecto alguno de los datos es incorrecto`)
-        }
+        evt.preventDefault();
+        console.dir(evt.target);
+        const elements = evt.target.elements;
+        const formFile = new FormData(evt.target);
+        console.dir(formFile);
+        const obj = Object.fromEntries(formFile);
+        console.log(obj);
+        const { data} = await axios.post(`${URL}/login`, obj);
+        console.log(data)
+        console.log(data.token)
 
-        //Existe usuario comparo el password  que me envió en el login con el que tiene mi usuario en la DB
-        const result = await bcrypt.compare(passwordBody, user.password);
-
-        // La persona se logueo correctamente
-        if (!result) {
-            return res.status(404).send({
-                msg: 'Login incorrecto alguno de los datos es incorrecto',
-                ok: false
-            })
-        }
-        //Remuevo el password del user
-        user.password = undefined
-        // Como la persona es quien dice ser, necesito generar un JWT
-        const token = await jwt.sign(user.toJSON(), secret, { expiresIn: '2h' });
-
-        return res.status(200).send({
-            msg: 'Login correcto',
-            ok: true,
-            token,
-            user
-        })
+        // cargarProductos();
     } catch (error) {
-        console.log(error);
-        res.status(400).send({
-            msg: `Error al intentar loguearse`,
-            ok: false
-        })
+    console.log(error);
     }
 }
+ 
 
-// module.exports = {
-//     loginUser
-// }
+
 
 // //1 - Obtener los datos del formulario
 // loginForm.addEventListener("submit",(event)=>{
