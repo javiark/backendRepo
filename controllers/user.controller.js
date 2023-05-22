@@ -42,6 +42,8 @@ async function postUser(req, res) {
         })
     }
 }
+
+
 const login = async (req, res) => {
     try {
         console.log(req.body);
