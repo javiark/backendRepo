@@ -59,7 +59,7 @@ function createLinkElement(path, text){ // el texto es el que veo en el link. //
 
     const link=document.createElement("a"); //
     link.classList.add("navbar__nav-link1"); //le agrego una clasecreo un elemento a
-    link.href =`/pages/${path}/${path}.html`;
+    link.href =`${path}`;
     link.innerText =text; //le inserto un texto
     
     // if (type){ // si tipo no es null

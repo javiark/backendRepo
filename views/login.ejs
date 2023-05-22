@@ -10,7 +10,7 @@
             <main class="mainLogin">
                 <section class="register">
                     <h1 class="register__login">LOGIN</h1>
-                    <form class="register__form1" id="loginForm" onsubmit="login(event)">
+                    <form class="register__form1" id="loginForm" onsubmit="loginUser(event)">
                         <div class="register__casillero">
                             <label for="email" class="register__text1">Email:</label>
                             <input type="email" placeholder="nombre@ejemplo.com" name="email" id="email"
@@ -23,12 +23,11 @@
                                 minlength="6" maxlength="40" size="50" autofocus>
                         </div>
                         <div class="button">
-                            <button type="submit" class="button__send" onclick="cleanOrder()">Ingresar</button>
-                        </div>
+                            <button type="submit" class="button__send" >Ingresar</button>
+                        </div> 
                     </form>
                 </section>
             </main>
-
             <%- include('partials/footer') %>
 
                 <div class="whatsapp-container">
