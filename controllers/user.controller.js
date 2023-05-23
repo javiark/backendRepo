@@ -70,6 +70,7 @@ const login = async (req, res) => {
         //Comprobamos si el usuario obtenido con su propiedad password coincide con el passw del passw que me envia en el login
         const result = await bcrypt.compare(passwordLogin, user.password) // para comprobar si el alfabeta plano es igual al hasheado. passwordLogin - pass plano.  user.password - pass hasheado. El await devuelve una promesa
 
+
         if (!result) {
 
             return responseCreator(res, 404, "Datos Ingresados incorrectos")
@@ -85,6 +86,7 @@ const login = async (req, res) => {
             user,
             token
         })
+        
 
 
     } catch (error) {
