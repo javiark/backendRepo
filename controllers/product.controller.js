@@ -23,8 +23,8 @@ async function getAllProducts (req, res)  {
 
 //-------------------
 async function addProduct(req, res) {
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
    // lo asigno yo al generar el nombre de la imagen uuid
 
 
@@ -41,9 +41,9 @@ async function addProduct(req, res) {
         })
         
     } catch (error) {
-        return res.status(200).send({
+        return res.status(500).send({
             ok: false,
-            msg: `No se agregó el productop`,
+            msg: `No se agregó el producto`,
             error
         })
     }
