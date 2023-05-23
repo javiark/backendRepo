@@ -5,17 +5,17 @@ const selectCategoryHTML = document.getElementById("category")
 const URL = 'http://localhost:5000/api';
 const URL_public ='http://localhost:5000';
 
-// (async function cargarCategorias() {
-//     try {
-//         const response = await axios.get(`${URL}/category`)
-//         console.log(response) //los elementos estan en response.data.categories. 
-//         console.log(response.data.categories)
-//         const categories = response.data.categories;   
-//     } catch (error) {
-//         console.log(error);
-//     }
+(async function cargarCategorias() {
+    try {
+        const response = await axios.get(`${URL}/category`)
+        console.log(response) //los elementos estan en response.data.categories. 
+        console.log(response.data.categories)
+        const categories = response.data.categories;   
+    } catch (error) {
+        console.log(error);
+    }
 
-// })()
+})()
 
 async function cargarProductos() {
     try {
@@ -33,22 +33,19 @@ async function cargarProductos() {
 }
 cargarProductos()
 
-// async function arrayCateories(){
-//     const response = await axios.get(`${URL}/category`)
-//     const categories = response.data.categories;
-//     selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
-//     categories.forEach((cat)=>{
-//         console.log(cat)
-//         selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
-//     })}
-// arrayCateories()
+async function arrayCateories(){
+    const response = await axios.get(`${URL}/category`)
+    const categories = response.data.categories;
+    selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
+    categories.forEach((cat)=>{
+        console.log(cat)
+        selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
+    })}
+arrayCateories()
 
 
 
-
-
-
-console.log(products)
+// console.log(products)
 
 
 const productForm=document.getElementById("add-product");
@@ -62,15 +59,15 @@ let editIndex;
 
 
 //2- Definir una función para iterar el array
-function renderizarTabla(products) {
+function renderizarTabla(arrayProductos) {
     tableBody.innerHTML = '';
-    if(products.length===0){
-        tableBody.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+    if (arrayProductos.length === 0) {
+        tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
     //3- Iterar el array para acceder a cada producto
 
-    products.forEach((producto, index) => {
+    arrayProductos.forEach((producto, index) => {
 
         let imageSrc = producto.image ? `${URL_public}/upload/product/${producto.image}` : '/assets/images/no-product.png';
         //4- Introducir dentro del tbody una fila por producto con sus respectivas celdas
@@ -81,11 +78,11 @@ function renderizarTabla(products) {
                             <td class="product__price">$ ${producto.price}</td>
                             <td class="product__desc">${producto.detail}</td>
                             <td class="product__actions">
-                                <button class="product__action-btnDetail" onclick="deleteProduct(${index})">
+                                <button class="product__action-btnDetail" onclick="deleteProduct('${producto._id}')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editProduct(${index})">
+                                <button class="product__action-btn product__btn-edit"  onclick="editProduct('${producto._id}'">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
                                 <button class="product__action-btn btn-favorite ${producto.favorite===true ? 'active':''}" onclick="setFavoriteProduct(${index})">
@@ -136,25 +133,53 @@ async function addProduct(evt) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-function deleteProduct(indice) {
-    products.splice(indice, 1);
-    localStorage.setItem("products",JSON.stringify(products))
-    showAlert("El producto se ha borrado", "succes")
-    renderizarTabla();
-
-
+async function deleteProduct(id) {
+    console.log(id)
+    swal({
+        title: `Borrar producto`,
+        text: `Esta seguro que desea borrar el producto   `,
+        icon: 'warning',
+        buttons: {
+            cancel: `Cancelar`,
+            delete: `Borrar`
+        }
+    }).then(async function(value) {
+        if(value === `delete`) {
+            // ? LLAMADA AL BACKEND axios.delete
+            try {
+                const respuesta = await axios.delete(`${URL}/product/${id}`)
+                cargarProductos()
+            } catch (error) {
+                console.log(error)
+            }
+            swal({
+                title: `Elemento borrado correctamente`,
+                icon: 'error'
+            })
+            renderizarTabla();
+        } 
+    })
+    
 
 }
+
+
+
+
+
+
+
+
+
+// function deleteProduct(indice) {
+//     products.splice(indice, 1);
+//     localStorage.setItem("products",JSON.stringify(products))
+//     showAlert("El producto se ha borrado", "succes")
+//     renderizarTabla();
+
+
+
+// }
 
 
 
