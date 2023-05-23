@@ -1,11 +1,39 @@
-let users =JSON.parse(localStorage.getItem('users')) || [];
+// let users =JSON.parse(localStorage.getItem('users')) || [];
 // console.log(users)
-let favorites = [];
+// let favorites = [];
+const URL = 'http://localhost:5000/api';
+const URL_public = 'http://localhost:5000';
+
+let users = [];
+
+async function obtenerUsuarios() {
+    try {
+        const token = localStorage.getItem("token"); // no hay que hacer jsonpars pq eltoken es una key y una string
+        const response = await axios.get(`${URL}/users`, { 
+            headers: {
+                Authorization: token
+            }
+        });
+        console.log(response)
+        users=response.data.users;
+        console.log(users)
+    } catch (error) {
+        console.log(error);
+       
+    }
+
+}
+obtenerUsuarios()
+
+console.log(users)
 
 
 
 
-const userForm=document.getElementById("add-user");
+
+
+
+const userForm = document.getElementById("add-user");
 const submitBtn = document.getElementById("submit-btn-user");
 
 
@@ -18,8 +46,8 @@ let editIndex;
 //2- Definir una función para iterar el array
 function renderizarTablaUser() {
     tableBody.innerHTML = '';
-    if(users.length===0){
-        tableBody.innerHTML="<p class='disabled'>NO SE ENCONTRARON USUARIOS</p>"
+    if (users.length === 0) {
+        tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON USUARIOS</p>"
         return
     }
     //3- Iterar el array para acceder a cada producto
@@ -40,7 +68,7 @@ function renderizarTablaUser() {
                                 <button class="product__action-btn product__btn-edit"  onclick="editUser(${index})">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
-                                <button class="product__action-btn btn-favorite ${usuario.favorite===true ? 'active':''}" onclick="setFavoriteProduct(${index})">
+                                <button class="product__action-btn btn-favorite ${usuario.favorite === true ? 'active' : ''}" onclick="setFavoriteProduct(${index})">
                                     <i class="fa-regular fa-star"></i>
                                 </button>
                             
@@ -62,17 +90,17 @@ function addUser(evt) {
     const elements = evt.target.elements;
 
     // let newUser = editIndex ? users[editIndex] : {};
-    let newUser=users[editIndex]
-    if(editIndex >= 0){
+    let newUser = users[editIndex]
+    if (editIndex >= 0) {
 
-        newUser.fullName =  elements.fullName.value;
+        newUser.fullName = elements.fullName.value;
         newUser.surname = elements.surname.value;
-        newUser.email =  elements.mail.value;
-        newUser.role =  elements.rol.value;
-    }else{
+        newUser.email = elements.mail.value;
+        newUser.role = elements.rol.value;
+    } else {
         users[editIndex] = {};
     }
-    
+
 
 
 
@@ -80,30 +108,30 @@ function addUser(evt) {
 
 
     if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
-        users[editIndex]=newUser
+        users[editIndex] = newUser
 
-       
+
 
     }
     console.log(newUser)
     console.log(users)
     //Guardarlo en el localStorage
     localStorage.setItem('users', JSON.stringify(users))
-    editIndex=undefined; // para que se vacie
+    editIndex = undefined; // para que se vacie
     submitBtn.classList.remove("edit-btn-order");
- 
+
     // submitBtn.innerText = "Cargar Usuario"
 
     renderizarTablaUser();
     // submitBtn.classList.add("invisible");
     showAlert("El usuario se edito correctamente", "succes")
-        
+
 
     evt.target.reset();
     elements.fullName.focus();
 
 
-    }
+}
 
 
 
@@ -115,45 +143,45 @@ function addUser(evt) {
 
 function deleteUser(indice) {
     users.splice(indice, 1);
-    localStorage.setItem("users",JSON.stringify(users))
-    renderizarTablaUser(); 
+    localStorage.setItem("users", JSON.stringify(users))
+    renderizarTablaUser();
     showAlert("El producto se borro correctamente", "succes")
 
-    }
+}
 
 
-    // const user = {
-    //     fullName:el.fullName.value,
-    //     surname:el.surname.value,
-    //     email: el.email.value,
-    //     password: el.password.value,
-    //     age: el.age.value,
-    //     bornDate: el.bornDate.value,
-    //     country:el.country.value,
-    //     gender: el.gender.value,
-    //     role:"USER_ROLE",
-    // }
+// const user = {
+//     fullName:el.fullName.value,
+//     surname:el.surname.value,
+//     email: el.email.value,
+//     password: el.password.value,
+//     age: el.age.value,
+//     bornDate: el.bornDate.value,
+//     country:el.country.value,
+//     gender: el.gender.value,
+//     role:"USER_ROLE",
+// }
 
-function editUser(idx){
+function editUser(idx) {
     submitBtn.classList.add("edit-btn-order");
     submitBtn.innerText = "Modificar Usuario"
     let user = users[idx];
-    console.log("indice:",idx)
-    console.log("usuario:",user)
+    console.log("indice:", idx)
+    console.log("usuario:", user)
     submitBtn.classList.add("visible")
-    
+
 
 
     // console.table(product);
-    const el=userForm.elements;
+    const el = userForm.elements;
 
-    el.fullName.value=user.fullName;
-    el.surname.value=user.surname;
-    el.mail.value=user.email;
-    el.rol.value=user.role;
+    el.fullName.value = user.fullName;
+    el.surname.value = user.surname;
+    el.mail.value = user.email;
+    el.rol.value = user.role;
     // console.log("indice", idx)
     // console.log("product:", product)
-    editIndex=idx;
+    editIndex = idx;
 
 }
 

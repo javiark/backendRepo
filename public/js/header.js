@@ -80,11 +80,12 @@ function logout(){
     document.getElementById("admin-product").remove();
     document.getElementById("admin-user").remove();
     setTimeout(()=>{
-        window.location.href="/index.html"
+        window.location.href="/"
     }, 1000)
 
 }
 localStorage.removeItem("currentUser");
+localStorage.removeItem("token");
 sessionStorage.removeItem("order");
 
     renderHeaderLinks();

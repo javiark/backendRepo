@@ -14,9 +14,9 @@ const URL_public = 'http://localhost:5000';
 //1 - Obtener los datos del formulario
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.dir(loginForm);
+    // console.dir(loginForm);
     // const { email, password } = loginForm.elements;
-    console.log(loginForm.elements)
+    // console.log(loginForm.elements)
 
     try {
         const dataBody = {
