@@ -17,6 +17,7 @@ async function obtenerUsuarios() {
         console.log(response)
         users=response.data.users;
         console.log(users)
+        renderizarTablaUser(users)
     } catch (error) {
         console.log(error);
        
@@ -25,7 +26,7 @@ async function obtenerUsuarios() {
 }
 obtenerUsuarios()
 
-console.log(users)
+
 
 
 

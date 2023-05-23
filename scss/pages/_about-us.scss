@@ -58,14 +58,18 @@
     height:45rem;
 }
 
+
 @media screen and (max-width: 500px) {
     .main{
         padding-bottom: 3rem;
         height: 100%;      
     }
     .main4{
+        // background-color: brown;
+
         padding-bottom: 3rem;
-        height: 100%;      
+        height:30rem;  
+        height: 100%;     
     }
     .form { 
         padding: 10px;

@@ -34,7 +34,9 @@ body {
     border: none;
     height: 15rem;
 }
-.product-form {
+.product-form-admin {
+    display: flex;
+    flex-direction: column;
 
     padding: 0rem 1rem 0rem 1rem;
     border: 0px solid salmon;
@@ -48,7 +50,7 @@ body {
     /* padding: 2rem;
     border: 3px solid salmon; */
 }
-.product-form > div {
+.product-form-admin > div {
     margin-bottom: 1rem;
 }
 
@@ -167,6 +169,7 @@ body {
         background-color: rgb(247, 217, 155); 
     }
 }
+
 
 
 .product__info, .product__actions {

@@ -24,7 +24,7 @@ async function cargarProductos() {
         const respuesta = await axios.get(`${URL}/products`);
         // Products = data.products;
         // console.log(respuesta.data.productos.name)
-        products=respuesta.data.productos
+        products=respuesta.data.productos;
         renderizarTabla(products)
     } catch (error) {
         console.log(error);
