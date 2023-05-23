@@ -82,7 +82,7 @@ function renderizarTabla(arrayProductos) {
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editProduct('${producto._id}'">
+                                <button class="product__action-btn product__btn-edit"  onclick="editProduct('${producto._id}')">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
                                 <button class="product__action-btn btn-favorite ${producto.favorite===true ? 'active':''}" onclick="setFavoriteProduct(${index})">
@@ -163,6 +163,34 @@ async function deleteProduct(id) {
 
 }
 
+
+async function editProduct(idx){
+    console.log(idx)
+    try {
+        const respuesta = await axios.get(`${URL}/product/${idx}`)
+        console.log(respuesta)
+
+
+    } catch (error) {
+         console.log(error);
+
+    }
+    
+  
+
+
+    // console.table(product);
+    // const el=productForm.elements;
+    // el.description.value = product.description;
+    // el.name.value=product.name;
+    // el.price.value=product.price;
+    // el.image.value=product.image;
+    // el.detail.value=product.detail;
+    // el.stock.checked=product.stock;
+    // // console.log("indice", idx)
+    // // console.log("product:", product)
+    // editIndex=idx;
+}
 
 
 

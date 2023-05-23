@@ -117,6 +117,7 @@ function deleteProduct(indice) {
 
 
 function editProduct(idx){
+
     submitBtn.classList.add("edit-btn");
     submitBtn.innerText = "Modificar Producto"
 

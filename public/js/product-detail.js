@@ -65,7 +65,7 @@ cardContainer1.innerHTML = `
                              Añadir a carrito
                      </button>
 
-                    <a href="/pages/order/order.html" class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy">Comprar Ahora</button><a/>
+                    <a href="/order" class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy">Comprar Ahora</button><a/>
                     </div>
 
         </div>
