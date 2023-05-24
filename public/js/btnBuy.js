@@ -46,7 +46,7 @@ arrayProducts.forEach((idx)=>{
 
 
 
-function btnBuy(){
+// function btnBuy(){
 
 
 

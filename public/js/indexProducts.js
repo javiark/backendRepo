@@ -8,34 +8,34 @@ const productsLS = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
 const URL = 'http://localhost:5000/api';
 const URL_public ='http://localhost:5000';
 
-(async function cargarCategorias() {
-    try {
-        const response = await axios.get(`${URL}/category`)
-        console.log(response) //los elementos estan en response.data.categories. 
-        console.log(response.data.categories)
-        const categories = response.data.categories;   
-    } catch (error) {
-        console.log(error);
-    }
+// (async function cargarCategorias() {
+//     try {
+//         const response = await axios.get(`${URL}/category`)
+//         console.log(response) //los elementos estan en response.data.categories. 
+//         console.log(response.data.categories)
+//         const categories = response.data.categories;   
+//     } catch (error) {
+//         console.log(error);
+//     }
 
-})()
+// })()
 
-async function cargarProductos() {
-    try {
-        const respuesta = await axios.get(`${URL}/products`);
-        // Products = data.products;
-        // console.log(respuesta.data.productos.name)
-        products=respuesta.data.productos;
-        console.log(products)
-        renderizarProductos(products)
-    } catch (error) {
-        console.log(error);
+// async function cargarProductos() {
+//     try {
+//         const respuesta = await axios.get(`${URL}/products`);
+//         // Products = data.products;
+//         // console.log(respuesta.data.productos.name)
+//         products=respuesta.data.productos;
+//         console.log(products)
+//         renderizarProductos(products)
+//     } catch (error) {
+//         console.log(error);
 
-    }
+//     }
 
-}
+// }
 
-cargarProductos()
+// cargarProductos()
 
 
 function renderizarProductos(products){
@@ -71,7 +71,7 @@ function renderizarProductos(products){
     </div>
     <div class="card__footerCard" onclick="showNotUser()" >
         
-        <button class="card__btn-buy1"  onclick="addToOrder(${product._id} " id="idButton">
+        <button class="card__btn-buy1"  onclick="addToOrder(${product._id} " id=${product._id}>
             Comprar
         </button>
 
