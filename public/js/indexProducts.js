@@ -4,6 +4,7 @@ const selectCategoryHTML = document.getElementById("category")
 const boton = document.getElementById("boton1")
 const cardContainer=document.getElementById("card-container");
 const productsLS = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
+const productsLocal = JSON.parse(localStorage.getItem("products")) || [];
 
 const URL = 'http://localhost:5000/api';
 const URL_public ='http://localhost:5000';
@@ -71,7 +72,7 @@ function renderizarProductos(products){
     </div>
     <div class="card__footerCard" onclick="showNotUser()" >
         
-        <button class="card__btn-buy1"  onclick="addToOrder(${index}) " id=${product._id}>
+        <button class="card__btn-buy1"  onclick="addToOrder(${index}) " id=${index}>
             Comprar
         </button>
 
@@ -85,4 +86,4 @@ function renderizarProductos(products){
     })
 
 }
-renderizarProductos(productsLS);
+renderizarProductos(productsLocal);

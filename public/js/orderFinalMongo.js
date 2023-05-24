@@ -38,7 +38,7 @@ async function arrayProducts1() {
         productsArr = respuesta.data.productos;
         // console.log(productsArr)
         // orderArray.push(productsArr)
-        localStorage.setItem("orderArrayFinal", JSON.stringify(productsArr))
+        localStorage.setItem("products", JSON.stringify(productsArr))
 
     } catch (error) {
         console.log(error);
@@ -53,13 +53,14 @@ let orderArray = [];
 
 let cart = []
 
-orderFinal.forEach((prod,id)=>{
+productsOrder.forEach((prod,id)=>{
 
 
     let quantity =parseInt(1)
     let  productID = id
     let nuevaOrden={
         productID,
+        prodIDMongo:prod._id,
         quantity,
         nameOrder:prod.name,
         priceOrder:prod.price,
@@ -86,49 +87,69 @@ let ordernFinal={
 }
 console.log(orderArray)
 
+//---------------------LIMPIAR TABLA SI NO HAY USUARIO-------------------------//
+
+function cleantable(){
+
+    if (orderUser) {
+            // console.log("hay usuario")
+        }else{
+            tableBodyOrder.innerHTML = '';
+            productOrder= [];
+            sessionStorage.setItem("order", JSON.stringify(products))
+            actualizarBadge();
+        }
+}
+
+cleantable()
+
+//----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
+// let count=0;
+// function cartUpdate(){
+// productOrder.forEach(productOrder => {
+//     count += parseInt(productOrder.quantity)
+// })
+
+// badgeHTMLbuy.innerText=count;
+// }
+// cartUpdate()
+
 //---------------------AGREGAR PRODUCTO COMPRADO MONGO-------------------------//
 
 
 
-// console.log(productsArray)
-
-function addToOrder(index) {
-    // console.log(index)
-    // orderFinal.forEach((idx) => {
-    //     console.log(idx)
-    //     let id = idx._id
-    //     console.log(id)
-    // })
+console.log(productsArray)
+function addToOrder(index){
+    console.log(index)
 
 
 
     let count1 = 0;
-    let orderBuy = orderFinal[index]
-    const existe = productsArray.some(prod => prod.productID === index)
+    let orderBuy =orderFinal[index]
+    const existe = productsArray.some(prod => prod.productID===index)
 
-    if (existe) {
-        const prod = productsArray.map(prod => {
-            if (prod.productID === index) {
+    if(existe){
+        const prod = productsArray.map(prod =>{
+            if(prod.productID===index){
                 prod.quantity++
             }
         })
-    } else {
+    }else{
         productsArray.push(orderBuy)
-        let arrayProducts = Object.values(productsArray)
+    let arrayProducts = Object.values(productsArray)
 
     }
     productsArray.forEach(productsArray => {
-        count1 += parseInt(productsArray.quantity)
+    count1 += parseInt(productsArray.quantity)
     })
-    showAlert("Producto agregado a carrito", "succes")
-    console.log(count1)
-    badgeHTMLbuy.innerText = count1;
+    showAlert("Producto agregado a carrito", "succes" )
+    badgeHTMLbuy.innerText=count1;
     sessionStorage.setItem("order", JSON.stringify(productsArray))
 }
 
 
 function showNotUser() {
-    console.log("anda boton")
+    // console.log("anda boton")
     if (!orderUser) {
         showAlert("Deberia lograrse para comprar", 'error')
 
