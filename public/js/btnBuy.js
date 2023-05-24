@@ -20,11 +20,16 @@ console.dir(button4)
 // const id = arrayProducts.map(user=>user.name)
 // console.log(id)
 
+// arrayProducts.forEach((idx)=>{
+//     console.log(idx)
+//     let id=idx.name
+//     console.log(id)
+ 
+// })
 arrayProducts.forEach((idx)=>{
     console.log(idx)
     let id=idx.name
     console.log(id)
- 
 })
 
 // async function arrayBoton() {
@@ -76,7 +81,7 @@ arrayProducts.forEach((idx)=>{
              console.log(pam)
          });
 }
-}
+
 btnBuy()
 
 

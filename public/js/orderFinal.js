@@ -140,6 +140,19 @@ badgeHTMLbuy.innerText=count;
 }
 cartUpdate()
 
+//---------------------AGREGAR PRODUCTO COMPRADO MONGO-------------------------//
+
+console.log(orderFinal)
+async function addToOrder(index){
+    try {
+    return res.send(`DELETE USER`);
+    } catch (error) {
+    console.log(error);
+     return responseCreator(res, 500, )
+    }
+
+}
+
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
 console.log(productsArray)
