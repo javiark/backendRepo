@@ -1,6 +1,9 @@
 const tableBodyOrder = document.getElementById('table-body-order');
 const products1 = [];
 
+const URL1 = 'http://localhost:5000/api';
+const URL_public1 ='http://localhost:5000';
+
 
 badgeHTMLbuy=document.getElementById("cart-count");
 
@@ -84,37 +87,40 @@ console.log(orderArray )
 
 //----------------PINTAR TABLA--------------
 
-// function renderizarTablaOrdenes(){
+function renderizarTablaOrdenes(){
 
-//     tableBodyOrder.innerHTML = '';
-//     if(productOrderFF.length===0){
-//         tableBodyOrder.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
-//         return
-//     }
+    tableBodyOrder.innerHTML = '';
+    if(productOrderFF.length===0){
+        tableBodyOrder.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+        return
+    }
+    console.log(productOrderFF)
     
-//     productOrderFF.forEach((prod, index)=>{
+    productOrderFF.forEach((prod, index)=>{
 
-//         tableBodyOrder.innerHTML += `<tr class="order">
-//         <td class="order__img-cell"><img class="product__img" src="${prod.imageOrder}" alt="${prod.nameOrder}"></td>
-//         <td class="order__name" onclick="editName(${index}")>${prod.nameOrder}</td>
-//         <td class="order__desc">${prod.descriptionOrder}</td>
-//         <td class="order__quantity" ><div class="boton-container"><div class="boton-container__boton-div"><button class="boton-container__boton-order" onclick="restToOrderQuantity(${index}) " id=${index} >-</button> ${prod.quantity} <button class="boton-container__boton-order" onclick= "AccToOrderQuantity(${index})">+</button></div></div></td>
-//         <td class="order__price" id="new-price">$ ${prod.priceOrder}</td>
-//         <td class="order__price">$ ${prod.priceOrder * prod.quantity }</td>
-//         <td class="order__actions">
-//             <button class="product__action-btnDetail" onclick="deleteProductBuy(${index})">
-//                 <i class="fa-solid fa-trash"></i>
-//             </button> 
-//         </td>
-//     </tr>
+        let imageSrcOrder = prod.image ? `${URL1}/upload/product/${prod.imageOrder}` : '/assets/images/no-product.png';
+
+        tableBodyOrder.innerHTML += `<tr class="order">
+        <td class="order__img-cell"><img class="product__img" src="${prod.imageOrder}" alt="${prod.nameOrder}"></td>
+        <td class="order__name" onclick="editName(${index}")>${prod.nameOrder}</td>
+        <td class="order__desc">${prod.descriptionOrder}</td>
+        <td class="order__quantity" ><div class="boton-container"><div class="boton-container__boton-div"><button class="boton-container__boton-order" onclick="restToOrderQuantity(${index}) " id=${index} >-</button> ${prod.quantity} <button class="boton-container__boton-order" onclick= "AccToOrderQuantity(${index})">+</button></div></div></td>
+        <td class="order__price" id="new-price">$ ${prod.priceOrder}</td>
+        <td class="order__price">$ ${prod.priceOrder * prod.quantity }</td>
+        <td class="order__actions">
+            <button class="product__action-btnDetail" onclick="deleteProductBuy(${index})">
+                <i class="fa-solid fa-trash"></i>
+            </button> 
+        </td>
+    </tr>
     
-//     `
-//     })
-//     }
+    `
+    })
+    }
 
 
 
-//     renderizarTablaOrdenes()
+    renderizarTablaOrdenes()
 
 //---------------------LIMPIAR TABLA SI NO HAY USUARIO-------------------------//
 
@@ -146,7 +152,7 @@ cartUpdate()
 
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
-console.log(products)
+// console.log(products)
 function addToOrder(index){
 
 

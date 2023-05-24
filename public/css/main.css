@@ -51,11 +51,6 @@ body {
   background-color: orange;
   overflow: hidden;
 }
-.card__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .card__body {
   display: flex;
   flex-direction: column;
