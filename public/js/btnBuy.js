@@ -7,12 +7,12 @@ const button5 = document.querySelectorAll(".containerDetail__btn-buy")
 const button6 = document.querySelectorAll(".containerDetail__containerBtn")
 // const button7 = document.getElementById("idButton")
 
-console.log(arrayProducts)
-console.log(currentUser)
+// console.log(arrayProducts)
+// console.log(currentUser)
 // console.log(button7)
-console.dir(button2)
-console.dir(button3)
-console.dir(button4)
+// console.dir(button2)
+// console.dir(button3)
+// console.dir(button4)
 
 
 
@@ -27,9 +27,9 @@ console.dir(button4)
  
 // })
 arrayProducts.forEach((idx)=>{
-    console.log(idx)
+    // console.log(idx)
     let id=idx.name
-    console.log(id)
+    // console.log(id)
 })
 
 // async function arrayBoton() {
