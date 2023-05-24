@@ -29,22 +29,22 @@ let orderArray = [];
 let cart = []
 
 
-async function arrayProducts() {
+async function arrayProducts1() {
     try {
         const respuesta = await axios.get(`${URL}/products`);
         // Products = data.products;
         // console.log(respuesta.data.productos.name)
         productsArr=respuesta.data.productos;
         console.log(productsArr)
-        orderArray.push(productsArr)
-        localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
+        // orderArray.push(productsArr)
+        localStorage.setItem("orderArrayFinal", JSON.stringify(productsArr))
 
     } catch (error) {
         console.log(error);
 
     }
 }
-arrayProducts()
+arrayProducts1()
 
 // productsOrder.forEach((prod,id)=>{
 
