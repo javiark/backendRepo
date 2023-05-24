@@ -1,5 +1,5 @@
 const tableBodyOrder = document.getElementById('table-body-order');
-const products = [];
+const productsArray = [];
 
 
 badgeHTMLbuy=document.getElementById("cart-count");
@@ -28,36 +28,54 @@ const total = document.getElementById("totalPrice")
 let orderArray = [];
 let cart = []
 
-productsOrder.forEach((prod,id)=>{
 
+async function arrayProducts() {
+    try {
+        const respuesta = await axios.get(`${URL}/products`);
+        // Products = data.products;
+        // console.log(respuesta.data.productos.name)
+        productsArr=respuesta.data.productos;
+        console.log(productsArr)
+        orderArray.push(productsArr)
+        localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
 
-    let quantity =parseInt(1)
-    let  productID = id
-    let nuevaOrden={
-        productID,
-        quantity,
-        nameOrder:prod.name,
-        priceOrder:prod.price,
-        imageOrder:prod.image, 
-        descriptionOrder:prod.description,
+    } catch (error) {
+        console.log(error);
+
     }
-    orderArray.push(nuevaOrden)
-    localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
-
-});
- 
-let userName=orderUser.fullName
-let userOrder=orderUser.email
-let totalOrder=`$$`
-let createdAt = new Date()
-let ordernFinal={
-    // usuarioID1,
-    userName,
-    userOrder,
-    totalOrder,
-    createdAt,
-    orderArray
 }
+arrayProducts()
+
+// productsOrder.forEach((prod,id)=>{
+
+
+//     let quantity =parseInt(1)
+//     let  productID = id
+//     let nuevaOrden={
+//         productID,
+//         quantity,
+//         nameOrder:prod.name,
+//         priceOrder:prod.price,
+//         imageOrder:prod.image, 
+//         descriptionOrder:prod.description,
+//     }
+//     orderArray.push(nuevaOrden)
+//     localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
+
+// });
+ 
+// let userName=orderUser.fullName
+// let userOrder=orderUser.email
+// let totalOrder=`$$`
+// let createdAt = new Date()
+// let ordernFinal={
+//     // usuarioID1,
+//     userName,
+//     userOrder,
+//     totalOrder,
+//     createdAt,
+//     orderArray
+// }
 
 
 //----------------PINTAR TABLA--------------
@@ -103,7 +121,7 @@ function renderizarTablaOrdenes(){
             }else{
                 tableBodyOrder.innerHTML = '';
                 productOrder= [];
-                sessionStorage.setItem("order", JSON.stringify(products))
+                sessionStorage.setItem("order", JSON.stringify(productsArray))
                 actualizarBadge();
             }
     }
@@ -124,32 +142,32 @@ cartUpdate()
 
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
-console.log(products)
+console.log(productsArray)
 function addToOrder(index){
 
 
 
     let count1 = 0;
     let orderBuy =orderFinal[index]
-    const existe = products.some(prod => prod.productID===index)
+    const existe = productsArray.some(prod => prod.productID===index)
 
     if(existe){
-        const prod = products.map(prod =>{
+        const prod = productsArray.map(prod =>{
             if(prod.productID===index){
                 prod.quantity++
             }
         })
     }else{
-    products.push(orderBuy)
-    let arrayProducts = Object.values(products)
+    productsArray.push(orderBuy)
+    let arrayProducts = Object.values(productsArray)
 
     }
-    products.forEach(products => {
-    count1 += parseInt(products.quantity)
+    productsArray.forEach(productsArray => {
+    count1 += parseInt(productsArray.quantity)
     })
     showAlert("Producto agregado a carrito", "succes" )
     badgeHTMLbuy.innerText=count1;
-    sessionStorage.setItem("order", JSON.stringify(products))
+    sessionStorage.setItem("order", JSON.stringify(productsArray))
 }
 
 
