@@ -3,14 +3,14 @@ const token = localStorage.getItem('token');
 const selectCategoryHTML = document.getElementById("category")
 
 const URL = 'http://localhost:5000/api';
-const URL_public ='http://localhost:5000';
+const URL_public = 'http://localhost:5000';
 
 (async function cargarCategorias() {
     try {
         const response = await axios.get(`${URL}/category`)
         console.log(response) //los elementos estan en response.data.categories. 
         console.log(response.data.categories)
-        const categories = response.data.categories;   
+        const categories = response.data.categories;
     } catch (error) {
         console.log(error);
     }
@@ -22,33 +22,33 @@ async function cargarProductos() {
         const respuesta = await axios.get(`${URL}/products`);
         // Products = data.products;
         // console.log(respuesta.data.productos.name)
-        products=respuesta.data.productos
+        products = respuesta.data.productos
         renderizarTabla(products)
     } catch (error) {
         console.log(error);
 
     }
 
-    
+
 }
 cargarProductos()
 
-async function arrayCateories(){
-    const response = await axios.get(`${URL}/category`)
-    const categories = response.data.categories;
-    selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
-    categories.forEach((cat)=>{
-        console.log(cat)
-        selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
-    })}
-arrayCateories()
+// async function arrayCateories(){
+//     const response = await axios.get(`${URL}/category`)
+//     const categories = response.data.categories;
+//     selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
+//     categories.forEach((cat)=>{
+//         console.log(cat)
+//         selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
+//     })}
+// arrayCateories()
 
 
 
 // console.log(products)
 
 
-const productForm=document.getElementById("add-product");
+const productForm = document.getElementById("add-product");
 const submitBtn = document.getElementById("submit-btn");
 
 
@@ -82,10 +82,10 @@ function renderizarTabla(arrayProductos) {
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editProduct('${producto._id}')">
+                                <button class="product__action-btn product__btn-edit"  onclick="editProduct1('${producto._id}')">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
-                                <button class="product__action-btn btn-favorite ${producto.favorite===true ? 'active':''}" onclick="setFavoriteProduct(${index})">
+                                <button class="product__action-btn btn-favorite ${producto.favorite === true ? 'active' : ''}" onclick="setFavoriteProduct(${index})">
                                     <i class="fa-regular fa-star"></i>
                                 </button>
                             
@@ -120,16 +120,16 @@ async function addProduct(evt) {
         console.log(obj);
 
         // la envio a axios en el metodo post
-        const { data} = await axios.post(`${URL}/product`, formFile);
+        const { data } = await axios.post(`${URL}/product`, formFile);
         console.log(data)
         cargarProductos();
-        showAlert("Producto agregado correctamente", "succes" )
+        showAlert("Producto agregado correctamente", "succes")
 
     } catch (error) {
         console.log(error)
-        showAlert("No se pudo agregar el producto", "error" )
+        showAlert("No se pudo agregar el producto", "error")
     }
-   
+
 
 }
 
@@ -143,8 +143,8 @@ async function deleteProduct(id) {
             cancel: `Cancelar`,
             delete: `Borrar`
         }
-    }).then(async function(value) {
-        if(value === `delete`) {
+    }).then(async function (value) {
+        if (value === `delete`) {
             // ? LLAMADA AL BACKEND axios.delete
             try {
                 const respuesta = await axios.delete(`${URL}/product/${id}`)
@@ -157,14 +157,14 @@ async function deleteProduct(id) {
                 icon: 'error'
             })
             renderizarTabla();
-        } 
+        }
     })
-    
+
 
 }
 
 
-async function editProduct(idx){
+async function editProduct(idx) {
     console.log(idx)
     try {
         const respuesta = await axios.get(`${URL}/product/${idx}`)
@@ -172,11 +172,11 @@ async function editProduct(idx){
 
 
     } catch (error) {
-         console.log(error);
+        console.log(error);
 
     }
-    
-  
+
+
 
 
     // console.table(product);
@@ -210,26 +210,81 @@ async function editProduct(idx){
 // }
 
 
+async function obtenerUsuarios() {
+    try {
+        const token = localStorage.getItem("token"); // no hay que hacer jsonpars pq eltoken es una key y una string
+        const response = await axios.get(`${URL}/users`, {
+            headers: {
+                Authorization: token
+            }
+        });
+        console.log(response)
+        users = response.data.users;
+        console.log(users)
+        renderizarTablaUser(users)
+    } catch (error) {
+        console.log(error);
 
-function editProduct(idx){
+    }
+
+}
+const { data } = await axios.post(`${URL}/product`, formFile);
+console.log(data)
+
+
+async function editProduct1(idx) {
+    try {
+        submitBtn.classList.add("edit-btn");
+        submitBtn.innerText = "Modificar Producto"
+
+
+
+        let product = products[idx];
+        console.log("indice:", idx)
+        const respuesta1 = await axios.get(`${URL}/product/${idx}`)
+        console.log("product:", respuesta1)
+
+        const el = productForm.elements;
+        console.log(el)
+        el.name1 = respuesta1.data.product.name;
+        el.description1 = respuesta1.data.product.description;
+        el.price1 = respuesta1.data.product.price;
+        el.image1 = respuesta1.data.product.image;
+        el.detail1 = respuesta1.data.product.detail;
+
+        console.log(el.name1)
+
+        editIndex = idx;
+    } catch (error) {
+        console.log(error);
+
+
+    }
+}
+
+
+function editProduct(idx) {
     submitBtn.classList.add("edit-btn");
     submitBtn.innerText = "Modificar Producto"
 
+    console.log(products)
+
     let product = products[idx];
-    console.log("indice:",idx)
-    console.log("product:",product)
-    
+    console.log("indice:", idx)
+    console.log("product:", product)
+
 
 
     // console.table(product);
-    const el=productForm.elements;
-    el.description.value = product.description;
-    el.name.value=product.name;
-    el.price.value=product.price;
-    el.image.value=product.image;
-    el.detail.value=product.detail;
-    el.stock.checked=product.stock;
+    const el = productForm.elements;
+    console.log(el.name.value)
+    // el.description.value = product.description;
+    el.name.value = product.name;
+    el.price.value = product.price;
+    // el.image.value=product.image;
+    el.detail.value = product.detail;
+    el.stock.checked = product.stock;
     // console.log("indice", idx)
     // console.log("product:", product)
-    editIndex=idx;
+    editIndex = idx;
 }

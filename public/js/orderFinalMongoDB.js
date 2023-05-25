@@ -98,10 +98,10 @@ function renderizarTablaOrdenes(){
     
     productOrderFF.forEach((prod, index)=>{
 
-        let imageSrcOrder = prod.image ? `${URL1}/assets/images/${prod.imageOrder}` : '/assets/images/no-product.png';
+        let imageSrc1 =`${URL_public1}/upload/product/${prod.imageOrder}`;
 
         tableBodyOrder.innerHTML += `<tr class="order">
-        <td class="order__img-cell"><img class="product__img" src="${prod.imageOrder}" alt="${prod.nameOrder}"></td>
+        <td class="order__img-cell"><img class="product__img" src="${imageSrc1}" alt="${prod.nameOrder}"></td>
         <td class="order__name" onclick="editName(${index})">${prod.nameOrder}</td>
         <td class="order__desc">${prod.descriptionOrder}</td>
         <td class="order__quantity" ><div class="boton-container"><div class="boton-container__boton-div"><button class="boton-container__boton-order" onclick="restToOrderQuantity(${index}) " id=${index} >-</button> ${prod.quantity} <button class="boton-container__boton-order" onclick= "AccToOrderQuantity(${index})">+</button></div></div></td>
