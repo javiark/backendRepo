@@ -228,8 +228,8 @@ async function obtenerUsuarios() {
     }
 
 }
-const { data } = await axios.post(`${URL}/product`, formFile);
-console.log(data)
+// const { data } = await axios.post(`${URL}/product`, formFile);
+// console.log(data)
 
 
 async function editProduct1(idx) {
@@ -253,6 +253,7 @@ async function editProduct1(idx) {
         el.detail1 = respuesta1.data.product.detail;
 
         console.log(el.name1)
+        console.log(el.description1)
 
         editIndex = idx;
     } catch (error) {
