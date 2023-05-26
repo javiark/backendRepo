@@ -8,7 +8,7 @@ let users = [];
 
 async function obtenerUsuarios() {
     try {
-        const token = localStorage.getItem("token"); // no hay que hacer jsonpars pq eltoken es una key y una string
+        const token = localStorage.getItem("token"); // no hay que hacer json|pars pq eltoken es una key y una string
         const response = await axios.get(`${URL}/users`, { 
             headers: {
                 Authorization: token

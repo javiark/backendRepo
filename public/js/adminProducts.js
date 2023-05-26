@@ -1,6 +1,8 @@
 let products = [];
 const token = localStorage.getItem('token');
 const selectCategoryHTML = document.getElementById("category")
+const productForm2=document.getElementById("add-product");
+let productsCargados =JSON.parse(localStorage.getItem('products')) || [];
 
 const URL = 'http://localhost:5000/api';
 const URL_public = 'http://localhost:5000';
@@ -233,35 +235,94 @@ async function obtenerUsuarios() {
 
 
 async function editProduct1(idx) {
-    try {
+    try {     
+        console.log   
         submitBtn.classList.add("edit-btn");
-        submitBtn.innerText = "Modificar Producto"
+        submitBtn.innerText = "Modificar Producto";
+        
+        const indice = await axios.get(`${URL}/product/${idx}`)
+        console.log(indice.data.product)
 
+        let productoElegido =indice.data.product
+        console.log(productoElegido)
+        
 
+        const el=productForm2.elements;
+        el.description.value = productoElegido.description;
+        el.name.value=productoElegido.name;
+        el.price.value=productoElegido.price;
+        // el.file.value=productoElegido.image;
+        el.detail.value=productoElegido.detail;
 
-        let product = products[idx];
-        console.log("indice:", idx)
-        const respuesta1 = await axios.get(`${URL}/product/${idx}`)
-        console.log("product:", respuesta1)
+        // console.log("indice", idx)
+        // console.log("product:", product)
+        editIndex=idx;
+    
 
-        const el = productForm.elements;
-        console.log(el)
-        el.name1 = respuesta1.data.product.name;
-        el.description1 = respuesta1.data.product.description;
-        el.price1 = respuesta1.data.product.price;
-        el.image1 = respuesta1.data.product.image;
-        el.detail1 = respuesta1.data.product.detail;
+    
 
-        console.log(el.name1)
-        console.log(el.description1)
-
-        editIndex = idx;
+        
+    
+    
+        // console.table(product);
+        // const el=productForm2.elements;
+        // el.description.value = product.description;
+        // el.name.value=product.name;
+        // el.price.value=product.price;
+        // el.image.value=product.image;
+        // el.detail.value=product.detail;
+        // el.stock.checked=product.stock;
+        // console.log("indice", idx)
+        // console.log("product:", product)
+        // editIndex=idx;
     } catch (error) {
         console.log(error);
 
 
     }
 }
+
+// async function editProduct1(idx) {
+//     try {
+//         submitBtn.classList.add("edit-btn");
+//         submitBtn.innerText = "Modificar Producto"
+
+
+
+//         let product = products[idx];
+//         console.log("indice:", idx)
+//         const respuesta1 = await axios.get(`${URL}/product/${idx}`)
+//         console.log("product:", respuesta1)
+
+//         const el = productForm2.elements;
+//         console.log(el)
+   
+//         el.name1 = respuesta1.data.product.name;
+//         el.description1 = respuesta1.data.product.description;
+//         el.price1 = respuesta1.data.product.price;
+//         el.image1 = respuesta1.data.product.image;
+//         el.detail1 = respuesta1.data.product.detail;
+        
+//         let nameProd= el.name1;
+//         let descriptionProd=el.description1;
+//         let priceProd=el.price1;
+//         let imageProd=el.image1;
+//         let detail1Prod=el.detail1;
+
+//         let productForm1 = {nameProd, descriptionProd, priceProd, imageProd, detail1Prod}
+//         console.log(productForm1)
+        
+
+
+//         editIndex = idx;
+//     } catch (error) {
+//         console.log(error);
+
+
+//     }
+// }
+
+
 
 
 function editProduct(idx) {
