@@ -10,8 +10,8 @@ const URL_public = 'http://localhost:5000';
 (async function cargarCategorias() {
     try {
         const response = await axios.get(`${URL}/category`)
-        console.log(response) //los elementos estan en response.data.categories. 
-        console.log(response.data.categories)
+        // console.log(response) //los elementos estan en response.data.categories. 
+        // console.log(response.data.categories)
         const categories = response.data.categories;
     } catch (error) {
         console.log(error);
@@ -111,12 +111,12 @@ async function addProduct(evt) {
         evt.preventDefault();
         // console.dir(evt.target);
         const elements = evt.target.elements;
+    
 
         // console.log(elements.stock.checked);
         // console.dir(elements.name);
         // console.dir(elements.price)
         const formFile = new FormData(evt.target);
-
         // TODO: remover Observar que tengo
         const obj = Object.fromEntries(formFile);
         console.log(obj);
@@ -251,7 +251,8 @@ async function editProduct1(idx) {
         el.description.value = productoElegido.description;
         el.name.value=productoElegido.name;
         el.price.value=productoElegido.price;
-        // el.file.value=productoElegido.image;
+        // el.file.value=productoElegido.image.name;
+        // console.log(el.file.value)
         el.detail.value=productoElegido.detail;
 
         // console.log("indice", idx)
