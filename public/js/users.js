@@ -104,10 +104,6 @@ function addUser(evt) {
 
 
 
-
-
-
-
     if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
         users[editIndex] = newUser
 
@@ -164,6 +160,8 @@ function deleteUser(indice) {
 // }
 
 function editUser(idx) {
+
+    console.log(idx)
     submitBtn.classList.add("edit-btn-order");
     submitBtn.innerText = "Modificar Usuario"
     let user = users[idx];
