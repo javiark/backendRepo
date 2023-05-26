@@ -1179,9 +1179,7 @@ body {
   border: none;
 }
 
-input[type=file] {
-  display: none;
-}
+
 
 .inputBoxText {
   width: 20rem;
