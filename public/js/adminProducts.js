@@ -116,75 +116,41 @@ cargarProductos();
     // ** VAMOS A MANDAR ESTE OBJETO AL BACKEND AL ENDPOINT DE HACER EL PUT, UNA VEZ RESUELTO EL LLAMADO (AWAIT), VUELVEN A PEDIR LOS PRODUCTOS.
     // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
 
-async function addProduct(evt){
-    try {
-        evt.preventDefault();
-        const elements = evt.target.elements;
-        const formFile = new FormData(evt.target);
-        console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
-
-        if (editIndex >= 0) { // es para cuando el producto es nuevo. 0 es undefined
-            const productUpdate = {
-                name: elements.name.value,
-                description: elements.description.value,
-                image: elements.image.value,
-                detail:elements.detail.value,
-                price: elements.price.value,
-            }
-            // console.log( productUpdate)
-            const res = await axios.put(`${URL}/product/${editIndex}`, productUpdate,{
-            headers: {Authorization: token}
-        });
-            // console.log(res)
-            if(!res)
-                showAlert('No se edito el producto','error')
-            else      
-                showAlert('Producto editado y cargado','succes') 
-        }else {
-            const res = await axios.post(`${URL}/product`,formFile,{
-            headers: { Authorization: token } });
-            if(!res)
-                showAlert('No se agrego el producto','error')
-            else      
-                showAlert('Producto añadido','exito')
-            
-        }
-
-    editIndex = undefined;
-    submitBtn.classList.remove('edit-btn');
-    submitBtn.innerText = 'Cargar Producto'
-
-    cargarProductos();
-    cleanTable();
-    } catch (error) {
-        console.log(error)
-    }
-    
-}
-
-
 // async function addProduct(evt){
 //     try {
 //         evt.preventDefault();
 //         const elements = evt.target.elements;
 //         const formFile = new FormData(evt.target);
 //         console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
-//         const idProd = editIndex;
-//         console.log(idProd)
+
+//         if (editIndex >= 0) { // es para cuando el producto es nuevo. 0 es undefined
 //             const productUpdate = {
 //                 name: elements.name.value,
 //                 description: elements.description.value,
-//                 // image: elements.image.value,
+//                 image: elements.image.value,
 //                 detail:elements.detail.value,
 //                 price: elements.price.value,
 //             }
-//             console.log( productUpdate)
-//             const res = await axios.put(`${URL}/product/${idProd}`,productUpdate,{
+//             // console.log( productUpdate)
+//             const res = await axios.put(`${URL}/product/${editIndex}`, productUpdate,{
 //             headers: {Authorization: token}
 //         });
+//             // console.log(res)
+//             if(!res)
+//                 showAlert('No se edito el producto','error')
+//             else      
+//                 showAlert('Producto editado y cargado','succes') 
+//         }else {
+//             const res = await axios.post(`${URL}/product`,formFile,{
+//             headers: { Authorization: token } });
+//             if(!res)
+//                 showAlert('No se agrego el producto','error')
+//             else      
+//                 showAlert('Producto añadido','exito')
+            
+//         }
 
-
-//     // editIndex = undefined;
+//     editIndex = undefined;
 //     submitBtn.classList.remove('edit-btn');
 //     submitBtn.innerText = 'Cargar Producto'
 
@@ -195,6 +161,40 @@ async function addProduct(evt){
 //     }
     
 // }
+
+
+async function addProduct(evt){
+    try {
+        evt.preventDefault();
+        const elements = evt.target.elements;
+        const formFile = new FormData(evt.target);
+        console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
+        const idProd = editIndex;
+        console.log(idProd)
+            const productUpdate = {
+                name: elements.name.value,
+                description: elements.description.value,
+                // image: elements.image.value,
+                detail:elements.detail.value,
+                price: elements.price.value,
+            }
+            console.log( productUpdate)
+            const res = await axios.put(`${URL}/product/${idProd}`,productUpdate,{
+            headers: {Authorization: token}
+        });
+
+
+    // editIndex = undefined;
+    submitBtn.classList.remove('edit-btn');
+    submitBtn.innerText = 'Cargar Producto'
+
+    cargarProductos();
+    cleanTable();
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
 
 
 
