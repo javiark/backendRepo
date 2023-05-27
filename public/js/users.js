@@ -1,6 +1,5 @@
-// let users =JSON.parse(localStorage.getItem('users')) || [];
-// console.log(users)
-// let favorites = [];
+const token = localStorage.getItem('token');
+
 const URL = 'http://localhost:4000/api';
 const URL_public = 'http://localhost:4000';
 
@@ -83,7 +82,7 @@ function renderizarTablaUser() {
 
 renderizarTablaUser();
 
-// //****ADD EDIT PRODUCT*** */
+// //****ADD EDIT USER*** */
 
 function addUser(evt) {
     evt.preventDefault();
@@ -104,7 +103,7 @@ function addUser(evt) {
 
 
 
-    if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
+    if (editIndex) { 
         users[editIndex] = newUser
 
 
@@ -122,7 +121,7 @@ function addUser(evt) {
     renderizarTablaUser();
     // submitBtn.classList.add("invisible");
     showAlert("El usuario se edito correctamente", "succes")
-
+    editIndex = undefined;
 
     evt.target.reset();
     elements.fullName.focus();
@@ -159,12 +158,16 @@ function deleteUser(indice) {
 //     role:"USER_ROLE",
 // }
 
-function editUser(idx) {
+async function editUser(idx) {
 
     console.log(idx)
     submitBtn.classList.add("edit-btn-order");
     submitBtn.innerText = "Modificar Usuario"
-    let user = users[idx];
+    response = await axios.get(`${URL}/users/${idx}`,{
+        headers: {
+            Authorization: token
+        }
+      });  
     console.log("indice:", idx)
     console.log("usuario:", user)
     submitBtn.classList.add("visible")
