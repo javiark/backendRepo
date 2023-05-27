@@ -125,13 +125,12 @@ async function addProduct(evt){
             description: elements.description.value,
             detail:elements.detail.value,
             price: elements.price.value,
-            updateAt: elements.date.value,
             }
 
             const response = await axios.put(`${URL}/product/${editIndex}`,updateProduct,{
             headers: {Authorization: token}});
             if(!response)
-                showAlert('No editar el producto','error')
+                showAlert('No se edito el producto','error')
             else      
                 showAlert('Producto editado y cargado','succes')
             
@@ -150,7 +149,7 @@ async function addProduct(evt){
     submitBtn.innerText = 'Cargar Producto'
 
     cargarProductos();
-    limpiarInput()
+    cleanTable();
     } catch (error) {
         console.log(error)
     }
@@ -160,12 +159,6 @@ async function addProduct(evt){
     // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
 
 //****ADD EDIT PRODUCT*** */
-
-
-
-
-
-
 
 
 
@@ -199,11 +192,6 @@ async function deleteProduct(id) {
 
 
 }
-
-
-
-
-
 
 
 
@@ -264,78 +252,18 @@ async function editProduct1(idx) {
     }
 }
 
+function cleanTable(){
+    const el = productForm.elements;
+    el.name.value = '';
+    el.detail.value = '';
+    el.description.value = '';
+    el.price.value = '';
+
+   
+  }
 
 
 
-
-// async function editProduct1(idx) {
-//     try {
-//         submitBtn.classList.add("edit-btn");
-//         submitBtn.innerText = "Modificar Producto"
-
-
-
-//         let product = products[idx];
-//         console.log("indice:", idx)
-//         const respuesta1 = await axios.get(`${URL}/product/${idx}`)
-//         console.log("product:", respuesta1)
-
-//         const el = productForm2.elements;
-//         console.log(el)
-
-//         el.name1 = respuesta1.data.product.name;
-//         el.description1 = respuesta1.data.product.description;
-//         el.price1 = respuesta1.data.product.price;
-//         el.image1 = respuesta1.data.product.image;
-//         el.detail1 = respuesta1.data.product.detail;
-
-//         let nameProd= el.name1;
-//         let descriptionProd=el.description1;
-//         let priceProd=el.price1;
-//         let imageProd=el.image1;
-//         let detail1Prod=el.detail1;
-
-//         let productForm1 = {nameProd, descriptionProd, priceProd, imageProd, detail1Prod}
-//         console.log(productForm1)
-
-
-
-//         editIndex = idx;
-//     } catch (error) {
-//         console.log(error);
-
-
-//     }
-// }
-
-
-
-
-// function editProduct(idx) {
-//     submitBtn.classList.add("edit-btn");
-//     submitBtn.innerText = "Modificar Producto"
-
-//     console.log(products)
-
-//     let product = products[idx];
-//     console.log("indice:", idx)
-//     console.log("product:", product)
-
-//     // console.table(product);
-//     const el = productForm.elements;
-//     console.log(el.name.value)
-//     // el.description.value = product.description;
-//     el.name.value = product.name;
-//     el.price.value = product.price;
-//     el.image.value=product.image;
-//     el.detail.value = product.detail;
-//     el.stock.checked = product.stock;
-//     // console.log("indice", idx)
-//     // console.log("product:", product)
-//     editIndex = idx;
-
-
-// }
 
 const actualBtn = document.getElementById('actual-btn');
 
