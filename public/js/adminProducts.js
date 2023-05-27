@@ -125,7 +125,7 @@ async function addProduct(evt){
         // const idProd = editIndex;
         // console.log(idProd)
 
-        if (editIndex >= 0) { // es para cuando el producto es nuevo. 0 es undefined
+        if (!editIndex) { // es para cuando el producto es nuevo. 0 es undefined
             const productUpdate = {
                 name: elements.name.value,
                 description: elements.description.value,
