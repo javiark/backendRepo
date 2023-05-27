@@ -3,6 +3,8 @@ const token = localStorage.getItem('token');
 
 const selectCategoryHTML = document.getElementById("category")
 const productForm2 = document.getElementById("add-product");
+const inputImg=document.getElementById("uploadImageInput");
+
 let productsCargados = JSON.parse(localStorage.getItem('products')) || [];
 let nombreImagen = document.getElementById("imgLabel")
 let productID1 = JSON.parse(localStorage.getItem('products')) ;
@@ -111,33 +113,37 @@ cargarProductos();
 
 
 
-
+    // ** VAMOS A MANDAR ESTE OBJETO AL BACKEND AL ENDPOINT DE HACER EL PUT, UNA VEZ RESUELTO EL LLAMADO (AWAIT), VUELVEN A PEDIR LOS PRODUCTOS.
+    // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
 
 async function addProduct(evt){
     try {
         evt.preventDefault();
         const elements = evt.target.elements;
         const formFile = new FormData(evt.target);
-               
-        if (editIndex) {
-            const updateProduct = {
-            name: elements.name.value,
-            description: elements.description.value,
-            detail:elements.detail.value,
-            price: elements.price.value,
-            }
+        console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
 
-            const response = await axios.put(`${URL}/product/${editIndex}`,updateProduct,{
-            headers: {Authorization: token}});
-            if(!response)
+        if (editIndex >= 0) { // es para cuando el producto es nuevo. 0 es undefined
+            const productUpdate = {
+                name: elements.name.value,
+                description: elements.description.value,
+                image: elements.image.value,
+                detail:elements.detail.value,
+                price: elements.price.value,
+            }
+            // console.log( productUpdate)
+            const res = await axios.put(`${URL}/product/${editIndex}`, productUpdate,{
+            headers: {Authorization: token}
+        });
+            // console.log(res)
+            if(!res)
                 showAlert('No se edito el producto','error')
             else      
-                showAlert('Producto editado y cargado','succes')
-            
+                showAlert('Producto editado y cargado','succes') 
         }else {
-            const response = await axios.post(`${URL}/product`,formFile,{
+            const res = await axios.post(`${URL}/product`,formFile,{
             headers: { Authorization: token } });
-            if(!response)
+            if(!res)
                 showAlert('No se agrego el producto','error')
             else      
                 showAlert('Producto añadido','exito')
@@ -155,10 +161,56 @@ async function addProduct(evt){
     }
     
 }
-    // ** VAMOS A MANDAR ESTE OBJETO AL BACKEND AL ENDPOINT DE HACER EL PUT, UNA VEZ RESUELTO EL LLAMADO (AWAIT), VUELVEN A PEDIR LOS PRODUCTOS.
-    // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
 
-//****ADD EDIT PRODUCT*** */
+
+// async function addProduct(evt){
+//     try {
+//         evt.preventDefault();
+//         const elements = evt.target.elements;
+//         const formFile = new FormData(evt.target);
+//         console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
+//         const idProd = editIndex;
+//         console.log(idProd)
+//             const productUpdate = {
+//                 name: elements.name.value,
+//                 description: elements.description.value,
+//                 // image: elements.image.value,
+//                 detail:elements.detail.value,
+//                 price: elements.price.value,
+//             }
+//             console.log( productUpdate)
+//             const res = await axios.put(`${URL}/product/${idProd}`,productUpdate,{
+//             headers: {Authorization: token}
+//         });
+
+
+//     // editIndex = undefined;
+//     submitBtn.classList.remove('edit-btn');
+//     submitBtn.innerText = 'Cargar Producto'
+
+//     cargarProductos();
+//     cleanTable();
+//     } catch (error) {
+//         console.log(error)
+//     }
+    
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,11 +248,6 @@ async function deleteProduct(id) {
 
 
 
-
-
-
-
-
 async function obtenerUsuarios() {
     try {
         const token = localStorage.getItem("token"); // no hay que hacer jsonpars pq eltoken es una key y una string
@@ -232,19 +279,20 @@ async function editProduct1(idx) {
         const indice = await axios.get(`${URL}/product/${idx}`)
         // console.log(indice.data.product)
         let productoElegido = indice.data.product
-        console.log(productoElegido)
+        // console.log(productoElegido)
 
         const el = productForm2.elements;  
         el.description.value = productoElegido.description;
         el.name.value = productoElegido.name;
         el.price.value = productoElegido.price;
+        inputImg.style.display="none";
         el.detail.value = productoElegido.detail;
         
 
-        editIndex = idx;
-        console.log(editIndex)
+        editIndex = idx; // id del producto
+        // console.log(editIndex)
         const productoEditar = await axios.get(`${URL}/product/${editIndex}`)
-        console.log(productoEditar)
+        // console.log(productoEditar)
 
     } catch (error) {
         console.log(error);

@@ -6,7 +6,7 @@ const proudctSchema = new Schema({
     description: {type:String, required:true},
     detail:{type:String, required:true},
     price: {type: Number, required:true},
-    image:{type:String, required:true}, // va a tener la ubicacion de la imagen con el nombre
+    image:{type:String}, // va a tener la ubicacion de la imagen con el nombre
     stock:{type:Number, required:true, default:1},
     active:{type:Boolean, default:true, required:true},
     category:{

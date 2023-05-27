@@ -91,8 +91,9 @@ async function getProduct(req, res) {
 
 async function updateProduct(req, res) {
     try {
-        const id = req.query.id;
+        const id =  req.params.id;
         const data = req.body
+        console.log(data)
         // return res.status(200).send(`Id obtenido por query param${id}`)
 
         const newProduct = await Product.findByIdAndUpdate(id, data, { new: true })  //espera el objeto nuevo. El data es lo que viene del body mandado desde el postman.  Con el await se espera. Peticion asincrona
@@ -100,6 +101,7 @@ async function updateProduct(req, res) {
         if (!newProduct) {
             return res.status(404).send({ // con el return se corta
                 msg: "El producto no se actualizo"
+
             })
         }
         return res.status(200).send({
