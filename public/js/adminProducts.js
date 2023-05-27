@@ -6,6 +6,7 @@ let productsCargados = JSON.parse(localStorage.getItem('products')) || [];
 let nombreImagen = document.getElementById("imgLabel")
 let productID1 = JSON.parse(localStorage.getItem('products')) ;
 let editIndex=undefined; // para que se vacie
+console.log(editIndex)
 
 const URL = 'http://localhost:4000/api';
 const URL_public = 'http://localhost:4000';
@@ -108,56 +109,7 @@ renderizarTabla();
 
 
 
-// async function addProduct(evt) {
 
-//     try {
-//         evt.preventDefault();
-//         const elements = evt.target.elements;
-
-//         const formFile = new FormData(evt.target);
-//         // TODO: remover Observar que tengo
-//         const obj = Object.fromEntries(formFile);
-//         console.log(obj);
-
-//         // la envio a axios en el metodo post
-//         const { data } = await axios.post(`${URL}/product`, formFile);
-//         console.log(data)
-//         cargarProductos();
-//         showAlert("Producto agregado correctamente", "succes")
-
-//         const newProduct = {
-//             name: elements.name.value,
-//             description: elements.description.value,
-//             price: elements.price.valueAsNumber,
-//             image: elements.image.value,
-//             detail: elements.detail.value,
-//             stock: elements.stock.checked,
-//         };
-//         console.log(newProduct)
-
-
-
-
-//         if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
-//             products[editIndex] = newProduct
-//             // alert("se edito correctamente")
-//             showAlert("El producto se edito correctamente", "succes")
-//         } else {
-//             products.push(newProduct);
-//             showAlert("El producto se agrego correctamente", "succes")
-
-//         }
-//         console.log(products)
-//         renderizarTabla();
-
-//     } catch (error) {
-//         console.log(error)
-//         showAlert("No se pudo agregar el producto", "error")
-//     }
-// }
-
-// const productID = productID.findIndex(id1=>id1.name === formFile.name)
-// console.log(productID)
 
 
 async function addProduct(evt) {
@@ -170,11 +122,20 @@ async function addProduct(evt) {
 
         const elements = evt.target.elements;
         const formFile = new FormData(evt.target)
-        // console.log(formFile)
+
+        const newProduct = {
+            name: elements.name.value,
+            description: elements.description.value,
+            detail:elements.detail.value,
+            price: elements.price.valueAsNumber,
+            detail:elements.detail.value,
+        };
+        console.log(newProduct)
+
 
         // console.dir(elements.name);
         // TODO: remover Observar que tengo
-        const obj = Object.fromEntries(formFile);
+        // const obj = Object.fromEntries(formFile);
         // console.log(obj)
 
 
@@ -185,17 +146,18 @@ async function addProduct(evt) {
         // cargarProductos()
 
         if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
-            // const { data } = await axios.post(`${URL}/product`, formFile);
-            // console.log(data)
-            // alert("se edito correctamente")
-            console.log("no paso")
-            // showAlert("El producto se edito correctamente", "succes")
+            productID1[editIndex]=newProduct
+
+            showAlert("El producto se edito correctamente", "succes")
         } else {
-            const { data } = await axios.post(`${URL}/product`, formFile);
-            console.log(data)
-            cargarProductos()
+            productID1.push(newProduct);
+
             showAlert("El producto se agrego correctamente", "succes")
         }
+        console.log(productID1)
+        // const { data } = await axios.post(`${URL}/product`, formFile);
+        // console.log(data)
+        cargarProductos()
         editIndex=undefined;
     
 
@@ -205,6 +167,8 @@ async function addProduct(evt) {
         showAlert("No se pudo agregar el producto", "error")
     }
 }
+    // ** VAMOS A MANDAR ESTE OBJETO AL BACKEND AL ENDPOINT DE HACER EL PUT, UNA VEZ RESUELTO EL LLAMADO (AWAIT), VUELVEN A PEDIR LOS PRODUCTOS.
+    // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
 
 //****ADD EDIT PRODUCT*** */
 
@@ -251,21 +215,6 @@ async function addProduct(evt) {
 //     evt.target.reset()
 //     elements.name.focus();
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -364,7 +313,7 @@ async function obtenerUsuarios() {
 async function editProduct1(idx) {
     try {
         // console.log(idx)
-        console.log
+
         submitBtn.classList.add("edit-btn");
         submitBtn.innerText = "Modificar Producto";
         const indice = await axios.get(`${URL}/product/${idx}`)
@@ -381,6 +330,8 @@ async function editProduct1(idx) {
 
         editIndex = idx;
         console.log(editIndex)
+        const productoEditar = await axios.get(`${URL}/product/${editIndex}`)
+        console.log(productoEditar)
 
     } catch (error) {
         console.log(error);
@@ -390,8 +341,7 @@ async function editProduct1(idx) {
 
 
 
-    // ** VAMOS A MANDAR ESTE OBJETO AL BACKEND AL ENDPOINT DE HACER EL PUT, UNA VEZ RESUELTO EL LLAMADO (AWAIT), VUELVEN A PEDIR LOS PRODUCTOS.
-    // ** DESPUES LLAMO A LA FUNCION CARGARPRODUCTOS. LO MANDO A LA BASE DE DATOS Y DESPUES HAGO UNA PETICION A AXIOS AL EDPOINT QUE ME DEVUELVE LOS PRODUCTOS Y COMO HAY UNO QUE SE ACTUALIZO, VAN A VENIR TODOS Y UNO SE ACTUALIZO
+
 
 // async function editProduct1(idx) {
 //     try {
