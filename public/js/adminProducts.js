@@ -7,8 +7,8 @@ let nombreImagen = document.getElementById("imgLabel")
 let productID1 = JSON.parse(localStorage.getItem('products')) ;
 let editIndex=undefined; // para que se vacie
 
-const URL = 'http://localhost:5000/api';
-const URL_public = 'http://localhost:5000';
+const URL = 'http://localhost:4000/api';
+const URL_public = 'http://localhost:4000';
 
 (async function cargarCategorias() {
     try {

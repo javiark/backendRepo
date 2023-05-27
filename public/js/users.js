@@ -1,8 +1,8 @@
 // let users =JSON.parse(localStorage.getItem('users')) || [];
 // console.log(users)
 // let favorites = [];
-const URL = 'http://localhost:5000/api';
-const URL_public = 'http://localhost:5000';
+const URL = 'http://localhost:4000/api';
+const URL_public = 'http://localhost:4000';
 
 let users = [];
 

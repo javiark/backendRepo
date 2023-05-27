@@ -104,7 +104,7 @@ users.push(user)
     setTimeout(()=>{
     window.location.href = "/index.html"
 
-    },5000) 
+    },4000) 
 })
 
 function checkIfUserExist(users, emailToSearch){
