@@ -7,6 +7,8 @@ let productsCargados =JSON.parse(localStorage.getItem('products')) || [];
 const URL = 'http://localhost:5000/api';
 const URL_public = 'http://localhost:5000';
 
+let editIndex;
+
 (async function cargarCategorias() {
     try {
         const response = await axios.get(`${URL}/category`)
@@ -30,7 +32,6 @@ async function cargarProductos() {
         console.log(error);
 
     }
-
 
 }
 
@@ -57,11 +58,11 @@ const submitBtn = document.getElementById("submit-btn");
 //1- Obtener el body de la tabla para poder modificarlo desde JS
 const tableBody = document.querySelector('#table-body');
 
-let editIndex;
+
 
 
 //2- Definir una función para iterar el array
-function renderizarTabla(arrayProductos) {
+function renderizarTabla(arrayProductos, index) {
     tableBody.innerHTML = '';
     if (arrayProductos.length === 0) {
         tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
@@ -69,7 +70,7 @@ function renderizarTabla(arrayProductos) {
     }
     //3- Iterar el array para acceder a cada producto
 
-    arrayProductos.forEach((producto, index) => {
+    arrayProductos.forEach((producto) => {
 
         let imageSrc = producto.image ? `${URL_public}/upload/product/${producto.image}` : '/assets/images/no-product.png';
         //4- Introducir dentro del tbody una fila por producto con sus respectivas celdas
@@ -101,115 +102,86 @@ function renderizarTabla(arrayProductos) {
 
 cargarProductos();
 
-//****ADD EDIT PRODUCT*** */
 
+//-----agregar y editar productos---//
 
-
-async function addProduct(evt) {
-
+async function addProduct(evt){
     try {
         evt.preventDefault();
-        // console.dir(evt.target);
         const elements = evt.target.elements;
-
-        // console.log(elements.stock.checked);
-        // console.dir(elements.name);
-        // console.dir(elements.price)
         const formFile = new FormData(evt.target);
+               
+        if (editIndex) {
+            const productUpdate = {
+            name: elements.name.value,
+            description: elements.description.value,
+            detail: elements.detail.value,
+            price: elements.price.value,
+            updateAt: elements.date.value,
+            }
 
-        // TODO: remover Observar que tengo
-        const obj = Object.fromEntries(formFile);
-        console.log(obj);
+            const response = await axios.put(`${URL}/products/${editIndex}`,productUpdate,{
+            headers: {Authorization: token}});
+            if(!response)
+                showAlert('El producto no pudo ser agregado','error')
+            else      
+                showAlert('El producto se edito exitosamente','succes')
+            
+        }else {
+            const response = await axios.post(`${URL}/products`,formFile,{
+            headers: { Authorization: token } });
+            if(!response)
+                showAlert('El producto no pudo ser agregado','error')
+            else      
+                showAlert('El producto se agrego exitosamente','succes')
+            
+        }
 
-        // la envio a axios en el metodo post
-        const { data } = await axios.post(`${URL}/product`, formFile);
-        console.log(data)
-        cargarProductos();
-        showAlert("Producto agregado correctamente", "succes")
-
+    editIndex = undefined;
+    cargarProductos();
     } catch (error) {
         console.log(error)
-        showAlert("No se pudo agregar el producto", "error")
     }
+    
 
-
-}
-
-async function deleteProduct(id) {
+function deleteProduct(id) {
     console.log(id)
-    swal({
-        title: `Borrar producto`,
-        text: `Esta seguro que desea borrar el producto   `,
-        icon: 'warning',
-        buttons: {
-            cancel: `Cancelar`,
-            delete: `Borrar`
-        }
-    }).then(async function (value) {
-        if (value === `delete`) {
-            // ? LLAMADA AL BACKEND axios.delete
-            try {
-                const respuesta = await axios.delete(`${URL}/product/${id}`)
-                cargarProductos()
-            } catch (error) {
-                console.log(error)
-            }
-            swal({
-                title: `Elemento borrado correctamente`,
-                icon: 'error'
-            })
-            renderizarTabla();
-        }
-    })
-
-
-}
-
-
-async function editProduct(idx) {
-    console.log(idx)
+    showQuestion('¿Esta seguro de borrar el producto?')
+    .then(async(result) => {
     try {
-        const respuesta = await axios.get(`${URL}/product/${idx}`)
-        console.log(respuesta)
-
-
+        
+        if (result) 
+            {
+                console.log('entro');
+            response = await  axios.delete(`${URL}/products/${id}`,{
+                        headers: {Authorization: token}});  
+            showAlert('Producto eliminado Correctamente','error')
+            cargarProductos();
+            }
     } catch (error) {
-        console.log(error);
-
+        console.log(error)
     }
-
-
-
-
-    // console.table(product);
-    // const el=productForm.elements;
-    // el.description.value = product.description;
-    // el.name.value=product.name;
-    // el.price.value=product.price;
-    // el.image.value=product.image;
-    // el.detail.value=product.detail;
-    // el.stock.checked=product.stock;
-    // // console.log("indice", idx)
-    // // console.log("product:", product)
-    // editIndex=idx;
+    })
 }
 
 
 
 
 
+// async function editProduct(idx) {
+//     console.log(idx)
+//     try {
+//         const respuesta = await axios.get(`${URL}/product/${idx}`)
+//         console.log(respuesta)
+
+
+//     } catch (error) {
+//         console.log(error);
+
+//     }
 
 
 
-// function deleteProduct(indice) {
-//     products.splice(indice, 1);
-//     localStorage.setItem("products",JSON.stringify(products))
-//     showAlert("El producto se ha borrado", "succes")
-//     renderizarTabla();
-
-
-
-// }
 
 
 async function obtenerUsuarios() {
@@ -245,7 +217,7 @@ async function editProduct1(idx) {
 
         let productoElegido =indice.data.product
         console.log(productoElegido)
-        
+        editIndex=idx;
 
         const el=productForm2.elements;
         el.description.value = productoElegido.description;
@@ -254,27 +226,7 @@ async function editProduct1(idx) {
         // el.file.value=productoElegido.image;
         el.detail.value=productoElegido.detail;
 
-        // console.log("indice", idx)
-        // console.log("product:", product)
-        editIndex=idx;
-    
 
-    
-
-        
-    
-    
-        // console.table(product);
-        // const el=productForm2.elements;
-        // el.description.value = product.description;
-        // el.name.value=product.name;
-        // el.price.value=product.price;
-        // el.image.value=product.image;
-        // el.detail.value=product.detail;
-        // el.stock.checked=product.stock;
-        // console.log("indice", idx)
-        // console.log("product:", product)
-        // editIndex=idx;
     } catch (error) {
         console.log(error);
 
@@ -349,4 +301,4 @@ function editProduct(idx) {
     // console.log("indice", idx)
     // console.log("product:", product)
     editIndex = idx;
-}
+}}

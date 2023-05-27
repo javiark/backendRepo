@@ -54,14 +54,14 @@ async function addProduct(req, res) {
 
 function deleteProduct(req, res) {
     const id = req.params.id;
-    Product.findByIdAndDelete(id)
+    const deleteProduct=Product.findByIdAndDelete(id)
         .then((deleted) => {
             if (!deleted) {
                 return res.status(404).send("No se encontro el producto a borrar")
             }
             return res.status(200).send({
                 msg: "Producto borrado correctamente",
-                deleted
+                deleteProduct
             })
         })
         .catch(error => {
