@@ -5,7 +5,7 @@ const productForm2 = document.getElementById("add-product");
 let productsCargados = JSON.parse(localStorage.getItem('products')) || [];
 let nombreImagen = document.getElementById("imgLabel")
 let productID1 = JSON.parse(localStorage.getItem('products')) ;
-let editIndex=undefined; // para que se vacie
+let editIndex;
 console.log(editIndex)
 
 const URL = 'http://localhost:4000/api';
@@ -37,7 +37,7 @@ async function cargarProductos() {
 
 
 }
-cargarProductos()
+
 
 // async function arrayCateories(){
 //     const response = await axios.get(`${URL}/category`)
@@ -103,7 +103,7 @@ function renderizarTabla(arrayProductos) {
 
 }
 
-renderizarTabla();
+cargarProductos();
 
 //****ADD EDIT PRODUCT*** */
 
@@ -115,13 +115,9 @@ renderizarTabla();
 async function addProduct(evt) {
 
     try {
-        // console.log(products)
-        // const productID = productID.findIndex(id1=>id1.name === product.name)
-        // console.log(productID)
         evt.preventDefault();
-
         const elements = evt.target.elements;
-        const formFile = new FormData(evt.target)
+        const formFile = new FormData(evt.target);
 
         const newProduct = {
             name: elements.name.value,
@@ -131,6 +127,7 @@ async function addProduct(evt) {
             detail:elements.detail.value,
         };
         console.log(newProduct)
+        const { data } = await axios.post(`${URL}/product`, formFile);
 
 
         // console.dir(elements.name);
@@ -172,49 +169,6 @@ async function addProduct(evt) {
 
 //****ADD EDIT PRODUCT*** */
 
-// function addProduct111(evt) {
-//     evt.preventDefault();
-//     console.dir(evt.target);
-//     const elements = evt.target.elements;
-
-//     const newProduct = {
-//         name: elements.name.value,
-//         description: elements.description.value,
-//         price: elements.price.valueAsNumber,
-//         image: elements.image.value,
-//         detail:elements.detail.value,
-//         stock: elements.stock.checked,
-//     };
-//     console.log(newProduct)
-
-
-
-
-//     if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
-//         products[editIndex]=newProduct
-//         // alert("se edito correctamente")
-//         showAlert("El producto se edito correctamente", "succes")
-//     } else {
-//         products.push(newProduct);
-//         showAlert("El producto se agrego correctamente", "succes")
-//     }
-//     console.log(products)
-  
-
-//     //Guardarlo en el localStorage
-//     localStorage.setItem('products', JSON.stringify(products))
-//                         //(nombreKey, dataValue)
-
-//     editIndex=undefined; // para que se vacie
-//     submitBtn.classList.remove("edit-btn");
-//     submitBtn.innerText = "Cargar Producto"
-//     // showAlert("El producto se edito correctamente", "succes")
- 
-//     renderizarTabla();
-
-//     evt.target.reset()
-//     elements.name.focus();
-// }
 
 
 
@@ -255,19 +209,6 @@ async function deleteProduct(id) {
 }
 
 
-// async function editProduct(idx) {
-//     console.log(idx)
-//     try {
-//         const respuesta = await axios.get(`${URL}/product/${idx}`)
-//         console.log(respuesta)
-
-
-//     } catch (error) {
-//         console.log(error);
-
-//     }
-
-// }
 
 
 
@@ -277,15 +218,7 @@ async function deleteProduct(id) {
 
 
 
-// function deleteProduct(indice) {
-//     products.splice(indice, 1);
-//     localStorage.setItem("products",JSON.stringify(products))
-//     showAlert("El producto se ha borrado", "succes")
-//     renderizarTabla();
 
-
-
-// }
 
 
 async function obtenerUsuarios() {
@@ -312,7 +245,7 @@ async function obtenerUsuarios() {
 //-----------PRECARGO EL PRODUCTO EN EL FORMULARIO------------//
 async function editProduct1(idx) {
     try {
-        // console.log(idx)
+
 
         submitBtn.classList.add("edit-btn");
         submitBtn.innerText = "Modificar Producto";
