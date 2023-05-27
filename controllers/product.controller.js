@@ -1,10 +1,12 @@
 const Product = require("../schemas/product.schema")
 const { responseCreator } = require("../utils/utils")
+const jwt = require('jsonwebtoken');
+
 
 async function getAllProducts (req, res)  {
     try {
-        const itemLimit = 5; // cuantos elementos me muestra
-        const itemsToSkip = itemLimit * (req.query.skip-1) || 0; // cuantos elementos voy a saltear         // item a saltear por limite de pagina = 5 * 0
+        // const itemLimit = 5; // cuantos elementos me muestra
+        // const itemsToSkip = itemLimit * (req.query.skip-1) || 0; // cuantos elementos voy a saltear         // item a saltear por limite de pagina = 5 * 0
 
             const productos = await Product.find()
                                             // .limit(itemLimit)// le pongo un limite cuanto quiero que me traiga
@@ -23,8 +25,8 @@ async function getAllProducts (req, res)  {
 
 //-------------------
 async function addProduct(req, res) {
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
    // lo asigno yo al generar el nombre de la imagen uuid
 
 

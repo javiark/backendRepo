@@ -1,5 +1,5 @@
 const User = require("../schemas/user.schema"); // ../ es a partir de donde nos encontramos
-
+const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET; //https://jwt.io/
 
 const { 
@@ -7,7 +7,7 @@ const {
     = require("../utils/utils") // entre comillas puedo poner varios
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const jwt = require("jsonwebtoken");
+
 
 
 
