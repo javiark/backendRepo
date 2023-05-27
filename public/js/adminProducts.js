@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 
 let products = [];
 const token = localStorage.getItem('token');
@@ -10,8 +10,8 @@ let productID1 = JSON.parse(localStorage.getItem('products'));
 let editIndex = undefined; // para que se vacie
 console.log(editIndex)
 
-const URL = 'http://localhost:5000/api';
-const URL_public = 'http://localhost:5000';
+const URL = 'http://localhost:9000/api';
+const URL_public = 'http://localhost:9000';
 
 (async function cargarCategorias() {
     try {
@@ -39,21 +39,8 @@ async function cargarProductos() {
 
 
 }
-cargarProductos()
-
-// async function arrayCateories(){
-//     const response = await axios.get(`${URL}/category`)
-//     const categories = response.data.categories;
-//     selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
-//     categories.forEach((cat)=>{
-//         console.log(cat)
-//         selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
-//     })}
-// arrayCateories()
 
 
-
-// console.log(products)
 
 
 const productForm = document.getElementById("add-product");
@@ -104,8 +91,9 @@ function renderizarTabla(arrayProductos) {
     });
 
 }
+cargarProductos()
 
-renderizarTabla();
+// renderizarTabla();
 
 //****ADD EDIT PRODUCT*** */
 
@@ -114,15 +102,13 @@ renderizarTabla();
 async function addProduct(evt) {
 
     try {
-        // console.log(products)
-        // const productID = productID.findIndex(id1=>id1.name === product.name)
-        // console.log(productID)
+
         evt.preventDefault();
         const elements = evt.target.elements;
         const formFile = new FormData(evt.target)
 
 
-        if (editIndex >= 0) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
+        if (editIndex) { //el indice 0 sino lo toma falso, el 0 es undifaned (falso)
             const newProduct = {
                 name: elements.name.value,
                 description: elements.description.value,
@@ -131,7 +117,8 @@ async function addProduct(evt) {
                 detail: elements.detail.value,
             };
             console.log(newProduct)
-            const response = await axios.put(`${URL}/product/${editIndex}`, newProduct);
+            const response = await axios.put(`${URL}/products/${editIndex}`,newProduct,{
+                headers: {Authorization: token}});
             if (!response)
                 showAlert("El producto no se pudo editar", "error")
             else
@@ -220,7 +207,7 @@ async function editProduct1(idx) {
 
         submitBtn.classList.add("edit-btn");
         submitBtn.innerText = "Modificar Producto";
-        response = await axios.get(`${URL}/products/${idx}`,{
+        response = await axios.get(`${URL}/product/${idx}`,{
             headers: {
                 Authorization: token
             }

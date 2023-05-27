@@ -6,8 +6,8 @@ const cardContainer=document.getElementById("card-container");
 const productsLS = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
 const productsLocal = JSON.parse(localStorage.getItem("products")) || [];
 
-const URL = 'http://localhost:5000/api';
-const URL_public ='http://localhost:5000';
+const URL = 'http://localhost:9000/api';
+const URL_public ='http://localhost:9000';
 
 // (async function cargarCategorias() {
 //     try {

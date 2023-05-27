@@ -4,8 +4,8 @@ let products = [];
 const token = localStorage.getItem('token');
 const selectCategoryHTML = document.getElementById("category")
 
-const URL = 'http://localhost:5000/api';
-const URL_public ='http://localhost:5000';
+const URL = 'http://localhost:9000/api';
+const URL_public ='http://localhost:9000';
 
 (async function cargarCategorias() {
     try {
