@@ -6,7 +6,7 @@ let productArray = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
 console.log(productArray)
 
 const URL1 = 'http://localhost:4000/api';
-const URL_public1 ='http://localhost:4000';
+const URL_public ='http://localhost:4000';
 
 
 
@@ -46,12 +46,13 @@ let productOrder2 = JSON.parse(sessionStorage.getItem("order")) || [];
 const cardContainer1=document.querySelector("#card-detail");
 
 function renderizarDetail(){
+let imageSrc = product.image ? `${URL_public}/upload/product/${product.image}` : '/assets/images/no-product.png';
 cardContainer1.innerHTML = ` 
 <main class="main">
     <div class="mainDetail">
         <div class="containerDetail">
             <div class="containerDetail__imageContainer">
-                <img src=${product.image} alt=${product.name} class="containerDetail__image">
+                <img src=${imageSrc} alt=${product.name} class="containerDetail__image">
             </div>
 
                  <div class="containerDetail__description" onclick="showNotUser()" >

@@ -45,7 +45,7 @@ function renderizarProductos(products){
         </button>
 
         <div class="card__btn-container">
-            <a class="card__btn" href="/product-detail?id=${index}" >
+            <a class="card__btn" href="/product-detail?id=${product._id}" >
                 Ver mas
             </a>
         </div>
@@ -54,5 +54,7 @@ function renderizarProductos(products){
     })
 }
 renderizarProductos(productsLS);
+
+
 
 
