@@ -137,15 +137,17 @@ body {
 .table-product tr th {
     padding: .5rem;
 }
+.product__img{
+    width: 50px;
+    object-fit: cover;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+
+}
 .product{
-    &__img{
-        width: 50px;
-        object-fit: cover;
-        height: 50px;
-        border-radius: 50%;
-        display: block;
-        margin: 0 auto;
-    }
+
     &__name{
         width: 10%;
     }
