@@ -175,7 +175,10 @@ function addToOrder(index){
     products.forEach(products => {
     count1 += parseInt(products.quantity)
     })
-    showAlert("Producto agregado a carrito", "succes" )
+    swal ({
+        title:"Producto añadido al carrito",
+        icon: 'success',
+    })
     badgeHTMLbuy.innerText=count1;
     sessionStorage.setItem("order", JSON.stringify(products))
 }
@@ -197,22 +200,62 @@ const usuarioID1 = productsUser.findIndex(id1=>id1.email === orderUser.email)
 
 //----------------ELIMINAR PRODUCTO--------------
 
-function deleteProductBuy(indice){
-    let count2=0;
-    productOrderFF.splice(indice, 1);
-    sessionStorage.setItem("order",JSON.stringify(productOrderFF));
+// function deleteProductBuy(indice){
+//     let count2=0;
+//     productOrderFF.splice(indice, 1);
+//     sessionStorage.setItem("order",JSON.stringify(productOrderFF));
 
-    productOrderFF.forEach(productOrderFF => {
-        count2 += parseInt(productOrderFF.quantity)
-        })
-        badgeHTMLbuy.innerText=count2;
-        let valorTotal =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
-        total.innerHTML = `$ ${valorTotal}`
-    console.log(productOrderFF)
-    showAlert("Su producto se ha borrado", "succes")
-    renderizarTablaOrdenes()
+//     productOrderFF.forEach(productOrderFF => {
+//         count2 += parseInt(productOrderFF.quantity)
+//         })
+//         badgeHTMLbuy.innerText=count2;
+//         let valorTotal =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
+//         total.innerHTML = `$ ${valorTotal}`
+//     console.log(productOrderFF)
+//     // showAlert("Su producto se ha borrado111", "succes")
+//     renderizarTablaOrdenes()
+// }
+
+function deleteProductBuy(indice) {
+    let count2=0;
+    swal({
+        title: "Borrar producto",
+        text: `Esta seguro que desea borrar el producto `,
+        icon: `warning`,
+        buttons: {
+            cancel:"Cancelar",
+            delete:"Borrar",
+        }
+    }).then(value => {
+        if (value==="delete"){
+            productOrderFF.splice(indice, 1);
+            sessionStorage.setItem("order",JSON.stringify(productOrderFF));
+        
+            productOrderFF.forEach(productOrderFF => {
+                count2 += parseInt(productOrderFF.quantity)
+                })
+                badgeHTMLbuy.innerText=count2;
+                let valorTotal =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
+                total.innerHTML = `$ ${valorTotal}`
+            console.log(productOrderFF)
+
+            swal({
+                title:"Elemento borrado correctamente",
+                icon:"error"
+        
+            });
+            renderizarTablaOrdenes()
+
+        }else {
+            return ; //return null
+        }
+    })
+
 
 }
+
+
+
 
 
 //----------------SUMAR CANTIDAD PRODUCTO--------------
@@ -295,11 +338,17 @@ function restToOrderQuantity(index){
 
         function buyEnd(){
             if(!productOrder){
-                showAlert("Su carrito esta vacio", "warning")
+                swal ({
+                    title:`Su carrito esta vacio`,
+                    icon: 'error',
+                })
             }else{
 
             
-            showAlert("Gracias por su compra", "succes")
+                swal ({
+                    title:`Gracias por su compra`,
+                    icon: 'success',
+                })
 
             sessionStorage.removeItem("order");
 

@@ -178,7 +178,10 @@ function addToOrder(index){
     productsArray.forEach(productsArray => {
     count1 += parseInt(productsArray.quantity)
     })
-    showAlert("Producto agregado a carrito", "succes" )
+    swal ({
+        title:"Producto añadido al carrito",
+        icon: 'success',
+    })  
     badgeHTMLbuy.innerText=count1;
     sessionStorage.setItem("order", JSON.stringify(productsArray))
 }

@@ -139,16 +139,28 @@ async function addProduct(evt){
         });
             // console.log(res)
             if(!res)
-                showAlert('No se edito el producto','error')
+            swal ({
+                title:"El producto no pudo ser editado",
+                icon: 'error',
+            })  
             else      
-                showAlert('Producto editado y cargado','succes') 
+            swal ({
+                title:"el producto se edito correctamente",
+                icon: 'success',
+            })
         }else {
             const res = await axios.post(`${URL}/product`,formFile,{
             headers: { Authorization: token } });
             if(!res)
-                showAlert('No se agrego el producto','error')
+            swal ({
+                title:"El producto no pudo ser añadido",
+                icon: 'error',
+            })  
             else      
-                showAlert('Producto añadido','exito')     
+            swal ({
+                title:"Produdcto añadido correctamente",
+                icon: 'success',
+            })  
         }
 
     editIndex = undefined;
@@ -161,65 +173,6 @@ async function addProduct(evt){
         console.log(error)
     }
 }
-
-// async function addProduct(evt){
-//     try {
-//         evt.preventDefault();
-//         const elements = evt.target.elements;
-//         const formFile = new FormData(evt.target);
-//         console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
-//         // const idProd = editIndex;
-//         // console.log(idProd)
-
-//         if (!editIndex) { // es para cuando el producto es nuevo. 0 es undefined
-//             const productUpdate = {
-//                 name: elements.name.value,
-//                 description: elements.description.value,
-//                 image: elements.image.value,
-//                 detail:elements.detail.value,
-//                 price: elements.price.value,
-//             }
-//             // console.log( productUpdate)
-//             const res = await axios.put(`${URL}/product/${editIndex}`,productUpdate,{
-//             headers: {Authorization: token}
-//         });
-//             // console.log(res)
-//             if(!res)
-//                 showAlert('No se edito el producto','error')
-//             else      
-//                 showAlert('Producto editado y cargado','succes') 
-//         }else {
-//             const res = await axios.post(`${URL}/product`,formFile,{
-//             headers: { Authorization: token } });
-//             if(!res)
-//                 showAlert('No se agrego el producto','error')
-//             else      
-//                 showAlert('Producto añadido','exito')     
-//         }
-
-//     editIndex = undefined;
-//     submitBtn.classList.remove('edit-btn');
-//     submitBtn.innerText = 'Cargar Producto'
-
-//     cargarProductos();
-//     cleanTable();
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 async function deleteProduct(id) {

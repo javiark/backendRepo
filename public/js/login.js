@@ -28,7 +28,11 @@ loginForm.addEventListener("submit", async (event) => {
 
         localStorage.setItem("token", token);
         localStorage.setItem("currentUser", JSON.stringify(user))
-        showAlert(`Bienvendio ${user.fullName}`)
+        swal ({
+            title:`Bienvendio ${user.fullName}`,
+            icon: 'success',
+        })
+        // showAlert(`Bienvendio ${user.fullName}`)
         setTimeout(() => {
             window.location.href = "/"
         }, 2000)

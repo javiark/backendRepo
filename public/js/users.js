@@ -120,7 +120,10 @@ function addUser(evt) {
 
     renderizarTablaUser();
     // submitBtn.classList.add("invisible");
-    showAlert("El usuario se edito correctamente", "succes")
+    swal ({
+        title:"El usuario se edito correctamente",
+        icon: 'error',
+    })  
     editIndex = undefined;
 
     evt.target.reset();

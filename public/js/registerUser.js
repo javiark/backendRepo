@@ -41,6 +41,10 @@ async function postUser(evt){
         console.log(data)
         // cargarProductos();
         console.log("se registro");
+        swal ({
+            title:"El usuario se registro correctamente",
+            icon: 'success',
+        })  
 
     } catch (error){
     console.log(error);

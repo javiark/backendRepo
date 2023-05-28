@@ -95,11 +95,10 @@ users.push(user)
     //a-Resetar el formulario
         //registerForm.reset();
 
-
-
-    showAlert("El usuario se registro correctamente", "succes")
-
-
+    swal ({
+        title:"El usuario se registro correctamente",
+        icon: 'error',
+    })  
 
     setTimeout(()=>{
     window.location.href = "/index.html"

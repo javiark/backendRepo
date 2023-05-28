@@ -149,7 +149,10 @@ function addCount(index)
 
     console.log(orderDetail1)
     sessionStorage.setItem("order", JSON.stringify(orderDetail1))
-    showAlert("Producto agregado a carrito", "succes" )
+    swal ({
+        title:"el producto se edito correctamente",
+        icon: 'success',
+    })
 
 }
 
@@ -168,7 +171,10 @@ function addToCart(index){
 
         console.log(orderDetail2)
         sessionStorage.setItem("order", JSON.stringify(orderDetail2))
-        showAlert("Producto agregado a carrito", "succes" )
+        swal ({
+            title:"el producto se edito correctamente",
+            icon: 'success',
+        })
 
     }  
     console.log(idx.quantity)
