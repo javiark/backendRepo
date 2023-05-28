@@ -1,6 +1,8 @@
 let productos =JSON.parse(localStorage.getItem('products')) || [];
 // console.log(productos)
 
+//-------------BUSCARLO CON ENTER---------------//
+
 function metodoFilter(evt){
         //frenando la busqueda si la tecla no es la que tiene codigo 13 ( enter )
     if(evt.keyCode !== 13){
@@ -49,18 +51,3 @@ function searchProduct(evt){
 
 
 
-function handleBuscarIndex(evt){
-    if(evt.keyCode !==13 && evt.target.id !== 'search-index'){
-        return
-    }
-    const searchValue=document.getElementById('search-product-index').value.toLowerCase()
-    let searchResults = products.filter((el)=>{
-        return el.name.toLowerCase().includes(searchValue) ||
-        el.category.toLowerCase().includes(searchValue)         
-    })
-    if(searchResults.length > 1) {document.querySelector('.section-cards__products-count').innerHTML = `Se encontraron ${searchResults.length} productos`}
-    else{ document.querySelector('.section-cards__products-count').innerHTML = `Se encontró 1 producto`}
-    if(searchResults.length === 0) {document.querySelector('.section-cards__products-count').innerHTML = `No se encontraron productos. Puede buscar con palabras similares.`}
-
-    renderizarProductos(searchResults)
-}
