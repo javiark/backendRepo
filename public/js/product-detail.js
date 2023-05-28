@@ -2,6 +2,15 @@
 sessionStorage.clear("order");
 const tableBodyOrder1 = document.getElementById('table-body-order');
 let productOrderDetail = JSON.parse(sessionStorage.getItem("order")) || [];
+let productArray = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
+console.log(productArray)
+
+const URL1 = 'http://localhost:4000/api';
+const URL_public1 ='http://localhost:4000';
+
+
+
+
 
 
 // let productOrderBuy = JSON.parse(sessionStorage.getItem("orderDetail")) ;
@@ -24,18 +33,15 @@ const paramsEntries = Object.fromEntries(paramsUrl)
 const indice= paramsEntries.id;
 
 const products1 = JSON.parse(localStorage.getItem("products"));
+console.log(products1)
 
 const product = products1[indice];
+console.log(product)
 let orderFinal1 = JSON.parse(localStorage.getItem("orderArrayFinal"))
 let badgeHTMLbuy2=document.getElementById("cart-count");
 
 let productOrder2 = JSON.parse(sessionStorage.getItem("order")) || [];
-// let product3=productOrder2[indice];
-// console.log(product3)
-// const product1 = products1[indice];
 
-// document.body.innerHTML = `<p>${JSON.stringify(product)}</p>`
-//     <img src = ${product.image}>`
 
 const cardContainer1=document.querySelector("#card-detail");
 
