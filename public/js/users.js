@@ -18,7 +18,7 @@ async function obtenerUsuarios() {
         });
         // console.log(response)
         users=response.data.users;
-        // console.log(users)
+        console.log(users)
         renderizarTablaUser(users)
     } catch (error) {
         console.log(error);
@@ -62,7 +62,9 @@ function renderizarTablaUser() {
                             <td class="user__name" onclick="editName(${index}")>${usuario.surname}</td>
                             <td class="user__desc">${usuario.email}</td>
                             <td class="user__name"> ${usuario.role}</td>
-                            <td class="user__desc"> ${fecha}</td>
+                            <td class="user__desc"> ${usuario.date}</td>
+                            <td class="user__desc"> ${usuario.age}</td>
+                            <td class="user__desc"> ${usuario._id}</td>
                             <td class="user__actions">
                                 <button class="product__action-btnDetail" onclick="deleteUser(${usuario._id})">
                                     <i class="fa-solid fa-trash"></i>
@@ -85,55 +87,6 @@ renderizarTablaUser();
 
 // //****ADD EDIT USER*** */
 
-function addUser(evt) {
-    evt.preventDefault();
-
-    const elements = evt.target.elements;
-
-    // let newUser = editIndex ? users[editIndex] : {};
-    let newUser = users[editIndex]
-    if (editIndex >= 0) {
-
-        newUser.fullName = elements.fullName.value;
-        newUser.surname = elements.surname.value;
-        newUser.email = elements.mail.value;
-        newUser.role = elements.rol.value;
-    } else {
-        users[editIndex] = {};
-    }
-
-
-
-    if (editIndex) { 
-        users[editIndex] = newUser
-
-
-
-    }
-    console.log(newUser)
-    console.log(users)
-    //Guardarlo en el localStorage
-    localStorage.setItem('users', JSON.stringify(users))
-    editIndex = undefined; // para que se vacie
-    submitBtn.classList.remove("edit-btn-order");
-
-    // submitBtn.innerText = "Cargar Usuario"
-
-    renderizarTablaUser();
-    // submitBtn.classList.add("invisible");
-    swal ({
-        title:"El usuario se edito correctamente",
-        icon: 'error',
-    })  
-    editIndex = undefined;
-
-    evt.target.reset();
-    elements.fullName.focus();
-
-
-}
-
-
 
 
 
@@ -155,8 +108,8 @@ async function editProduct1(idx) {
     try {
 
 
-        submitBtn.classList.add("edit-btn");
-        submitBtn.innerText = "Modificar Producto";
+        // submitBtn.classList.add("edit-btn");
+        // submitBtn.innerText = "Modificar Producto";
         const indice = await axios.get(`${URL}/product/${idx}`)
         // console.log(indice.data.product)
         let productoElegido = indice.data.product
@@ -215,6 +168,59 @@ async function editUser(id){
     
 }
 
+async function addUser(evt){
+    console.log(evt)
+    try {
+        evt.preventDefault();
+        const elements = evt.target.elements;
+        const formFile = new FormData(evt.target);
+        console.log(editIndex) // si cargo un producto  de 0 es undefined, si cargo un producto precargado me trae el ID
+        // const idProd = editIndex;
+        // console.log(idProd)
+        const userNew = {
+            fullName: elements.fullName.value,
+            surname: elements.surname.value,
+            email: elements.email.value,
+            password: elements.password.value,
+            date: elements.createdAt.value,
+            country: elements.country.value,
+            gender: elements.gender.value,
+            role: elements.role.value
+        }
+            // console.log(res)
+            if (editIndex) {
+                const response = await axios.put(`${URL}/users/${editIndex}`,userNew,{
+                  headers: { Authorization: token } }); 
+                  if(!response)
+                    showAlert('No se pudo modificar el Usuario','error')
+                  else{    
+                    showAlert('El usuario fue modificado','exito')
+                    passForm.forEach((form)=>{
+                      form.style.display = 'block';
+                    })
+                    pass1Input.required = true;
+                    pass2Input.required = true;
+                  }
+              }else {
+                  const response = await axios.post(`${URL}/users`,newUser);  
+                  if(!response)
+                    showAlert('No se pudo agregar el Usuario','error')
+                  else      
+                    showAlert('El usuario se Agrego Correctamente','exito')
+              }
+          
+          
+          
+          editIndex = undefined;
+          submitBtn.classList.remove('edit-btn');
+          submitBtn.innerText = 'Cargar'
+          
+          cargarUsuarios()
+          cleanTable();
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 // function setFavoriteProduct(index) {
 //     //Checkear si en el array productos hay algun producto cuyo indice sea distinto al elegido con la propiedad favorite: true tenemos que setearla en falso.

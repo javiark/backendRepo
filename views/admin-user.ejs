@@ -27,13 +27,16 @@
                             </div>
                             <div class="input-box">
                                 <label for="mailLabel">Email</label>
-                                <input type="email" name="mail" id="mailLabel" required class="inputBox"
-                                    placeholder="nombre@ejemplo.com" minlength="8" maxlength="45"
+                                <input type="email" name="email" id="mailLabel" required class="inputBox"
+                                    placeholder="nombre@ejemplo.com" minlength="6" maxlength="45"
                                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                             </div>
-                            <div class="input-box">
-                                <label for="rolLabel">Rol = CLIENT-ROL / ADMIN-ROL</label>
-                                <input type="text" name="rol" id="RolLabel" class="inputBox">
+                            <div class="admin-user-form__form-items">
+                                <label for="roleUser">Perfil</label><br>
+                                <select name="role" id="roleUser"  class="inputBox" required>
+                                    <option value="USER_ROLE">USER_ROLE</option>
+                                    <option value="ADMIN_ROLE">ADMIN_ROLE</option>           
+                                </select>
                             </div>
 
                             <div class="input-box">
@@ -324,7 +327,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit"  id="submit-btn-user" class="sumbit-btn-products">Añadir</button>
+                            <button type="submit"  id="submit-btn-user" class="submit-btn-user1">Añadir</button>
                         </form>
                         <div class="table-container">
                             <table class="table-product">
@@ -335,6 +338,8 @@
                                         <th>Email</th>
                                         <th>ROL</th>
                                         <th>Creado</th>
+                                        <th>Edad</th>
+                                        <th>ID Usuario</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>

@@ -26,9 +26,13 @@ const UserSchema = new Schema({
                 "SUPERADMIN_ROLE", "ADMIN_ROLE", "USER_ROLE", "CLIENT_ROLE"
             ]},
             // gender: {type:String, required:true}
-            date:{ type: Date},
-            image:{type: String},
-            createdAt:{type: Date, default: Date.now} // se crea automaticamente
+    date:{ type: Date},
+    createdAt:{type: Date, default: Date.now}, // se crea automaticamente
+    gender: {type: String, minLenght: 3, maxLenght: 30},
+    date: {type: Date},
+    country: {type: String},
+    age:{type: Number},
+    bornDate:{type: Date},
 })
 
 module.exports = mongoose.model("User", UserSchema);
