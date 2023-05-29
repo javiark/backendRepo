@@ -9,7 +9,7 @@ productOrder4.forEach(productOrder4 => {
 })
 
 badgeHTMLbuy4.innerText=countCart;
-console.log(countCart)
+// console.log(countCart)
 }
 
 

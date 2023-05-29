@@ -1,8 +1,10 @@
 const token = localStorage.getItem('token');
-console.log(token)
+// console.log(token)
 
 const URL = 'http://localhost:4000/api';
 const URL_public = 'http://localhost:4000';
+let editIndexUser;
+// console.log(editIndexUser)
 
 let users = [];
 
@@ -14,9 +16,9 @@ async function obtenerUsuarios() {
                 Authorization: token
             }
         });
-        console.log(response)
+        // console.log(response)
         users=response.data.users;
-        console.log(users)
+        // console.log(users)
         renderizarTablaUser(users)
     } catch (error) {
         console.log(error);
@@ -148,47 +150,70 @@ function deleteUser(indice) {
 }
 
 
-// const user = {
-//     fullName:el.fullName.value,
-//     surname:el.surname.value,
-//     email: el.email.value,
-//     password: el.password.value,
-//     age: el.age.value,
-//     bornDate: el.bornDate.value,
-//     country:el.country.value,
-//     gender: el.gender.value,
-//     role:"USER_ROLE",
-// }
-
-async function editUser(idx) {
-
+async function editProduct1(idx) {
     console.log(idx)
-    submitBtn.classList.add("edit-btn-order");
-    submitBtn.innerText = "Modificar Usuario"
-    response = await axios.get(`${URL}/users/${idx}`,{
-        headers: {
-            Authorization: token
-        }
-      });  
-    console.log("indice:", idx)
-    console.log("usuario:", user)
-    submitBtn.classList.add("visible")
+    try {
 
 
+        submitBtn.classList.add("edit-btn");
+        submitBtn.innerText = "Modificar Producto";
+        const indice = await axios.get(`${URL}/product/${idx}`)
+        // console.log(indice.data.product)
+        let productoElegido = indice.data.product
+        // console.log(productoElegido)
 
-    // console.table(product);
-    const el = userForm.elements;
+        const el = productForm2.elements;  
+        el.description.value = productoElegido.description;
+        el.name.value = productoElegido.name;
+        el.price.value = productoElegido.price;
+        inputImg.style.display="none";
+        el.detail.value = productoElegido.detail;
+        
 
-    el.fullName.value = user.fullName;
-    el.surname.value = user.surname;
-    el.mail.value = user.email;
-    el.rol.value = user.role;
-    // console.log("indice", idx)
-    // console.log("product:", product)
-    editIndex = idx;
+        editIndex = idx; // id del producto
+        // console.log(editIndex)
+        const productoEditar = await axios.get(`${URL}/product/${editIndex}`)
+        // console.log(productoEditar)
 
+    } catch (error) {
+        console.log(error);
+
+    }
 }
 
+
+async function editUser(id){
+    console.log(id)
+    try {
+        const token = localStorage.getItem("token"); // no hay que hacer json|pars pq eltoken es una key y una string
+        const response1 = await axios.get(`${URL}/users/${id}`, { 
+            headers: {
+                Authorization: token
+            }
+        });
+        console.log("indice:", idx)
+        console.log("usuario:", user)
+        submitBtn.classList.add("visible")
+    
+    
+    
+        // console.table(product);
+        const el = userForm.elements;
+    
+        el.fullName.value = user.fullName;
+        el.surname.value = user.surname;
+        el.mail.value = user.email;
+        el.rol.value = user.role;
+        // console.log("indice", idx)
+        // console.log("product:", product)
+        editIndex = idx;
+
+    } catch (error) {
+        console.log(error);
+       
+    }
+    
+}
 
 
 // function setFavoriteProduct(index) {

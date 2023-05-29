@@ -228,6 +228,7 @@ async function obtenerUsuarios() {
 
 //-----------PRECARGO EL PRODUCTO EN EL FORMULARIO------------//
 async function editProduct1(idx) {
+    console.log(idx)
     try {
 
 
