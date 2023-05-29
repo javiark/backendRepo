@@ -2,6 +2,8 @@ const userAdmin = JSON.parse(localStorage.getItem('users'));
 const productsDefault = JSON.parse(localStorage.getItem('products'));
 
 
+
+
 function adminUser(){
     if(!userAdmin){
 

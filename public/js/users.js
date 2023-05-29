@@ -1,4 +1,5 @@
 const token = localStorage.getItem('token');
+console.log(token)
 
 const URL = 'http://localhost:4000/api';
 const URL_public = 'http://localhost:4000';
@@ -61,16 +62,14 @@ function renderizarTablaUser() {
                             <td class="user__name"> ${usuario.role}</td>
                             <td class="user__desc"> ${fecha}</td>
                             <td class="user__actions">
-                                <button class="product__action-btnDetail" onclick="deleteUser(${index})">
+                                <button class="product__action-btnDetail" onclick="deleteUser(${usuario._id})">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editUser(${index})">
+                                <button class="product__action-btn product__btn-edit"  onclick="editUser(${usuario._id})">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
-                                <button class="product__action-btn btn-favorite ${usuario.favorite === true ? 'active' : ''}" onclick="setFavoriteProduct(${index})">
-                                    <i class="fa-regular fa-star"></i>
-                                </button>
+
                             
                             </td>
                         </tr>`

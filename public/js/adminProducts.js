@@ -29,8 +29,7 @@ const URL_public = 'http://localhost:4000';
 async function cargarProductos() {
     try {
         const respuesta = await axios.get(`${URL}/products`);
-        // Products = data.products;
-        // console.log(respuesta.data.productos.name)
+
         products = respuesta.data.productos
         renderizarTabla(products)
     } catch (error) {
@@ -94,9 +93,7 @@ function renderizarTabla(arrayProductos) {
                                 <button class="product__action-btn product__btn-edit"  onclick="editProduct1('${producto._id}')">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
-                                <button class="product__action-btn btn-favorite ${producto.favorite === true ? 'active' : ''}" onclick="setFavoriteProduct(${index})">
-                                    <i class="fa-regular fa-star"></i>
-                                </button>
+
                             
                             </td>
                         </tr>`
