@@ -41,6 +41,10 @@ loginForm.addEventListener("submit", async (event) => {
 
     } catch (error) {
         console.log(error)
+        swal ({
+            title:`Datos Ingresados incorrectos`,
+            icon: 'error',
+        })
     }
     return
 

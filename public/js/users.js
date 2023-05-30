@@ -68,6 +68,7 @@ function renderizarTablaUser() {
                             <td class="user__desc">${usuario.email}</td>
                             <td class="user__name"> ${usuario.role}</td>
                             <td class="user__desc"> ${usuario._id}</td>
+                            <td class="user__desc"> ${usuario.password}</td>
                             <td class="user__actions">
                                 <button class="product__action-btnDetail" onclick="deleteUser('${usuario._id}')">
                                     <i class="fa-solid fa-trash"></i>
@@ -90,20 +91,6 @@ function renderizarTablaUser() {
 
 // //****ADD EDIT USER*** */
 
-
-
-
-
-
-
-
-// function deleteUser(indice) {
-//     users.splice(indice, 1);
-//     localStorage.setItem("users", JSON.stringify(users))
-//     renderizarTablaUser();
-//     showAlert("El producto se borro correctamente", "succes")
-
-// }
 
 
 
@@ -154,7 +141,6 @@ async function editUser(id){
     }
       
   }
-  
 
 
 
@@ -266,3 +252,7 @@ async function addUser(evt){
        
       }
 
+
+
+
+ 
