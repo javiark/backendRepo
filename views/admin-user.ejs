@@ -15,7 +15,7 @@
                             
                             <div class="input-box">
                                 <label for="nameLabel">Nombre</label>
-                                <input type="text" name="fullName" id="nameLabel" required class="inputBox">
+                                <input type="text" name="fullName" id="idInputName" required class="inputBox" minlength="3" maxlength="40" size="50" autofocus>
                             </div>
                             <!-- <div class="register__casillero">
                                 <label for="avatar" class="register__text1"> Avatar:</label> <br>
@@ -23,7 +23,7 @@
                             </div> -->
                             <div class="input-box">
                                 <label for="nameLabel">Apellido</label>
-                                <input type="text" name="surname" id="nameLabel" required class="inputBox">
+                                <input type="text" name="surname" id="nameLabel" required class="inputBox" minlength="3" maxlength="40" size="50" autofocus>>
                             </div>
                             <div class="input-box">
                                 <label for="mailLabel">Email</label>
@@ -34,7 +34,7 @@
                             <div class="admin-user-form__form-items">
                                 <label for="roleUser">Perfil</label><br>
                                 <select name="role" id="roleUser"  class="inputBox" required>
-                                    <option value="USER_ROLE">USER_ROLE</option>
+                                    <option value="CLIENT_ROLE">CLIENT_ROLE</option>
                                     <option value="ADMIN_ROLE">ADMIN_ROLE</option>           
                                 </select>
                             </div>

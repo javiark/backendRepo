@@ -190,21 +190,28 @@ async function addUser(evt){
                 const response = await axios.put(`${URL}/users/${editIndex}`,userNew,{
                   headers: { Authorization: token } }); 
                   if(!response)
-                    showAlert('No se pudo modificar el Usuario','error')
+                  swal ({
+                    title:"El usuario no pudo ser editado",
+                    icon: 'error',
+                })  
                   else{    
-                    showAlert('El usuario fue modificado','exito')
-                    passForm.forEach((form)=>{
-                      form.style.display = 'block';
+                    swal ({
+                        title:"el usuario se edito correctamente",
+                        icon: 'success',
                     })
-                    pass1Input.required = true;
-                    pass2Input.required = true;
                   }
               }else {
                   const response = await axios.post(`${URL}/users`,userNew);  
                   if(!response)
-                    showAlert('No se pudo agregar el Usuario','error')
+                  swal ({
+                    title:"El usuario no pudo ser añadido",
+                    icon: 'error',
+                })  
                   else      
-                    showAlert('El usuario se Agrego Correctamente','exito')
+                  swal ({
+                    title:"Usuario añadido correctamente",
+                    icon: 'success',
+                }) 
               }
           
           
@@ -214,11 +221,25 @@ async function addUser(evt){
           submitBtn.innerText = 'Cargar'
           
           cargarUsuarios()
-          cleanTable();
+          cleanTableUser();
         } catch (error) {
             console.log(error)
         }
     }
+
+    function cargarUsuarios(){
+        const el = userForm.elements;
+         
+        el.fullName.value = '';
+        el.surname.value = '';
+        el.email.value = '';
+        el.password.value = '';
+        el.password2.value = ''; 
+        el.country.value = '';
+        el.gender.value = '';
+        el.role.value = 'CLIENT_ROLE';
+       
+      }
 
 // function setFavoriteProduct(index) {
 //     //Checkear si en el array productos hay algun producto cuyo indice sea distinto al elegido con la propiedad favorite: true tenemos que setearla en falso.
