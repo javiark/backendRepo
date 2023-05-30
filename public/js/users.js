@@ -62,8 +62,6 @@ function renderizarTablaUser() {
                             <td class="user__name" onclick="editName(${index}")>${usuario.surname}</td>
                             <td class="user__desc">${usuario.email}</td>
                             <td class="user__name"> ${usuario.role}</td>
-                            <td class="user__desc"> ${usuario.date}</td>
-                            <td class="user__desc"> ${usuario.age}</td>
                             <td class="user__desc"> ${usuario._id}</td>
                             <td class="user__actions">
                                 <button class="product__action-btnDetail" onclick="deleteUser(${usuario._id})">
@@ -182,7 +180,7 @@ async function addUser(evt){
             surname: elements.surname.value,
             email: elements.email.value,
             password: elements.password.value,
-            date: elements.createdAt.value,
+            // date: elements.createdAt.value,
             country: elements.country.value,
             gender: elements.gender.value,
             role: elements.role.value
@@ -202,7 +200,7 @@ async function addUser(evt){
                     pass2Input.required = true;
                   }
               }else {
-                  const response = await axios.post(`${URL}/users`,newUser);  
+                  const response = await axios.post(`${URL}/users`,userNew);  
                   if(!response)
                     showAlert('No se pudo agregar el Usuario','error')
                   else      
