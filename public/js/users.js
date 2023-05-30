@@ -5,6 +5,15 @@ const passName1 = document.getElementById("passwordName1")
 const nameEmail1=document.getElementById("nameEmail")
 let passInput = document.getElementById("passwordInput")
 let passInput2 = document.getElementById("passwordInput2")
+const userForm = document.getElementById("add-user");
+const submitBtn = document.getElementById("submit-btn-user");
+
+
+//1- Obtener el body de la tabla para poder modificarlo desde JS
+const tableBody = document.querySelector('#table-body-Users');
+
+let editIndex;
+
 
 // console.log(userForm2)
 // console.log(token)
@@ -40,18 +49,6 @@ obtenerUsuarios()
 
 
 
-
-
-
-
-const userForm = document.getElementById("add-user");
-const submitBtn = document.getElementById("submit-btn-user");
-
-
-//1- Obtener el body de la tabla para poder modificarlo desde JS
-const tableBody = document.querySelector('#table-body-Users');
-
-let editIndex;
 
 
 //2- Definir una función para iterar el array
@@ -160,38 +157,6 @@ async function editUser(id){
   
 
 
-// async function editUser(id){
-//     console.log(id)
-//     try {
-//         const token = localStorage.getItem("token"); // no hay que hacer json|pars pq eltoken es una key y una string
-//         const response1 = await axios.get(`${URL}/users/${id}`, { 
-//             headers: {
-//                 Authorization: token
-//             }
-//         });
-//         console.log("indice:", idx)
-//         console.log("usuario:", user)
-//         submitBtn.classList.add("visible")
-    
-    
-    
-//         // console.table(product);
-//         const el = userForm.elements;
-    
-//         el.fullName.value = user.fullName;
-//         el.surname.value = user.surname;
-//         el.mail.value = user.email;
-//         el.rol.value = user.role;
-//         // console.log("indice", idx)
-//         // console.log("product:", product)
-//         editIndex = idx;
-
-//     } catch (error) {
-//         console.log(error);
-       
-//     }
-    
-// }
 
 async function addUser(evt){
     console.log(evt)
@@ -255,6 +220,38 @@ async function addUser(evt){
         }
     }
 
+    async function deleteUser(id) {
+        console.log(id)
+        swal({
+            title: `Borrar Usuario`,
+            text: `Esta seguro que desea borrar el usuario`,
+            icon: 'warning',
+            buttons: {
+                cancel: `Cancelar`,
+                delete: `Borrar`
+            }
+        }).then(async function (value) {
+            if (value === `delete`) {
+                // ? LLAMADA AL BACKEND axios.delete
+                try {
+                    const respuesta = await axios.delete(`${URL}/users/${id}`,{
+                        headers: { Authorization: token } });
+                    obtenerUsuarios()
+                } catch (error) {
+                    console.log(error)
+                }
+                swal({
+                    title: `Usuario borrado correctamente`,
+                    icon: 'error'
+                })
+                renderizarTabla();
+            }
+        })
+    
+    
+    }
+
+
     function cleanUserTable(){
         const el = userForm.elements;
          
@@ -269,18 +266,3 @@ async function addUser(evt){
        
       }
 
-// function setFavoriteProduct(index) {
-//     //Checkear si en el array productos hay algun producto cuyo indice sea distinto al elegido con la propiedad favorite: true tenemos que setearla en falso.
-//     // Setear el producto elegido como favorite: true
-
-
-//     products.forEach((prod,idx)=>{
-//         if(index===idx) prod.favorite = true;
-//         else prod.favorite = false;
-//     });
-
-
-
-// //     localStorage.setItem("favorites", JSON.stringify(favorites))
-// //     renderizarTabla();
-// }

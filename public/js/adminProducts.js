@@ -186,7 +186,8 @@ async function deleteProduct(id) {
         if (value === `delete`) {
             // ? LLAMADA AL BACKEND axios.delete
             try {
-                const respuesta = await axios.delete(`${URL}/product/${id}`)
+                const respuesta = await axios.delete(`${URL}/product/${id}`,{
+                    headers: { Authorization: token } });
                 cargarProductos()
             } catch (error) {
                 console.log(error)
