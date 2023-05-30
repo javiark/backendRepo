@@ -1,4 +1,8 @@
 const token = localStorage.getItem('token');
+const userForm2 = document.getElementById('add-user');
+const passName = document.getElementById("passwordName")
+const passName1 = document.getElementById("passwordName1")
+console.log(userForm2)
 // console.log(token)
 
 const URL = 'http://localhost:4000/api';
@@ -64,11 +68,11 @@ function renderizarTablaUser() {
                             <td class="user__name"> ${usuario.role}</td>
                             <td class="user__desc"> ${usuario._id}</td>
                             <td class="user__actions">
-                                <button class="product__action-btnDetail" onclick="deleteUser(${usuario._id})">
+                                <button class="product__action-btnDetail" onclick="deleteUser('${usuario._id}')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editUser(${usuario._id})">
+                                <button class="product__action-btn product__btn-edit"  onclick="editUser('${usuario._id}')">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
 
@@ -92,13 +96,13 @@ renderizarTablaUser();
 
 
 
-function deleteUser(indice) {
-    users.splice(indice, 1);
-    localStorage.setItem("users", JSON.stringify(users))
-    renderizarTablaUser();
-    showAlert("El producto se borro correctamente", "succes")
+// function deleteUser(indice) {
+//     users.splice(indice, 1);
+//     localStorage.setItem("users", JSON.stringify(users))
+//     renderizarTablaUser();
+//     showAlert("El producto se borro correctamente", "succes")
 
-}
+// }
 
 
 async function editProduct1(idx) {
@@ -126,6 +130,7 @@ async function editProduct1(idx) {
         const productoEditar = await axios.get(`${URL}/product/${editIndex}`)
         // console.log(productoEditar)
 
+
     } catch (error) {
         console.log(error);
 
@@ -136,35 +141,79 @@ async function editProduct1(idx) {
 async function editUser(id){
     console.log(id)
     try {
-        const token = localStorage.getItem("token"); // no hay que hacer json|pars pq eltoken es una key y una string
-        const response1 = await axios.get(`${URL}/users/${id}`, { 
-            headers: {
-                Authorization: token
-            }
-        });
-        console.log("indice:", idx)
-        console.log("usuario:", user)
-        submitBtn.classList.add("visible")
-    
-    
-    
-        // console.table(product);
-        const el = userForm.elements;
-    
-        el.fullName.value = user.fullName;
-        el.surname.value = user.surname;
-        el.mail.value = user.email;
-        el.rol.value = user.role;
-        // console.log("indice", idx)
-        // console.log("product:", product)
-        editIndex = idx;
+      submitBtn.classList.add('edit-btn');
+      submitBtn.innerText = 'Modificar'
+  
+      const token = localStorage.getItem('token');
+      response = await axios.get(`${URL}/users/${id}`,{
+        headers: {
+            Authorization: token
+        }
+      });  
+      const userElegido = response.data.user;
+      console.log(userElegido)
+      const el = userForm2.elements;  
+      console.log(el)
+     
+  
+    el.fullName.value = userElegido.fullName;
+    el.surname.value = userElegido.surname;
+    el.email.value = userElegido.email;
+    el.password.style.display="none";
+    el.password2.style.display="none";
+    el.country.value = userElegido.country;
+    el.gender.value = userElegido.gender;
+    el.role.value = userElegido.role;
 
-    } catch (error) {
-        console.log(error);
-       
-    }
+    editIndex =id; // id del producto
+    // console.log(editIndex)
+    passName.classList.add("oculto");
+    passName1.classList.add("oculto");
     
-}
+    // passwordInput.classList.add("oculto");
+    // passwordInput2.classList.add("oculto");
+
+  
+    } catch (error) {
+      console.log(error)
+    }
+      
+  }
+  
+
+
+// async function editUser(id){
+//     console.log(id)
+//     try {
+//         const token = localStorage.getItem("token"); // no hay que hacer json|pars pq eltoken es una key y una string
+//         const response1 = await axios.get(`${URL}/users/${id}`, { 
+//             headers: {
+//                 Authorization: token
+//             }
+//         });
+//         console.log("indice:", idx)
+//         console.log("usuario:", user)
+//         submitBtn.classList.add("visible")
+    
+    
+    
+//         // console.table(product);
+//         const el = userForm.elements;
+    
+//         el.fullName.value = user.fullName;
+//         el.surname.value = user.surname;
+//         el.mail.value = user.email;
+//         el.rol.value = user.role;
+//         // console.log("indice", idx)
+//         // console.log("product:", product)
+//         editIndex = idx;
+
+//     } catch (error) {
+//         console.log(error);
+       
+//     }
+    
+// }
 
 async function addUser(evt){
     console.log(evt)

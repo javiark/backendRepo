@@ -151,7 +151,11 @@ function addToOrder(index){
 function showNotUser() {
     // console.log("anda boton")
     if (!orderUser) {
-        showAlert("Deberia lograrse para comprar", 'error')
+
+        swal ({
+            title:"Deberia loguearse para comprar",
+            icon: 'warning',
+        })  
 
     }
 }
