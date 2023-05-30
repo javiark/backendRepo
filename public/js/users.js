@@ -28,6 +28,7 @@ let users = [];
 async function obtenerUsuarios() {
     try {
         const token = localStorage.getItem("token"); // no hay que hacer json|pars pq eltoken es una key y una string
+        // console.log(token)
         const response = await axios.get(`${URL}/users`, { 
             headers: {
                 Authorization: token
@@ -37,15 +38,13 @@ async function obtenerUsuarios() {
         users=response.data.users;
         // console.log(users)
         renderizarTablaUser(users)
+
     } catch (error) {
         console.log(error);
        
     }
 
 }
-obtenerUsuarios()
-
-
 
 
 
@@ -87,6 +86,8 @@ function renderizarTablaUser() {
 
 }
 
+obtenerUsuarios()
+
 // renderizarTablaUser();
 
 // //****ADD EDIT USER*** */
@@ -96,7 +97,7 @@ function renderizarTablaUser() {
 
 
 async function editUser(id){
-    // console.log(id)
+    console.log(id)
     try {
       submitBtn.classList.add('edit-btn');
       submitBtn.innerText = 'Modificar'
@@ -108,9 +109,9 @@ async function editUser(id){
         }
       });  
       const userElegido = response.data.user;
-    //   console.log(userElegido)
+      console.log(userElegido)
       const el = userForm2.elements;  
-    //   console.log(el)
+      console.log(el)
      
   
     el.fullName.value = userElegido.fullName;
@@ -130,7 +131,7 @@ async function editUser(id){
     passName1.classList.add("oculto");
     nameEmail1.classList.add("oculto");
     obtenerUsuarios();
-    cleanUserTable();
+    // cleanUserTable();
     
     // passwordInput.classList.add("oculto");
     // passwordInput2.classList.add("oculto");

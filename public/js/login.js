@@ -4,7 +4,7 @@ const loginForm = document.getElementById("loginForm");
 users = [];
 // const { responseCreator } = require("../utils/utils");
 
-const token = localStorage.getItem('token');
+// const token = localStorage.getItem('token');
 
 const URL = 'http://localhost:4000/api';
 const URL_public = 'http://localhost:4000';
@@ -25,6 +25,7 @@ loginForm.addEventListener("submit", async (event) => {
         }
         const resp = await axios.post(`${URL}/login`, dataBody)  // envio a login lo que mde devuelve el login Form y el data body
         const { token, user, msg } = resp.data;
+        console.log(resp.data)
 
         localStorage.setItem("token", token);
         localStorage.setItem("currentUser", JSON.stringify(user))
