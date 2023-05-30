@@ -16,5 +16,5 @@ function formatearFecha(fechaTimestamp) {
 
 const fecha = formatearFecha(Date.now())
 
-console.log(fecha)
+// console.log(fecha)
 

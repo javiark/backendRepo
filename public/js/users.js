@@ -2,7 +2,11 @@ const token = localStorage.getItem('token');
 const userForm2 = document.getElementById('add-user');
 const passName = document.getElementById("passwordName")
 const passName1 = document.getElementById("passwordName1")
-console.log(userForm2)
+const nameEmail1=document.getElementById("nameEmail")
+let passInput = document.getElementById("passwordInput")
+let passInput2 = document.getElementById("passwordInput2")
+
+// console.log(userForm2)
 // console.log(token)
 
 const URL = 'http://localhost:4000/api';
@@ -22,7 +26,7 @@ async function obtenerUsuarios() {
         });
         // console.log(response)
         users=response.data.users;
-        console.log(users)
+        // console.log(users)
         renderizarTablaUser(users)
     } catch (error) {
         console.log(error);
@@ -85,7 +89,7 @@ function renderizarTablaUser() {
 
 }
 
-renderizarTablaUser();
+// renderizarTablaUser();
 
 // //****ADD EDIT USER*** */
 
@@ -139,7 +143,7 @@ async function editProduct1(idx) {
 
 
 async function editUser(id){
-    console.log(id)
+    // console.log(id)
     try {
       submitBtn.classList.add('edit-btn');
       submitBtn.innerText = 'Modificar'
@@ -151,16 +155,18 @@ async function editUser(id){
         }
       });  
       const userElegido = response.data.user;
-      console.log(userElegido)
+    //   console.log(userElegido)
       const el = userForm2.elements;  
-      console.log(el)
+    //   console.log(el)
      
   
     el.fullName.value = userElegido.fullName;
     el.surname.value = userElegido.surname;
     el.email.value = userElegido.email;
-    el.password.style.display="none";
-    el.password2.style.display="none";
+    passInput.required = false;
+    passInput2.required = false;
+    // el.password.value: elements.password.value;
+    // el.password2.value: elements.password2.value;
     el.country.value = userElegido.country;
     el.gender.value = userElegido.gender;
     el.role.value = userElegido.role;
@@ -169,6 +175,8 @@ async function editUser(id){
     // console.log(editIndex)
     passName.classList.add("oculto");
     passName1.classList.add("oculto");
+    nameEmail1.classList.add("oculto");
+    obtenerUsuarios();
     
     // passwordInput.classList.add("oculto");
     // passwordInput2.classList.add("oculto");
@@ -229,6 +237,7 @@ async function addUser(evt){
             surname: elements.surname.value,
             email: elements.email.value,
             password: elements.password.value,
+            password2: elements.password2.value,
             // date: elements.createdAt.value,
             country: elements.country.value,
             gender: elements.gender.value,
@@ -269,8 +278,8 @@ async function addUser(evt){
           submitBtn.classList.remove('edit-btn');
           submitBtn.innerText = 'Cargar'
           
-          cargarUsuarios()
-          cleanTableUser();
+          cargarUsuarios();
+         
         } catch (error) {
             console.log(error)
         }
