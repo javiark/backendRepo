@@ -9,7 +9,7 @@ let productsCargados = JSON.parse(localStorage.getItem('products')) || [];
 let nombreImagen = document.getElementById("imgLabel")
 let productID1 = JSON.parse(localStorage.getItem('products')) ;
 let editIndex;
-console.log(editIndex)
+// console.log(editIndex)
 
 const URL = 'http://localhost:4000/api';
 const URL_public = 'http://localhost:4000';
@@ -31,6 +31,7 @@ async function cargarProductos() {
         const respuesta = await axios.get(`${URL}/products`);
 
         products = respuesta.data.productos
+        // console.log(products)
         renderizarTabla(products)
     } catch (error) {
         console.log(error);
@@ -85,6 +86,7 @@ function renderizarTabla(arrayProductos) {
                             <td class="product__desc">${producto.description}</td>
                             <td class="product__price">$ ${producto.price}</td>
                             <td class="product__desc">${producto.detail}</td>
+                            <td class="product__name"> ${producto._id}</td>
                             <td class="product__actions">
                                 <button class="product__action-btnDetail" onclick="deleteProduct('${producto._id}')">
                                     <i class="fa-solid fa-trash"></i>
@@ -272,10 +274,3 @@ function cleanTable(){
 
 
 
-const actualBtn = document.getElementById('actual-btn');
-
-const fileChosen = document.getElementById('file-chosen');
-
-actualBtn.addEventListener('change', function () {
-    fileChosen.textContent = this.files[0].name
-})

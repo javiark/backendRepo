@@ -97,6 +97,7 @@ function renderizarTabla(arrayProductos) {
                             <td class="product__name" onclick="editName(${index}")>${producto.name}</td>
                             <td class="product__desc">${producto.description}</td>
                             <td class="product__price">$ ${producto.price}</td>
+                            <td class="product__price">$ ${producto._id}</td>
                             <td class="product__info">
                                 <span 
                                     class="

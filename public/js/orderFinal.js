@@ -310,7 +310,7 @@ function restToOrderQuantity(index){
             sessionStorage.removeItem("order");
 
             setTimeout(()=>{
-            window.location.href = "/index.html"
+                window.location.href="/"
         
             },3000) 
         }
