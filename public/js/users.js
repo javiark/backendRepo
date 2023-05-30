@@ -109,37 +109,6 @@ function renderizarTablaUser() {
 // }
 
 
-async function editProduct1(idx) {
-    console.log(idx)
-    try {
-
-
-        // submitBtn.classList.add("edit-btn");
-        // submitBtn.innerText = "Modificar Producto";
-        const indice = await axios.get(`${URL}/product/${idx}`)
-        // console.log(indice.data.product)
-        let productoElegido = indice.data.product
-        // console.log(productoElegido)
-
-        const el = productForm2.elements;  
-        el.description.value = productoElegido.description;
-        el.name.value = productoElegido.name;
-        el.price.value = productoElegido.price;
-        inputImg.style.display="none";
-        el.detail.value = productoElegido.detail;
-        
-
-        editIndex = idx; // id del producto
-        // console.log(editIndex)
-        const productoEditar = await axios.get(`${URL}/product/${editIndex}`)
-        // console.log(productoEditar)
-
-
-    } catch (error) {
-        console.log(error);
-
-    }
-}
 
 
 async function editUser(id){
@@ -177,6 +146,7 @@ async function editUser(id){
     passName1.classList.add("oculto");
     nameEmail1.classList.add("oculto");
     obtenerUsuarios();
+    cleanUserTable();
     
     // passwordInput.classList.add("oculto");
     // passwordInput2.classList.add("oculto");
@@ -278,14 +248,14 @@ async function addUser(evt){
           submitBtn.classList.remove('edit-btn');
           submitBtn.innerText = 'Cargar'
           
-          cargarUsuarios();
+          cleanUserTable();
          
         } catch (error) {
             console.log(error)
         }
     }
 
-    function cargarUsuarios(){
+    function cleanUserTable(){
         const el = userForm.elements;
          
         el.fullName.value = '';
