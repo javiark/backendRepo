@@ -106,19 +106,24 @@ body {
     margin-bottom: 1rem;
 }
 
+
 .submit-btn-products {
     padding: .5rem 1rem;
     width: 20rem;
     border: 2px solid rgb(51, 87, 2);
     color: white;
-    background-color: green;
+    background-color: #c3a343;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    font-size: 1rem;
 }
 .submit-btn:hover{
     background-color: rgb(1, 105, 1);
 }
 
 .edit-btn{
-    background-color: dodgerblue;
+    background-color: codgerblue;
     border-color: skyblue;
 }
 

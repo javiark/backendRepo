@@ -86,7 +86,6 @@ function renderizarTabla(arrayProductos) {
                             <td class="product__desc">${producto.description}</td>
                             <td class="product__price">$ ${producto.price}</td>
                             <td class="product__desc">${producto.detail}</td>
-                            <td class="product__name"> ${producto._id}</td>
                             <td class="product__actions">
                                 <button class="product__action-btnDetail" onclick="deleteProduct('${producto._id}')">
                                     <i class="fa-solid fa-trash"></i>

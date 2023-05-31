@@ -1257,7 +1257,11 @@ body {
   width: 20rem;
   border: 2px solid rgb(51, 87, 2);
   color: white;
-  background-color: green;
+  background-color: #c3a343;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .submit-btn:hover {
@@ -1265,7 +1269,7 @@ body {
 }
 
 .edit-btn {
-  background-color: dodgerblue;
+  background-color: codgerblue;
   border-color: skyblue;
 }
 
@@ -1507,11 +1511,14 @@ body {
 }
 
 .submit-btn-user1 {
+  border-radius: 8px;
+  cursor: pointer;
   padding: 0.5rem 1rem;
   width: 20rem;
-  border: 2px solid rgb(51, 87, 2);
+  border: 0;
+  font-size: 1rem;
   color: white;
-  background-color: green;
+  background-color: #c3a343;
 }
 
 .adminContainer {

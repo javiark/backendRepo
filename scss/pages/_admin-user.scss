@@ -7,12 +7,17 @@
 body {
     font-family: Helvetica, sans-serif;
 }
+
+
 .submit-btn-user1{
+    border-radius: 8px;
+    cursor: pointer;
     padding: .5rem 1rem;
     width: 20rem;
-    border: 2px solid rgb(51, 87, 2);
+    border: 0;
+    font-size: 1rem;
     color: white;
-    background-color: green;
+    background-color: #c3a343;
 }
 .adminContainer{
     padding-top: 5rem;
