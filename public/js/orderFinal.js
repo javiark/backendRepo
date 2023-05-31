@@ -1,14 +1,14 @@
-const tableBodyOrder = document.getElementById('table-body-order');
+const tableBodyOrder1 = document.getElementById('table-body-order');
 const productsArray = [];
 
 
 badgeHTMLbuy=document.getElementById("cart-count");
 
-let productsOrder = JSON.parse(localStorage.getItem("products"))
-let productsOrder1 = JSON.parse(localStorage.getItem("products"))
+let productsOrder3 = JSON.parse(localStorage.getItem("products"))
+let productsOrder4 = JSON.parse(localStorage.getItem("products"))
 
-let productsUser = JSON.parse(localStorage.getItem("users"))
-let orderUser = JSON.parse(localStorage.getItem("currentUser"))
+let productsUser3 = JSON.parse(localStorage.getItem("users"))
+let orderUser1 = JSON.parse(localStorage.getItem("currentUser"))
 let orderFinal = JSON.parse(localStorage.getItem("orderArrayFinal"))
 let productOrder = JSON.parse(sessionStorage.getItem("order")) 
 let productOrderFF = JSON.parse(sessionStorage.getItem("order")) 
@@ -82,15 +82,15 @@ let cart = []
 
 function renderizarTablaOrdenes(){
 
-    tableBodyOrder.innerHTML = '';
+    tableBodyOrder1.innerHTML = '';
     if(productOrderFF.length===0){
-        tableBodyOrder.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+        tableBodyOrder1.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
     
     productOrderFF.forEach((prod, index)=>{
 
-        tableBodyOrder.innerHTML += `<tr class="order">
+        tableBodyOrder1.innerHTML += `<tr class="order">
         <td class="order__img-cell"><img class="product__img" src="${prod.imageOrder}" alt="${prod.nameOrder}"></td>
         <td class="order__name" onclick="editName(${index}")>${prod.nameOrder}</td>
         <td class="order__desc">${prod.descriptionOrder}</td>
@@ -116,10 +116,10 @@ function renderizarTablaOrdenes(){
 
     function cleantable(){
 
-        if (orderUser) {
+        if (orderUser1) {
                 // console.log("hay usuario")
             }else{
-                tableBodyOrder.innerHTML = '';
+                tableBodyOrder1.innerHTML = '';
                 productOrder= [];
                 sessionStorage.setItem("order", JSON.stringify(productsArray))
                 actualizarBadge();
@@ -188,7 +188,7 @@ function addToOrder(index){
 
 
 //-----------------------OBTENER ID DE USUARIO---------------------
-const usuarioID1 = productsUser.findIndex(id1=>id1.email === orderUser.email)
+const usuarioID1 = productsUser3.findIndex(id1=>id1.email === orderUser.email)
 // console.log(usuarioID1)
 
 
@@ -319,7 +319,7 @@ function restToOrderQuantity(index){
         }
         function showNotUser(){
             console.log("anda boton")
-            if(!orderUser){
+            if(!orderUser1){
 
                 swal ({
                     title:"Deberia loguearse para comprar",

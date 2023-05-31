@@ -63,7 +63,7 @@ cargarProductos()
 
 
 const productForm = document.getElementById("add-product");
-const submitBtn = document.getElementById("submit-btn");
+const submitBtn1 = document.getElementById("submit-btn");
 
 
 //1- Obtener el body de la tabla para poder modificarlo desde JS
@@ -168,7 +168,7 @@ async function addProduct(evt){
 
     editIndex = undefined;
     submitBtn.classList.remove('edit-btn');
-    submitBtn.innerText = 'Cargar Producto'
+    submitBtn1.innerText = 'Cargar Producto'
 
     cargarProductos();
     cleanTable();
@@ -239,8 +239,8 @@ async function editProduct1(idx) {
     try {
 
 
-        submitBtn.classList.add("edit-btn");
-        submitBtn.innerText = "Modificar Producto";
+        submitBtn1.classList.add("edit-btn");
+        submitBtn1.innerText = "Modificar Producto";
         const indice = await axios.get(`${URL}/product/${idx}`)
         // console.log(indice.data.product)
         let productoElegido = indice.data.product

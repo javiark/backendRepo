@@ -1,6 +1,6 @@
 
 sessionStorage.clear("order");
-const tableBodyOrder1 = document.getElementById('table-body-order');
+const tableBodyOrder3 = document.getElementById('table-body-order');
 let productOrderDetail = JSON.parse(sessionStorage.getItem("order")) || [];
 let productArray = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
 console.log(productArray)

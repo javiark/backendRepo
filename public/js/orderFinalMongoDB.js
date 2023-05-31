@@ -1,7 +1,7 @@
 const tableBodyOrder = document.getElementById('table-body-order');
 const products1 = [];
 
-const URL1 = 'http://localhost:4000/api';
+const URL2 = 'http://localhost:4000/api';
 const URL_public1 ='http://localhost:4000';
 
 
@@ -82,7 +82,7 @@ function renderizarTablaOrdenes(){
     productOrderFF.forEach((prod, index)=>{
 
         let imageSrc1 =`${URL_public1}/upload/product/${prod.imageOrder}`;
-        // console.log(imageSrc1)
+        console.log(i)
 
         tableBodyOrder.innerHTML += `<tr class="order">
         <td class="order__img-cell"><img class="product__img" src="${imageSrc1}" alt="${prod.nameOrder}"></td>
