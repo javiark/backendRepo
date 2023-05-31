@@ -76,13 +76,13 @@ arrayProducts.forEach((idx)=>{
             pam = parametro.classList.add("enable2");
              console.log(pam)
          });
-         button7.forEach((parametro) => {
-            pam = parametro.classList.add("enable2");
-             console.log(pam)
-         });
+        //  button7.forEach((parametro) => {
+        //     pam = parametro.classList.add("enable2");
+        //      console.log(pam)
+        //  });
 }
 
-btnBuy()
+// btnBuy()
 
 
 // function btnBuy(){

@@ -1,42 +1,30 @@
-let products = [];
-const token = localStorage.getItem('token');
-const selectCategoryHTML = document.getElementById("category")
-const boton = document.getElementById("boton1")
+let products1 = [];
+const token1 = localStorage.getItem('token');
+// const selectCategoryHTML = document.getElementById("category")
+// const boton = document.getElementById("boton1")
 const cardContainer=document.getElementById("card-container");
 const productsLS = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
 const productsLocal = JSON.parse(localStorage.getItem("products")) || [];
+// console.log(productsLocal)
+const URL1 = 'http://localhost:4000/api';
+const URL_public1 = 'http://localhost:4000';
 
-const URL = 'http://localhost:4000/api';
-const URL_public ='http://localhost:4000';
 
-// (async function cargarCategorias() {
-//     try {
-//         const response = await axios.get(`${URL}/category`)
-//         console.log(response) //los elementos estan en response.data.categories. 
-//         console.log(response.data.categories)
-//         const categories = response.data.categories;   
-//     } catch (error) {
-//         console.log(error);
-//     }
+async function cargarProductos1() {
+    try {
+        const respuesta = await axios.get(`${URL1}/products`);
 
-// })()
+        products = respuesta.data.productos
+        // console.log(products)
+        localStorage.setItem("products", JSON.stringify(products))
+        // console.log(products)
+        renderizarTabla(products)
 
-// async function cargarProductos() {
-//     try {
-//         const respuesta = await axios.get(`${URL}/products`);
-//         // Products = data.products;
-//         // console.log(respuesta.data.productos.name)
-//         products=respuesta.data.productos;
-//         console.log(products)
-//         renderizarProductos(products)
-//     } catch (error) {
-//         console.log(error);
-
-//     }
-
-// }
-
-// cargarProductos()
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargarProductos1()
 
 
 function renderizarProductos(products){
@@ -44,7 +32,7 @@ function renderizarProductos(products){
     cardContainer.innerHTML=``;
 
     products.forEach((product, index)=>{ //index la posicion
-        let imageSrc = product.image ? `${URL_public}/upload/product/${product.image}` : '/assets/images/no-product.png';
+        let imageSrc = product.image ? `${URL_public1}/upload/product/${product.image}` : '/assets/images/no-product.png';
 
         const card= document.createElement("article");
 
@@ -72,12 +60,12 @@ function renderizarProductos(products){
     </div>
     <div class="card__footerCard" onclick="showNotUser()" >
         
-        <button class="card__btn-buy1"  onclick="addToOrder(${index}) " id=${index}>
+        <button class="card__btn-buy1"  onclick="addToOrder(${product._id}) " id=$product._id}>
             Comprar
         </button>
 
         <div class="card__btn-container">
-            <a class="card__btn" href="/product-detail?id=${index}" >
+            <a class="card__btn" href="/product-detail?id=${product._id}" >
                 Ver mas
             </a>
         </div>

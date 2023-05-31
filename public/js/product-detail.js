@@ -5,54 +5,64 @@ let productOrderDetail = JSON.parse(sessionStorage.getItem("order")) || [];
 let productArray = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
 console.log(productArray)
 
+
 const URL1 = 'http://localhost:4000/api';
-const URL_public ='http://localhost:4000';
-
-
-
+const URL_public2 = 'http://localhost:4000';
 
 
 
 // let productOrderBuy = JSON.parse(sessionStorage.getItem("orderDetail")) ;
-
-
 const params = window.location.search;
-
 // console.log(params)
-
 const index = params.split("id=")[1].split("&")[0];
-
 //obtener id de url. Metodo recomendado para obtener queryParams es usando URLSearchParams
-
 const paramsUrl = new URLSearchParams(params);
-
 const paramsEntries = Object.fromEntries(paramsUrl)
-
 // console.log(paramsEntries)
-
-const indice= paramsEntries.id;
-
+const indice = paramsEntries.id;
 const products1 = JSON.parse(localStorage.getItem("products"));
 console.log(products1)
-
 const product = products1[indice];
 console.log(product)
 let orderFinal1 = JSON.parse(localStorage.getItem("orderArrayFinal"))
-let badgeHTMLbuy2=document.getElementById("cart-count");
-
+let badgeHTMLbuy2 = document.getElementById("cart-count");
 let productOrder2 = JSON.parse(sessionStorage.getItem("order")) || [];
+const cardContainer1 = document.querySelector("#card-detail");
 
 
-const cardContainer1=document.querySelector("#card-detail");
+async function cargarProductos2(id) {
+    console.log(id)
+    try {
+        respuesta = await axios.get(`${URL1}/product/${id}`)
 
-function renderizarDetail(){
-let imageSrc = product.image ? `${URL_public}/upload/product/${product.image}` : '/assets/images/no-product.png';
-cardContainer1.innerHTML = ` 
+        const prodElegido = respuesta.data.product;
+        console.log(prodElegido)
+        // localStorage.setItem("products", JSON.stringify(products))
+        renderizarDetail(prodElegido)
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargarProductos2(index)
+
+
+
+
+
+
+function renderizarDetail(product) {
+
+
+    let imageSrc2 =`${URL_public2}/upload/product/${product.image}`;
+
+    cardContainer1.innerHTML = ` 
 <main class="main">
     <div class="mainDetail">
         <div class="containerDetail">
             <div class="containerDetail__imageContainer">
-                <img src=${imageSrc} alt=${product.name} class="containerDetail__image">
+                <img src=${imageSrc2} alt=${product.name} class="containerDetail__image">
             </div>
 
                  <div class="containerDetail__description" onclick="showNotUser()" >
@@ -94,97 +104,98 @@ cardContainer1.innerHTML = `
 
 }
 
-renderizarDetail()
 
-let badgeHTMLbuy3=document.getElementById("countNumber");
+renderizarDetail(product)
+
+let badgeHTMLbuy3 = document.getElementById("countNumber");
 
 
-    
+
 
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
 
-let productsDetail =[]
+let productsDetail = []
 
 
-function restCount(index)
-{   console.log(index)
-    let orderDetail1=[orderFinal1[index]]
+function restCount(index) {
+    console.log(index)
+    let orderDetail1 = [orderFinal1[index]]
     console.log(orderDetail1)
 
     console.log(index)
-    let countNumber=0;
-    orderFinal1.forEach((idx)=>{
+    let countNumber = 0;
+    orderFinal1.forEach((idx) => {
         let countNumb = idx.quantity
-        if(idx.quantity>0) {
-            idx.quantity--;        }   
+        if (idx.quantity > 0) {
+            idx.quantity--;
+        }
 
-        badgeHTMLbuy3.innerText=idx.quantity;
-        badgeHTMLbuy2.innerText=idx.quantity;
+        badgeHTMLbuy3.innerText = idx.quantity;
+        badgeHTMLbuy2.innerText = idx.quantity;
 
     })
 
     console.log(orderDetail1)
     sessionStorage.setItem("order", JSON.stringify(orderDetail1))
-    showAlert("Producto quitado de carrito", "succes" )
+    showAlert("Producto quitado de carrito", "succes")
 
 }
 
 
 
-function addCount(index)
-{
-    let orderDetail1=[orderFinal1[index]]
+function addCount(index) {
+    let orderDetail1 = [orderFinal1[index]]
 
     console.log(index)
-    let countNumber=1;
-    orderFinal1.forEach((idx)=>{
+    let countNumber = 1;
+    orderFinal1.forEach((idx) => {
         let countNumb = idx.quantity;
-            idx.quantity++;
+        idx.quantity++;
 
-        badgeHTMLbuy3.innerText=idx.quantity;
-        badgeHTMLbuy2.innerText=idx.quantity;
+        badgeHTMLbuy3.innerText = idx.quantity;
+        badgeHTMLbuy2.innerText = idx.quantity;
 
     })
 
     console.log(orderDetail1)
     sessionStorage.setItem("order", JSON.stringify(orderDetail1))
-    swal ({
-        title:"el producto se edito correctamente",
+    swal({
+        title: "el producto se edito correctamente",
         icon: 'success',
     })
 
 }
 
-function addToCart(index){
-    let orderDetail2=[orderFinal1[index]]
-    let orderDetail1=[productOrderDetail[index]]
+function addToCart(index) {
+    let orderDetail2 = [orderFinal1[index]]
+    let orderDetail1 = [productOrderDetail[index]]
     console.log(orderDetail1)
 
 
     // console.log(productOrderDetail)
     // console.log(index)
-    orderDetail2.forEach((idx)=>{
+    orderDetail2.forEach((idx) => {
         // let countNumb = idx.quantity;
         console.log(idx.quantity)
-        if(idx.quantity[index]=1 ){
+        if (idx.quantity[index] = 1) {
 
-        console.log(orderDetail2)
-        sessionStorage.setItem("order", JSON.stringify(orderDetail2))
-        swal ({
-            title:"el producto se edito correctamente",
-            icon: 'success',
-        })
+            console.log(orderDetail2)
+            sessionStorage.setItem("order", JSON.stringify(orderDetail2))
+            swal({
+                title: "el producto se edito correctamente",
+                icon: 'success',
+            })
 
-    }  
-    console.log(idx.quantity)
-    ixNumber = parseInt(idx.quantity)
-    console.log(ixNumber)
-    if(ixNumber==1 ){
+        }
+        console.log(idx.quantity)
+        ixNumber = parseInt(idx.quantity)
+        console.log(ixNumber)
+        if (ixNumber == 1) {
 
-        badgeHTMLbuy2.innerText=1;
+            badgeHTMLbuy2.innerText = 1;
 
-}      
+        }
     })
 
 }

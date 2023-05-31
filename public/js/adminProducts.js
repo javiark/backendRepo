@@ -32,7 +32,11 @@ async function cargarProductos() {
 
         products = respuesta.data.productos
         // console.log(products)
+        // localStorage.setItem("products", JSON.stringify(products))
+
+        // console.log(products)
         renderizarTabla(products)
+
     } catch (error) {
         console.log(error);
 
@@ -40,6 +44,7 @@ async function cargarProductos() {
 
 
 }
+cargarProductos()
 
 
 // async function arrayCateories(){

@@ -16,9 +16,9 @@ let orderFinal = JSON.parse(localStorage.getItem("orderArrayFinal"))
 let productOrder = JSON.parse(sessionStorage.getItem("order")) 
 let productOrderFF = JSON.parse(sessionStorage.getItem("order")) 
 
-console.log(productOrder)|| [];
+// console.log(productOrder)|| [];
 
-console.log(orderFinal)
+// console.log(orderFinal)
 
 
 
@@ -26,24 +26,6 @@ const btnEnd1=document.getElementById("btnEnd")
 const productFormBuy=document.getElementById("add-product");
 const submitBtn = document.getElementById("submit-btn");
 const total = document.getElementById("totalPrice")
-
-//---------------------HACER EL ARRAY DE PRODUCTOS DESDE MONGO-------------------------//
-async function arrayProducts1() {
-    try {
-        const respuesta = await axios.get(`${URL}/products`);
-        // Products = data.products;
-        // console.log(respuesta.data.productos.name)
-        productsArr = respuesta.data.productos;
-        // console.log(productsArr)
-        // orderArray.push(productsArr)
-        localStorage.setItem("products", JSON.stringify(productsArr))
-
-    } catch (error) {
-        console.log(error);
-
-    }
-}
-arrayProducts1()
 
 
 //---------------------RECORRER TODO EL ARRAY DE PRODUCTOS-------------------------//
@@ -64,7 +46,7 @@ productsOrder.forEach((prod,id)=>{
         imageOrder:prod.image, 
         descriptionOrder:prod.description,
     }
-    console.log(nuevaOrden)
+    // console.log(nuevaOrden)
     orderArray.push(nuevaOrden)
     localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
 
@@ -83,7 +65,7 @@ let ordernFinal={
     orderArray
 }
 
-console.log(orderArray )
+// console.log(orderArray )
 
 
 //----------------PINTAR TABLA--------------
@@ -95,11 +77,12 @@ function renderizarTablaOrdenes(){
         tableBodyOrder.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
-    console.log(productOrderFF)
+    // console.log(productOrderFF)
     
     productOrderFF.forEach((prod, index)=>{
 
         let imageSrc1 =`${URL_public1}/upload/product/${prod.imageOrder}`;
+        // console.log(imageSrc1)
 
         tableBodyOrder.innerHTML += `<tr class="order">
         <td class="order__img-cell"><img class="product__img" src="${imageSrc1}" alt="${prod.nameOrder}"></td>
@@ -156,7 +139,7 @@ cartUpdate()
 // console.log(products)
 function addToOrder(index){
 
-
+    // console.log(index)
 
     let count1 = 0;
     let orderBuy =orderFinal[index]
@@ -357,18 +340,7 @@ function restToOrderQuantity(index){
                 window.location.href="/"
         
             },3000) 
-        }
+        }}
 
 
-        }
-        function showNotUser(){
-            console.log("anda boton")
-            if(!orderUser){
 
-                swal ({
-                    title:"Deberia loguearse para comprar",
-                    icon: 'warning',
-                })  
-
-            }
-        }
