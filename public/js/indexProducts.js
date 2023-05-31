@@ -1,11 +1,7 @@
-let products2 = [];
+// let products2 = [];
 const token1 = localStorage.getItem('token');
-// const selectCategoryHTML = document.getElementById("category")
-// const boton = document.getElementById("boton1")
 const cardContainer=document.getElementById("card-container");
-const productsLS = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
-const productsLocal = JSON.parse(localStorage.getItem("products")) || [];
-// console.log(productsLocal)
+
 const URL3 = 'http://localhost:4000/api';
 const URL_public3 = 'http://localhost:4000';
 
@@ -13,12 +9,9 @@ const URL_public3 = 'http://localhost:4000';
 async function cargarProductos1() {
     try {
         const respuesta = await axios.get(`${URL3}/products`);
-
         products = respuesta.data.productos
-        // console.log(products)
-        localStorage.setItem("products", JSON.stringify(products))
-        // console.log(products)
-        renderizarTabla(products)
+        console.log(products)
+        renderizarProductos(products)
 
     } catch (error) {
         console.log(error);

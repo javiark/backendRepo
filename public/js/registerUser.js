@@ -18,7 +18,7 @@ async function cargarUsuarios() {
             }
         });
         users=response.data.users;
-        localStorage.setItem('users', JSON.stringify(users))
+        // localStorage.setItem('users', JSON.stringify(users))
         // console.log(users)
     } catch (error) {
         console.log(error);
