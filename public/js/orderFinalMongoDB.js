@@ -142,32 +142,34 @@ async function addToOrder(id){
     let count1 = 0;
     let Order = JSON.parse(sessionStorage.getItem("order"))
     try {
-        const response = await axios.get(`${URL2}/product/${id}`);
-        const product = response.data.product; 
+        const respuesta = await axios.get(`${URL2}/product/${id}`);
+        const product = respuesta.data.product;
+
         
-    const orderNew = {
+    const newOrder = {
         id: product._id,
         image:product.image,
         name: product.name,
         price: product.price,
         cant: 1,
-        total: product.price 
+        total: product.price
+        
     }
         
-    const prod1 = Order.find((prod)=>{
+    const prod = Order.find((prod)=>{
         if(prod.name === product.name){
           prod.cant = parseInt(prod.cant) + 1 ;
-        //   prod.total = prod.cant * parseInt(prod.price);
+          prod.total = prod.cant * parseInt(prod.price);
           return prod;
         }
       })
   
-      if(!prod1) {
-        Order.push(orderNew);
+      if(!prod) {
+        Order.push(newOrder);
       }
-      console.log(Order)
 
-    sessionStorage.setItem('order',JSON.stringify(Order));
+    //Guardarlo en el local storage
+    sessionStorage.setItem('order',JSON.stringify( Order));
 
         swal({
             title: "el producto se agrego al carrito",
