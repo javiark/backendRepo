@@ -7,18 +7,11 @@ const URL_public1 ='http://localhost:4000';
 
 badgeHTMLbuy=document.getElementById("cart-count");
 
-let productsOrder = JSON.parse(localStorage.getItem("products"))
-let productsOrder1 = JSON.parse(localStorage.getItem("products"))
-
-let productsUser = JSON.parse(localStorage.getItem("users"))
 let orderUser = JSON.parse(localStorage.getItem("currentUser"))
-let orderFinal = JSON.parse(localStorage.getItem("orderArrayFinal"))
 let productOrder = JSON.parse(sessionStorage.getItem("order")) 
 let productOrderFF = JSON.parse(sessionStorage.getItem("order")) 
 
-// console.log(productOrder)|| [];
 
-// console.log(orderFinal)
 
 
 
@@ -33,42 +26,42 @@ const total = document.getElementById("totalPrice")
 let orderArray = [];
 let cart = []
 
-productsOrder.forEach((prod,id)=>{
+// productOrder.forEach((prod,id)=>{
 
 
-    let quantity =parseInt(1)
-    let  productID = id
-    let nuevaOrden={
-        productID,
-        quantity,
-        nameOrder:prod.name,
-        priceOrder:prod.price,
-        imageOrder:prod.image, 
-        descriptionOrder:prod.description,
-    }
-    // console.log(nuevaOrden)
-    orderArray.push(nuevaOrden)
-    localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
+//     let quantity =parseInt(1)
+//     let  productID = id
+//     let nuevaOrden={
+//         productID,
+//         quantity,
+//         nameOrder:prod.name,
+//         priceOrder:prod.price,
+//         imageOrder:prod.image, 
+//         descriptionOrder:prod.description,
+//     }
+//     // console.log(nuevaOrden)
+//     orderArray.push(nuevaOrden)
 
-});
+// });
  
-let userName=orderUser.fullName
-let userOrder=orderUser.email
-let totalOrder=`$$`
-let createdAt = new Date()
-let ordernFinal={
-    // usuarioID1,
-    userName,
-    userOrder,
-    totalOrder,
-    createdAt,
-    orderArray
-}
+// let userName=orderUser.fullName
+// let userOrder=orderUser.email
+// let totalOrder=`$$`
+// let createdAt = new Date()
+// let ordernFinal={
+//     // usuarioID1,
+//     userName,
+//     userOrder,
+//     totalOrder,
+//     createdAt,
+//     orderArray
+// }
 
 // console.log(orderArray )
 
 
 //----------------PINTAR TABLA--------------
+
 
 function renderizarTablaOrdenes(){
 
@@ -341,6 +334,9 @@ function restToOrderQuantity(index){
         
             },3000) 
         }}
+
+        let currentUser1 = JSON.parse(localStorage.getItem("currentUser"));
+
 
 
 

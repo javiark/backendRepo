@@ -141,7 +141,7 @@ body {
     &__info-icon.disabled{
         filter: grayscale(1);
         opacity: .5;
-        pointer-events: none; 
+        // pointer-events: none; 
     }
     &__info{
         font-size: 1.25rem ;
@@ -289,7 +289,7 @@ body {
         width: 6rem;
         border: 1px solid rgba(20, 20, 20, 0.3);
         background-color: white;
-        pointer-events: none;
+        // pointer-events: none;
 
     }
     &__containerBtn{

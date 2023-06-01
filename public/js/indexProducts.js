@@ -53,7 +53,7 @@ function renderizarProductos(products){
     </div>
     <div class="card__footerCard" onclick="showNotUser()" >
         
-        <button class="card__btn-buy1"  onclick="addToOrder(${product._id}) " id=$product._id}>
+        <button class="card__btn-buy1"  onclick="addToOrder(${product._id}) " id=(${product._id})>
             Comprar
         </button>
 
@@ -67,4 +67,53 @@ function renderizarProductos(products){
     })
 
 }
-renderizarProductos(productsLocal);
+// renderizarProductos(productsLocal);
+
+
+
+
+
+
+const button22 = document.querySelectorAll(".card__btn-buy1")
+const button33 = document.querySelectorAll(".card__btn")
+const button44 = document.querySelectorAll(".containerDetail__btn-add")
+const button55 = document.querySelectorAll(".containerDetail__btn-buy")
+const button66 = document.querySelectorAll(".containerDetail__containerBtn")
+// const button7 = document.getElementById("idButton")
+console.log(button22)
+
+// arrayProducts.forEach((idx)=>{
+//     // console.log(idx)
+//     let id=idx.name
+//     // console.log(id)
+// })
+
+
+
+
+    if (currentUser) {
+        button22.forEach((parametro) => {
+           pam = parametro.classList.add("enable");
+            console.log(pam)
+        });
+        button33.forEach((parametro) => {
+            pam = parametro.classList.add("enable");
+             // console.log(pam)
+         });
+         button44.forEach((parametro) => {
+            pam = parametro.classList.add("enable2");
+             console.log(pam)
+         });
+         button55.forEach((parametro) => {
+            pam = parametro.classList.add("enable2");
+             console.log(pam)
+         });
+         button66.forEach((parametro) => {
+            pam = parametro.classList.add("enable2");
+             console.log(pam)
+         });
+
+}
+
+
+

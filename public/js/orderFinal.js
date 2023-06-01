@@ -4,12 +4,8 @@ const productsArray = [];
 
 badgeHTMLbuy=document.getElementById("cart-count");
 
-let productsOrder3 = JSON.parse(localStorage.getItem("products"))
-let productsOrder4 = JSON.parse(localStorage.getItem("products"))
 
-let productsUser3 = JSON.parse(localStorage.getItem("users"))
 let orderUser1 = JSON.parse(localStorage.getItem("currentUser"))
-let orderFinal = JSON.parse(localStorage.getItem("orderArrayFinal"))
 let productOrder = JSON.parse(sessionStorage.getItem("order")) 
 let productOrderFF = JSON.parse(sessionStorage.getItem("order")) 
 
@@ -83,7 +79,7 @@ let cart = []
 function renderizarTablaOrdenes(){
 
     tableBodyOrder1.innerHTML = '';
-    if(productOrderFF.length===0){
+    if(!productOrderFF){
         tableBodyOrder1.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
@@ -121,7 +117,7 @@ function renderizarTablaOrdenes(){
             }else{
                 tableBodyOrder1.innerHTML = '';
                 productOrder= [];
-                sessionStorage.setItem("order", JSON.stringify(productsArray))
+                // sessionStorage.setItem("order", JSON.stringify(productsArray))
                 actualizarBadge();
             }
     }
@@ -183,7 +179,7 @@ function addToOrder(index){
         icon: 'success',
     })  
     badgeHTMLbuy.innerText=count1;
-    sessionStorage.setItem("order", JSON.stringify(productsArray))
+    // sessionStorage.setItem("order", JSON.stringify(productsArray))
 }
 
 

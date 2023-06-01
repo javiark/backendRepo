@@ -18,7 +18,6 @@ async function cargarUsuarios() {
             }
         });
         users=response.data.users;
-        // localStorage.setItem('users', JSON.stringify(users))
         // console.log(users)
     } catch (error) {
         console.log(error);
@@ -54,7 +53,7 @@ registerForm.addEventListener("submit", async (event)=>{ // con addEventListener
     }
 
 
-    const users=JSON.parse(localStorage.getItem("users")) || [];
+
 
     const userExist = checkIfUserExist(users, el.email.value);
 
