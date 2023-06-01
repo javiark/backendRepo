@@ -73,16 +73,14 @@ function renderizarDetail(product) {
                     <div class="containerDetail__containerAdd"><div class="containerDetail__containerBtn1"><button class="containerDetail__containerBtn" onclick="decrement(index) ">
                     -
                     </button>
-                    <input type="number" class="containerDetail__containerNumber1" id="countNumber1${index}" value=1>
+                    <input type="text" class="containerDetail__containerNumber1" id="countNumber1${index}" value=1 >
                     <button  class="containerDetail__containerBtn" onclick="increment(index)"> 
                     +</button>
                     </div>
                     </div>
-                    <button class="containerDetail__btn-add" onclick="addOrderDetail(index)" id="btn-add-detail">
-                             Añadir a carrito
-                     </button>
 
-                    <a href="/order" class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy">Comprar Ahora</button><a/>
+
+                    <a  class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy" onclick='addToCartDetail(${JSON.stringify(product)})'>Comprar Ahora</button><a/>
                     </div>
 
         </div>
@@ -105,20 +103,25 @@ function renderizarDetail(product) {
 }
 
 
+//href="/order"
+
 // renderizarDetail(product)
 
 //---------------------SUMA PRODUCTOS-------------------------//
-
+let cantOrdenes = []
 function increment(id) {
-    console.log(id)
+    // console.log(id)
     let input = document.getElementById(`countNumber1${id}`);
-    console.log(input)
+    // console.log(input)
     let currentValue = parseInt(input.value);
 
     input.value = currentValue + 1;
     currentValue = parseInt(input.value);
-
+    cantOrdenes.push(currentValue)
+    updateTotal(id)
 }
+
+console.log(cantOrdenes)
 
 function decrement(id) {
     console.log(id)
@@ -129,8 +132,74 @@ function decrement(id) {
         input.value = currentValue - 1;
         currentValue = parseInt(input.value);
     }
+    updateTotal(id)
 
 }
+
+function updateTotal(id){
+
+    let cantOrdenes = document.getElementById(`countNumber1${id}`)
+    cant = cantOrdenes.length
+            
+    product[id].cant =  parseInt(cant);
+    product[id].total = product[id].cant * parseInt(product[id].price);
+      
+//Guardarlo en el local storage
+sessionStorage.setItem('order',JSON.stringify( products));
+// renderizarTabla();
+
+// contarProductos();
+
+  }
+
+
+
+
+function addToCartDetail(id){
+    let input = document.getElementById(`countNumber1${id}`)
+    console.log(cantOrdenes.length)
+
+ 
+
+    let index = (order.findIndex(el=>el.product==product.id))
+    
+    if(index !== -1){
+        userCart[0].order[index].quantity++ 
+    }else{
+        userCart[0].order.push({
+            product:product.id,
+            quantity:Number(cantidad)
+        })
+    }
+    
+    sessionStorage.setItem("order", JSON.stringify(productsArray))
+    // renderOrder(userCart)
+    // actualizarBadge(userCart)
+    // showAlert('Producto agregado al carro de compras correctamente.','ok')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
