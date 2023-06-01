@@ -29,16 +29,16 @@ let orderArray = [];
 let cart = []
 
 //----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
-let count = 0;
-function cartUpdate() {
-    productOrder.forEach(productOrder => {
-        count += parseInt(productOrder.cant)
-    })
-    console.log(count)
+// let count = 0;
+// function cartUpdate() {
+//     productOrder.forEach(productOrder => {
+//         count += parseInt(productOrder.cant)
+//     })
+//     console.log(count)
 
-    badgeHTMLbuy.innerText = count;
-}
-cartUpdate()
+//     badgeHTMLbuy.innerText = count;
+// }
+// cartUpdate()
 
 
 //----------------PINTAR TABLA--------------
@@ -68,7 +68,7 @@ function renderizarTablaOrdenes() {
         </div>
         </td>
         <td class="order__price" id="new-price">$ ${prod.price}</td>
-        <td class="order__price">$ ${prod.price * prod.cant}</td>
+        <td class="order__price">$ ${prod.total}</td>
         <td class="order__actions">
             <button class="product__action-btnDetail" onclick="deleteProductBuy(${index})">
                 <i class="fa-solid fa-trash"></i>
@@ -225,7 +225,28 @@ function deleteProductBuy(indice) {
 
 //----------------SUMAR CANTIDAD PRODUCTO--------------
 
+// function AccToOrderQuantity1(event, index) {
+//     console.log("boton anda")
+//     let Order = JSON.parse(sessionStorage.getItem("order"))|| [];
+//     const incrementarBoton = event.target;
+//     let input = document.getElementById(`cantidadOrden${index}`);
 
+//     const productName = Order[index];
+//     const productFind = Order[index];
+
+//     if (!productFind) {
+//         console.error(`No se encontró ningún producto con el nombre ${productName}`);
+//         return;
+//       }
+//       let currentValue = parseInt(input.value);
+//       input.value = currentValue + 1;
+//       currentValue = parseInt(input.value);
+//       productFind.cant = currentValue;
+//       const productCart = JSON.parse(sessionStorage.getItem('order')); // busco los productos en el carrito
+//       console.log(productCart)
+
+
+// }
 
 
 function AccToOrderQuantity(id) {
@@ -234,6 +255,9 @@ function AccToOrderQuantity(id) {
 
     input.value = currentValue + 1;
     currentValue = parseInt(input.value);
+    countProducts()
+    totalOrder1(id)
+    valorTotal()
 }
 
 function restToOrderQuantity(id) {
@@ -243,19 +267,47 @@ function restToOrderQuantity(id) {
         input.value = currentValue - 1;
         currentValue = parseInt(input.value);
     }
+    countProducts()
+    totalOrder1(id)
+    valorTotal()
 }
 
-function totalProducts(id) {
 
-    const cantProd = document.getElementById(`cantidadOrden${id}`);
 
-    productOrder[id].cant = parseInt(cantProd.value);
-    productOrder[id].total = productOrder[id].cant * parseInt(productOrderFF[id].price);
+function totalOrder1(id){
 
-    sessionStorage.setItem('order', JSON.stringify(productOrderFF));
-    renderizarTablaOrdenes();
-    countProducts();
+    const prodQuantity = document.getElementById(`cantidadOrden${id}`);       
+    productOrder[id].cant =  parseInt(prodQuantity.value);
+    productOrder[id].total =productOrder[id].cant * parseInt(productOrder[id].price);
+
+
+      
+//Guardarlo en el local storage
+sessionStorage.setItem('order',JSON.stringify( productOrder));
+renderizarTablaOrdenes();
+
+
+  }
+
+      //----------------ACTUALIZAR PRECIO--------------
+function valorTotal(){
+let valorTotal = productOrder.reduce((acc, prod) => acc + prod.cant * prod.price, 0)
+console.log(valorTotal)
+total.innerHTML = `$ ${valorTotal}`
 }
+valorTotal()
+
+function countProducts(){
+    Order = JSON.parse(sessionStorage.getItem('order')) || [];
+    let quantity = 0;
+    Order.forEach((prod) => {
+        quantity += prod.cant; 
+    })
+    badgeHTMLbuy.innerText = quantity;
+}
+
+countProducts();
+
 
 // function countProducts() {
 //     order = JSON.parse(sessionStorage.getItem('order')) || [];

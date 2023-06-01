@@ -97,7 +97,7 @@ function renderizarTablaOrdenes() {
         +
         </button></div></div></td>
         <td class="order__price" id="new-price">$ ${prod.priceOrder}</td>
-        <td class="order__price">$ ${prod.priceOrder * prod.quantity}</td>
+        <td class="order__price">$ ${prod.total}</td>
         <td class="order__actions">
             <button class="product__action-btnDetail" onclick="deleteProductBuy(${index})">
                 <i class="fa-solid fa-trash"></i>
@@ -223,6 +223,12 @@ function deleteProductBuy(indice) {
 
 
 //----------------SUMAR CANTIDAD PRODUCTO--------------
+
+
+function AccToOrderQuantity1(prod, prodName){
+    const productoEncontrado = products.find(producto => producto.name === productName);
+
+}
 
 function AccToOrderQuantity(index) {
     console.log(index)
