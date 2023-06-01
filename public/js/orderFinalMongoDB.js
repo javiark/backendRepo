@@ -11,7 +11,7 @@ badgeHTMLbuy = document.getElementById("cart-count");
 let orderUser = JSON.parse(localStorage.getItem("currentUser"))
 let productOrder = JSON.parse(sessionStorage.getItem("order"))
 // let productOrderFF = JSON.parse(sessionStorage.getItem("order"))
-console.log(productOrder)
+// console.log(productOrder)
 
 
 
@@ -28,20 +28,7 @@ const total = document.getElementById("totalPrice")
 let orderArray = [];
 let cart = []
 
-//----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
-// let count = 0;
-// function cartUpdate() {
-//     productOrder.forEach(productOrder => {
-//         count += parseInt(productOrder.cant)
-//     })
-//     console.log(count)
 
-//     badgeHTMLbuy.innerText = count;
-// }
-// cartUpdate()
-
-
-//----------------PINTAR TABLA--------------
 
 
 function renderizarTablaOrdenes() {
@@ -51,7 +38,7 @@ function renderizarTablaOrdenes() {
         tableBodyOrder.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
-    console.log(productOrder)
+    // console.log(productOrder)
 
     productOrder.forEach((prod, index) => {
 
@@ -88,19 +75,19 @@ renderizarTablaOrdenes()
 
 //---------------------LIMPIAR TABLA SI NO HAY USUARIO-------------------------//
 
-function cleantable() {
+// function cleantable() {
 
-    if (orderUser) {
-        // console.log("hay usuario")
-    } else {
-        tableBodyOrder.innerHTML = '';
-        productOrder = [];
-        sessionStorage.setItem("order", JSON.stringify(products))
-        actualizarBadge();
-    }
-}
+//     if (orderUser) {
+//         // console.log("hay usuario")
+//     } else {
+//         tableBodyOrder.innerHTML = '';
+//         productOrder = [];
+//         sessionStorage.setItem("order", JSON.stringify(products))
+//         actualizarBadge();
+//     }
+// }
 
-cleantable()
+// cleantable()
 
 
 
@@ -158,29 +145,6 @@ async function addToOrder(id){
 
 
 
-
-
-
-
-
-
-
-
-//-----------------------OBTENER ID DE USUARIO---------------------
-// const usuarioID1 = productsUser.findIndex(id1 => id1.email === orderUser.email)
-// console.log(usuarioID1)
-
-
-
-
-//----------------ACTUALIZAR PRECIO--------------
-
-// let valorTotal =productOrder.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
-// total.innerHTML = `$ ${valorTotal}`
-
-
-
-
 function deleteProductBuy(indice) {
     let count2 = 0;
     swal({
@@ -209,7 +173,10 @@ function deleteProductBuy(indice) {
                 icon: "error"
 
             });
+            totalBuy()
             renderizarTablaOrdenes()
+  
+
 
         } else {
             return; //return null
@@ -223,30 +190,7 @@ function deleteProductBuy(indice) {
 
 
 
-//----------------SUMAR CANTIDAD PRODUCTO--------------
 
-// function AccToOrderQuantity1(event, index) {
-//     console.log("boton anda")
-//     let Order = JSON.parse(sessionStorage.getItem("order"))|| [];
-//     const incrementarBoton = event.target;
-//     let input = document.getElementById(`cantidadOrden${index}`);
-
-//     const productName = Order[index];
-//     const productFind = Order[index];
-
-//     if (!productFind) {
-//         console.error(`No se encontró ningún producto con el nombre ${productName}`);
-//         return;
-//       }
-//       let currentValue = parseInt(input.value);
-//       input.value = currentValue + 1;
-//       currentValue = parseInt(input.value);
-//       productFind.cant = currentValue;
-//       const productCart = JSON.parse(sessionStorage.getItem('order')); // busco los productos en el carrito
-//       console.log(productCart)
-
-
-// }
 
 
 function AccToOrderQuantity(id) {
@@ -257,7 +201,7 @@ function AccToOrderQuantity(id) {
     currentValue = parseInt(input.value);
     countProducts()
     totalOrder1(id)
-    valorTotal()
+    totalBuy()
 }
 
 function restToOrderQuantity(id) {
@@ -269,7 +213,7 @@ function restToOrderQuantity(id) {
     }
     countProducts()
     totalOrder1(id)
-    valorTotal()
+    totalBuy()
 }
 
 
@@ -290,12 +234,29 @@ renderizarTablaOrdenes();
   }
 
       //----------------ACTUALIZAR PRECIO--------------
-function valorTotal(){
-let valorTotal = productOrder.reduce((acc, prod) => acc + prod.cant * prod.price, 0)
-console.log(valorTotal)
-total.innerHTML = `$ ${valorTotal}`
-}
-valorTotal()
+function totalBuy(){
+    let valorTotal = 0;
+    Order = JSON.parse(sessionStorage.getItem('order')) || [];
+    Order.forEach((product) => {
+        valorTotal +=  Math.round((product.cant * product.price) * 100) / 100;;
+      });
+    
+
+      total.innerHTML = `$ ${valorTotal}`
+
+      console.log(valorTotal)
+    }
+    totalBuy()
+
+
+
+// function valorTotal(){
+// let valorTotal = productOrder.reduce((acc, prod) => acc + prod.cant * prod.price, 0)
+// // console.log(valorTotal)
+// total.innerHTML = `$ ${valorTotal}`
+// }
+// valorTotal()
+
 
 function countProducts(){
     Order = JSON.parse(sessionStorage.getItem('order')) || [];
@@ -309,148 +270,6 @@ function countProducts(){
 countProducts();
 
 
-// function countProducts() {
-//     order = JSON.parse(sessionStorage.getItem('order')) || [];
-//     let quantity = 0;
-//     order.forEach((prod) => {
-//         quantity += prod.cant;
-//     })
-//     badgeHTMLbuy.innerText = quantity;
-// }
-
-// countProducts();
-
-
-// function AccToOrderQuantity(index) {
-//     console.log(index)
-//     try {
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-//     // console.log("funcionaboton")
-//     let count2 = 0
-//     // console.log(productOrder)
-//     // let orderAdd = productOrderFF[index]
-//     // console.log(orderAdd)
-
-//     productOrderFF.forEach((idx) => {
-//         console.log(idx)
-//         if (orderAdd === idx) {
-//             idx.quantity++;
-//         }
-//     })
-
-//     productOrderFF.forEach(productOrderFF => {
-//         count2 += parseInt(productOrderFF.quantity)
-//     })
-//     console.log(count2)
-
-//     badgeHTMLbuy.innerText = count2;
-
-//     sessionStorage.setItem("order", JSON.stringify(productOrderFF))
-
-//     //calcular Valor total
-//     let valorTotalSumar = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
-//     total.innerHTML = `$ ${valorTotalSumar}`
-
-//     renderizarTablaOrdenes()
-
-// }
-
-// function AccToOrderQuantity(id) {
-//     console.log(id)
-//     let input = document.getElementById(`cantidadOrden${id}`)
-//     console.log(input)
-//     let value = parseInt(input.value, 10);
-//     input.value = isNaN(value) ? 1 : value + 1;
-//     // totalUpdate(id);
-// }
-
-// function totalUpdate(id) {
-
-//     const cantidadProdcutos = document.getElementById(`cantidadOrden${id}`);
-
-//     productOrderFF[id].cant = parseInt(cantidadProdcutos.value);
-//     productOrderFF[id].total = productOrderFF[id].cant * parseInt(productOrderFF[id].price);
-
-//     //Guardarlo en el local storage
-//     sessionStorage.setItem('order', JSON.stringify(productOrderFF));
-//     // renderizarTabla();
-
-//     // contarProductos();
-
-// }
-
-// function AccToOrderQuantity(index) {
-//     console.log(index)
-//     // console.log("funcionaboton")
-//     let count2 = 0
-//     // console.log(productOrder)
-//     // let orderAdd = productOrderFF[index]
-//     // console.log(orderAdd)
-
-//     productOrderFF.forEach((idx) => {
-//         console.log(idx)
-//         if (orderAdd === idx) {
-//             idx.quantity++;
-//         }
-//     })
-
-//     productOrderFF.forEach(productOrderFF => {
-//         count2 += parseInt(productOrderFF.quantity)
-//     })
-//     console.log(count2)
-
-//     badgeHTMLbuy.innerText = count2;
-
-//     sessionStorage.setItem("order", JSON.stringify(productOrderFF))
-
-//     //calcular Valor total
-//     let valorTotalSumar = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
-//     total.innerHTML = `$ ${valorTotalSumar}`
-
-//     renderizarTablaOrdenes()
-
-// }
-
-//----------------RESTAR CANTIDAD PRODUCTO--------------
-
-// function restToOrderQuantity(index) {
-//     console.log(index)
-//     // console.log("funcionaboton")
-//     let count2 = 0
-//     // console.log(productOrder)
-//     let orderAdd = productOrderFF[index]
-//     console.log(orderAdd)
-
-//     productOrderFF.forEach((idx) => {
-//         console.log(idx)
-//         if (orderAdd === idx & idx.quantity > 0) {
-//             idx.quantity--;
-//         }
-//     })
-
-//     productOrderFF.forEach(productOrderFF => {
-//         count2 += parseInt(productOrderFF.quantity)
-//     })
-//     console.log(count2)
-
-//     badgeHTMLbuy.innerText = count2;
-
-//     sessionStorage.setItem("order", JSON.stringify(productOrderFF))
-
-//     //calcular Valor total
-//     let valorTotalSumar = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
-//     total.innerHTML = `$ ${valorTotalSumar}`
-
-//     renderizarTablaOrdenes()
-
-// }
-//----------------FINALIZAR COMPRA--------------
-// if(tableBodyOrder=''){
-//     console.log("no hay nada")
-// }
 
 if (productOrder.length === 0) {
     console.log("no")
