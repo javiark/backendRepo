@@ -51,7 +51,7 @@ function renderizarTablaOrdenes() {
         tableBodyOrder.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
-    // console.log(productOrderFF)
+    console.log(productOrder)
 
     productOrder.forEach((prod, index) => {
 
