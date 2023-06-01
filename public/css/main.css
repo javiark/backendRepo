@@ -2105,6 +2105,14 @@ body {
 .containerDetail__containerNumber {
   padding-top: 0.4rem;
 }
+.containerDetail__containerNumber1 {
+  height: 1.7rem;
+  width: 1.5rem;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+}
 .containerDetail__link {
   color: rgb(71, 71, 71);
 }
