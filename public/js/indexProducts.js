@@ -10,7 +10,7 @@ async function cargarProductos1() {
     try {
         const respuesta = await axios.get(`${URL3}/products`);
         products = respuesta.data.productos
-        console.log(products)
+        // console.log(products)
         renderizarProductos(products)
 
     } catch (error) {

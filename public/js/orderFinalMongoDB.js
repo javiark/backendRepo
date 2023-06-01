@@ -6,7 +6,7 @@ const URL2 = 'http://localhost:4000/api';
 const URL_public1 = 'http://localhost:4000';
 
 
-badgeHTMLbuy = document.getElementById("cart-count");
+badgeHTMLbuy=document.getElementById("cart-count");
 
 let orderUser = JSON.parse(localStorage.getItem("currentUser"))
 let productOrder = JSON.parse(sessionStorage.getItem("order"))
@@ -134,32 +134,52 @@ cartUpdate()
 
 
 async function addToOrder(index) {
-    console.log(index)
+    // console.log(index)
+    let count1 = 0;
+
     try {
+
         const response = await axios.get(`${URL2}/product/${index}`);
-        const productOrder = response.data.product;
-        console.log(productOrder)
-
-        // console.log(orderProd)
-        const searchCart = cart.find(cart => cart.id === idx) || []; // veo si tengo el producto
-        if (searchCart.length === 0) {   //si el array esta vacio (no esta ese articulo en el carrito) lo creo
-            let orderBuy = {
-                id: productOrder._id,
-                image: productOrder.image,
-                name: productOrder.name,
-                price:productOrder.price,
-                cant: 1,
-                total: productOrder.price
-            }
-            cart.push(orderBuy)
-        } else {                          //si este articulo ya esta en el carrito incremento la cantidad
-            searchCart.quantity += quan
+        let productOrder = response.data.product;
+        // console.log(productOrder)
+        let orderBuy = {
+            id: productOrder._id,
+            image: productOrder.image,
+            name: productOrder.name,
+            price: productOrder.price,
+            cant: 1,
+            total: productOrder.price
         }
 
-        sessionStorage.setItem('order', JSON.stringify(cart));
+        // console.log(products1)
+        // console.log(products1.name)
+        const searchCart = products1.find((products1) => {
+            if(products1.id === index){
+                products1.cant = parseInt(products1.cant) + 1 ;
+                products1.total = products1.cant * parseInt(products1.price);
+                return products1;
+              }
+            })
 
 
-        showAlert('Producto agregado al carrito', 'success')
+
+        if (!searchCart) {
+            products1.push(orderBuy)
+            console.log(products1)
+        }
+        products1.forEach(products1 => {
+            count1 += parseInt(products1.cant)
+            })
+        badgeHTMLbuy.innerText=count1;
+
+        sessionStorage.setItem('order', JSON.stringify(products1));
+
+
+
+        swal ({
+            title:"el producto se agrego al carrito",
+            icon: 'success',
+        })
 
         // contarProductos();
 
@@ -169,51 +189,11 @@ async function addToOrder(index) {
 
 }
 
-        
 
 
 
 
-async function agregarOrden(idx) {
-    try {
-        const respuesta = await axios.get(`${URL}/products/${idx}`);
-        const product = respuesta.data.product;
-        if (!product)
-            return showAlert('No se encontro el producto', 'info')
 
-
-        const cartFind = cart.find(cart => cart.id === idx) || []; // chequeo si ya lo tengo
-
-        if (cartFind.length === 0) {   //si el array esta vacio (no esta ese articulo en el carrito) lo creo
-            let newOrder = {
-                id: product._id,
-                image: '/upload/product/' + product.image,
-                name: product.name,
-                price: product.price,
-                cant: 1,
-                total: product.price
-            }
-            cart.push(newOrder)
-        } else {                          //si este articulo ya esta en el carrito incremento la cantidad
-            searchCart.quantity += quan
-        }
-        //Guardarlo en el local storage
-        sessionStorage.setItem('order', JSON.stringify(newOrder));
-
-        //Alerta de Producto agregado
-        showAlert('Producto agregado al carrito', 'success')
-
-        // contarProductos();
-
-
-
-    } catch (error) {
-        console.log(error);
-    }
-
-
-
-}
 
 
 
