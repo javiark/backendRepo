@@ -77,8 +77,8 @@ function renderizarDetail(product) {
                                     <p class="card__texto">${product.description}</p> 
                     </div>
                 </div>
-                    <div class="containerDetail__containerAdd"><div class="containerDetail__containerBtn1"><button class="containerDetail__containerBtn" onclick=" restCount(indice) ">-</button><div class="containerDetail__containerNumber" id="countNumber"> 1</div><button  class="containerDetail__containerBtn" onclick=" addCount(indice) "> +</button></div></div>
-                    <button class="containerDetail__btn-add" onclick="addToCart(index)" id="btn-add-detail">
+                    <div class="containerDetail__containerAdd"><div class="containerDetail__containerBtn1"><button class="containerDetail__containerBtn" onclick=" restCount('${index}') ">-</button><div class="containerDetail__containerNumber" id="countNumber"> 1</div><button  class="containerDetail__containerBtn" onclick=" addCount('${index}') "> +</button></div></div>
+                    <button class="containerDetail__btn-add" onclick="addToCart('${index}')" id="btn-add-detail">
                              Añadir a carrito
                      </button>
 
@@ -145,9 +145,10 @@ function restCount(index) {
 
 
 function addCount(index) {
+    console.log(index)
     let orderDetail1 = [orderFinal1[index]]
 
-    console.log(index)
+
     let countNumber = 1;
     orderFinal1.forEach((idx) => {
         let countNumb = idx.quantity;

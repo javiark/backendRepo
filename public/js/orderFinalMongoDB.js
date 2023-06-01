@@ -27,39 +27,6 @@ const total = document.getElementById("totalPrice")
 let orderArray = [];
 let cart = []
 
-// productOrder.forEach((prod,id)=>{
-
-
-//     let quantity =parseInt(1)
-//     let  productID = id
-//     let nuevaOrden={
-//         productID,
-//         quantity,
-//         nameOrder:prod.name,
-//         priceOrder:prod.price,
-//         imageOrder:prod.image, 
-//         descriptionOrder:prod.description,
-//     }
-//     // console.log(nuevaOrden)
-//     orderArray.push(nuevaOrden)
-
-// });
-
-// let userName=orderUser.fullName
-// let userOrder=orderUser.email
-// let totalOrder=`$$`
-// let createdAt = new Date()
-// let ordernFinal={
-//     // usuarioID1,
-//     userName,
-//     userOrder,
-//     totalOrder,
-//     createdAt,
-//     orderArray
-// }
-
-// console.log(orderArray )
-
 
 //----------------PINTAR TABLA--------------
 
@@ -156,16 +123,13 @@ async function addToOrder(index) {
         const searchCart = products1.find((products1) => {
             if(products1.id === index){
                 products1.cant = parseInt(products1.cant) + 1 ;
-                products1.total = products1.cant * parseInt(products1.price);
                 return products1;
               }
             })
 
-
-
         if (!searchCart) {
             products1.push(orderBuy)
-            console.log(products1)
+            // console.log(products1)
         }
         products1.forEach(products1 => {
             count1 += parseInt(products1.cant)
@@ -173,8 +137,6 @@ async function addToOrder(index) {
         badgeHTMLbuy.innerText=count1;
 
         sessionStorage.setItem('order', JSON.stringify(products1));
-
-
 
         swal ({
             title:"el producto se agrego al carrito",
@@ -279,8 +241,8 @@ function AccToOrderQuantity(index) {
     // console.log("funcionaboton")
     let count2 = 0
     // console.log(productOrder)
-    let orderAdd = productOrderFF[index]
-    console.log(orderAdd)
+    // let orderAdd = productOrderFF[index]
+    // console.log(orderAdd)
 
     productOrderFF.forEach((idx) => {
         console.log(idx)
