@@ -107,40 +107,10 @@ cleantable()
 
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
-// console.log(products)
-
-// async function addToOrder(id) {
-//     // event.preventDefault();
-//     try{
-
-//     const respuesta = await axios.get(`${URL2}/product/${id}`);
-//     const product = respuesta.data.product;
-//     console.log
-//     const index = Order.findIndex(item => item.name === product.name);
-
-//     if (index !== -1) { // Si el producto ya está en el carrito, aumentar su cantidad
-//         Order[index].quantity++;
-//     } else { // Si el producto no está en el carrito, agregarlo con cantidad 1
-//         const newProduct = {
-//             ...product,
-//             quantity: 1
-//         };
-//         Order.push(newProduct);
-//     }
-
-//     // Guardar el carrito actualizado en el localStorage
-//     sessionStorage.setItem("order", JSON.stringify(Order));
-//     console.log(Order);
-//     window.location.replace("/pages/order-detail/order-detail.html");
-// } catch (error) {
-//         console.log(error);
-// }}
-
-
 
 async function addToOrder(id){
     let count1 = 0;
-    let Order = JSON.parse(sessionStorage.getItem("order"))
+    let Order = JSON.parse(sessionStorage.getItem("order"))|| [];
     try {
         const respuesta = await axios.get(`${URL2}/product/${id}`);
         const product = respuesta.data.product;
@@ -186,58 +156,6 @@ async function addToOrder(id){
 }
 
 
-// async function addToOrder(index) {
-//     // console.log(index)
-//     let count1 = 0;
-
-//     try {
-
-//         const response = await axios.get(`${URL2}/product/${index}`);
-//         const productOrder = response.data.product;
-//         console.log(productOrder)
-//         const orderBuy = {
-//             id: productOrder._id,
-//             image: productOrder.image,
-//             name: productOrder.name,
-//             price: productOrder.price,
-//             cant: 1,
-//             total: productOrder.price
-//         }
-
-//         // console.log(products1)
-//         // console.log(products1.name)
-//         const productOrder1 = Order.find((prod) => {
-//             if (prod.name === productOrder.name) {
-//                 prod.cant = parseInt(prod.cant) + 1;
-//                 prod.total = prod.cant * parseInte(prod.price)
-//                 return prod;
-//             }
-//         })
-
-//         if (!productOrder1) {
-//             Order.push(orderBuy)
-//             // console.log(products1)
-//         }
-//         products1.forEach(products1 => {
-//             count1 += parseInt(products1.cant)
-//         })
-//         badgeHTMLbuy.innerText = count1;
-
-//         sessionStorage.setItem('order', JSON.stringify( Order));
-//         console.log( Order)
-
-//         swal({
-//             title: "el producto se agrego al carrito",
-//             icon: 'success',
-//         })
-
-//         // contarProductos();
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-// }
 
 
 
