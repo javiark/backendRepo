@@ -10,7 +10,8 @@ badgeHTMLbuy = document.getElementById("cart-count");
 
 let orderUser = JSON.parse(localStorage.getItem("currentUser"))
 let productOrder = JSON.parse(sessionStorage.getItem("order"))
-let productOrderFF = JSON.parse(sessionStorage.getItem("order"))
+// let productOrderFF = JSON.parse(sessionStorage.getItem("order"))
+console.log(productOrder)
 
 
 
@@ -27,6 +28,18 @@ const total = document.getElementById("totalPrice")
 let orderArray = [];
 let cart = []
 
+//----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
+let count = 0;
+function cartUpdate() {
+    productOrder.forEach(productOrder => {
+        count += parseInt(productOrder.cant)
+    })
+    console.log(count)
+
+    badgeHTMLbuy.innerText = count;
+}
+cartUpdate()
+
 
 //----------------PINTAR TABLA--------------
 
@@ -34,13 +47,13 @@ let cart = []
 function renderizarTablaOrdenes() {
 
     tableBodyOrder.innerHTML = '';
-    if (productOrderFF.length === 0) {
+    if (productOrder.length === 0) {
         tableBodyOrder.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
     // console.log(productOrderFF)
 
-    productOrderFF.forEach((prod, index) => {
+    productOrder.forEach((prod, index) => {
 
         let imageSrc1 = prod.image ? `${URL_public1}/upload/product/${prod.image}` : '/assets/images/no-product.png';
 
@@ -71,6 +84,8 @@ function renderizarTablaOrdenes() {
 
 renderizarTablaOrdenes()
 
+
+
 //---------------------LIMPIAR TABLA SI NO HAY USUARIO-------------------------//
 
 function cleantable() {
@@ -88,73 +103,139 @@ function cleantable() {
 cleantable()
 
 
-//----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
-let count = 0;
-function cartUpdate() {
-    productOrder.forEach(productOrder => {
-        count += parseInt(productOrder.quantity)
-    })
 
-    badgeHTMLbuy.innerText = count;
-}
-cartUpdate()
 
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
 // console.log(products)
 
+// async function addToOrder(id) {
+//     // event.preventDefault();
+//     try{
 
-async function addToOrder(index) {
-    // console.log(index)
+//     const respuesta = await axios.get(`${URL2}/product/${id}`);
+//     const product = respuesta.data.product;
+//     console.log
+//     const index = Order.findIndex(item => item.name === product.name);
+
+//     if (index !== -1) { // Si el producto ya está en el carrito, aumentar su cantidad
+//         Order[index].quantity++;
+//     } else { // Si el producto no está en el carrito, agregarlo con cantidad 1
+//         const newProduct = {
+//             ...product,
+//             quantity: 1
+//         };
+//         Order.push(newProduct);
+//     }
+
+//     // Guardar el carrito actualizado en el localStorage
+//     sessionStorage.setItem("order", JSON.stringify(Order));
+//     console.log(Order);
+//     window.location.replace("/pages/order-detail/order-detail.html");
+// } catch (error) {
+//         console.log(error);
+// }}
+
+
+
+async function addToOrder(id){
     let count1 = 0;
-
+    let Order = JSON.parse(sessionStorage.getItem("order"))
     try {
-
-        const response = await axios.get(`${URL2}/product/${index}`);
-        let productOrder = response.data.product;
-        // console.log(productOrder)
-        let orderBuy = {
-            id: productOrder._id,
-            image: productOrder.image,
-            name: productOrder.name,
-            price: productOrder.price,
-            cant: 1,
-            total: productOrder.price
+        const response = await axios.get(`${URL2}/product/${id}`);
+        const product = response.data.product; 
+        
+    const orderNew = {
+        id: product._id,
+        image:product.image,
+        name: product.name,
+        price: product.price,
+        cant: 1,
+        total: product.price 
+    }
+        
+    const prod1 = Order.find((prod)=>{
+        if(prod.name === product.name){
+          prod.cant = parseInt(prod.cant) + 1 ;
+        //   prod.total = prod.cant * parseInt(prod.price);
+          return prod;
         }
+      })
+  
+      if(!prod1) {
+        Order.push(orderNew);
+      }
+      console.log(Order)
 
-        // console.log(products1)
-        // console.log(products1.name)
-        const searchCart = products1.find((products1) => {
-            if (products1.id === index) {
-                products1.cant = parseInt(products1.cant) + 1;
-                return products1;
-            }
-        })
-
-        if (!searchCart) {
-            products1.push(orderBuy)
-            // console.log(products1)
-        }
-        products1.forEach(products1 => {
-            count1 += parseInt(products1.cant)
-        })
-        badgeHTMLbuy.innerText = count1;
-
-        sessionStorage.setItem('order', JSON.stringify(products1));
-        console.log(products1)
+    sessionStorage.setItem('order',JSON.stringify(Order));
 
         swal({
             title: "el producto se agrego al carrito",
             icon: 'success',
         })
-
-        // contarProductos();
-
+        Order.forEach(Order => {
+            count1 += parseInt(Order.cant)
+        })
+        badgeHTMLbuy.innerText = count1;
     } catch (error) {
         console.log(error);
     }
 
 }
+
+
+// async function addToOrder(index) {
+//     // console.log(index)
+//     let count1 = 0;
+
+//     try {
+
+//         const response = await axios.get(`${URL2}/product/${index}`);
+//         const productOrder = response.data.product;
+//         console.log(productOrder)
+//         const orderBuy = {
+//             id: productOrder._id,
+//             image: productOrder.image,
+//             name: productOrder.name,
+//             price: productOrder.price,
+//             cant: 1,
+//             total: productOrder.price
+//         }
+
+//         // console.log(products1)
+//         // console.log(products1.name)
+//         const productOrder1 = Order.find((prod) => {
+//             if (prod.name === productOrder.name) {
+//                 prod.cant = parseInt(prod.cant) + 1;
+//                 prod.total = prod.cant * parseInte(prod.price)
+//                 return prod;
+//             }
+//         })
+
+//         if (!productOrder1) {
+//             Order.push(orderBuy)
+//             // console.log(products1)
+//         }
+//         products1.forEach(products1 => {
+//             count1 += parseInt(products1.cant)
+//         })
+//         badgeHTMLbuy.innerText = count1;
+
+//         sessionStorage.setItem('order', JSON.stringify( Order));
+//         console.log( Order)
+
+//         swal({
+//             title: "el producto se agrego al carrito",
+//             icon: 'success',
+//         })
+
+//         // contarProductos();
+
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// }
 
 
 
@@ -179,23 +260,6 @@ async function addToOrder(index) {
 
 
 
-//----------------ELIMINAR PRODUCTO--------------
-
-// function deleteProductBuy(indice){
-//     let count2=0;
-//     productOrderFF.splice(indice, 1);
-//     sessionStorage.setItem("order",JSON.stringify(productOrderFF));
-
-//     productOrderFF.forEach(productOrderFF => {
-//         count2 += parseInt(productOrderFF.quantity)
-//         })
-//         badgeHTMLbuy.innerText=count2;
-//         let valorTotal =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
-//         total.innerHTML = `$ ${valorTotal}`
-//     console.log(productOrderFF)
-//     // showAlert("Su producto se ha borrado111", "succes")
-//     renderizarTablaOrdenes()
-// }
 
 function deleteProductBuy(indice) {
     let count2 = 0;
@@ -209,16 +273,16 @@ function deleteProductBuy(indice) {
         }
     }).then(value => {
         if (value === "delete") {
-            productOrderFF.splice(indice, 1);
-            sessionStorage.setItem("order", JSON.stringify(productOrderFF));
+            productOrder.splice(indice, 1);
+            sessionStorage.setItem("order", JSON.stringify(productOrder));
 
-            productOrderFF.forEach(productOrderFF => {
-                count2 += parseInt(productOrderFF.quantity)
+            productOrder.forEach(productOrder => {
+                count2 += parseInt(productOrder.quantity)
             })
-            badgeHTMLbuy.innerText = count2;
-            let valorTotal = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
+            // badgeHTMLbuy.innerText = count2;
+            let valorTotal = productOrder.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
             total.innerHTML = `$ ${valorTotal}`
-            console.log(productOrderFF)
+            console.log(productOrder)
 
             swal({
                 title: "Elemento borrado correctamente",
@@ -265,24 +329,24 @@ function totalProducts(id) {
 
     const cantProd = document.getElementById(`cantidadOrden${id}`);
 
-    productOrderFF[id].cant = parseInt(cantProd.value);
-    productOrderFF[id].total = productOrderFF[id].cant * parseInt(productOrderFF[id].price);
+    productOrder[id].cant = parseInt(cantProd.value);
+    productOrder[id].total = productOrder[id].cant * parseInt(productOrderFF[id].price);
 
     sessionStorage.setItem('order', JSON.stringify(productOrderFF));
     renderizarTablaOrdenes();
     countProducts();
 }
 
-function countProducts() {
-    order = JSON.parse(sessionStorage.getItem('order')) || [];
-    let quantity = 0;
-    order.forEach((prod) => {
-        quantity += prod.cant;
-    })
-    badgeHTMLbuy.innerText = quantity;
-}
+// function countProducts() {
+//     order = JSON.parse(sessionStorage.getItem('order')) || [];
+//     let quantity = 0;
+//     order.forEach((prod) => {
+//         quantity += prod.cant;
+//     })
+//     badgeHTMLbuy.innerText = quantity;
+// }
 
-contarProductos();
+// countProducts();
 
 
 // function AccToOrderQuantity(index) {
