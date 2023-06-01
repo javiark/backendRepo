@@ -65,7 +65,7 @@ function renderizarDetail(product) {
                 <img src=${imageSrc2} alt=${product.name} class="containerDetail__image">
             </div>
 
-                 <div class="containerDetail__description" onclick="showNotUser()" >
+                 <div class="containerDetail__description"" >
                     <div class="containerDetail__container">
                             <div class="card__title">
                                 <p>${product.name}</p>

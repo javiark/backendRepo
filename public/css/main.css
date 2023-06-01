@@ -111,6 +111,15 @@ body {
   color: white;
   border-radius: 8px;
 }
+.card__btn-buy {
+  padding: 1rem 1.5rem;
+  background-color: #c3a343;
+  color: white;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
 .card__btn:hover {
   box-shadow: 0 0 5px #858585;
   transition: all 0.5s ease;
@@ -123,7 +132,15 @@ body {
   border: 0;
   cursor: pointer;
   font-size: 1rem;
-  pointer-events: none;
+}
+.card__btn-buy2 {
+  padding: 1rem 1.5rem;
+  background-color: #c3a343;
+  color: white;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
 }
 .card__btn-buy1:hover {
   box-shadow: 0 0 5px #858585;
@@ -1452,7 +1469,6 @@ body {
   text-align: center;
   font-weight: 500;
   margin-bottom: 0.3rem;
-  pointer-events: none;
 }
 .containerDetail .enable2 {
   pointer-events: all;
@@ -1794,7 +1810,6 @@ body {
   font-size: 1rem;
   height: 1.8rem;
   text-align: center;
-  pointer-events: none;
 }
 .containerDetail__btn-buy:hover {
   box-shadow: 0 0 5px #858585;

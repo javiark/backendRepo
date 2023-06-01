@@ -53,7 +53,7 @@ function renderizarProductos(products){
     </div>
     <div class="card__footerCard"  >
         
-        <button class="card__btn-buy"  onclick="addToOrder(${product._id}) " id=(${product._id})>
+        <button class="card__btn-buy"  onclick="addToOrder('${product._id}')")>
             Comprar
         </button>
 

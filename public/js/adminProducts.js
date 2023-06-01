@@ -167,7 +167,7 @@ async function addProduct(evt){
         }
 
     editIndex = undefined;
-    submitBtn.classList.remove('edit-btn');
+    submitBtn1.classList.remove('edit-btn');
     submitBtn1.innerText = 'Cargar Producto'
 
     cargarProductos();
