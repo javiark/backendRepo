@@ -2,19 +2,19 @@ const tableBodyOrder1 = document.getElementById('table-body-order');
 const productsArray = [];
 
 
-badgeHTMLbuy=document.getElementById("cart-count");
+badgeHTMLbuy = document.getElementById("cart-count");
 
 
 let orderUser1 = JSON.parse(localStorage.getItem("currentUser"))
-let productOrder = JSON.parse(sessionStorage.getItem("order")) 
-let productOrderFF = JSON.parse(sessionStorage.getItem("order")) 
+let productOrder = JSON.parse(sessionStorage.getItem("order"))
+let productOrderFF = JSON.parse(sessionStorage.getItem("order"))
 
-console.log(productOrder)|| [];
+console.log(productOrder) || [];
 
 
 
-const btnEnd1=document.getElementById("btnEnd")
-const productFormBuy=document.getElementById("add-product");
+const btnEnd1 = document.getElementById("btnEnd")
+const productFormBuy = document.getElementById("add-product");
 const submitBtn = document.getElementById("submit-btn");
 const total = document.getElementById("totalPrice")
 
@@ -59,7 +59,7 @@ let cart = []
 //     localStorage.setItem("orderArrayFinal", JSON.stringify(orderArray))
 
 // });
- 
+
 // let userName=orderUser.fullName
 // let userOrder=orderUser.email
 // let totalOrder=`$$`
@@ -76,23 +76,28 @@ let cart = []
 
 //----------------PINTAR TABLA--------------
 
-function renderizarTablaOrdenes(){
+function renderizarTablaOrdenes() {
 
     tableBodyOrder1.innerHTML = '';
-    if(!productOrderFF){
-        tableBodyOrder1.innerHTML="<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+    if (!productOrderFF) {
+        tableBodyOrder1.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
     }
-    
-    productOrderFF.forEach((prod, index)=>{
+
+    productOrderFF.forEach((prod, index) => {
 
         tableBodyOrder1.innerHTML += `<tr class="order">
         <td class="order__img-cell"><img class="product__img" src="${prod.imageOrder}" alt="${prod.nameOrder}"></td>
         <td class="order__name" onclick="editName(${index}")>${prod.nameOrder}</td>
         <td class="order__desc">${prod.descriptionOrder}</td>
-        <td class="order__quantity" ><div class="boton-container"><div class="boton-container__boton-div"><button class="boton-container__boton-order" onclick="restToOrderQuantity(${index}) " id=${index} >-</button> ${prod.quantity} <button class="boton-container__boton-order" onclick= "AccToOrderQuantity(${index})">+</button></div></div></td>
+        <td class="order__quantity" ><div class="boton-container"><div class="boton-container__boton-div"><button class="boton-container__boton-order" onclick="restToOrderQuantity(${index}) " id=${index} >
+        -
+        </button> <div id="cantidadOrden" ${prod.quantity}>  </div>
+        <button class="boton-container__boton-order" onclick= "AccToOrderQuantity(${index})">
+        +
+        </button></div></div></td>
         <td class="order__price" id="new-price">$ ${prod.priceOrder}</td>
-        <td class="order__price">$ ${prod.priceOrder * prod.quantity }</td>
+        <td class="order__price">$ ${prod.priceOrder * prod.quantity}</td>
         <td class="order__actions">
             <button class="product__action-btnDetail" onclick="deleteProductBuy(${index})">
                 <i class="fa-solid fa-trash"></i>
@@ -102,49 +107,49 @@ function renderizarTablaOrdenes(){
     
     `
     })
-    }
+}
 
 
 
-    renderizarTablaOrdenes()
+renderizarTablaOrdenes()
 
 //---------------------LIMPIAR TABLA SI NO HAY USUARIO-------------------------//
 
-    function cleantable(){
+function cleantable() {
 
-        if (orderUser1) {
-                // console.log("hay usuario")
-            }else{
-                tableBodyOrder1.innerHTML = '';
-                productOrder= [];
-                // sessionStorage.setItem("order", JSON.stringify(productsArray))
-                actualizarBadge();
-            }
+    if (orderUser1) {
+        // console.log("hay usuario")
+    } else {
+        tableBodyOrder1.innerHTML = '';
+        productOrder = [];
+        // sessionStorage.setItem("order", JSON.stringify(productsArray))
+        actualizarBadge();
     }
+}
 
 cleantable()
 
 
 //----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
-let count=0;
-function cartUpdate(){
-productOrder.forEach(productOrder => {
-    count += parseInt(productOrder.quantity)
-})
+let count = 0;
+function cartUpdate() {
+    productOrder.forEach(productOrder => {
+        count += parseInt(productOrder.quantity)
+    })
 
-badgeHTMLbuy.innerText=count;
+    badgeHTMLbuy.innerText = count;
 }
 cartUpdate()
 
 //---------------------AGREGAR PRODUCTO COMPRADO MONGO-------------------------//
 
 console.log(orderFinal)
-async function addToOrder(index){
+async function addToOrder(index) {
     try {
-    return res.send(`DELETE USER`);
+        return res.send(`DELETE USER`);
     } catch (error) {
-    console.log(error);
-     return responseCreator(res, 500, )
+        console.log(error);
+        return responseCreator(res, 500,)
     }
 
 }
@@ -152,39 +157,39 @@ async function addToOrder(index){
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
 console.log(productsArray)
-function addToOrder(index){
+function addToOrder(index) {
 
 
 
     let count1 = 0;
-    let orderBuy =orderFinal[index]
-    const existe = productsArray.some(prod => prod.productID===index)
+    let orderBuy = orderFinal[index]
+    const existe = productsArray.some(prod => prod.productID === index)
 
-    if(existe){
-        const prod = productsArray.map(prod =>{
-            if(prod.productID===index){
+    if (existe) {
+        const prod = productsArray.map(prod => {
+            if (prod.productID === index) {
                 prod.quantity++
             }
         })
-    }else{
-    productsArray.push(orderBuy)
-    let arrayProducts = Object.values(productsArray)
+    } else {
+        productsArray.push(orderBuy)
+        let arrayProducts = Object.values(productsArray)
 
     }
     productsArray.forEach(productsArray => {
-    count1 += parseInt(productsArray.quantity)
+        count1 += parseInt(productsArray.quantity)
     })
-    swal ({
-        title:"Producto añadido al carrito",
+    swal({
+        title: "Producto añadido al carrito",
         icon: 'success',
-    })  
-    badgeHTMLbuy.innerText=count1;
+    })
+    badgeHTMLbuy.innerText = count1;
     // sessionStorage.setItem("order", JSON.stringify(productsArray))
 }
 
 
 //-----------------------OBTENER ID DE USUARIO---------------------
-const usuarioID1 = productsUser3.findIndex(id1=>id1.email === orderUser.email)
+const usuarioID1 = productsUser3.findIndex(id1 => id1.email === orderUser.email)
 // console.log(usuarioID1)
 
 
@@ -192,24 +197,24 @@ const usuarioID1 = productsUser3.findIndex(id1=>id1.email === orderUser.email)
 
 //----------------ACTUALIZAR PRECIO--------------
 
-let valorTotal =productOrder.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
+let valorTotal = productOrder.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
 total.innerHTML = `$ ${valorTotal}`
 
 
 
 //----------------ELIMINAR PRODUCTO--------------
 
-function deleteProductBuy(indice){
-    let count2=0;
+function deleteProductBuy(indice) {
+    let count2 = 0;
     productOrderFF.splice(indice, 1);
-    sessionStorage.setItem("order",JSON.stringify(productOrderFF));
+    sessionStorage.setItem("order", JSON.stringify(productOrderFF));
 
     productOrderFF.forEach(productOrderFF => {
         count2 += parseInt(productOrderFF.quantity)
-        })
-        badgeHTMLbuy.innerText=count2;
-        let valorTotal =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
-        total.innerHTML = `$ ${valorTotal}`
+    })
+    badgeHTMLbuy.innerText = count2;
+    let valorTotal = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
+    total.innerHTML = `$ ${valorTotal}`
     console.log(productOrderFF)
     showAlert("Su producto se ha borrado", "succes")
     renderizarTablaOrdenes()
@@ -219,53 +224,19 @@ function deleteProductBuy(indice){
 
 //----------------SUMAR CANTIDAD PRODUCTO--------------
 
-    function AccToOrderQuantity(index){
-        console.log(index)
-        // console.log("funcionaboton")
-        let count2=0
-        // console.log(productOrder)
-        let orderAdd = productOrderFF[index]
-        console.log(orderAdd)
-
-        productOrderFF.forEach((idx)=>{
-            console.log(idx)
-            if(orderAdd===idx ) {
-                idx.quantity++;
-            }   
-        })
-
-        productOrderFF.forEach(productOrderFF => {
-            count2 += parseInt(productOrderFF.quantity)
-        })
-        console.log(count2)
-
-        badgeHTMLbuy.innerText=count2;
-    
-        sessionStorage.setItem("order", JSON.stringify(productOrderFF))
-    
-        //calcular Valor total
-        let valorTotalSumar =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
-        total.innerHTML = `$ ${valorTotalSumar}`
-        
-        renderizarTablaOrdenes()
-    
-        }
-
-        //----------------RESTAR CANTIDAD PRODUCTO--------------
-
-function restToOrderQuantity(index){
+function AccToOrderQuantity(index) {
     console.log(index)
     // console.log("funcionaboton")
-    let count2=0
+    let count2 = 0
     // console.log(productOrder)
     let orderAdd = productOrderFF[index]
     console.log(orderAdd)
 
-    productOrderFF.forEach((idx)=>{
+    productOrderFF.forEach((idx) => {
         console.log(idx)
-        if(orderAdd===idx & idx.quantity>0) {
-            idx.quantity--;
-        }   
+        if (orderAdd === idx) {
+            idx.quantity++;
+        }
     })
 
     productOrderFF.forEach(productOrderFF => {
@@ -273,60 +244,94 @@ function restToOrderQuantity(index){
     })
     console.log(count2)
 
-    badgeHTMLbuy.innerText=count2;
+    badgeHTMLbuy.innerText = count2;
 
     sessionStorage.setItem("order", JSON.stringify(productOrderFF))
 
     //calcular Valor total
-    let valorTotalSumar =productOrderFF.reduce((acc,prod) => acc + prod.quantity * prod.priceOrder,0 )
+    let valorTotalSumar = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
     total.innerHTML = `$ ${valorTotalSumar}`
-    
+
     renderizarTablaOrdenes()
 
+}
+
+//----------------RESTAR CANTIDAD PRODUCTO--------------
+
+function restToOrderQuantity(index) {
+    console.log(index)
+    // console.log("funcionaboton")
+    let count2 = 0
+    // console.log(productOrder)
+    let orderAdd = productOrderFF[index]
+    console.log(orderAdd)
+
+    productOrderFF.forEach((idx) => {
+        console.log(idx)
+        if (orderAdd === idx & idx.quantity > 0) {
+            idx.quantity--;
+        }
+    })
+
+    productOrderFF.forEach(productOrderFF => {
+        count2 += parseInt(productOrderFF.quantity)
+    })
+    console.log(count2)
+
+    badgeHTMLbuy.innerText = count2;
+
+    sessionStorage.setItem("order", JSON.stringify(productOrderFF))
+
+    //calcular Valor total
+    let valorTotalSumar = productOrderFF.reduce((acc, prod) => acc + prod.quantity * prod.priceOrder, 0)
+    total.innerHTML = `$ ${valorTotalSumar}`
+
+    renderizarTablaOrdenes()
+
+}
+//----------------FINALIZAR COMPRA--------------
+// if(tableBodyOrder=''){
+//     console.log("no hay nada")
+// }
+
+if (productOrder.length === 0) {
+    console.log("no")
+    btnEnd1.classList.add("buy-btn-empty")
+
+}
+
+function buyEnd() {
+    if (!productOrder) {
+        showAlert("Su carrito esta vacio", "warning")
+    } else {
+
+
+        showAlert("Gracias por su compra", "succes")
+
+        sessionStorage.removeItem("order");
+
+        setTimeout(() => {
+            window.location.href = "/"
+
+        }, 3000)
     }
-        //----------------FINALIZAR COMPRA--------------
-        // if(tableBodyOrder=''){
-        //     console.log("no hay nada")
-        // }
-
-        if(productOrder.length===0){
-            console.log("no")
-            btnEnd1.classList.add("buy-btn-empty")
-
-        }
-
-        function buyEnd(){
-            if(!productOrder){
-                showAlert("Su carrito esta vacio", "warning")
-            }else{
-
-            
-            showAlert("Gracias por su compra", "succes")
-
-            sessionStorage.removeItem("order");
-
-            setTimeout(()=>{
-                window.location.href="/"
-        
-            },3000) 
-        }
 
 
-        }
-        function showNotUser(){
-            console.log("anda boton")
-            if(!orderUser1){
+}
+function showNotUser() {
+    console.log("anda boton")
+    if (!orderUser1) {
 
-                swal ({
-                    title:"Deberia loguearse para comprar",
-                    icon: 'warning',
-                })  
+        swal({
+            title: "Deberia loguearse para comprar",
+            icon: 'warning',
+        })
 
-            }
-        }
+    }
+}
 
 
-    
 
-  
+
+
 

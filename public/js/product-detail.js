@@ -1,5 +1,5 @@
 
-sessionStorage.clear("order");
+// sessionStorage.clear("order");
 const tableBodyOrder3 = document.getElementById('table-body-order');
 let productOrderDetail = JSON.parse(sessionStorage.getItem("order")) || [];
 // let productArray = JSON.parse(localStorage.getItem("orderArrayFinal")) || [];
@@ -11,20 +11,15 @@ const URL_public2 = 'http://localhost:4000';
 
 
 
-// let productOrderBuy = JSON.parse(sessionStorage.getItem("orderDetail")) ;
 const params = window.location.search;
-// console.log(params)
+
 const index = params.split("id=")[1].split("&")[0];
-//obtener id de url. Metodo recomendado para obtener queryParams es usando URLSearchParams
+
 const paramsUrl = new URLSearchParams(params);
 const paramsEntries = Object.fromEntries(paramsUrl)
-// console.log(paramsEntries)
+
 const indice = paramsEntries.id;
-// const products1 = JSON.parse(localStorage.getItem("products"));
-// console.log(products1)
-// const product = products1[indice];
-// console.log(product)
-// let orderFinal1 = JSON.parse(localStorage.getItem("orderArrayFinal"))
+
 let badgeHTMLbuy2 = document.getElementById("cart-count");
 let productOrder2 = JSON.parse(sessionStorage.getItem("order")) || [];
 const cardContainer1 = document.querySelector("#card-detail");
@@ -118,55 +113,76 @@ let badgeHTMLbuy3 = document.getElementById("countNumber");
 let productsDetail = []
 
 
-function restCount(index) {
-    console.log(index)
-    let orderDetail1 = [orderFinal1[index]]
-    console.log(orderDetail1)
+// function restCount(index) {
+//     console.log(index)
+//     let orderDetail1 = [orderFinal1[index]]
+//     console.log(orderDetail1)
 
-    console.log(index)
-    let countNumber = 0;
-    orderFinal1.forEach((idx) => {
-        let countNumb = idx.quantity
-        if (idx.quantity > 0) {
-            idx.quantity--;
-        }
+//     console.log(index)
+//     let countNumber = 0;
+//     orderFinal1.forEach((idx) => {
+//         let countNumb = idx.quantity
+//         if (idx.quantity > 0) {
+//             idx.quantity--;
+//         }
 
-        badgeHTMLbuy3.innerText = idx.quantity;
-        badgeHTMLbuy2.innerText = idx.quantity;
+//         badgeHTMLbuy3.innerText = idx.quantity;
+//         badgeHTMLbuy2.innerText = idx.quantity;
 
-    })
+//     })
 
-    console.log(orderDetail1)
-    sessionStorage.setItem("order", JSON.stringify(orderDetail1))
-    showAlert("Producto quitado de carrito", "succes")
+//     console.log(orderDetail1)
+//     sessionStorage.setItem("order", JSON.stringify(orderDetail1))
+//     showAlert("Producto quitado de carrito", "succes")
 
+// }
+
+async function cargarProductos2(id) {
+    console.log(id)
+    try {
+        respuesta = await axios.get(`${URL1}/product/${id}`)
+
+        const prodElegido = respuesta.data.product;
+        console.log(prodElegido)
+        // localStorage.setItem("products", JSON.stringify(products))
+        renderizarDetail(prodElegido)
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargarProductos2(index)
+
+// function addCount(index){
+//     let input = document.getElementById(`order-cant-input${id}`)
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+async  function addCount(index) {
+    try {
+        respuesta = await axios.get(`${URL1}/product/${index}`)
+        const prodElegido = respuesta.data.product;
+        console.log(prodElegido)
+        // localStorage.setItem("products", JSON.stringify(products))
+        renderizarDetail(prodElegido)
+
+
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-
-
-function addCount(index) {
-    console.log(index)
-    let orderDetail1 = [orderFinal1[index]]
-
-
-    let countNumber = 1;
-    orderFinal1.forEach((idx) => {
-        let countNumb = idx.quantity;
-        idx.quantity++;
-
-        badgeHTMLbuy3.innerText = idx.quantity;
-        badgeHTMLbuy2.innerText = idx.quantity;
-
-    })
-
-    console.log(orderDetail1)
-    sessionStorage.setItem("order", JSON.stringify(orderDetail1))
-    swal({
-        title: "el producto se edito correctamente",
-        icon: 'success',
-    })
-
-}
 
 function addToCart(index) {
     let orderDetail2 = [orderFinal1[index]]
@@ -200,6 +216,18 @@ function addToCart(index) {
     })
 
 }
+
+//----------------ACTUALIZAR CANTIDAD EN CARRITOS DE COMPRA--------------
+let count = 0;
+function cartUpdate() {
+    productOrderDetail.forEach(productOrderDetail => {
+        count += parseInt(productOrderDetail.quantity)
+    })
+
+    badgeHTMLbuy2.innerText = count;
+}
+cartUpdate()
+
 
 
 

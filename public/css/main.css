@@ -40,8 +40,7 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .card {
@@ -61,8 +60,7 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .card__body {
   display: flex;
@@ -478,8 +476,7 @@ body {
     width: 12rem;
     display: flex;
     justify-content: space-evenly;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 .main {
@@ -653,8 +650,7 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   background-color: brown;
   border: 1px solid 0;
 }
@@ -1106,8 +1102,7 @@ body {
   .imageAboutUs {
     height: 15.4rem;
     justify-content: center;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .section-info__title-container {
     display: flex;
@@ -1328,8 +1323,7 @@ body {
 
 .product__img {
   width: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1649,8 +1643,7 @@ body {
 
 .user__img {
   width: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1950,8 +1943,7 @@ body {
 
 .order__img {
   width: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -2161,7 +2153,7 @@ body {
   height: 2rem;
   border-radius: 1px;
   background-color: white;
-  width: 5rem;
+  width: 6rem;
   border: 1px solid rgba(20, 20, 20, 0.3);
 }
 .boton-container__boton-order {
@@ -2170,6 +2162,21 @@ body {
   border: none;
   background-color: white;
   cursor: pointer;
+}
+.boton-container__boton-order1 {
+  height: 1.7rem;
+  width: 1.5rem;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.boton-container__boton-number {
+  height: 1.7rem;
+  width: 1.5rem;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
 }
 
 .buy-btn-container {
@@ -2180,16 +2187,17 @@ body {
 
 .buy-btn {
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  width: 10rem;
-  border: 2px solid green;
+  padding: 1rem 1.5rem;
+  background-color: #c3a343;
   color: white;
-  background-color: green;
+  border-radius: 8px;
+  border: 0;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .buy-btn:hover {
-  background-color: rgb(1, 105, 1);
+  background-color: #ac954f;
 }
 
 .buy-btn-empty {
@@ -2232,4 +2240,4 @@ body {
     margin-left: 2rem;
     margin-top: 0rem;
   }
-}/*# sourceMappingURL=main.css.map */
+}
