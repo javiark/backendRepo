@@ -42,6 +42,10 @@ router.get("/admin-user", (req, res) => {
     return res.render("admin-user")
 }); 
 
+router.get("/admin-orders", (req, res) => {
+    return res.render("admin-orders")
+}); 
+
 router.get("/login", (req, res) => {
     return res.render("login")
 }); 

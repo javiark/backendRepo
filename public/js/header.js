@@ -13,8 +13,9 @@ function renderHeaderLinks(){
 
         if(currentUser.role ==="ADMIN_ROLE"){
 
-        const adminProductLink = createListItemElement("admin-product", "Admin Product");
-        const adminUserLink =createListItemElement("admin-user", "Admin User");
+        const adminProductLink = createListItemElement("admin-product", "Admin Productos");
+        const adminUserLink =createListItemElement("admin-user", "Admin Usuarios");
+        const adminOrderLink =createListItemElement("admin-user", "Admin Orders");
  
         // const productListItem= document.createElement("li");
         // const userListItem=document.createElement("li");
@@ -27,6 +28,7 @@ function renderHeaderLinks(){
 
         navbarList.appendChild(adminProductLink)
         navbarList.appendChild(adminUserLink)
+        navbarList.appendChild(adminOrderLink)
         
     }
 
@@ -79,6 +81,7 @@ function logout(){
     if(currentUser.role ==="ADMIN_ROLE"){
     document.getElementById("admin-product").remove();
     document.getElementById("admin-user").remove();
+    document.getElementById("admin-orders").remove();
     setTimeout(()=>{
         window.location.href="/"
     }, 1000)
