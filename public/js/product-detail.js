@@ -80,7 +80,7 @@ function renderizarDetail(product) {
                     </div>
 
 
-                    <a  class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy" onclick='addToCartDetail(${JSON.stringify(product)})'>Comprar Ahora</button><a/>
+                    <a  class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy" onclick='addToCartDetail(${index})'>Comprar Ahora</button><a/>
                     </div>
 
         </div>
@@ -136,11 +136,56 @@ function decrement(id) {
 
 }
 
-function updateTotal(id){
 
+
+
+
+async function addToCartDetail(id){
+    console.log(id)
+    try {
+        const respuesta = await axios.get(`${URL}/product/${id}`);
+        console.log(respuesta)
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    // order = JSON.parse(sessionStorage.getItem('order')) || [];
+    // let input = document.getElementById(`countNumber1${id}`)
+    // console.log(cantOrdenes.length)
+
+ 
+
+    // let index = (order.findIndex(el=>el.product==product.id))
+    
+    // if(index !== -1){
+    //     userCart[0].order[index].quantity++ 
+    // }else{
+    //     userCart[0].order.push({
+    //         product:product.id,
+    //         quantity:Number(cantidad)
+    //     })
+    }
+    
+    // sessionStorage.setItem("order", JSON.stringify(productsArray))
+    // renderOrder(userCart)
+    // actualizarBadge(userCart)
+    // showAlert('Producto agregado al carro de compras correctamente.','ok')
+
+
+
+
+
+
+
+
+
+async function updateTotal(id){
+    Order = JSON.parse(sessionStorage.getItem('order')) || [];
     let cantOrdenes = document.getElementById(`countNumber1${id}`)
     cant = cantOrdenes.length
-            
+    
+    console.log(product[id])
     product[id].cant =  parseInt(cant);
     product[id].total = product[id].cant * parseInt(product[id].price);
       
@@ -152,32 +197,9 @@ sessionStorage.setItem('order',JSON.stringify( products));
 
   }
 
-
-
-
-function addToCartDetail(id){
-    let input = document.getElementById(`countNumber1${id}`)
-    console.log(cantOrdenes.length)
-
- 
-
-    let index = (order.findIndex(el=>el.product==product.id))
-    
-    if(index !== -1){
-        userCart[0].order[index].quantity++ 
-    }else{
-        userCart[0].order.push({
-            product:product.id,
-            quantity:Number(cantidad)
-        })
-    }
-    
-    sessionStorage.setItem("order", JSON.stringify(productsArray))
-    // renderOrder(userCart)
-    // actualizarBadge(userCart)
-    // showAlert('Producto agregado al carro de compras correctamente.','ok')
+  module.exports = {
+    addToCartDetail
 }
-
 
 
 
