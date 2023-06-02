@@ -8,6 +8,7 @@ let productOrderDetail = JSON.parse(sessionStorage.getItem("order")) || [];
 
 const URL1 = 'http://localhost:4000/api';
 const URL_public2 = 'http://localhost:4000';
+const token = localStorage.getItem('token');
 
 const params = window.location.search;
 const index = params.split("id=")[1].split("&")[0];
@@ -80,7 +81,7 @@ function renderizarDetail(product) {
                     </div>
 
 
-                    <a  class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy" onclick='addToCartDetail(${index})'>Comprar Ahora</button><a/>
+                    <a  class="containerDetail__btn-buy" >  <button class="containerDetail__btn-buy" onclick="addToCartDetail('${product._id}')">Agregar a Carrito</button><a/>
                     </div>
 
         </div>
@@ -117,38 +118,125 @@ function increment(id) {
 
     input.value = currentValue + 1;
     currentValue = parseInt(input.value);
-    cantOrdenes.push(currentValue)
-    updateTotal(id)
+
+    // updateTotal(id)
 }
 
-console.log(cantOrdenes)
+
 
 function decrement(id) {
-    console.log(id)
+    // console.log(id)
     let input = document.getElementById(`countNumber1${id}`);
-    console.log(input)
+    // console.log(input)
     let currentValue = parseInt(input.value);
+
     if (currentValue > 1) {
         input.value = currentValue - 1;
         currentValue = parseInt(input.value);
     }
-    updateTotal(id)
+    // updateTotal(id)
 
 }
+console.log(cantOrdenes)
 
-
-
+console.log(cantOrdenes.length)
 
 
 async function addToCartDetail(id){
     console.log(id)
+    Order = JSON.parse(sessionStorage.getItem('order')) || [];
+    console.log(Order)
+    // console.log(id)
     try {
-        const respuesta = await axios.get(`${URL}/product/${id}`);
-        console.log(respuesta)
+        const res = await axios.get(`${URL1}/product/${id}`);
+        const product = res.data.product;
+        console.log(res)
+        const cantidad=document.getElementById(`countNumber1${id}`)
+        // let cantProd = parseInt( cantidad)
+        // let index = (Order.findIndex(el=>el.product==product.id))
+        // console.log(index)
+
+        const orderNew = {
+            id: product._id,
+            image: product.image,
+            name: product.name,
+            price: product.price,
+            cant: parseInt(cantidad.value),
+            total: parseInt(cantidad.value) * parseInt(product.price)
+           
+        }
+        console.log(orderNew)
+        const prod = Order.find((prod)=>{
+            if(prod.name === product.name){
+              prod.cant = parseInt(prod.cant) +  parseInt(cantidad.value);
+              prod.total = prod.cant * parseInt(prod.price);
+              return prod;
+            }
+          })
+          if(!prod) {
+            Order.push(orderNew);
+          }
+          sessionStorage.setItem('order',JSON.stringify( Order));
+
+          swal ({
+            title:"Producto agregado a la Orden",
+            icon: 'success',
+        })
+          countProducts()
     } catch (error) {
         console.log(error)
     }
 
+    // async function addToOrder(id){
+    //     let count1 = 0;
+    //     let Order = JSON.parse(sessionStorage.getItem("order"))|| [];
+    //     try {
+    //         const respuesta = await axios.get(`${URL2}/product/${id}`);
+    //         const product = respuesta.data.product;
+    
+            
+    //     const newOrder = {
+    //         id: product._id,
+    //         image:product.image,
+    //         name: product.name,
+    //         price: product.price,
+    //         cant: 1,
+    //         total: product.price
+            
+    //     }
+            
+    //     const prod = Order.find((prod)=>{
+    //         if(prod.name === product.name){
+    //           prod.cant = parseInt(prod.cant) + 1 ;
+    //           prod.total = prod.cant * parseInt(prod.price);
+    //           return prod;
+    //         }
+    //       })
+      
+    //       if(!prod) {
+    //         Order.push(newOrder);
+    //       }
+    
+    //     //Guardarlo en el local storage
+    //     sessionStorage.setItem('order',JSON.stringify( Order));
+    
+    //         swal({
+    //             title: "el producto se agrego al carrito",
+    //             icon: 'success',
+    //         })
+    //         Order.forEach(Order => {
+    //             count1 += parseInt(Order.cant)
+    //         })
+    //         badgeHTMLbuy.innerText = count1;
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    
+    // }
+    
+
+
+    
 
     // order = JSON.parse(sessionStorage.getItem('order')) || [];
     // let input = document.getElementById(`countNumber1${id}`)
@@ -196,10 +284,6 @@ sessionStorage.setItem('order',JSON.stringify( products));
 // contarProductos();
 
   }
-
-  module.exports = {
-    addToCartDetail
-}
 
 
 
