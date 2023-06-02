@@ -1,5 +1,28 @@
-let productos =JSON.parse(localStorage.getItem('products')) || [];
+// let productos =JSON.parse(localStorage.getItem('products')) || [];
 // console.log(productos)
+// let productos = [];
+const URL4 = 'http://localhost:4000/api';
+const URL_public4 = 'http://localhost:4000';
+
+
+async function cargarProductosFilter() {
+    try {
+        const respuesta = await axios.get(`${URL4}/products`);
+        products = respuesta.data.productos
+        // metodoFilter(products)
+        renderizarProductos(products)
+        console.log(products)
+
+      
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargarProductosFilter()
+
+
+
 
 //-------------BUSCARLO CON ENTER---------------//
 
@@ -12,11 +35,11 @@ function metodoFilter(evt){
     const text=evt.target.value.toLowerCase().trim();
     // console.dir(text)
 
-    const productosFiltrado =productos.filter((prod)=>{
+    const productosFiltrado =products.filter((prod)=>{
         
         // console.log(`el usuario filtrado es ${prod}`)
 
-        const filtra = prod.name.toLowerCase().includes(text);
+        const filtra = prod.name.includes(text);
 
         return filtra;
 
@@ -37,7 +60,7 @@ function searchProduct(evt){
         return
     }
     const foundProduct=document.getElementById('searchProductBtn').value.toLowerCase()
-    let resultFind = productos.filter((el)=>{
+    let resultFind = products.filter((el)=>{
         return el.name.toLowerCase().includes(foundProduct)       
     })
     if (resultFind.length>0){
