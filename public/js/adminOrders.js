@@ -5,7 +5,9 @@ const token = localStorage.getItem('token');
 
 const orderCont = document.getElementById('orders-cont');
 const userForm = document.getElementById('my-account-form');
-const tableBody = document.querySelector('#table-body');
+const tableBody = document.querySelector('#table-body-orders');
+const tableBody2 = document.querySelector('#table-body-orders-total');
+
 
 async function cargarOrdenes() {
     try {
@@ -13,9 +15,9 @@ async function cargarOrdenes() {
         const respuesta = await axios.get(`${URL5}/orders/user/${currentUserOrders._id}`)
         console.log(respuesta)
         const orderUser = respuesta.data.userOrders;
-        // renderizarTabla(orders)
-        console.log(orderUser)
         renderizarTablaOrdenes(orderUser)
+        console.log(orderUser)
+        // renderizarTablaOrdenes(orderUser)
 
     } catch (error) {
         console.log(error)
@@ -23,30 +25,32 @@ async function cargarOrdenes() {
 }
 cargarOrdenes()
 
-function renderizarTablaOrdenes(arrayProductos) {
+
+
+
+//2- Definir una función para iterar el array
+function renderizarTablaOrdenes(arrayOrders) {
     tableBody.innerHTML = '';
-    if (arrayProductos.length === 0) {
-        tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+    if (arrayOrders.length === 0) {
+        tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON ORDENES</p>"
         return
     }
     //3- Iterar el array para acceder a cada producto
 
-    arrayProductos.forEach((producto, index) => {
+    arrayOrders.forEach((order, index) => {
 
-        let imageSrc = producto.image ? `${URL_public}/upload/product/${producto.image}` : '/assets/images/no-product.png';
-        //4- Introducir dentro del tbody una fila por producto con sus respectivas celdas
         const tableRow = `<tr class="product">
-                            <td class="product__img-cell"><img class="product__img" src="${imageSrc}" alt="${producto.name}"></td>
-                            <td class="product__name" onclick="editName(${index}")>${producto.name}</td>
-                            <td class="product__desc">${producto.description}</td>
-                            <td class="product__price">$ ${producto.price}</td>
-                            <td class="product__desc">${producto.detail}</td>
+                            <td class="product__order">${order.userId.fullName}</td>
+                            <td class="product__order">${order._id}</td>
+                            <td class="product__price">$ ${order.totalPrice}</td>
+                            <td class="product__order">${order.products.length}</td>
+                            <td class="product__order">${order.status}</td>
                             <td class="product__actions">
-                                <button class="product__action-btnDetail" onclick="deleteProduct('${producto._id}')">
+                                <button class="product__action-btnDetail" onclick="deleteProduct('${order._id}')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editProduct1('${producto._id}')">
+                                <button class="product__action-btn product__btn-edit"  onclick="editProduct1('${order._id}')">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
 
@@ -58,6 +62,43 @@ function renderizarTablaOrdenes(arrayProductos) {
     });
 
 }
+
+// //2- Definir una función para iterar el array
+// function renderizarTablaOrdenesTotal(arrayOrders) {
+//     tableBody.innerHTML = '';
+//     if (arrayOrders.length === 0) {
+//         tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON ORDENES</p>"
+//         return
+//     }
+//     //3- Iterar el array para acceder a cada producto
+
+//     arrayOrders.forEach((order, index) => {
+
+//         const tableRow = `<tr class="product">
+
+//                             <td class="product__desc">${order._id}</td>
+//                             <td class="product__price">$ ${order.totalPrice}</td>
+//                             <td class="product__desc">${order.status}</td>
+//                             <td class="product__actions">
+//                                 <button class="product__action-btnDetail" onclick="deleteProduct('${order._id}')">
+//                                     <i class="fa-solid fa-trash"></i>
+//                                 </button>
+                           
+//                                 <button class="product__action-btn product__btn-edit"  onclick="editProduct1('${order._id}')">
+//                                     <i class="fa-solid fa-pencil " ></i>
+//                                 </button>
+
+                            
+//                             </td>
+//                         </tr>`
+//         tableBody.innerHTML += tableRow;
+
+//     });
+
+// }
+
+
+
 
 
 

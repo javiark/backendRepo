@@ -9,31 +9,61 @@
             <!-- =================INFO=================  -->
 
 
-            <div class="main">
+
+
+            <div class="main4">
                 <div class="adminContainer">
-                    <h1 class="header1">ORDEN POR USUARIO</h1>
+                    <h1 class="header1">BUSCAR ORDEN POR USUARIO</h1>
                     <div class="container">
-                        <div class="table-container-order">
+                        <form id="add-product" class="product-form-admin" onsubmit="addProduct(event)">
+                            <div class="input-box">
+                                <label for="nameLabel">Producto</label>
+                                <input type="text" name="name" id="nameLabel" required class="inputBox">
+                            </div>
+                            <div class="input-box">
+                                <label for="descLabel">Descripción</label>
+                                <textarea name="description" id="descLabel" rows="4" required class="inputBoxText">
+                            </textarea>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="priceLabel">Precio</label>
+                                <input type="number" name="price" id="priceLabel" required class="inputBox">
+                            </div>
+                            <div class="input-box" id="uploadImageInput">
+                                <label for="imgLabel" class="descLabel">Imagen</label>
+                                <input type="file" name="file" accept="image/*" id="imgLabel">
+                            </div>
+   
+                            <div class="input-box">
+                                <label for="descLabel">Detalle</label>
+                                <textarea name="detail" id="descLabel" rows="8" required class="inputBoxTextDetail">
+                            </textarea>
+                            </div>
+                            <!-- 
+                            <div class="input-box">
+                                <label for="stockLabel">Stock</label>
+                                <input type="checkbox" name="stock" id="stockLabel">
+                            </div> -->
+
+
+                            <button type="submit" class="submit-btn-products" id="submit-btn">Cargar Producto</button>
+                        </form>
+                        <div class="table-container">
                             <table class="table-product">
                                 <thead>
                                     <tr>
-                                        <th>Imagen</th>
-                                        <th>Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Subtotal</th>
-                                        <th></th>
+                                        <th>Usuario</th>
+                                        <th>ID de orden</th>
+                                        <th>Precio Total</th>
+                                        <th>Cantidad de Productos</th>
+                                        <th>Status</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody id="table-body-order">
-
+                                <tbody id="table-body-orders">
 
                                 </tbody>
-                                <tr>
-                                    <th colspan="4" class="final-price">PRECIO TOTAL</th>
-                                    <th class="final-price-number" id="totalPrice"></th>
-                                    <th class="final-price-number"></th>
-                                </tr>
                             </table>
                         </div>
 
@@ -42,10 +72,7 @@
             </div>
 
 
-
-
             <%- include('partials/footer') %>
-
                 <div class="whatsapp-container">
                     <a href="https://walink.co/1565a1" target="_blank">
                         <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"

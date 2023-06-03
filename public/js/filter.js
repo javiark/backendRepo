@@ -72,5 +72,25 @@ function searchProduct(evt){
     renderizarProductos(resultFind)
 }
 
+//-------------BUSCARLO POR ORDENES----------------//
+
+function searchProduct(evt){
+    if(evt.keyCode !==13 && evt.target.id !== 'productId'){
+        return
+    }
+    const foundOrder=document.getElementById('searchProductBtnOrder').value.toLowerCase()
+    let resultFind = products.filter((el)=>{
+        return el.name.toLowerCase().includes(foundProduct)       
+    })
+    if (resultFind.length>0){
+        document.getElementById("productsCount").innerHTML=(`Se encontraron ${resultFind.length} productos`);
+    }else{
+        document.getElementById("productsCount").innerHTML=(`No se han encontrado productos`)
+    }
+
+    renderizarProductos(resultFind)
+}
+
+
 
 

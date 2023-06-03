@@ -272,9 +272,7 @@ if (productOrder.length === 0) {
 
 let currentUser1 = JSON.parse(localStorage.getItem("currentUser"));
 
-let totalOrden = 0;
-let orden = {};
-let productPush = [];
+
 
 
 async function buyEnd() {
@@ -286,50 +284,53 @@ async function buyEnd() {
         })
     }
     else {
-            try {
-                productOrder.forEach((prod) => {
-                    const producto = {
-                        productName:prod.name,
-                        productId: prod.id,
-                        quantity: prod.cant,
-                        price: prod.price
-                    }
-                    totalOrden += prod.total
-                    productPush.push(producto)
-                    console.log(productPush)
-                });
+        try {
+            let totalOrden = 0;
+            let orden = {};
+            let productPush = [];
+            productOrder.forEach((prod) => {
+                const producto = {
+                    productName: prod.name,
+                    productId: prod.id,
+                    quantity: prod.cant,
+                    price: prod.price
+                }
+                totalOrden += prod.total
+                productPush.push(producto)
+                console.log(productPush)
+            });
 
-                orden.products =productPush;
-                orden.totalPrice =  totalOrden;
-                orden.userId = currentUser._id;
-                orden.createdAt = Date.now;
+            orden.products = productPush;
+            orden.totalPrice = totalOrden;
+            orden.userId = currentUser._id;
+            orden.createdAt = Date.now;
 
-                console.log(orden)
+            console.log(orden)
 
-                await axios.post(`${URL2}/orders`, orden);
-                setTimeout(() => {
-                    window.location.href = "/"
+            await axios.post(`${URL2}/orders`, orden);
+            // setTimeout(() => {
+            //     window.location.href = "/"
 
-                }, 3500)
+            // }, 3500)
 
-                sessionStorage.removeItem('order')
-                swal({
-                    title: "Gracias por su compra",
-                    icon: 'success',
-                })
-                productPush = [];
-                renderizarTablaOrdenes();
-                countProducts();
+            sessionStorage.removeItem('order')
+            swal({
+                title: "Gracias por su compra",
+                icon: 'success',
+            })
+            productPush = [];
+            renderizarTablaOrdenes();
+            countProducts();
 
-            } catch (error) {
-                swal({
-                    title: "No se pudo realizar la orden",
-                    icon: 'error',
-                })
-                console.log(error);
-            }
+        } catch (error) {
+            swal({
+                title: "No se pudo realizar la orden",
+                icon: 'error',
+            })
+            console.log(error);
         }
     }
+}
 
 
 

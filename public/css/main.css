@@ -2249,3 +2249,7 @@ body {
     margin-top: 0rem;
   }
 }
+.product__order {
+  width: 10%;
+  text-align: center;
+}
