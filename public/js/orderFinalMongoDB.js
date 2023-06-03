@@ -21,6 +21,7 @@ const btnEnd1 = document.getElementById("btnEnd")
 const productFormBuy = document.getElementById("add-product");
 const submitBtn = document.getElementById("submit-btn");
 const total = document.getElementById("totalPrice")
+console.log(total)
 
 
 //---------------------RECORRER TODO EL ARRAY DE PRODUCTOS-------------------------//
@@ -95,38 +96,38 @@ renderizarTablaOrdenes()
 
 //---------------------AGREGAR PRODUCTO COMPRADO-------------------------//
 
-async function addToOrder(id){
+async function addToOrder(id) {
     let count1 = 0;
-    let Order = JSON.parse(sessionStorage.getItem("order"))|| [];
+    let Order = JSON.parse(sessionStorage.getItem("order")) || [];
     try {
         const respuesta = await axios.get(`${URL2}/product/${id}`);
         const product = respuesta.data.product;
 
-        
-    const newOrder = {
-        id: product._id,
-        image:product.image,
-        name: product.name,
-        price: product.price,
-        cant: 1,
-        total: product.price
-        
-    }
-        
-    const prod = Order.find((prod)=>{
-        if(prod.name === product.name){
-          prod.cant = parseInt(prod.cant) + 1 ;
-          prod.total = prod.cant * parseInt(prod.price);
-          return prod;
-        }
-      })
-  
-      if(!prod) {
-        Order.push(newOrder);
-      }
 
-    //Guardarlo en el local storage
-    sessionStorage.setItem('order',JSON.stringify( Order));
+        const newOrder = {
+            id: product._id,
+            image: product.image,
+            name: product.name,
+            price: product.price,
+            cant: 1,
+            total: product.price
+
+        }
+
+        const prod = Order.find((prod) => {
+            if (prod.name === product.name) {
+                prod.cant = parseInt(prod.cant) + 1;
+                prod.total = prod.cant * parseInt(prod.price);
+                return prod;
+            }
+        })
+
+        if (!prod) {
+            Order.push(newOrder);
+        }
+
+        //Guardarlo en el local storage
+        sessionStorage.setItem('order', JSON.stringify(Order));
 
         swal({
             title: "el producto se agrego al carrito",
@@ -175,7 +176,7 @@ function deleteProductBuy(indice) {
             });
             totalBuy()
             renderizarTablaOrdenes()
-  
+
 
 
         } else {
@@ -185,11 +186,6 @@ function deleteProductBuy(indice) {
 
 
 }
-
-
-
-
-
 
 
 
@@ -207,7 +203,7 @@ function AccToOrderQuantity(id) {
 function restToOrderQuantity(id) {
     let input = document.getElementById(`cantidadOrden${id}`);
     let currentValue = parseInt(input.value);
-    if ( currentValue > 1) {
+    if (currentValue > 1) {
         input.value = currentValue - 1;
         currentValue = parseInt(input.value);
     }
@@ -218,35 +214,35 @@ function restToOrderQuantity(id) {
 
 
 
-function totalOrder1(id){
+function totalOrder1(id) {
 
-    const prodQuantity = document.getElementById(`cantidadOrden${id}`);       
-    productOrder[id].cant =  parseInt(prodQuantity.value);
-    productOrder[id].total =productOrder[id].cant * parseInt(productOrder[id].price);
-
-
-      
-//Guardarlo en el local storage
-sessionStorage.setItem('order',JSON.stringify( productOrder));
-renderizarTablaOrdenes();
+    const prodQuantity = document.getElementById(`cantidadOrden${id}`);
+    productOrder[id].cant = parseInt(prodQuantity.value);
+    productOrder[id].total = productOrder[id].cant * parseInt(productOrder[id].price);
 
 
-  }
 
-      //----------------ACTUALIZAR PRECIO--------------
-function totalBuy(){
+    //Guardarlo en el local storage
+    sessionStorage.setItem('order', JSON.stringify(productOrder));
+    renderizarTablaOrdenes();
+
+
+}
+
+//----------------ACTUALIZAR PRECIO--------------
+function totalBuy() {
     let valorTotal = 0;
     Order = JSON.parse(sessionStorage.getItem('order')) || [];
     Order.forEach((product) => {
-        valorTotal +=  Math.round((product.cant * product.price) * 100) / 100;;
-      });
-    
+        valorTotal += Math.round((product.cant * product.price) * 100) / 100;;
+    });
 
-      total.innerHTML = `$ ${valorTotal}`
 
-      console.log(valorTotal)
-    }
-    totalBuy()
+    total.innerHTML = `$ ${valorTotal}`
+
+    console.log(valorTotal)
+}
+totalBuy()
 
 
 
@@ -258,11 +254,11 @@ function totalBuy(){
 // valorTotal()
 
 
-function countProducts(){
+function countProducts() {
     Order = JSON.parse(sessionStorage.getItem('order')) || [];
     let quantity = 0;
     Order.forEach((prod) => {
-        quantity += prod.cant; 
+        quantity += prod.cant;
     })
     badgeHTMLbuy.innerText = quantity;
 }
@@ -277,30 +273,149 @@ if (productOrder.length === 0) {
 
 }
 
-function buyEnd() {
-    if (!productOrder) {
+// function buyEnd() {
+//     if (!productOrder) {
+//         swal({
+//             title: `Su carrito esta vacio`,
+//             icon: 'error',
+//         })
+//     } else {
+
+
+//         swal({
+//             title: `Gracias por su compra`,
+//             icon: 'success',
+//         })
+
+//         sessionStorage.removeItem("order");
+
+//         setTimeout(() => {
+//             window.location.href = "/"
+
+//         }, 3000)
+//     }
+// }
+
+let currentUser1 = JSON.parse(localStorage.getItem("currentUser"));
+
+let totalOrden = 0;
+const orden = {};
+const productPush = [];
+
+
+async function buyEnd() {
+    const currentUser2 = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser2) {
         swal({
-            title: `Su carrito esta vacio`,
-            icon: 'error',
+            title: "Tiene que loguearse para comprar",
+            icon: 'info',
         })
-    } else {
+    }
+    else {
+        if (productOrder.length === 0) {
+            swal({
+                title: "Su carrito esta vacio",
+                icon: 'info',
+            })
+        } else {
+            try {
+                productOrder.forEach((prod) => {
+                    const producto = {
+                        productName:prod.name,
+                        productId: prod.id,
+                        quantity: prod.cant,
+                        price: prod.price
+                    }
+                    totalOrden += prod.total
+                    productPush.push(producto)
+                    console.log(productPush)
+                });
 
+                orden.products =productPush;
+                orden.total = total;
+                orden.userId = currentUser._id;
+                orden.createdAt = Date.now;
 
-        swal({
-            title: `Gracias por su compra`,
-            icon: 'success',
-        })
+                console.log(orden)
 
-        sessionStorage.removeItem("order");
+                await axios.post(`${URL2}/orders`, orden);
+                setTimeout(() => {
+                    window.location.href = "/"
 
-        setTimeout(() => {
-            window.location.href = "/"
+                }, 3000)
 
-        }, 3000)
+                sessionStorage.removeItem('order')
+                productPush = [];
+                renderizarTabla();
+                countProducts();
+                swal({
+                    title: "Gracias por su compra",
+                    icon: 'success',
+                })
+            } catch (error) {
+                swal({
+                    title: "No se pudo realizar la orden",
+                    icon: 'error',
+                })
+                console.log(error);
+            }
+        }
     }
 }
 
-let currentUser1 = JSON.parse(localStorage.getItem("currentUser"));
+
+
+
+async function finalizarCompra() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        showAlert('Debe estar logueado para poder Finalizar la compra', 'info')
+    }
+    else {
+        if (Products.length === 0) {
+            showAlert('Debe seleccionar un producto para poder Finalizar la compra', 'info')
+        } else {
+            try {
+                let totalOrden = 0;
+                const orden = {};
+                const productos = [];
+                Products.forEach((product) => {
+                    const producto = {
+                        productId: product.id,
+                        quantity: product.cant,
+                        price: product.price
+                    }
+                    // totalOrden += product.total
+                    productos.push(producto)
+                });
+
+                orden.products = productos;
+                orden.total = total;
+                orden.userId = currentUser._id;
+                orden.createdAt = Date.now;
+                orden.status = 'onhold';
+                orden.updateAt = Date.now;
+
+                await axios.post(`${URL}/orders`, orden);
+
+                sessionStorage.removeItem('order')
+                Products = [];
+                renderizarTabla();
+                showAlert('Compra Finalizada', 'exito')
+                contarProductos();
+            } catch (error) {
+                showAlert('No se pudo procesar la Orden', 'error');
+                console.log(error);
+            }
+
+
+
+
+        }
+
+    }
+
+}
 
 
 

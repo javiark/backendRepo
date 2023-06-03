@@ -10,7 +10,7 @@ async function cargarProductosFilter() {
         const respuesta = await axios.get(`${URL4}/products`);
         products = respuesta.data.productos
         // metodoFilter(products)
-        renderizarProductos(products)
+        // renderizarProductos(products)
         console.log(products)
 
       

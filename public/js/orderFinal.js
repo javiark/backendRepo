@@ -225,7 +225,7 @@ function deleteProductBuy(indice) {
 //----------------SUMAR CANTIDAD PRODUCTO--------------
 
 
-function AccToOrderQuantity1(prod, prodName){
+function AccToOrderQuantity1(prod, prodName) {
     const productoEncontrado = products.find(producto => producto.name === productName);
 
 }
@@ -335,6 +335,9 @@ function showNotUser() {
 
     }
 }
+
+
+
 
 
 

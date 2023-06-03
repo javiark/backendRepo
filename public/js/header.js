@@ -15,7 +15,7 @@ function renderHeaderLinks(){
 
         const adminProductLink = createListItemElement("admin-product", "Admin Productos");
         const adminUserLink =createListItemElement("admin-user", "Admin Usuarios");
-        const adminOrderLink =createListItemElement("admin-user", "Admin Orders");
+        const adminOrderLink =createListItemElement("admin-orders", "Admin Orders");
  
         // const productListItem= document.createElement("li");
         // const userListItem=document.createElement("li");
