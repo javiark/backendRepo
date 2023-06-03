@@ -14,7 +14,7 @@ const orderSchema = new Schema({
     userId:{ type:Schema.Types.ObjectId, ref: "User", require: true },
     createdAt: { type: Date, require: true, default: Date.now}, // al tener default lo crea por defecto
     status:{ type: String, enum: ["onhold","inprogress", "done"], default:"onhold" }, // si esta en proceso, si esta despachado o entregado. Con enum     shippingAddress: { address: String, city: String,  postalCode: String },
-    totalPrice: { type: Number, required: true },
+    totalPrice: { type: Number},
     paymentMethod: String,
     paymentResult: {
         id: String,

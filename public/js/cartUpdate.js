@@ -8,7 +8,7 @@ function countProducts(){
         quantity += prod.cant; 
     })
     badgeHTMLbuy5.innerText = quantity;
-    console.log(quantity)
+    // console.log(quantity)
 }
 
 countProducts();

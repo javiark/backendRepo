@@ -7,14 +7,16 @@ const Order = require("../schemas/order.schema");
 async function createOrder(req, res) { // se hace async pq pide algo del backend
     // console.log(req.body);
     try {
-        const body = req.body;
+        const order = new Order(req.body)
+        await order.save()
+        // const body = req.body;
 
-        const data = new Order(body);
+        // const data = new Order(body);
         // data.totalPrice = await verifyOrderAndCalculate(req.body.products);
 
-        const newOrder = await data.save();
+        // const newOrder = await data.save();
 
-        responseCreator(res, 200, "Orden creada correctamente", { newOrder });
+        responseCreator(res, 200, "Orden creada correctamente");
 
     } catch (error) {
         console.log(error)
@@ -22,6 +24,21 @@ async function createOrder(req, res) { // se hace async pq pide algo del backend
     }
 
 }
+
+// const addOrder = async (req,res) => {
+//     try {
+//         const order = new Order(req.body)
+//         await order.save()
+//         res.status(200).send('Orden añadida correctamente');
+//     } catch (error) {
+//         res.status(500).send({
+//             msg: 'La orden no se pudo guardar',
+//             error: error
+//         });
+//         console.log(error)
+//     }       
+// }
+
 
 async function getOrders(req, res) {
     // responseCreator(res, 200, "Orden obtenida correctamente");

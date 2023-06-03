@@ -1,6 +1,6 @@
 // let products2 = [];
 const token1 = localStorage.getItem('token');
-const cardContainer=document.getElementById("card-container");
+const cardContainer = document.getElementById("card-container");
 
 const URL3 = 'http://localhost:4000/api';
 const URL_public3 = 'http://localhost:4000';
@@ -20,18 +20,18 @@ async function cargarProductos1() {
 cargarProductos1()
 
 
-function renderizarProductos(products){
+function renderizarProductos(products) {
 
-    cardContainer.innerHTML=``;
+    cardContainer.innerHTML = ``;
 
-    products.forEach((product, index)=>{ //index la posicion
+    products.forEach((product, index) => { //index la posicion
         let imageSrc = product.image ? `${URL_public3}/upload/product/${product.image}` : '/assets/images/no-product.png';
 
-        const card= document.createElement("article");
+        const card = document.createElement("article");
 
         card.classList.add("card")
 
-        card.innerHTML=`<div class="card__header">
+        card.innerHTML = `<div class="card__header">
         <img src="${imageSrc}" alt="${product.name}" class="card__img">
     </div>
     <div class="card__body">
@@ -63,7 +63,7 @@ function renderizarProductos(products){
             </a>
         </div>
     </div>`
-    cardContainer.appendChild(card);
+        cardContainer.appendChild(card);
     })
 
 }
@@ -80,38 +80,33 @@ const button44 = document.querySelectorAll(".containerDetail__btn-add")
 const button55 = document.querySelectorAll(".containerDetail__btn-buy")
 const button66 = document.querySelectorAll(".containerDetail__containerBtn")
 // const button7 = document.getElementById("idButton")
-console.log(button22)
-
-// arrayProducts.forEach((idx)=>{
-//     // console.log(idx)
-//     let id=idx.name
-//     // console.log(id)
-// })
+// console.log(button22)
 
 
 
 
-    if (currentUser) {
-        button22.forEach((parametro) => {
-           pam = parametro.classList.add("enable");
-            console.log(pam)
-        });
-        button33.forEach((parametro) => {
-            pam = parametro.classList.add("enable");
-             // console.log(pam)
-         });
-         button44.forEach((parametro) => {
-            pam = parametro.classList.add("enable2");
-             console.log(pam)
-         });
-         button55.forEach((parametro) => {
-            pam = parametro.classList.add("enable2");
-             console.log(pam)
-         });
-         button66.forEach((parametro) => {
-            pam = parametro.classList.add("enable2");
-             console.log(pam)
-         });
+
+if (currentUser) {
+    button22.forEach((parametro) => {
+        pam = parametro.classList.add("enable");
+        console.log(pam)
+    });
+    button33.forEach((parametro) => {
+        pam = parametro.classList.add("enable");
+        // console.log(pam)
+    });
+    button44.forEach((parametro) => {
+        pam = parametro.classList.add("enable2");
+        console.log(pam)
+    });
+    button55.forEach((parametro) => {
+        pam = parametro.classList.add("enable2");
+        console.log(pam)
+    });
+    button66.forEach((parametro) => {
+        pam = parametro.classList.add("enable2");
+        console.log(pam)
+    });
 
 }
 

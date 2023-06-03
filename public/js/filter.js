@@ -11,7 +11,7 @@ async function cargarProductosFilter() {
         products = respuesta.data.productos
         // metodoFilter(products)
         // renderizarProductos(products)
-        console.log(products)
+        // console.log(products)
 
       
 

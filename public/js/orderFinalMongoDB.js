@@ -21,7 +21,7 @@ const btnEnd1 = document.getElementById("btnEnd")
 const productFormBuy = document.getElementById("add-product");
 const submitBtn = document.getElementById("submit-btn");
 const total = document.getElementById("totalPrice")
-console.log(total)
+// console.log(total)
 
 
 //---------------------RECORRER TODO EL ARRAY DE PRODUCTOS-------------------------//
@@ -246,12 +246,7 @@ totalBuy()
 
 
 
-// function valorTotal(){
-// let valorTotal = productOrder.reduce((acc, prod) => acc + prod.cant * prod.price, 0)
-// // console.log(valorTotal)
-// total.innerHTML = `$ ${valorTotal}`
-// }
-// valorTotal()
+
 
 
 function countProducts() {
@@ -273,34 +268,13 @@ if (productOrder.length === 0) {
 
 }
 
-// function buyEnd() {
-//     if (!productOrder) {
-//         swal({
-//             title: `Su carrito esta vacio`,
-//             icon: 'error',
-//         })
-//     } else {
 
-
-//         swal({
-//             title: `Gracias por su compra`,
-//             icon: 'success',
-//         })
-
-//         sessionStorage.removeItem("order");
-
-//         setTimeout(() => {
-//             window.location.href = "/"
-
-//         }, 3000)
-//     }
-// }
 
 let currentUser1 = JSON.parse(localStorage.getItem("currentUser"));
 
 let totalOrden = 0;
-const orden = {};
-const productPush = [];
+let orden = {};
+let productPush = [];
 
 
 async function buyEnd() {
@@ -308,16 +282,10 @@ async function buyEnd() {
     if (!currentUser2) {
         swal({
             title: "Tiene que loguearse para comprar",
-            icon: 'info',
+            icon: 'warning',
         })
     }
     else {
-        if (productOrder.length === 0) {
-            swal({
-                title: "Su carrito esta vacio",
-                icon: 'info',
-            })
-        } else {
             try {
                 productOrder.forEach((prod) => {
                     const producto = {
@@ -332,7 +300,7 @@ async function buyEnd() {
                 });
 
                 orden.products =productPush;
-                orden.total = total;
+                orden.totalPrice =  totalOrden;
                 orden.userId = currentUser._id;
                 orden.createdAt = Date.now;
 
@@ -342,16 +310,17 @@ async function buyEnd() {
                 setTimeout(() => {
                     window.location.href = "/"
 
-                }, 3000)
+                }, 3500)
 
                 sessionStorage.removeItem('order')
-                productPush = [];
-                renderizarTabla();
-                countProducts();
                 swal({
                     title: "Gracias por su compra",
                     icon: 'success',
                 })
+                productPush = [];
+                renderizarTablaOrdenes();
+                countProducts();
+
             } catch (error) {
                 swal({
                     title: "No se pudo realizar la orden",
@@ -361,61 +330,11 @@ async function buyEnd() {
             }
         }
     }
-}
 
 
 
 
-async function finalizarCompra() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        showAlert('Debe estar logueado para poder Finalizar la compra', 'info')
-    }
-    else {
-        if (Products.length === 0) {
-            showAlert('Debe seleccionar un producto para poder Finalizar la compra', 'info')
-        } else {
-            try {
-                let totalOrden = 0;
-                const orden = {};
-                const productos = [];
-                Products.forEach((product) => {
-                    const producto = {
-                        productId: product.id,
-                        quantity: product.cant,
-                        price: product.price
-                    }
-                    // totalOrden += product.total
-                    productos.push(producto)
-                });
 
-                orden.products = productos;
-                orden.total = total;
-                orden.userId = currentUser._id;
-                orden.createdAt = Date.now;
-                orden.status = 'onhold';
-                orden.updateAt = Date.now;
-
-                await axios.post(`${URL}/orders`, orden);
-
-                sessionStorage.removeItem('order')
-                Products = [];
-                renderizarTabla();
-                showAlert('Compra Finalizada', 'exito')
-                contarProductos();
-            } catch (error) {
-                showAlert('No se pudo procesar la Orden', 'error');
-                console.log(error);
-            }
-
-
-
-
-        }
-
-    }
-
-}
 
 
 
