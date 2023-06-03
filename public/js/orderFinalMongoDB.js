@@ -240,7 +240,7 @@ function totalBuy() {
 
     total.innerHTML = `$ ${valorTotal}`
 
-    console.log(valorTotal)
+    // console.log(valorTotal)
 }
 totalBuy()
 

@@ -6,7 +6,7 @@ const ordersController=require("../controllers/order.controllers")
 router.get("/orders", ordersController.getOrders);
 
 //Get order by ID
-router.get("/orders/:id", ordersController. getOrdersById);
+router.get("/orders/:id", ordersController.getOrdersById);
 
 //Get user orders. Busco las ordenes de un usuario
 router.get("/orders/user/:id", ordersController.getUserOrders);
@@ -15,7 +15,7 @@ router.get("/orders/user/:id", ordersController.getUserOrders);
 router.post("/orders", ordersController.createOrder);
 
 //Update order
-// router.put("/orders/:id", ordersController.updateOrders);
+router.put("/orders/:id", ordersController.updateOrders);
 
 //Delete order
 router.delete("/orders/:id", ordersController.deleteOrders);
