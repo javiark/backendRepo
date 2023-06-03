@@ -13,10 +13,10 @@ async function cargarOrdenes() {
     try {
 
         const respuesta = await axios.get(`${URL5}/orders/user/${currentUserOrders._id}`)
-        console.log(respuesta)
+        // console.log(respuesta)
         const orderUser = respuesta.data.userOrders;
         renderizarTablaOrdenes(orderUser)
-        console.log(orderUser)
+        // console.log(orderUser)
         // renderizarTablaOrdenes(orderUser)
 
     } catch (error) {
@@ -24,6 +24,10 @@ async function cargarOrdenes() {
     }
 }
 cargarOrdenes()
+
+
+
+
 
 
 

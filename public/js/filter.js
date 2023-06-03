@@ -21,6 +21,26 @@ async function cargarProductosFilter() {
 }
 cargarProductosFilter()
 
+async function cargaOrdenes() {
+    try {
+        const respuesta = await axios.get(`${URL4}/getOrders`);
+        ordersArray = respuesta.data.orders
+        // metodoFilter(products)
+        // renderizarProductos(products)
+        console.log(ordersArray)
+
+      
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargaOrdenes()
+
+
+
+
+
 
 
 
