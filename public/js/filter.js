@@ -21,27 +21,6 @@ async function cargarProductosFilter() {
 }
 cargarProductosFilter()
 
-async function cargaOrdenes() {
-    try {
-        const respuesta = await axios.get(`${URL4}/orders`);
-        ordersArray = respuesta.data.orders
-        // metodoFilter(products)
-        // renderizarProductos(products)
-        console.log(ordersArray)
-
-      
-
-    } catch (error) {
-        console.log(error);
-    }
-}
-cargaOrdenes()
-
-
-
-
-
-
 
 
 //-------------BUSCARLO CON ENTER---------------//
@@ -49,7 +28,7 @@ cargaOrdenes()
 function metodoFilter(evt){
         //frenando la busqueda si la tecla no es la que tiene codigo 13 ( enter )
     if(evt.keyCode !== 13){
-        console.log("no apreto enter");
+        // console.log("no apreto enter");
         return;
     }
     const text=evt.target.value.toLowerCase().trim();
@@ -94,21 +73,22 @@ function searchProduct(evt){
 
 //-------------BUSCARLO POR ORDENES----------------//
 
-function searchProduct(evt){
-    if(evt.keyCode !==13 && evt.target.id !== 'productId'){
+function searchOrder(evt){
+    if(evt.keyCode !==13 && evt.target.id !== 'orderId'){
         return
     }
     const foundOrder=document.getElementById('searchProductBtnOrder').value.toLowerCase()
     let resultFind = products.filter((el)=>{
-        return el.name.toLowerCase().includes(foundProduct)       
+        return el.name.toLowerCase().includes(foundOrder)       
     })
+    console.log(foundOrder)
     if (resultFind.length>0){
         document.getElementById("productsCount").innerHTML=(`Se encontraron ${resultFind.length} productos`);
     }else{
         document.getElementById("productsCount").innerHTML=(`No se han encontrado productos`)
     }
 
-    renderizarProductos(resultFind)
+    renderizarTablaOrdenes(resultFind)
 }
 
 

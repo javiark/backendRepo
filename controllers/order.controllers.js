@@ -45,7 +45,7 @@ async function getOrders(req, res) {
     // responseCreator(res, 200, "Orden obtenida correctamente");
     try {
         const orders = await Order.find().populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.product", { name: 1, description: 1, image: 1 }); //Me busca un id con el que haya guardado en la coleccion de usuarios. Para que me traiga los nombres de mail y email en vez de un id
-        console.log(orders)
+        // console.log(orders)
 
         if (!orders) {
             return responseCreator(res, 404, "No se encontraron ordenes");
