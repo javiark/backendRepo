@@ -81,6 +81,13 @@
             onkeyup="metodoFilter(event)" id="searchProductBtn">
 
     </div>
+    <div class="admin-user-form__form-items">
+        <label for="roleUser">Perfil</label><br>
+        <select name="role" id="roleUser"  class="inputBox" required>
+            <option value="CLIENT_ROLE">CLIENT_ROLE</option>
+            <option value="ADMIN_ROLE">ADMIN_ROLE</option>           
+        </select>
+    </div>
     <div class="product-search__btnDiv">
         <button class="product-search__btn" onclick="searchProduct(event)"
             id="productId">Buscar</button>
