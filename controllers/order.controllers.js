@@ -131,9 +131,7 @@ async function getUserOrders(req, res){
 
     const userOrders = await Order.find({userId: usrId}).populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.product", { name: 1, description: 1, image: 1 });
 
-    responseCreator(res, 200, `Ordenes del usuario ${userOrders[0].userId.fullName} obtenidas correctamente`, {userOrders})
-
-
+    responseCreator(res, 200, `Ordenes del usuario obtenidas correctamente`, {userOrders})
 }
 
 //EXPORTO LOS ENDPOINTS

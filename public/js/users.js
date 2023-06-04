@@ -190,6 +190,7 @@ async function addUser(evt){
                     title:"Usuario añadido correctamente",
                     icon: 'success',
                 }) 
+                renderizarTabla()
               }
           
           

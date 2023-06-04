@@ -16,14 +16,65 @@ async function cargarOrdenes() {
         // console.log(respuesta)
         const orderUser = respuesta.data.userOrders;
         renderizarTablaOrdenes(orderUser)
-        // console.log(orderUser)
-        // renderizarTablaOrdenes(orderUser)
-
     } catch (error) {
         console.log(error)
     }
 }
-cargarOrdenes()
+// cargarOrdenes()
+
+async function cargaOrdenesTodas() {
+    try {
+        const respuesta = await axios.get(`${URL4}/orders`);
+        ordersArray = respuesta.data.orders
+        renderizarTablaOrdenes(ordersArray)
+      
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargaOrdenesTodas()
+
+
+async function deleteOrder(id) {
+    console.log(id)
+    swal({
+        title: `Borrar orden`,
+        text: `Esta seguro que desea borrar esta orden   `,
+        icon: 'warning',
+        buttons: {
+            cancel: `Cancelar`,
+            delete: `Borrar`
+        }
+    }).then(async function (value) {
+        if (value === `delete`) {
+            // ? LLAMADA AL BACKEND axios.delete
+            try {
+                const respuesta = await axios.delete(`${URL4}/orders/${id}`,{
+                    headers: { Authorization: token } });
+                    cargaOrdenesTodas()
+            } catch (error) {
+                console.log(error)
+            }
+            swal({
+                title: `Elemento borrado correctamente`,
+                icon: 'error'
+            })
+            renderizarTablaOrdenes();
+        }
+    })
+}
+
+async function buscarOrdenPorId() {
+    try {
+        const respuesta = await axios.get(`${URL4}/orders/user/${id}`);
+        ordersArray = respuesta.data.orders
+        renderizarTablaOrdenes(ordersArray)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 
@@ -50,11 +101,11 @@ function renderizarTablaOrdenes(arrayOrders) {
                             <td class="product__order">${order.products.length}</td>
                             <td class="product__order">${order.status}</td>
                             <td class="product__actions">
-                                <button class="product__action-btnDetail" onclick="deleteProduct('${order._id}')">
+                                <button class="product__action-btnDetail" onclick="deleteOrder('${order._id}')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                            
-                                <button class="product__action-btn product__btn-edit"  onclick="editProduct1('${order._id}')">
+                                <button class="product__action-btn product__btn-edit"  onclick="editOrder('${order._id}')">
                                     <i class="fa-solid fa-pencil " ></i>
                                 </button>
 
