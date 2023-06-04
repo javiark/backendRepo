@@ -15,13 +15,16 @@
                 <div class="adminContainer">
                     <h1 class="header1">BUSCAR ORDEN POR USUARIO</h1>
                     <div class="container">
-                        <form id="add-product" class="product-form-admin" onsubmit="addProduct(event)">
+                        <label for=""></label>
                             <div class="input-box">
                                 <label for="nameLabel">Usuario</label>
-                                <input type="text" name="name" id="nameLabel" required class="inputBox" placeholder="Buscar..." autofocus  onkeyup="metodoFilter(event)" id="searchProductBtn">
+                                <input type="text" name="name" required class="inputBox" placeholder="Buscar..." autofocus  onkeyup="metodoFilterOrder(event)" id="searchProductBtnOrders">
+                                
                             </div>
-                            <button type="submit" class="submit-btn-products" id="submit-btn" onclick="searchProduct(event)">Buscar orden por Usuario</button>
-                        </form>
+                            <div class="product-search__btnDiv">
+                            <button type="submit" class="product-search__btn" id="submit-btn-order" onclick="searchOrder(event)">Buscar</button>
+                        </div>
+
                         <div class="table-container">
                             <table class="table-product">
                                 <thead>
@@ -70,3 +73,17 @@
     </body>
 
 </html>
+
+<div class="product-search">
+    <label for=""></label>
+    <div>
+        <input type="text" class="product-search__input" placeholder="Buscar..." autofocus
+            onkeyup="metodoFilter(event)" id="searchProductBtn">
+
+    </div>
+    <div class="product-search__btnDiv">
+        <button class="product-search__btn" onclick="searchProduct(event)"
+            id="productId">Buscar</button>
+    </div>
+
+</div>

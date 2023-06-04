@@ -65,15 +65,15 @@ async function deleteOrder(id) {
     })
 }
 
-async function buscarOrdenPorId() {
-    try {
-        const respuesta = await axios.get(`${URL4}/orders/user/${id}`);
-        ordersArray = respuesta.data.orders
-        renderizarTablaOrdenes(ordersArray)
-    } catch (error) {
-        console.log(error);
-    }
-}
+// async function buscarOrdenPorId() {
+//     try {
+//         const respuesta = await axios.get(`${URL4}/orders/user/${id}`);
+//         ordersArray = respuesta.data.orders
+//         renderizarTablaOrdenes(ordersArray)
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 
 

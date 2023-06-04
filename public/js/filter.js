@@ -55,6 +55,7 @@ function metodoFilter(evt){
 //-------------BUSCARLO POR BOTON----------------//
 
 function searchProduct(evt){
+    evt.preventDefault();
     if(evt.keyCode !==13 && evt.target.id !== 'productId'){
         return
     }
@@ -74,22 +75,42 @@ function searchProduct(evt){
 //-------------BUSCARLO POR ORDENES----------------//
 
 function searchOrder(evt){
-    if(evt.keyCode !==13 && evt.target.id !== 'orderId'){
-        return
-    }
-    const foundOrder=document.getElementById('searchProductBtnOrder').value.toLowerCase()
+    evt.preventDefault();
+    // console.log(evt)
+    // if(evt.keyCode !==13 && evt.target.id !== 'productId'){
+    //     return
+    // }
+    let foundOrder=document.getElementById('searchProductBtnOrders').value.toLowerCase()
     let resultFind = products.filter((el)=>{
         return el.name.toLowerCase().includes(foundOrder)       
     })
     console.log(foundOrder)
-    if (resultFind.length>0){
-        document.getElementById("productsCount").innerHTML=(`Se encontraron ${resultFind.length} productos`);
-    }else{
-        document.getElementById("productsCount").innerHTML=(`No se han encontrado productos`)
-    }
+    // if (resultFind.length>0){
+    //     document.getElementById("productsCount").innerHTML=(`Se encontraron ${resultFind.length} productos`);
+    // }else{
+    //     document.getElementById("productsCount").innerHTML=(`No se han encontrado productos`)
+    // }
+    // console.log("anda")
+    buscarOrdenPorId(foundOrder)
 
     renderizarTablaOrdenes(resultFind)
 }
+
+function metodoFilterOrder(evt){
+    console.log(evt)
+}
+// metodoFilterOrder()
+
+async function buscarOrdenPorId() {
+    try {
+        const respuesta = await axios.get(`${URL4}/orders/user/${id}`);
+        ordersArray = respuesta.data.orders
+        renderizarTablaOrdenes(ordersArray)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 
