@@ -41,6 +41,7 @@ cargaOrdenesTodas()
 
 async function deleteOrder(id) {
     console.log(id)
+    const token = localStorage.getItem("token");
     swal({
         title: `Borrar orden`,
         text: `Esta seguro que desea borrar esta orden   `,
@@ -53,7 +54,7 @@ async function deleteOrder(id) {
         if (value === `delete`) {
             // ? LLAMADA AL BACKEND axios.delete
             try {
-                const respuesta = await axios.delete(`${URL4}/orders/${id}`, {
+                const respuesta = await axios.delete(`${URL5}/orders/${id}`, {
                     headers: { Authorization: token }
                 });
                 cargaOrdenesTodas()
@@ -150,7 +151,7 @@ function renderizarUserOrder2(arrayOrders) {
 function renderizarUsuariosSelect(arrayUser) {
     // let userOrder=[]
     // console.log(userOrder)
-    // console.log(arrayUser)
+    console.log(arrayUser)
 
     let selectUser1 = document.getElementById("selectUser1")
     arrayUser.forEach((user, index) => {
@@ -246,10 +247,79 @@ async function obtenerUsuarios() {
 }
 
 
+async function obtenerOrdenUsuario(id) {
+    console.log(id)
+    try {
+        // const token = localStorage.getItem("token");
+
+
+        const response = await axios.get(`${URL5}/orders/user/${id}`, {
+            // headers: {
+            //     Authorization: token
+            // }
+
+        });
+        console.log(response)
+        users = response.data.userOrders;
+        console.log(users)
+        renderizarTablaOrdenes(users)
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+// async function deleteProduct(id) {
+//     console.log(id)
+//     swal({
+//         title: `Borrar producto`,
+//         text: `Esta seguro que desea borrar el producto   `,
+//         icon: 'warning',
+//         buttons: {
+//             cancel: `Cancelar`,
+//             delete: `Borrar`
+//         }
+//     }).then(async function (value) {
+//         if (value === `delete`) {
+//             // ? LLAMADA AL BACKEND axios.delete
+//             try {
+//                 const respuesta = await axios.delete(`${URL}/product/${id}`,{
+//                     headers: { Authorization: token } });
+//                 cargarProductos()
+//             } catch (error) {
+//                 console.log(error)
+//             }
+//             swal({
+//                 title: `Elemento borrado correctamente`,
+//                 icon: 'error'
+//             })
+//             renderizarTabla();
+//         }
+//     })
 
 
 
 
+
+// async function obtenerUsuarios() {
+//     try {
+//         const token = localStorage.getItem("token"); // no hay que hacer jsonpars pq eltoken es una key y una string
+//         const response = await axios.get(`${URL}/users`, {
+//             headers: {
+//                 Authorization: token
+//             }
+//         });
+//         console.log(response)
+//         users = response.data.users;
+//         console.log(users)
+//         renderizarTablaUser(users)
+//     } catch (error) {
+//         console.log(error);
+
+//     }
+
+// }
 
 
 
