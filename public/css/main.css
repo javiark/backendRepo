@@ -40,7 +40,8 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .card {
@@ -60,7 +61,8 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card__body {
   display: flex;
@@ -476,7 +478,8 @@ body {
     width: 12rem;
     display: flex;
     justify-content: space-evenly;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
 .main {
@@ -650,7 +653,8 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-color: brown;
   border: 1px solid 0;
 }
@@ -1102,7 +1106,8 @@ body {
   .imageAboutUs {
     height: 15.4rem;
     justify-content: center;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .section-info__title-container {
     display: flex;
@@ -1323,7 +1328,8 @@ body {
 
 .product__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1357,8 +1363,19 @@ body {
   border-radius: 2px;
   color: rgb(241, 241, 241);
 }
+.product__action-btnDetail-Select {
+  background-color: rgb(33, 59, 254);
+  border: none;
+  padding: 0.25rem;
+  border-radius: 2px;
+  color: rgb(241, 241, 241);
+}
 .product__action-btnDetail:hover {
   background-color: rgb(199, 1, 1) !important;
+  cursor: pointer;
+}
+.product__action-btnDetail-Select:hover {
+  background-color: rgb(9, 24, 137) !important;
   cursor: pointer;
 }
 .product__action-btn {
@@ -1643,7 +1660,8 @@ body {
 
 .user__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1943,7 +1961,8 @@ body {
 
 .order__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -2252,4 +2271,4 @@ body {
 .product__order {
   width: 10%;
   text-align: center;
-}
+}/*# sourceMappingURL=main.css.map */

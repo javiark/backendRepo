@@ -11,41 +11,63 @@
 
 
 
-            <div class="main4">
-                <div class="adminContainer">
-                    <h1 class="header1">BUSCAR ORDEN POR USUARIO</h1>
-                    <div class="container">
-                        <label for=""></label>
-                            <div class="input-box">
-                                <label for="nameLabel">Usuario</label>
-                                <input type="text" name="name" required class="inputBox" placeholder="Buscar..." autofocus  onkeyup="metodoFilterOrder(event)" id="searchProductBtnOrders">
-                                
-                            </div>
-                            <div class="product-search__btnDiv">
-                            <button type="submit" class="product-search__btn" id="submit-btn-order" onclick="searchOrder(event)">Buscar</button>
-                        </div>
 
-                        <div class="table-container">
-                            <table class="table-product">
-                                <thead>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>ID de orden</th>
-                                        <th>Precio Total</th>
-                                        <th>Cantidad de Productos</th>
-                                        <th>Status</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-body-orders">
+<!-- 
+            <div class="adminContainer">
+                <h1 class="header1">ORDENES</h1>
+                <div class="container">
 
-                                </tbody>
-                            </table>
-                        </div>
-
+                    <div class="table-container">
+                        <table class="table-product">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>ID de orden</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body-orders-user">
+                            </tbody>
+                        </table>
                     </div>
+
+                </div>
+            </div> -->
+
+
+
+
+            <div class="adminContainer">
+
+                <h1 class="header1">ORDENES</h1>
+                <div class="admin-user-form__form-items">
+                    <label for="selectUser1">Seleccionar usuario de la orden que desea filtrar</label><br>
+                    <select id="selectUser1" class="inputBox"> </select>
+                </div>
+                <button class="submit-btn-products" id="submit-btn">Buscar Orden</button>
+                
+                <div class="container">
+
+                    <div class="table-container">
+                        <table class="table-product">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>ID de orden</th>
+                                    <th>Precio Total</th>
+                                    <th>Cantidad de Productos</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body-orders">
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
+
 
 
             <%- include('partials/footer') %>
@@ -62,35 +84,15 @@
                 <script src="/js//date.js"></script>
                 <script src="/js/header.js"></script>
                 <script src="/js/alert.js"></script>
-                <script src="/js/loginUserAvatar.js"></script> 
+                <script src="/js/loginUserAvatar.js"></script>
                 <script src="/js/filter.js"></script>
                 <script src="/js/btnBuy.js"></script>
                 <!-- <script src="/js/orderFinal.js"></script> -->
                 <script src="/js/orderFinalMongoDB.js"></script>
                 <script src="/js/adminOrders.js"></script>
+                <!-- <script src="/js/users.js"></script> -->
 
 
     </body>
 
 </html>
-
-<div class="product-search">
-    <label for=""></label>
-    <div>
-        <input type="text" class="product-search__input" placeholder="Buscar..." autofocus
-            onkeyup="metodoFilter(event)" id="searchProductBtn">
-
-    </div>
-    <div class="admin-user-form__form-items">
-        <label for="roleUser">Perfil</label><br>
-        <select name="role" id="roleUser"  class="inputBox" required>
-            <option value="CLIENT_ROLE">CLIENT_ROLE</option>
-            <option value="ADMIN_ROLE">ADMIN_ROLE</option>           
-        </select>
-    </div>
-    <div class="product-search__btnDiv">
-        <button class="product-search__btn" onclick="searchProduct(event)"
-            id="productId">Buscar</button>
-    </div>
-
-</div>

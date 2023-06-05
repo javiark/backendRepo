@@ -196,8 +196,19 @@ body {
         border-radius: 2px ;
         color: rgb(241, 241, 241) ;
     }
+    &__action-btnDetail-Select {
+        background-color: rgb(33, 59, 254) ;
+        border: none ;
+        padding: 0.25rem ;
+        border-radius: 2px ;
+        color: rgb(241, 241, 241) ;
+    }
     &__action-btnDetail:hover {
         background-color: rgb(199, 1, 1) !important;
+        cursor: pointer;
+    }
+    &__action-btnDetail-Select:hover {
+        background-color:rgb(9, 24, 137) !important;
         cursor: pointer;
     }
     // &__action-btn{
