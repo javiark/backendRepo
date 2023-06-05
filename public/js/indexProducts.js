@@ -21,6 +21,7 @@ cargarProductos1()
 
 
 function renderizarProductos(products) {
+    console.log(products)
 
     cardContainer.innerHTML = ``;
 
@@ -44,7 +45,7 @@ function renderizarProductos(products) {
         </div>
         <div class="card__info">
             <div class="card__date">
-            ${fecha}
+            ${formatearFecha(product.createAt)}
             </div>
             <div class="card__price">
             $ ${product.price}

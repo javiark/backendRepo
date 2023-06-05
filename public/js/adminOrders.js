@@ -90,6 +90,7 @@ async function deleteOrder(id) {
 
 //2- Definir una función para iterar el array
 function renderizarTablaOrdenes(arrayOrders) {
+    console.log(arrayOrders)
     tableBody.innerHTML = '';
     if (arrayOrders.length === 0) {
         tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON ORDENES</p>"
@@ -102,8 +103,9 @@ function renderizarTablaOrdenes(arrayOrders) {
         const tableRow = `<tr class="product">
                             <td class="product__order">${order.userId.fullName}</td>
                             <td class="product__order">${order._id}</td>
-                            <td class="product__price">$ ${order.totalPrice}</td>
+                            <td class="product__orderPrice">$ ${order.totalPrice}</td>
                             <td class="product__order">${order.products.length}</td>
+                            <td class="product__order">${formatearFecha(order.createdAt)}</td>
                             <td class="product__order">${order.status}</td>
                             <td class="product__actions">
                                 <button class="product__action-btnDetail" onclick="deleteOrder('${order._id}')">
@@ -149,57 +151,27 @@ function renderizarUserOrder2(arrayOrders) {
 }
 
 function renderizarUsuariosSelect(arrayUser) {
-    // let userOrder=[]
-    // console.log(userOrder)
-    // console.log(arrayUser)
 
     let selectUser1 = document.getElementById("selectUser1")
     arrayUser.forEach((user, index) => {
 
-        // const orderUserF = {
-        //     name: user.fullName,
-        //     ID: user._id,
-        // }
-        // userOrder.push(orderUserF) 
         selectUser1.innerHTML = arrayUser.map(user => `<option value="${user._id}">${user.fullName}</option>`)
     });
 }
 
 function obtenerOrden(arrayUser) {
-    // let userOrder=[]
-    // console.log(userOrder)
+
     console.log(arrayUser)
 
     let selectOrderId = document.getElementById("selectOrderId")
     arrayUser.forEach((user, index) => {
 
-        // const orderUserF = {
-        //     name: user.fullName,
-        //     ID: user._id,
-        // }
-        // userOrder.push(orderUserF) 
         selectOrderId.innerHTML = arrayUser.map(order => `<option value="${order._id}">${order._id}</option>`)
     });
 }
 
 
 
-// async function cargaUserTodas() {
-
-//     try {
-//         const respuesta = await axios.get(`${URL4}/users`);
-//         console.log(respuesta)
-//         users1=response.data.users;
-//         renderizarUsuariosSelect(users1)
-//         // renderizarUserOrder2(ordersArray) 
-
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// cargaUserTodas()
 
 function AccToOrderQuantity(id) {
     let input = document.getElementById(`cantidadOrden${id}`);
@@ -212,12 +184,7 @@ function AccToOrderQuantity(id) {
     totalBuy()
 }
 
-//<input  type="text"  id="cantidadOrden${index}" value="${prod.cant}" class="boton-container__boton-number" >
 
-{/* <label for="roleUser">Seleccionar usuario</label><br>
-<select name="role" id="roleUser"  class="inputBox" required>
-    <option value="usuariosArray()" id="userList">Seleccione una Usuario</option>        
-</select> */}
 
 
 async function obtenerUsuarios2() {
@@ -314,11 +281,11 @@ async function editOrder(idx) {
 
 async function editStatusOrder(evt){
     try {
-        console.log(editIndex)
+        // console.log(editIndex)
         evt.preventDefault();
         // const formFile = new FormData(evt.target);
         const elements = evt.target.elements;
-        console.log(elements)
+        // console.log(elements)
 
         if (editIndex) { // es para cuando el producto es nuevo. 0 es undefined
             const updatedOrder = {
@@ -327,14 +294,14 @@ async function editStatusOrder(evt){
             }
 
             console.log(updatedOrder)
-            // orderFF.push(updatedOrder)
-            // console.log(orderFF)
-            // console.log( productUpdate)
             const res = await axios.put(`${URL5}/orders/${editIndex}`, updatedOrder,{new:true});
-            console.log(res)
+            // console.log(res)
+            swal({
+                title: `Se ha editado el status`,
+                icon: 'success'
+            })
+            renderizarTablaOrdenes(res)
   
-
-
         editIndex = undefined;
 
     }     } catch (error) {
@@ -347,17 +314,3 @@ async function editStatusOrder(evt){
 
 
 
-// async function updateOrders(req, res) {
-//     // responseCreator(res, 200, "Orden actualizada correctamente");
-//     try {
-//         const id = req.params.id;
-//         const order = req.body;
-//         order.totalPrice = await verifyOrderAndCalculate(order.orderProducts);
-//         const updatedOrder = await Order.findByIdAndUpdate(id, order, { new: true });
-//         if(!updatedOrder) throw new Error('Error al actualizar la orden');
-//         return res.status(200).send(updatedOrder)
-//     } catch (error) {
-//         console.log(error);
-//         return res.status(500).send(error instanceof Error ? error.message : 'Error al actualizar la orden')
-//     }
-// }

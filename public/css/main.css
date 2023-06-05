@@ -2272,6 +2272,11 @@ body {
   width: 10%;
   text-align: center;
 }
+.product__orderPrice {
+  width: 10%;
+  text-align: center;
+  font-weight: bold;
+}
 
 .submit-btn:hover {
   background-color: rgb(1, 105, 1);
