@@ -156,16 +156,30 @@ function renderizarUsuariosSelect(arrayUser) {
     let selectUser1 = document.getElementById("selectUser1")
     arrayUser.forEach((user, index) => {
 
-        const orderUserF = {
-            name: user.fullName,
-            ID: user._id,
-        }
+        // const orderUserF = {
+        //     name: user.fullName,
+        //     ID: user._id,
+        // }
         // userOrder.push(orderUserF) 
         selectUser1.innerHTML = arrayUser.map(user => `<option value="${user._id}">${user.fullName}</option>`)
     });
-    // console.log(userOrder)
-    // inputUser.Items.Add(userOrder)
+}
 
+function obtenerOrden(arrayUser) {
+    // let userOrder=[]
+    // console.log(userOrder)
+    console.log(arrayUser)
+
+    let selectOrderId = document.getElementById("selectOrderId")
+    arrayUser.forEach((user, index) => {
+
+        // const orderUserF = {
+        //     name: user.fullName,
+        //     ID: user._id,
+        // }
+        // userOrder.push(orderUserF) 
+        selectOrderId.innerHTML = arrayUser.map(order => `<option value="${order._id}">${order._id}</option>`)
+    });
 }
 
 
@@ -251,9 +265,7 @@ async function obtenerOrdenUsuario(id) {
     console.log(id)
     try {
         // const token = localStorage.getItem("token");
-
-
-        const response = await axios.get(`${URL5}/orders/user/${id}`, {
+        const response = await axios.get(`${URL5}/orders/${id}`, {
             // headers: {
             //     Authorization: token
             // }
@@ -267,8 +279,21 @@ async function obtenerOrdenUsuario(id) {
     } catch (error) {
         console.log(error);
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // async function deleteProduct(id) {
 //     console.log(id)
