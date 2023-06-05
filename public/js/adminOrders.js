@@ -238,7 +238,7 @@ async function obtenerOrdenUsuario(id) {
             // }
 
         });
-        console.log(response)
+
         users = response.data.userOrders;
         console.log(users)
         renderizarTablaOrdenes(users)
@@ -247,6 +247,7 @@ async function obtenerOrdenUsuario(id) {
         console.log(error);
     }
 }
+
 
 let editIndex;
 
@@ -306,6 +307,34 @@ async function editStatusOrder(evt){
 
     }     } catch (error) {
         console.log(error)
+    }
+}
+
+//--------------OBTER ORDEN POR ID------------------//
+router.get("/orders/:id", ordersController.getOrdersById);
+
+async function editOrder(idx) {
+    console.log(idx)
+    const userFormOrder = document.getElementById('edit-order');
+    console.log(userFormOrder.elements)
+    try {
+
+        const orderEdit = await axios.get(`${URL5}/orders/${idx}`)
+        // console.log(orderEdit)
+        let orderStatus = orderEdit.data.order.status
+        // let orderPrecio= orderEdit.data.order.totalPrice
+        // console.log(orderPrecio)
+        const el = userFormOrder.elements;  
+        // console.log(el.role.value)
+        el.status.value =orderStatus;
+        // el.priceOrder.value =orderPrecio;
+        console.log(orderStatus)
+        editIndex = idx
+
+
+    } catch (error) {
+        console.log(error);
+
     }
 }
 

@@ -40,7 +40,8 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .card {
@@ -60,7 +61,8 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card__body {
   display: flex;
@@ -476,7 +478,8 @@ body {
     width: 12rem;
     display: flex;
     justify-content: space-evenly;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
 .main {
@@ -650,7 +653,8 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-color: brown;
   border: 1px solid 0;
 }
@@ -1102,7 +1106,8 @@ body {
   .imageAboutUs {
     height: 15.4rem;
     justify-content: center;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .section-info__title-container {
     display: flex;
@@ -1323,7 +1328,8 @@ body {
 
 .product__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1663,7 +1669,8 @@ body {
 
 .user__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1962,7 +1969,8 @@ body {
 
 .order__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -2321,6 +2329,22 @@ body {
   margin-left: -1rem;
 }
 
+.submit-btn-orders2 {
+  margin-top: 0;
+  padding: 0.5rem 1rem;
+  width: 20rem;
+  height: 2rem;
+  border: 2px solid rgb(51, 87, 2);
+  color: white;
+  background-color: #c3a343;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0;
+}
+
 .adminContainerOrder {
   padding-top: 2rem;
   margin: 1rem 0rem 2rem 1rem;
@@ -2331,20 +2355,32 @@ body {
   margin: 0rem 0rem 0rem 1rem;
 }
 
-.containerOrder {
+.dminContainerOrderID {
+  padding-top: 2rem;
+  margin: 0rem 0rem 0rem 1rem;
   display: flex;
   flex-direction: column;
+  background-color: aquamarine;
+}
+
+.containerOrder {
+  padding-top: 2rem;
+  margin: 1rem 0rem 2rem 1rem;
   /* padding: 2rem;
   border: 3px solid salmon; */
+}
+
+.input-box-order {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0rem 2rem 1rem;
 }
 
 .product-form-order {
   margin-top: 1rem !important;
   display: flex;
   flex-direction: column;
-  padding: 0rem 1rem 0rem 1rem;
   border: 0px solid salmon;
-  margin: 1px;
 }
 
 .inputBoxOrder {
@@ -2374,4 +2410,4 @@ body {
   background-color: white;
   margin: 0.3rem 0 1rem 0;
   padding-left: -1rem !important;
-}
+}/*# sourceMappingURL=main.css.map */

@@ -37,94 +37,98 @@
 
             <main class="main">
 
-            <div class="adminContainerOrder">
+                <div class="">
 
-                <h1 class="header1">ORDENES</h1>
-                
-                <div class="containerOrder">
+                    <h1 class="header1">ORDENES</h1>
 
-                    <div class="admin-user-form__form-items">
-                        <label for="selectUser1" class="inputBoxUserLabel">Seleccionar usuario </label><br>
-                        <select id="selectUser1" class="inputBoxOrder"> </select>
-                    </div>
-                    <button class="submit-btn-orders" id="submit-btn"
-                        onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
+                    <div class="containerOrder">
 
-                    <div class="container">
-
-                        <div class="table-container">
-                            <table class="table-product">
-                                <thead>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>ID de orden</th>
-                                        <th>Precio Total</th>
-                                        <th>Cantidad de Productos</th>
-                                        <th>Fecha de Creacion</th>
-                                        <th>Status</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-body-orders">
-                                </tbody>
-                            </table>
+                        <div class="admin-user-form__form-items">
+                            <label for="selectUser1" class="inputBoxUserLabel">Seleccionar usuario </label><br>
+                            <select id="selectUser1" class="inputBoxOrder"> </select>
                         </div>
-                    </div>
-                    <form id="edit-order" class="product-form-order" onsubmit="editStatusOrder(event)">
-                        <!-- <div class="input-box">
+                        <button class="submit-btn-orders" id="submit-btn"
+                            onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
+
+                        <div class="container">
+
+                            <div class="table-container">
+                                <table class="table-product">
+                                    <thead>
+                                        <tr>
+                                            <th>Usuario</th>
+                                            <th>ID de orden</th>
+                                            <th>Precio Total</th>
+                                            <th>Cantidad de Productos</th>
+                                            <th>Fecha de Creacion</th>
+                                            <th>Status</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body-orders">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <form id="edit-order" class="product-form-order" onsubmit="editStatusOrder(event)">
+                            <!-- <div class="input-box">
                             <label for="priceOrder" >Precio</label>
                             <input type="number" name="price" id="priceOrder" class="inputBoxOrderPrice">
                         </div> -->
-                        <div class="admin-user-form__form-items">
-                            <label for="StatusOrder" class="inputBoxUserLabel">Status</label><br>
-                            <select name="status" id="StatusOrder"  class="inputBoxOrder1" required>
-                                <option value="onhold">onhold</option>
-                                <option value="inprogress">inprogress</option>
-                                <option value="done">done</option>           
-                            </select>
-                        </div>
-                        
-
-                        <!-- 
-                        <div class="input-box">
-                            <label for="stockLabel">Stock</label>
-                            <input type="checkbox" name="stock" id="stockLabel">
-                        </div> -->
+                            <div class="admin-user-form__form-items">
+                                <label for="StatusOrder" class="inputBoxUserLabel">Status</label><br>
+                                <select name="status" id="StatusOrder" class="inputBoxOrder1" >
+                                    <option value="onhold">onhold</option>
+                                    <option value="inprogress">inprogress</option>
+                                    <option value="done">done</option>
+                                </select>
+                            </div>
 
 
-                        <button type="submit" class="submit-btn-orders1" id="submit-btn">Modificar Orden</button>
-                    </form>
+
+
+
+                            <button type="submit" class="submit-btn-orders2" id="submit-btn">Modificar Orden</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="adminContainerOrderID">
+
+                <div class="input-box-order">
+                    <label for="stockLabel">Obtener orden por ID</label>
+                    <input  name="stock" id="stockLabel" class="inputBoxOrder1" >
+                    <button class="submit-btn-orders" id="submit-btn"
+                    onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar</button>
                 </div>
             </div>
 
-
-                </main>
-
+            </main>
 
 
-                    <%- include('partials/footer') %>
-                        <div class="whatsapp-container">
-                            <a href="https://walink.co/1565a1" target="_blank">
-                                <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
-                                    alt="whatsapp logo" class="logoWP">
-                            </a>
-                        </div>
 
-                        <!-- =================JS=================  -->
-                        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-                        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                        <script src="/js//date.js"></script>
-                        <script src="/js/header.js"></script>
-                        <script src="/js/alert.js"></script>
-                        <script src="/js/loginUserAvatar.js"></script>
-                        <script src="/js/filter.js"></script>
-                        <script src="/js/btnBuy.js"></script>
-                        <script src="/js/isAdmin.js"></script>
-                        <!-- <script src="/js/orderFinal.js"></script> -->
-                        <script src="/js/orderFinalMongoDB.js"></script>
-                        <script src="/js/adminOrders.js"></script>
-                        <script src="/js/date.js"></script>
-                        <!-- <script src="/js/users.js"></script> -->
+            <%- include('partials/footer') %>
+                <div class="whatsapp-container">
+                    <a href="https://walink.co/1565a1" target="_blank">
+                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                            alt="whatsapp logo" class="logoWP">
+                    </a>
+                </div>
+
+                <!-- =================JS=================  -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="/js//date.js"></script>
+                <script src="/js/header.js"></script>
+                <script src="/js/alert.js"></script>
+                <script src="/js/loginUserAvatar.js"></script>
+                <script src="/js/filter.js"></script>
+                <script src="/js/btnBuy.js"></script>
+                <script src="/js/isAdmin.js"></script>
+                <!-- <script src="/js/orderFinal.js"></script> -->
+                <script src="/js/orderFinalMongoDB.js"></script>
+                <script src="/js/adminOrders.js"></script>
+                <script src="/js/date.js"></script>
+                <!-- <script src="/js/users.js"></script> -->
 
 
     </body>
