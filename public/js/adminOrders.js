@@ -293,12 +293,13 @@ async function editOrder(idx) {
         const orderEdit = await axios.get(`${URL5}/orders/${idx}`)
         // console.log(orderEdit)
         let orderStatus = orderEdit.data.order.status
-        let orderPrecio= orderEdit.data.order.totalPrice
+        // let orderPrecio= orderEdit.data.order.totalPrice
         // console.log(orderPrecio)
         const el = userFormOrder.elements;  
         // console.log(el.role.value)
         el.status.value =orderStatus;
-        el.priceOrder.value =orderPrecio;
+        // el.priceOrder.value =orderPrecio;
+        console.log(orderStatus)
         editIndex = idx
 
 
@@ -315,18 +316,19 @@ async function editStatusOrder(evt){
     try {
         console.log(editIndex)
         evt.preventDefault();
-        const formFile = new FormData(evt.target);
+        // const formFile = new FormData(evt.target);
         const elements = evt.target.elements;
         console.log(elements)
 
         if (editIndex) { // es para cuando el producto es nuevo. 0 es undefined
-            const orderUpdate = {
+            const updatedOrder = {
                 status: elements.StatusOrder.value,
-                price: elements.priceOrder.value,
+                // totalPrice: elements.priceOrder.value,
             }
-            console.log(orderUpdate)
+            console.log(updatedOrder)
             // console.log( productUpdate)
-            const res = await axios.put(`${URL5}/orders/${editIndex}`, orderUpdate);
+            const res = await axios.put(`${URL5}/orders/${editIndex}`, updatedOrder);
+            console.log(res)
 
 
         editIndex = undefined;
@@ -335,3 +337,22 @@ async function editStatusOrder(evt){
         console.log(error)
     }
 }
+
+
+
+
+
+// async function updateOrders(req, res) {
+//     // responseCreator(res, 200, "Orden actualizada correctamente");
+//     try {
+//         const id = req.params.id;
+//         const order = req.body;
+//         order.totalPrice = await verifyOrderAndCalculate(order.orderProducts);
+//         const updatedOrder = await Order.findByIdAndUpdate(id, order, { new: true });
+//         if(!updatedOrder) throw new Error('Error al actualizar la orden');
+//         return res.status(200).send(updatedOrder)
+//     } catch (error) {
+//         console.log(error);
+//         return res.status(500).send(error instanceof Error ? error.message : 'Error al actualizar la orden')
+//     }
+// }
