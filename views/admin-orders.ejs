@@ -40,61 +40,63 @@
             <div class="adminContainerOrder">
 
                 <h1 class="header1">ORDENES</h1>
-                <div class="admin-user-form__form-items">
-                    <label for="selectUser1" class="inputBoxUserLabel">Seleccionar usuario </label><br>
-                    <select id="selectUser1" class="inputBoxUser"> </select>
-                </div>
-                <button class="submit-btn-orders" id="submit-btn"
-                    onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
+                
+                <div class="containerOrder">
 
-                <div class="container">
-
-                    <div class="table-container">
-                        <table class="table-product">
-                            <thead>
-                                <tr>
-                                    <th>Usuario</th>
-                                    <th>ID de orden</th>
-                                    <th>Precio Total</th>
-                                    <th>Cantidad de Productos</th>
-                                    <th>Status</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-body-orders">
-                            </tbody>
-                        </table>
+                    <div class="admin-user-form__form-items">
+                        <label for="selectUser1" class="inputBoxUserLabel">Seleccionar usuario </label><br>
+                        <select id="selectUser1" class="inputBoxOrder"> </select>
                     </div>
+                    <button class="submit-btn-orders" id="submit-btn"
+                        onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
 
+                    <div class="container">
+
+                        <div class="table-container">
+                            <table class="table-product">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>ID de orden</th>
+                                        <th>Precio Total</th>
+                                        <th>Cantidad de Productos</th>
+                                        <th>Status</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body-orders">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <form id="edit-order" class="product-form-order" onsubmit="editStatusOrder(event)">
+                        <div class="input-box">
+                            <label for="priceOrder" >Precio</label>
+                            <input type="number" name="price" id="priceOrder" class="inputBoxOrderPrice">
+                        </div>
+                        <div class="admin-user-form__form-items">
+                            <label for="StatusOrder" class="inputBoxUserLabel">Status</label><br>
+                            <select name="status" id="StatusOrder"  class="inputBoxOrder1" required>
+                                <option value="onhold">onhold</option>
+                                <option value="inprogress">inprogress</option>
+                                <option value="done">done</option>           
+                            </select>
+                        </div>
+                        
+
+                        <!-- 
+                        <div class="input-box">
+                            <label for="stockLabel">Stock</label>
+                            <input type="checkbox" name="stock" id="stockLabel">
+                        </div> -->
+
+
+                        <button type="submit" class="submit-btn-orders1" id="submit-btn">Modificar Status</button>
+                    </form>
                 </div>
             </div>
 
-            <div class="adminContainerOrder1">
 
-                <div class="admin-user-form__form-items">
-                    <label for="selectOrderId" class="inputBoxUserLabel">Seleccionar orden ID </label><br>
-                    <select id="selectOrderId" class="inputBoxUser"> </select>
-                </div>
-                <button class="submit-btn-orders" id="submit-btn" onclick="obtenerOrden(`${selectOrderId.value}`)">Buscar
-                    Orden</button>
-
-                <div class="container">
-                    <div class="table-container">
-                            <table class="table-product">
-                                    <thead>
-                                        <tr>
-                                            <th>Imagen</th>
-                                            <th>Producto</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
-                                            <th>Detalle</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                <tbody id="table-body">
-                                </tbody>
-                            </table>
-                    </div>
                 </main>
 
 

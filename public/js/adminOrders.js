@@ -259,13 +259,13 @@ async function obtenerUsuarios() {
         console.log(error);
     }
 }
-
+// router.get("/orders/user/:id", ordersController.getUserOrders);
 
 async function obtenerOrdenUsuario(id) {
     console.log(id)
     try {
         // const token = localStorage.getItem("token");
-        const response = await axios.get(`${URL5}/orders/${id}`, {
+        const response = await axios.get(`${URL5}/orders/user/${id}`, {
             // headers: {
             //     Authorization: token
             // }
@@ -281,75 +281,57 @@ async function obtenerOrdenUsuario(id) {
     }
 }
 
+let editIndex;
+
+//----------precargar formulario-----------------//
+async function editOrder(idx) {
+    console.log(idx)
+    const userFormOrder = document.getElementById('edit-order');
+    console.log(userFormOrder.elements)
+    try {
+
+        const orderEdit = await axios.get(`${URL5}/orders/${idx}`)
+        // console.log(orderEdit)
+        let orderStatus = orderEdit.data.order.status
+        let orderPrecio= orderEdit.data.order.totalPrice
+        // console.log(orderPrecio)
+        const el = userFormOrder.elements;  
+        // console.log(el.role.value)
+        el.status.value =orderStatus;
+        el.priceOrder.value =orderPrecio;
+        editIndex = idx
 
 
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+// editStatusOrder(event)
 
 
+async function editStatusOrder(evt){
+    try {
+        console.log(editIndex)
+        evt.preventDefault();
+        const formFile = new FormData(evt.target);
+        const elements = evt.target.elements;
+        console.log(elements)
+
+        if (editIndex) { // es para cuando el producto es nuevo. 0 es undefined
+            const orderUpdate = {
+                status: elements.StatusOrder.value,
+                price: elements.priceOrder.value,
+            }
+            console.log(orderUpdate)
+            // console.log( productUpdate)
+            const res = await axios.put(`${URL5}/orders/${editIndex}`, orderUpdate);
 
 
+        editIndex = undefined;
 
-
-
-
-
-
-
-
-// async function deleteProduct(id) {
-//     console.log(id)
-//     swal({
-//         title: `Borrar producto`,
-//         text: `Esta seguro que desea borrar el producto   `,
-//         icon: 'warning',
-//         buttons: {
-//             cancel: `Cancelar`,
-//             delete: `Borrar`
-//         }
-//     }).then(async function (value) {
-//         if (value === `delete`) {
-//             // ? LLAMADA AL BACKEND axios.delete
-//             try {
-//                 const respuesta = await axios.delete(`${URL}/product/${id}`,{
-//                     headers: { Authorization: token } });
-//                 cargarProductos()
-//             } catch (error) {
-//                 console.log(error)
-//             }
-//             swal({
-//                 title: `Elemento borrado correctamente`,
-//                 icon: 'error'
-//             })
-//             renderizarTabla();
-//         }
-//     })
-
-
-
-
-
-// async function obtenerUsuarios() {
-//     try {
-//         const token = localStorage.getItem("token"); // no hay que hacer jsonpars pq eltoken es una key y una string
-//         const response = await axios.get(`${URL}/users`, {
-//             headers: {
-//                 Authorization: token
-//             }
-//         });
-//         console.log(response)
-//         users = response.data.users;
-//         console.log(users)
-//         renderizarTablaUser(users)
-//     } catch (error) {
-//         console.log(error);
-
-//     }
-
-// }
-
-
-
-
-
-
-
-
+    }     } catch (error) {
+        console.log(error)
+    }
+}
