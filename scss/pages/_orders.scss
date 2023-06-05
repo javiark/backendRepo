@@ -7,13 +7,14 @@
 body {
     font-family: Helvetica, sans-serif;
 }
-.adminContainer{
-    padding-top: 5rem;
+.adminContainerOrder{
+    padding-top: 2rem;
+    margin: 2rem 1rem 2rem  1rem ;
 }
 .header1{
     padding-bottom: 1rem;
     font-size: 1.2rem;
-    padding-left: 1rem;
+    // padding-left: 1rem;
 }
 .inputBox{
     width: 20rem;
@@ -36,7 +37,7 @@ body {
 }
 .product-form {
 
-    padding: 0rem 1rem 0rem 1rem;
+    // padding: 0rem 1rem 0rem 1rem;
     border: 0px solid salmon;
     margin:     1px;
 }

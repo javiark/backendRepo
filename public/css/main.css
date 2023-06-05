@@ -1571,6 +1571,15 @@ body {
   height: 1.5rem;
 }
 
+.inputBoxUser {
+  width: 20rem;
+  border-radius: 0.3rem;
+  border: none;
+  height: 1.5rem;
+  background-color: rgb(224, 222, 222);
+  margin: 0.3rem 0 1rem 0;
+}
+
 .inputBoxText {
   width: 20rem;
   border-radius: 0.3rem;
@@ -1860,14 +1869,14 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
-.adminContainer {
-  padding-top: 5rem;
+.adminContainerOrder {
+  padding-top: 2rem;
+  margin: 2rem 1rem 2rem 1rem;
 }
 
 .header1 {
   padding-bottom: 1rem;
   font-size: 1.2rem;
-  padding-left: 1rem;
 }
 
 .inputBox {
@@ -1892,7 +1901,6 @@ body {
 }
 
 .product-form {
-  padding: 0rem 1rem 0rem 1rem;
   border: 0px solid salmon;
   margin: 1px;
 }
@@ -2271,4 +2279,41 @@ body {
 .product__order {
   width: 10%;
   text-align: center;
+}
+
+.submit-btn:hover {
+  background-color: rgb(1, 105, 1);
+}
+
+.inputBoxUser {
+  margin-left: 0rem;
+}
+
+.inputBoxUserLabel {
+  margin-left: 0rem;
+}
+
+.submit-btn-orders {
+  padding: 0.5rem 1rem;
+  width: 20rem;
+  height: 2rem;
+  border: 2px solid rgb(51, 87, 2);
+  color: white;
+  background-color: #c3a343;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0rem;
+}
+
+.adminContainerOrder {
+  padding-top: 2rem;
+  margin: 1rem 0rem 2rem 1rem;
+}
+
+.adminContainerOrder1 {
+  padding-top: 2rem;
+  margin: 0rem 0rem 0rem 1rem;
 }/*# sourceMappingURL=main.css.map */

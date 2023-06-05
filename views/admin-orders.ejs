@@ -12,7 +12,7 @@
 
 
 
-<!-- 
+            <!-- 
             <div class="adminContainer">
                 <h1 class="header1">ORDENES</h1>
                 <div class="container">
@@ -35,17 +35,18 @@
             </div> -->
 
 
+            <main class="main">
 
-
-            <div class="adminContainer">
+            <div class="adminContainerOrder">
 
                 <h1 class="header1">ORDENES</h1>
                 <div class="admin-user-form__form-items">
-                    <label for="selectUser1">Seleccionar usuario de la orden que desea filtrar</label><br>
-                    <select id="selectUser1" class="inputBox"> </select>
+                    <label for="selectUser1" class="inputBoxUserLabel">Seleccionar usuario </label><br>
+                    <select id="selectUser1" class="inputBoxUser"> </select>
                 </div>
-                <button class="submit-btn-products" id="submit-btn" onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
-                
+                <button class="submit-btn-orders" id="submit-btn"
+                    onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
+
                 <div class="container">
 
                     <div class="table-container">
@@ -68,29 +69,57 @@
                 </div>
             </div>
 
+            <div class="adminContainerOrder1">
 
-
-            <%- include('partials/footer') %>
-                <div class="whatsapp-container">
-                    <a href="https://walink.co/1565a1" target="_blank">
-                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
-                            alt="whatsapp logo" class="logoWP">
-                    </a>
+                <div class="admin-user-form__form-items">
+                    <label for="selectOrderId" class="inputBoxUserLabel">Seleccionar orden ID </label><br>
+                    <select id="selectOrderId" class="inputBoxUser"> </select>
                 </div>
+                <button class="submit-btn-orders" id="submit-btn" onclick="obtenerOrden(`${selectOrderId.value}`)">Buscar
+                    Orden</button>
 
-                <!-- =================JS=================  -->
-                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                <script src="/js//date.js"></script>
-                <script src="/js/header.js"></script>
-                <script src="/js/alert.js"></script>
-                <script src="/js/loginUserAvatar.js"></script>
-                <script src="/js/filter.js"></script>
-                <script src="/js/btnBuy.js"></script>
-                <!-- <script src="/js/orderFinal.js"></script> -->
-                <script src="/js/orderFinalMongoDB.js"></script>
-                <script src="/js/adminOrders.js"></script>
-                <!-- <script src="/js/users.js"></script> -->
+                <div class="container">
+                    <div class="table-container">
+                            <table class="table-product">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Producto</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Detalle</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                <tbody id="table-body">
+                                </tbody>
+                            </table>
+                    </div>
+                </main>
+
+
+
+                    <%- include('partials/footer') %>
+                        <div class="whatsapp-container">
+                            <a href="https://walink.co/1565a1" target="_blank">
+                                <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                                    alt="whatsapp logo" class="logoWP">
+                            </a>
+                        </div>
+
+                        <!-- =================JS=================  -->
+                        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                        <script src="/js//date.js"></script>
+                        <script src="/js/header.js"></script>
+                        <script src="/js/alert.js"></script>
+                        <script src="/js/loginUserAvatar.js"></script>
+                        <script src="/js/filter.js"></script>
+                        <script src="/js/btnBuy.js"></script>
+                        <!-- <script src="/js/orderFinal.js"></script> -->
+                        <script src="/js/orderFinalMongoDB.js"></script>
+                        <script src="/js/adminOrders.js"></script>
+                        <!-- <script src="/js/users.js"></script> -->
 
 
     </body>
