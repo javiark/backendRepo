@@ -151,7 +151,7 @@ function renderizarUserOrder2(arrayOrders) {
 function renderizarUsuariosSelect(arrayUser) {
     // let userOrder=[]
     // console.log(userOrder)
-    console.log(arrayUser)
+    // console.log(arrayUser)
 
     let selectUser1 = document.getElementById("selectUser1")
     arrayUser.forEach((user, index) => {
@@ -325,10 +325,14 @@ async function editStatusOrder(evt){
                 status: elements.StatusOrder.value,
                 // totalPrice: elements.priceOrder.value,
             }
+
             console.log(updatedOrder)
+            // orderFF.push(updatedOrder)
+            // console.log(orderFF)
             // console.log( productUpdate)
-            const res = await axios.put(`${URL5}/orders/${editIndex}`, updatedOrder);
+            const res = await axios.put(`${URL5}/orders/${editIndex}`, updatedOrder,{new:true});
             console.log(res)
+  
 
 
         editIndex = undefined;
@@ -337,6 +341,7 @@ async function editStatusOrder(evt){
         console.log(error)
     }
 }
+
 
 
 

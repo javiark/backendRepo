@@ -136,7 +136,36 @@ async function getUserOrders(req, res){
 
 //EXPORTO LOS ENDPOINTS
 
+async function updateOrderFinal(req,res) {
+    try {
+    const id = req.params.id;
+    const data = req.body
+
+   const newOrder =  await Order.findByIdAndUpdate(id,data,{new:true})
+    
+   if(!newOrder){
+        return res.status(404).send({
+            msg:`La Orden no se actualizo`
+        }) 
+   }
+
+   
+   return res.status(200).send({
+            msg: 'Orden encontrada',
+            newOrder: newOrder
+        })
+     
+    } catch(error)  {
+        console.log(error);
+        return res.status(500).send({
+            msg: `No se pudo actualizar la orden`
+            })
+        }
+}
+
+
 module.exports = {
+    updateOrderFinal,
     createOrder,
     getOrders,
     getOrdersById,
