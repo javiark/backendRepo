@@ -55,36 +55,6 @@ loginForm.addEventListener("submit", async (event) => {
 
 
 
-// async function loginUser(evt) {
-//     try {
-//         evt.preventDefault();
-//         console.dir(evt.target);
-//         const elements = evt.target.elements;
-//         const formFile = new FormData(evt.target);
-//         console.dir(formFile);
-//         const obj = Object.fromEntries(formFile);
-//         console.log(obj);
-//         const { data} = await axios.post(`${URL}/login`, obj,{
-//             headers: {
-//                 Authorization: token
-//             }
-//         });
-//         console.log(data)
-//         console.log(data.token)
-//         localStorage.setItem("currentUser", JSON.stringify(users));
-//         showAlert(`Bienvenido`, "succes" )
-//         // setTimeout(()=>{
-//         //     window.location.href="/"
-//         // }, 2000)
-
-
-
-//         // cargarProductos();
-//     } catch (error) {
-//         showAlert("Login incorrecto", "error" )
-//     console.log(error);
-//     }
-// }
 
 
 

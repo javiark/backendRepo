@@ -38,18 +38,7 @@ async function obtenerUsuarios2() {
 
 obtenerUsuarios2()
 
-// async function cargarOrdenes() {
-//     try {
 
-//         const respuesta = await axios.get(`${URL5}/orders/user/${currentUserOrders._id}`)
-//         console.log(respuesta)
-//         const orderUser = respuesta.data.userOrders;
-//         // renderizarTablaOrdenes(orderUser)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-// cargarOrdenes()
 
 async function cargaOrdenesTodas() {
     try {

@@ -25,17 +25,6 @@ function metodoFilter(evt){
     })
     console.log(resultFind)
     
-//     const productosFiltrado =products.filter((prod)=>{
-        
-//         // console.log(`el usuario filtrado es ${prod}`)
-
-//         const filtra = prod.name.includes(text);
-//         console.log(filtra)
-
-//         return filtra;
-        
-
-// })
     console.log("producto filtrados", resultFind)
     if (resultFind.length>0){
         document.getElementById("productsCount").innerHTML=(`Se encontraron ${resultFind.length} productos`);

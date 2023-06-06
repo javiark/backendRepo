@@ -47,19 +47,7 @@ async function cargarProductos() {
 cargarProductos()
 
 
-// async function arrayCateories(){
-//     const response = await axios.get(`${URL}/category`)
-//     const categories = response.data.categories;
-//     selectCategoryHTML.innerHTML=`<option value="" selected></option>`;
-//     categories.forEach((cat)=>{
-//         console.log(cat)
-//         selectCategoryHTML.innerHTML += `<option value="${cat._id}">${cat.name}</option>`
-//     })}
-// arrayCateories()
 
-
-
-// console.log(products)
 
 
 const productForm = document.getElementById("add-product");
@@ -232,8 +220,7 @@ async function obtenerUsuarios() {
     }
 
 }
-// const { data } = await axios.post(`${URL}/product`, formFile);
-// console.log(data)
+
 
 //-----------PRECARGO EL PRODUCTO EN EL FORMULARIO------------//
 async function editProduct1(idx) {

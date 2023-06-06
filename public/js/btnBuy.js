@@ -7,14 +7,7 @@ const button3 = document.querySelectorAll(".card__btn")
 const button4 = document.querySelectorAll(".containerDetail__btn-add")
 const button5 = document.querySelectorAll(".containerDetail__btn-buy")
 const button6 = document.querySelectorAll(".containerDetail__containerBtn")
-// const button7 = document.getElementById("idButton")
-// console.log(button2)
 
-// arrayProducts.forEach((idx)=>{
-//     // console.log(idx)
-//     let id=idx.name
-//     // console.log(id)
-// })
 
 
 
