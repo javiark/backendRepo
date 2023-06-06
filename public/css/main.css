@@ -40,7 +40,8 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .card {
@@ -60,7 +61,8 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card__body {
   display: flex;
@@ -476,7 +478,8 @@ body {
     width: 12rem;
     display: flex;
     justify-content: space-evenly;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
 .main {
@@ -659,7 +662,8 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-color: brown;
   border: 1px solid 0;
 }
@@ -1111,7 +1115,8 @@ body {
   .imageAboutUs {
     height: 15.4rem;
     justify-content: center;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .section-info__title-container {
     display: flex;
@@ -1332,7 +1337,8 @@ body {
 
 .product__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1676,7 +1682,8 @@ body {
 
 .user__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1875,6 +1882,15 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+.table-container-order-id {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 45rem;
+  overflow-x: auto;
+  margin-top: -3rem;
+}
+
 .adminContainerOrder {
   padding-top: 2rem;
   margin: 2rem 1rem 2rem 1rem;
@@ -2030,7 +2046,8 @@ body {
 
 .order__img {
   width: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -2308,6 +2325,14 @@ body {
   }
 }
 @media screen and (max-width: 500px) {
+  .table-container-order-id {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    overflow-x: scroll;
+    margin-right: 1rem;
+    margin-top: -3rem;
+  }
   .mainDetail {
     height: 75rem;
   }
@@ -2425,7 +2450,7 @@ body {
 
 .containerOrder {
   padding-top: 2rem;
-  margin: 1rem 0rem 2rem 1rem;
+  margin: -1rem 0rem 2rem 1rem;
   /* padding: 2rem;
   border: 3px solid salmon; */
 }
@@ -2470,4 +2495,4 @@ body {
   background-color: white;
   margin: 0.3rem 0 1rem 0;
   padding-left: -1rem !important;
-}
+}/*# sourceMappingURL=main.css.map */

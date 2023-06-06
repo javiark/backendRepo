@@ -7,6 +7,18 @@
 body {
     font-family: Helvetica, sans-serif;
 }
+.table-container-order-id {
+    display: flex;
+    flex-direction: column; 
+    padding: 1rem;
+    width: 45rem;
+    // width: 100vw;
+    overflow-x: auto;
+    // margin-left: 0.15rem;
+    margin-top: -3rem;
+    // margin-right: 10rem;
+    // padding-right: 10rem;
+}
 .adminContainerOrder{
     padding-top: 2rem;
     margin: 2rem 1rem 2rem  1rem ;
@@ -507,6 +519,20 @@ body {
 
 
 @media screen and (max-width: 500px) {
+    .table-container-order-id {
+        display: flex;
+        flex-direction: column; 
+        // padding: 1rem;
+        // border: 1px solid blue;
+        // width: 30rem;
+        width: 100vw;
+
+        overflow-x: scroll;
+        margin-right: 1rem;
+        margin-top: -3rem;
+        // margin-right: 10rem;
+        // padding-right: 10rem;
+    }
     // .mainDetail{
     //     width: 100vh;
     // }
