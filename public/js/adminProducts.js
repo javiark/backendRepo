@@ -11,8 +11,8 @@ let productID1 = JSON.parse(localStorage.getItem('products')) ;
 let editIndex;
 // console.log(editIndex)
 
-const URL = 'http://localhost:4000/api';
-const URL_public = 'http://localhost:4000';
+const URL = 'https://abascay-ecommerce.onrender.com/api';
+const URL_public = 'https://abascay-ecommerce.onrender.com';
 
 (async function cargarCategorias() {
     try {

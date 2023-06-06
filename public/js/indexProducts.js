@@ -2,8 +2,8 @@
 const token1 = localStorage.getItem('token');
 const cardContainer = document.getElementById("card-container");
 
-const URL3 = 'http://localhost:4000/api';
-const URL_public3 = 'http://localhost:4000';
+const URL3 = 'https://abascay-ecommerce.onrender.com/api';
+const URL_public3 = 'https://abascay-ecommerce.onrender.com';
 
 
 async function cargarProductosFilter() {

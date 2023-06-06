@@ -1,6 +1,6 @@
 const currentUserOrders = JSON.parse(localStorage.getItem('currentUser'));
-const URL5 = 'http://localhost:4000/api';
-const URL_public5 = 'http://localhost:4000';
+const URL5 = 'https://abascay-ecommerce.onrender.com/api';
+const URL_public5 = 'https://abascay-ecommerce.onrender.com';
 const token4 = localStorage.getItem('token');
 
 const orderCont = document.getElementById('orders-cont');

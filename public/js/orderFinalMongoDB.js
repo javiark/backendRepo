@@ -2,8 +2,8 @@ const tableBodyOrder = document.getElementById('table-body-order');
 const products1 = [];
 const productsArray = [];
 
-const URL2 = 'http://localhost:4000/api';
-const URL_public1 = 'http://localhost:4000';
+const URL2 = 'https://abascay-ecommerce.onrender.com/api';
+const URL_public1 = 'https://abascay-ecommerce.onrender.com';
 
 
 badgeHTMLbuy = document.getElementById("cart-count");

@@ -3,8 +3,8 @@
 let productOrderDetail = JSON.parse(sessionStorage.getItem("order")) || [];
 
 
-const URL1 = 'http://localhost:4000/api';
-const URL_public2 = 'http://localhost:4000';
+const URL1 = 'https://abascay-ecommerce.onrender.com/api';
+const URL_public2 = 'https://abascay-ecommerce.onrender.com';
 const token = localStorage.getItem('token');
 
 const params = window.location.search;

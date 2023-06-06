@@ -1,8 +1,8 @@
 // let productos =JSON.parse(localStorage.getItem('products')) || [];
 // console.log(productos)
 // let productos = [];
-const URL4 = 'http://localhost:4000/api';
-const URL_public4 = 'http://localhost:4000';
+const URL4 = 'https://abascay-ecommerce.onrender.com/api';
+const URL_public4 = 'https://abascay-ecommerce.onrender.com';
 
 
 
