@@ -52,9 +52,6 @@ registerForm.addEventListener("submit", async (event)=>{ // con addEventListener
         return;
     }
 
-
-
-
     const userExist = checkIfUserExist(users, el.email.value);
 
     if(userExist){

@@ -40,8 +40,7 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .card {
@@ -61,8 +60,7 @@ body {
 .card__img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .card__body {
   display: flex;
@@ -478,8 +476,7 @@ body {
     width: 12rem;
     display: flex;
     justify-content: space-evenly;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 .main {
@@ -653,8 +650,7 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   background-color: brown;
   border: 1px solid 0;
 }
@@ -1106,8 +1102,7 @@ body {
   .imageAboutUs {
     height: 15.4rem;
     justify-content: center;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .section-info__title-container {
     display: flex;
@@ -1328,8 +1323,7 @@ body {
 
 .product__img {
   width: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1669,8 +1663,7 @@ body {
 
 .user__img {
   width: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -1941,6 +1934,34 @@ body {
   overflow-x: scroll;
 }
 
+.table-container-orderID {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 50rem;
+  overflow-x: scroll;
+  margin-top: -3rem;
+}
+
+.containerImageId {
+  width: 2rem !important;
+}
+
+.containerOriceId {
+  width: 3rem !important;
+}
+
+.product__img-cell-Order {
+  width: 1rem !important;
+}
+
+.container-OrderId {
+  display: flex;
+  flex-direction: column;
+  /* padding: 2rem;
+  border: 3px solid salmon; */
+}
+
 .table-product {
   border-collapse: collapse;
 }
@@ -1969,8 +1990,7 @@ body {
 
 .order__img {
   width: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 50px;
   border-radius: 50%;
   display: block;
@@ -2410,4 +2430,4 @@ body {
   background-color: white;
   margin: 0.3rem 0 1rem 0;
   padding-left: -1rem !important;
-}/*# sourceMappingURL=main.css.map */
+}
