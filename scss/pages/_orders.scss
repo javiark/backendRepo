@@ -85,7 +85,7 @@ body {
     flex-direction: column; 
     padding: 1rem;
     // width: 100vw;
-    width:50rem;
+    width:55rem;
     overflow-x: scroll;
     margin-top: -3rem;
     // margin-left: 0.5rem
@@ -95,7 +95,7 @@ body {
     width: 2rem !important;
 }
 .containerOriceId{
-    width: 3rem !important;
+    width: 5rem !important;
 }
 .product__img-cell-Order{
     width: 1rem !important;
@@ -111,7 +111,31 @@ body {
     
 }
 
+.table-product-order {
+    border-collapse: collapse;
+    width: 55rem;
+}
 
+.table-product-order thead tr {
+    background-color: dodgerblue;
+    color: white;
+    
+}
+.table-product-order th, .table-product-order td {
+    border: 1px solid skyblue;
+    font-size: .75rem;
+}
+
+.table-product-order tr td:not(:first-child) {
+    padding: .5rem;
+    
+}
+.table-product-order tbody tr:nth-child(odd) {
+    background-color: rgb(236, 250, 255);
+}
+.table-product-order tr th {
+    padding: .5rem;
+}
 
 
 .table-product {
