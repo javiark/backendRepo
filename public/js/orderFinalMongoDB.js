@@ -287,12 +287,12 @@ async function buyEnd() {
     else {
         try {
             let totalOrden = 0;
-            const orden = {};
-            const productPush = [];
+            let orden = {};
+            let productPush = [];
             console.log(productOrder)
             productOrder.forEach((prod) => {
                 const producto = {
-                    productName: prod.name,
+                    // productName: prod.name,
                     productId: prod.id,
                     quantity: prod.cant,
                     price: prod.price
