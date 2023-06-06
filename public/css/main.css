@@ -1976,6 +1976,12 @@ body {
   width: 2rem !important;
 }
 
+.headerOrder {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
+
 .containerOriceId {
   width: 5rem !important;
 }
