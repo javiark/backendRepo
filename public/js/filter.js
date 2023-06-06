@@ -10,7 +10,7 @@ async function cargarProductosFilter() {
         const respuesta = await axios.get(`${URL4}/products`);
         products = respuesta.data.productos
         // metodoFilter(products)
-        // renderizarProductos(products)
+        renderizarProductos(products)
         // console.log(products)
 
       
@@ -23,39 +23,46 @@ cargarProductosFilter()
 
 
 
+
 //-------------BUSCARLO CON ENTER---------------//
 
 function metodoFilter(evt){
         //frenando la busqueda si la tecla no es la que tiene codigo 13 ( enter )
     if(evt.keyCode !== 13){
-        // console.log("no apreto enter");
+        console.log("no apreto enter");
         return;
     }
     const text=evt.target.value.toLowerCase().trim();
-    // console.dir(text)
-
-    const productosFiltrado =products.filter((prod)=>{
+    console.dir(text)
+    let resultFind = products.filter((el)=>{
+        return el.name.toLowerCase().includes(text)       
+    })
+    console.log(resultFind)
+    
+//     const productosFiltrado =products.filter((prod)=>{
         
-        // console.log(`el usuario filtrado es ${prod}`)
+//         // console.log(`el usuario filtrado es ${prod}`)
 
-        const filtra = prod.name.includes(text);
+//         const filtra = prod.name.includes(text);
+//         console.log(filtra)
 
-        return filtra;
+//         return filtra;
+        
 
-})
-    console.log("producto filtrados", productosFiltrado)
-    if (productosFiltrado.length>0){
-        document.getElementById("productsCount").innerHTML=(`Se encontraron ${productosFiltrado.length} productos`);
+// })
+    console.log("producto filtrados", resultFind)
+    if (resultFind.length>0){
+        document.getElementById("productsCount").innerHTML=(`Se encontraron ${resultFind.length} productos`);
     }else{
         document.getElementById("productsCount").innerHTML=(`No se han encontrado productos`)
     }
-    renderizarProductos(productosFiltrado)
+    console.log(resultFind)
+    renderizarProductos(resultFind)
 };
 
 //-------------BUSCARLO POR BOTON----------------//
 
 function searchProduct(evt){
-    evt.preventDefault();
     if(evt.keyCode !==13 && evt.target.id !== 'productId'){
         return
     }
@@ -68,9 +75,18 @@ function searchProduct(evt){
     }else{
         document.getElementById("productsCount").innerHTML=(`No se han encontrado productos`)
     }
+    console.log(resultFind)
 
     renderizarProductos(resultFind)
 }
+
+
+
+
+
+
+
+
 
 //-------------BUSCARLO POR ORDENES----------------//
 

@@ -1333,6 +1333,10 @@ body {
 .product__name {
   width: 10%;
 }
+.product__descCant {
+  width: 30%;
+  text-align: center;
+}
 .product__desc {
   width: 30%;
 }

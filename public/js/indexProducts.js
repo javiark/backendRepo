@@ -21,7 +21,7 @@ cargarProductos1()
 
 
 function renderizarProductos(products) {
-    console.log(products)
+    // console.log(products)
 
     cardContainer.innerHTML = ``;
 

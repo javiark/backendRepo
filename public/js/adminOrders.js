@@ -373,8 +373,8 @@ function renderizarTablaOrdenes1(arrayOrder) {
         //4- Introducir dentro del tbody una fila por producto con sus respectivas celdas
         const tableRow = `<tr class="product">
                             <td class="product__img-cell-Order"><img class="product__img" src="${imageSrc}" alt="${producto.name}"></td>
-                            <td class="product__order" )>${producto.name}</td>
-                            <td class="product__order">${producto.description}</td>
+                            <td class="product__desc" )>${producto.name}</td>
+                            <td class="product__desc">${producto.description}</td>
                             <td class="product__order">${producto.quantity}</td>
                             <td class="product__price">$ ${producto.price}</td>
                         </tr>`
