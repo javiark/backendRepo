@@ -6,6 +6,22 @@ const URL3 = 'http://localhost:4000/api';
 const URL_public3 = 'http://localhost:4000';
 
 
+async function cargarProductosFilter() {
+    try {
+        const respuesta = await axios.get(`${URL3}/products`);
+        products = respuesta.data.productos
+        // metodoFilter(products)
+        renderizarProductos(products)
+        // console.log(products)
+
+      
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+cargarProductosFilter()
+
 async function cargarProductos1() {
     try {
         const respuesta = await axios.get(`${URL3}/products`);

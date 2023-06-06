@@ -5,21 +5,7 @@ const URL4 = 'http://localhost:4000/api';
 const URL_public4 = 'http://localhost:4000';
 
 
-async function cargarProductosFilter() {
-    try {
-        const respuesta = await axios.get(`${URL4}/products`);
-        products = respuesta.data.productos
-        // metodoFilter(products)
-        renderizarProductos(products)
-        // console.log(products)
 
-      
-
-    } catch (error) {
-        console.log(error);
-    }
-}
-cargarProductosFilter()
 
 
 

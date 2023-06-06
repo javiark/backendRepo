@@ -23,7 +23,7 @@ const cardContainer1 = document.querySelector("#card-detail");
 
 
 async function cargarProductos2(id) {
-    console.log(id)
+    // console.log(id)
     try {
         respuesta = await axios.get(`${URL1}/product/${id}`)
         product = respuesta.data.respuesta
@@ -137,20 +137,20 @@ function decrement(id) {
     // updateTotal(id)
 
 }
-console.log(cantOrdenes)
+// console.log(cantOrdenes)
 
-console.log(cantOrdenes.length)
+// console.log(cantOrdenes.length)
 
 
 async function addToCartDetail(id){
-    console.log(id)
+    // console.log(id)
     Order = JSON.parse(sessionStorage.getItem('order')) || [];
-    console.log(Order)
+    // console.log(Order)
     // console.log(id)
     try {
         const res = await axios.get(`${URL1}/product/${id}`);
         const product = res.data.product;
-        console.log(res)
+        // console.log(res)
         const cantidad=document.getElementById(`countNumber1${id}`)
         // let cantProd = parseInt( cantidad)
         // let index = (Order.findIndex(el=>el.product==product.id))
@@ -165,7 +165,7 @@ async function addToCartDetail(id){
             total: parseInt(cantidad.value) * parseInt(product.price)
            
         }
-        console.log(orderNew)
+        // console.log(orderNew)
         const prod = Order.find((prod)=>{
             if(prod.name === product.name){
               prod.cant = parseInt(prod.cant) +  parseInt(cantidad.value);

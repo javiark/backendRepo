@@ -127,7 +127,7 @@ async function addToOrder(id) {
         }
 
         //Guardarlo en el local storage
-        console.log(Order)
+        // console.log(Order)
         sessionStorage.setItem('order', JSON.stringify(Order));
 
         swal({
