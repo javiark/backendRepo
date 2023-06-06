@@ -127,6 +127,7 @@ async function addToOrder(id) {
         }
 
         //Guardarlo en el local storage
+        console.log(Order)
         sessionStorage.setItem('order', JSON.stringify(Order));
 
         swal({
@@ -286,8 +287,9 @@ async function buyEnd() {
     else {
         try {
             let totalOrden = 0;
-            let orden = {};
-            let productPush = [];
+            const orden = {};
+            const productPush = [];
+            console.log(productOrder)
             productOrder.forEach((prod) => {
                 const producto = {
                     productName: prod.name,
@@ -302,7 +304,7 @@ async function buyEnd() {
 
             orden.products = productPush;
             orden.totalPrice = totalOrden;
-            orden.userId = currentUser._id;
+            orden.userId = currentUser2._id;
             orden.createdAt = Date.now;
 
             console.log(orden)
