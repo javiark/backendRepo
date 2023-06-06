@@ -360,7 +360,7 @@ async function cargarProductosId(idx) {
 
 
 function renderizarTablaOrdenes1(arrayOrder) {
-    // tableBodyOrder2.innerHTML = '';
+    tableBodyOrder2.innerHTML = '';
     if (arrayOrder.length === 0) {
         tableBodyOrder2.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
         return
