@@ -6,7 +6,7 @@ const token4 = localStorage.getItem('token');
 const orderCont = document.getElementById('orders-cont');
 const userForm = document.getElementById('my-account-form');
 const tableBody = document.querySelector('#table-body-orders');
-
+const tableBodyOrder2 = document.getElementById("table-body-orderID")
 const tableBody2 = document.getElementById("table-body-orders-user")
 let editIndex;
 
@@ -25,9 +25,9 @@ async function obtenerUsuarios2() {
                 Authorization: token
             }
         });
-        console.log(response)
+        // console.log(response)
         users = response.data.users;
-        console.log(users)
+        // console.log(users)
         renderizarUsuariosSelect(users)
 
     } catch (error) {
@@ -98,18 +98,6 @@ async function deleteOrder(id) {
     })
 }
 
-// async function buscarOrdenPorId() {
-//     try {
-//         const respuesta = await axios.get(`${URL4}/orders/user/${id}`);
-//         ordersArray = respuesta.data.orders
-//         renderizarTablaOrdenes(ordersArray)
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-
-
 
 
 
@@ -125,7 +113,7 @@ function renderizarTablaOrdenes(arrayOrders) {
         return
     }
     //3- Iterar el array para acceder a cada producto
-    
+
 
     arrayOrders.forEach((order, index) => {
 
@@ -155,30 +143,6 @@ function renderizarTablaOrdenes(arrayOrders) {
 }
 renderizarTablaOrdenes()
 
-// function renderizarUserOrder2(arrayOrders) {
-//     tableBody2.innerHTML = '';
-//     if (arrayOrders.length === 0) {
-//         tableBody2.innerHTML = "<p class='disabled'>NO SE ENCONTRARON USUARIOS</p>"
-//         return
-//     }
-//     //3- Iterar el array para acceder a cada producto
-
-//     arrayOrders.forEach((order, index) => {
-
-//         const tableRow = `<tr class="product">
-//                             <td class="product__order">${order.userId.fullName}</td>
-//                             <td class="product__order">${order._id}</td>  
-//                             <td class="product__actions">
-//                                 <button class="product__action-btnDetail-Select" onclick="selectOrder('${order._id}')">
-//                                    </i><i class="fa-solid fa-check"></i>
-//                                 </button>             
-//                             </td>
-//                         </tr>`
-//         tableBody2.innerHTML += tableRow;
-
-//     });
-
-// }
 
 function renderizarUsuariosSelect(arrayUser) {
 
@@ -273,9 +237,9 @@ async function editOrder(idx) {
         let orderStatus = orderEdit.data.order.status
         // let orderPrecio= orderEdit.data.order.totalPrice
         // console.log(orderPrecio)
-        const el = userFormOrder.elements;  
+        const el = userFormOrder.elements;
         // console.log(el.role.value)
-        el.status.value =orderStatus;
+        el.status.value = orderStatus;
         // el.priceOrder.value =orderPrecio;
         console.log(orderStatus)
         editIndex = idx
@@ -290,7 +254,7 @@ async function editOrder(idx) {
 // editStatusOrder(event)
 
 
-async function editStatusOrder(evt){
+async function editStatusOrder(evt) {
     try {
         // console.log(editIndex)
         evt.preventDefault();
@@ -305,17 +269,18 @@ async function editStatusOrder(evt){
             }
 
             console.log(updatedOrder)
-            const res = await axios.put(`${URL5}/orders/${editIndex}`, updatedOrder,{new:true});
+            const res = await axios.put(`${URL5}/orders/${editIndex}`, updatedOrder, { new: true });
             // console.log(res)
             swal({
                 title: `Se ha editado el status`,
                 icon: 'success'
             })
             renderizarTablaOrdenes(res)
-  
-        editIndex = undefined;
 
-    }     } catch (error) {
+            editIndex = undefined;
+
+        }
+    } catch (error) {
         console.log(error)
     }
 }
@@ -328,23 +293,39 @@ async function editStatusOrder(evt){
 async function obtenerOrdenID(id) {
     // console.log(id)
     try {
+        const orderArray = {};
+        const productosOrder = [];
         const response = await axios.get(`${URL5}/orders/${id}`);
-        console.log(response)
+        // console.log(response)
         productsId = response.data.order.products;
-        console.log(productsId)
-        productsId.forEach((producto)=>{
-            console.log(`${producto._id}`)
-                    // cargarProductosId(`${producto._id}`)
-                    cargarProductosId(`${producto._id}`)
+        // console.log(productsId)
+        productsId.forEach((producto) => {
+            // console.log(`${producto._id}`)
+            // cargarProductosId(`${producto._id}`)
+
+            const productoOrd = {
+                name: producto.productId.name,
+                description: producto.productId.description,
+                _id: producto.productId._id,
+                image: producto.productId.image,
+                price: producto.price,
+                quantity: producto.quantity,
+            }
+            productosOrder.push(productoOrd)
+
+
         })
+        console.log(productosOrder)
 
         // cargarProductosId(id)
+        renderizarTablaOrdenes1(productosOrder)
 
 
     } catch (error) {
         console.log(error);
     }
 }
+
 
 
 
@@ -358,8 +339,9 @@ async function cargarProductosId(idx) {
     try {
         const respuesta = await axios.get(`${URL5}/product/${idx}`);
         console.log(respuesta)
-        // products = respuesta.data.product;
-        // console.log(products)
+        products = respuesta.data.product;
+        console.log(products)
+
         // localStorage.setItem("products", JSON.stringify(products))
 
         // console.log(products)
@@ -375,6 +357,32 @@ async function cargarProductosId(idx) {
 
 // const respuesta = await axios.get(`${URL2}/product/${id}`);
 // const product = respuesta.data.product;
+
+
+function renderizarTablaOrdenes1(arrayOrder) {
+    // tableBodyOrder2.innerHTML = '';
+    if (arrayOrder.length === 0) {
+        tableBodyOrder2.innerHTML = "<p class='disabled'>NO SE ENCONTRARON PRODUCTOS</p>"
+        return
+    }
+    //3- Iterar el array para acceder a cada producto
+
+    arrayOrder.forEach((producto, index) => {
+
+        let imageSrc = producto.image ? `${URL_public5}/upload/product/${producto.image}` : '/assets/images/no-product.png';
+        //4- Introducir dentro del tbody una fila por producto con sus respectivas celdas
+        const tableRow = `<tr class="product">
+                            <td class="product__img-cell"><img class="product__img" src="${imageSrc}" alt="${producto.name}"></td>
+                            <td class="product__name" )>${producto.name}</td>
+                            <td class="product__name">${producto.description}</td>
+                            <td class="product__name">${producto.quantity}</td>
+                            <td class="product__price">$ ${producto.price}</td>
+                        </tr>`
+        tableBodyOrder2.innerHTML += tableRow;
+
+    });
+
+}
 
 
 

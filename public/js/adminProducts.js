@@ -31,7 +31,7 @@ async function cargarProductos() {
         const respuesta = await axios.get(`${URL}/products`);
 
         products = respuesta.data.productos
-        // console.log(products)
+        console.log(products)
         // localStorage.setItem("products", JSON.stringify(products))
 
         // console.log(products)

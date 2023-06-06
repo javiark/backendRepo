@@ -287,7 +287,7 @@ async function buyEnd() {
     else {
         try {
             let totalOrden = 0;
-            let orden = {};
+            const orden = {};
             let productPush = [];
             console.log(productOrder)
             productOrder.forEach((prod) => {
@@ -310,10 +310,10 @@ async function buyEnd() {
             console.log(orden)
 
             await axios.post(`${URL2}/orders`, orden);
-            // setTimeout(() => {
-            //     window.location.href = "/"
+            setTimeout(() => {
+                window.location.href = "/"
 
-            // }, 3500)
+            }, 2000)
 
             sessionStorage.removeItem('order')
             swal({
