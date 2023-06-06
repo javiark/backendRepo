@@ -488,6 +488,15 @@ body {
   height: 100%;
 }
 
+.mainAbout {
+  margin-top: 40rem;
+  flex-grow: 1;
+  margin-top: 50px;
+  padding-bottom: 2rem;
+  background-color: rgb(235, 234, 234);
+  height: 100%;
+}
+
 body {
   min-height: 100vh;
   display: flex;
