@@ -1360,6 +1360,10 @@ body {
 }
 .product__price {
   font-weight: bold;
+  border: none;
+}
+.product__priceUnit {
+  border: none;
 }
 .product__info-icon.disabled {
   filter: grayscale(1);

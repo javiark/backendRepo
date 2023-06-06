@@ -184,7 +184,13 @@ body {
     }
     &__price {
         font-weight: bold;
+        border: none ;
     }
+    &__priceUnit {
+        // font-weight: bold;
+        border: none ;
+    }
+
     &__info-icon.disabled{
         filter: grayscale(1);
         opacity: .5;
