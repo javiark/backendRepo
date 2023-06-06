@@ -366,7 +366,7 @@ function renderizarTablaOrdenes1(arrayOrder) {
                             <td class="product__desc" )>${producto.name}</td>
                             <td class="product__desc">${producto.description}</td>
                             <td class="product__order">${producto.quantity}</td>
-                            <td class="product__price">$ ${producto.price}</td>
+                            <td class="product__priceUnit">$ ${producto.price}</td>
                             <td class="product__price">$ ${producto.price*producto.quantity}</td>
 
                         </tr>`
