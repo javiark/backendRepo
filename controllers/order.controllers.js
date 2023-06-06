@@ -72,7 +72,7 @@ async function getOrdersById(req, res) {
                 msg: "No devolvio una orden"
             })
         }
-        return responseCreator(res, 200,"Ordern obtenid correctamente", {order})
+        return responseCreator(res, 200,"Orden obtenida correctamente", {order})
     } catch (error) {
         console.log(error);
         return responseCreator(res, 500, "No se pudo obtener orden")

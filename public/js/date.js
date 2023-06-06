@@ -14,7 +14,7 @@ function formatearFecha(fechaTimestamp) {
     return `${dia}/${mes}/${year}`;
 }
 
-const fecha = formatearFecha(Date.now())
+// const fecha2 = formatearFecha(Date.now())
 
 // console.log(fecha)
 

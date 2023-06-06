@@ -75,7 +75,8 @@ function deleteProduct(req, res) {
 
 async function getProduct(req, res) {
     try {
-        const product = await Product.findById(req.params.id);
+       let product = await Product.findById(req.params.id);
+       console.log(product)
         return res.status(200).send({
             msg: `Producto encontrado`,
             ok: true,

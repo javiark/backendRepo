@@ -8,16 +8,43 @@ const userForm = document.getElementById('my-account-form');
 const tableBody = document.querySelector('#table-body-orders');
 
 const tableBody2 = document.getElementById("table-body-orders-user")
+let editIndex;
 
 
+//--------------OBTER ORDEN POR ID------------------//
+
+
+let selectUser1 = document.getElementById("selectUser1")
+
+async function obtenerUsuarios2() {
+    try {
+        const token = localStorage.getItem('token'); // no hay que hacer json|pars pq eltoken es una key y una string
+        // console.log(token)
+        const response = await axios.get(`${URL5}/users`, {
+            headers: {
+                Authorization: token
+            }
+        });
+        console.log(response)
+        users = response.data.users;
+        console.log(users)
+        renderizarUsuariosSelect(users)
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+obtenerUsuarios2()
 
 // async function cargarOrdenes() {
 //     try {
 
 //         const respuesta = await axios.get(`${URL5}/orders/user/${currentUserOrders._id}`)
-//         // console.log(respuesta)
+//         console.log(respuesta)
 //         const orderUser = respuesta.data.userOrders;
-//         renderizarTablaOrdenes(orderUser)
+//         // renderizarTablaOrdenes(orderUser)
 //     } catch (error) {
 //         console.log(error)
 //     }
@@ -28,6 +55,7 @@ async function cargaOrdenesTodas() {
     try {
         const respuesta = await axios.get(`${URL4}/orders`);
         ordersArray = respuesta.data.orders
+        // console.log(ordersArray)
         renderizarTablaOrdenes(ordersArray)
         // renderizarUserOrder2(ordersArray)
 
@@ -90,13 +118,14 @@ async function deleteOrder(id) {
 
 //2- Definir una función para iterar el array
 function renderizarTablaOrdenes(arrayOrders) {
-    console.log(arrayOrders)
+    // console.log(arrayOrders)
     tableBody.innerHTML = '';
     if (arrayOrders.length === 0) {
         tableBody.innerHTML = "<p class='disabled'>NO SE ENCONTRARON ORDENES</p>"
         return
     }
     //3- Iterar el array para acceder a cada producto
+    
 
     arrayOrders.forEach((order, index) => {
 
@@ -124,31 +153,32 @@ function renderizarTablaOrdenes(arrayOrders) {
     });
 
 }
+renderizarTablaOrdenes()
 
-function renderizarUserOrder2(arrayOrders) {
-    tableBody2.innerHTML = '';
-    if (arrayOrders.length === 0) {
-        tableBody2.innerHTML = "<p class='disabled'>NO SE ENCONTRARON USUARIOS</p>"
-        return
-    }
-    //3- Iterar el array para acceder a cada producto
+// function renderizarUserOrder2(arrayOrders) {
+//     tableBody2.innerHTML = '';
+//     if (arrayOrders.length === 0) {
+//         tableBody2.innerHTML = "<p class='disabled'>NO SE ENCONTRARON USUARIOS</p>"
+//         return
+//     }
+//     //3- Iterar el array para acceder a cada producto
 
-    arrayOrders.forEach((order, index) => {
+//     arrayOrders.forEach((order, index) => {
 
-        const tableRow = `<tr class="product">
-                            <td class="product__order">${order.userId.fullName}</td>
-                            <td class="product__order">${order._id}</td>  
-                            <td class="product__actions">
-                                <button class="product__action-btnDetail-Select" onclick="selectOrder('${order._id}')">
-                                   </i><i class="fa-solid fa-check"></i>
-                                </button>             
-                            </td>
-                        </tr>`
-        tableBody2.innerHTML += tableRow;
+//         const tableRow = `<tr class="product">
+//                             <td class="product__order">${order.userId.fullName}</td>
+//                             <td class="product__order">${order._id}</td>  
+//                             <td class="product__actions">
+//                                 <button class="product__action-btnDetail-Select" onclick="selectOrder('${order._id}')">
+//                                    </i><i class="fa-solid fa-check"></i>
+//                                 </button>             
+//                             </td>
+//                         </tr>`
+//         tableBody2.innerHTML += tableRow;
 
-    });
+//     });
 
-}
+// }
 
 function renderizarUsuariosSelect(arrayUser) {
 
@@ -187,27 +217,7 @@ function AccToOrderQuantity(id) {
 
 
 
-async function obtenerUsuarios2() {
-    try {
-        const token = localStorage.getItem('token'); // no hay que hacer json|pars pq eltoken es una key y una string
-        // console.log(token)
-        const response = await axios.get(`${URL5}/users`, {
-            headers: {
-                Authorization: token
-            }
-        });
-        // console.log(response)
-        users = response.data.users;
-        // console.log(users)
-        renderizarUsuariosSelect(users)
 
-    } catch (error) {
-        console.log(error);
-    }
-
-}
-
-obtenerUsuarios2()
 
 
 async function obtenerUsuarios() {
@@ -249,7 +259,7 @@ async function obtenerOrdenUsuario(id) {
 }
 
 
-let editIndex;
+
 
 //----------precargar formulario-----------------//
 async function editOrder(idx) {
@@ -310,33 +320,62 @@ async function editStatusOrder(evt){
     }
 }
 
-//--------------OBTER ORDEN POR ID------------------//
-router.get("/orders/:id", ordersController.getOrdersById);
 
-async function editOrder(idx) {
-    console.log(idx)
-    const userFormOrder = document.getElementById('edit-order');
-    console.log(userFormOrder.elements)
+
+
+// router.get("/orders/:id", ordersController.getOrdersById);
+
+async function obtenerOrdenID(id) {
+    // console.log(id)
     try {
+        const response = await axios.get(`${URL5}/orders/${id}`);
+        console.log(response)
+        productsId = response.data.order.products;
+        console.log(productsId)
+        productsId.forEach((producto)=>{
+            console.log(`${producto._id}`)
+                    // cargarProductosId(`${producto._id}`)
+                    cargarProductosId(`${producto._id}`)
+        })
 
-        const orderEdit = await axios.get(`${URL5}/orders/${idx}`)
-        // console.log(orderEdit)
-        let orderStatus = orderEdit.data.order.status
-        // let orderPrecio= orderEdit.data.order.totalPrice
-        // console.log(orderPrecio)
-        const el = userFormOrder.elements;  
-        // console.log(el.role.value)
-        el.status.value =orderStatus;
-        // el.priceOrder.value =orderPrecio;
-        console.log(orderStatus)
-        editIndex = idx
+        // cargarProductosId(id)
 
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
+
+// router.get("/product/:id", productController.getProduct) 
+
+
+async function cargarProductosId(idx) {
+    console.log(idx)
+    try {
+        const respuesta = await axios.get(`${URL5}/product/${idx}`);
+        console.log(respuesta)
+        // products = respuesta.data.product;
+        // console.log(products)
+        // localStorage.setItem("products", JSON.stringify(products))
+
+        // console.log(products)
+        // renderizarTabla(products)
 
     } catch (error) {
         console.log(error);
 
     }
+
+
 }
+
+// const respuesta = await axios.get(`${URL2}/product/${id}`);
+// const product = respuesta.data.product;
+
 
 
 
