@@ -30,8 +30,6 @@ async function postUser(req, res) {
         // console.log(user)
 
 
-
-
         return res.send({
             msg: "Usuario creado correctamente",
             user: newUser
@@ -44,6 +42,7 @@ async function postUser(req, res) {
         })
     }
 }
+
 
 const login = async (req, res) => {
     try {
@@ -71,11 +70,10 @@ const login = async (req, res) => {
         //Comprobamos si el usuario obtenido con su propiedad password coincide con el passw del passw que me envia en el login
         const result = await bcrypt.compare(passwordLogin, user.password) // para comprobar si el alfabeta plano es igual al hasheado. passwordLogin - pass plano.  user.password - pass hasheado. El await devuelve una promesa
 
+
         if (!result) {
 
-            return res.status(404).send({
-                msg: "Datos de ingreso incorrectos"
-            })
+            return responseCreator(res, 404, "Datos Ingresados incorrectos")
         }
 
         user.password = undefined; // borramos a user la propiedad password para q no me la devuelva en el login
@@ -88,6 +86,7 @@ const login = async (req, res) => {
             user,
             token
         })
+        
 
 
     } catch (error) {
@@ -222,7 +221,6 @@ module.exports = {
     getAllUser,
     deleteUser,
     updateUser,
-    postUser,
     login,
     updatePassword
 

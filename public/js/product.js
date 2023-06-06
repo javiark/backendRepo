@@ -4,8 +4,8 @@ let products = [];
 const token = localStorage.getItem('token');
 const selectCategoryHTML = document.getElementById("category")
 
-const URL = 'http://localhost:5000/api';
-const URL_public ='http://localhost:5000';
+const URL = 'http://localhost:4000/api';
+const URL_public ='http://localhost:4000';
 
 (async function cargarCategorias() {
     try {
@@ -24,7 +24,7 @@ async function cargarProductos() {
         const respuesta = await axios.get(`${URL}/products`);
         // Products = data.products;
         // console.log(respuesta.data.productos.name)
-        products=respuesta.data.productos
+        products=respuesta.data.productos;
         renderizarTabla(products)
     } catch (error) {
         console.log(error);
@@ -97,6 +97,7 @@ function renderizarTabla(arrayProductos) {
                             <td class="product__name" onclick="editName(${index}")>${producto.name}</td>
                             <td class="product__desc">${producto.description}</td>
                             <td class="product__price">$ ${producto.price}</td>
+                            <td class="product__price">$ ${producto._id}</td>
                             <td class="product__info">
                                 <span 
                                     class="

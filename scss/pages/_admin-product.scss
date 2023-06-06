@@ -7,6 +7,21 @@
 body {
     font-family: Helvetica, sans-serif;
 }
+.oculto{
+    display:none;
+    visibility: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+
+
+ }
 .adminContainer{
     padding-top: 5rem;
 }
@@ -21,6 +36,43 @@ body {
     border: none;
     height: 1.5rem;
 }
+.inputBoxImage{
+    width: 20rem;
+    border-radius:1rem;
+    border: none; 
+
+
+}
+.inputBoxFile {
+    border: 1px solid #ccc;
+    height: 1.5rem;
+    display: inline-block;
+    padding: 3px 12px;
+    cursor: pointer;
+    background-color:rgb(149, 161, 149);
+    border-radius:0.3rem;
+    width: 20rem;
+    border: none;
+}
+
+.chooseFile{
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+#file-chosen{
+    margin-left: 0.3rem;
+    font-family: sans-serif;
+  }
+
+// input[type="file"] {
+//     display: none;
+// }
+
 
 .inputBoxText{
     width: 20rem;
@@ -34,7 +86,9 @@ body {
     border: none;
     height: 15rem;
 }
-.product-form {
+.product-form-admin {
+    display: flex;
+    flex-direction: column;
 
     padding: 0rem 1rem 0rem 1rem;
     border: 0px solid salmon;
@@ -48,23 +102,28 @@ body {
     /* padding: 2rem;
     border: 3px solid salmon; */
 }
-.product-form > div {
+.product-form-admin > div {
     margin-bottom: 1rem;
 }
+
 
 .submit-btn-products {
     padding: .5rem 1rem;
     width: 20rem;
     border: 2px solid rgb(51, 87, 2);
     color: white;
-    background-color: green;
+    background-color: #c3a343;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    font-size: 1rem;
 }
 .submit-btn:hover{
     background-color: rgb(1, 105, 1);
 }
 
 .edit-btn{
-    background-color: dodgerblue;
+    background-color: codgerblue;
     border-color: skyblue;
 }
 
@@ -98,17 +157,24 @@ body {
 .table-product tr th {
     padding: .5rem;
 }
+.product__img{
+    width: 50px;
+    object-fit: cover;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+
+}
 .product{
-    &__img{
-        width: 50px;
-        object-fit: cover;
-        height: 50px;
-        border-radius: 50%;
-        display: block;
-        margin: 0 auto;
-    }
+
+
     &__name{
         width: 10%;
+    }
+    &__descCant {
+        width: 30%;
+        text-align: center;
     }
     &__desc {
         width: 30%;
@@ -134,8 +200,19 @@ body {
         border-radius: 2px ;
         color: rgb(241, 241, 241) ;
     }
+    &__action-btnDetail-Select {
+        background-color: rgb(33, 59, 254) ;
+        border: none ;
+        padding: 0.25rem ;
+        border-radius: 2px ;
+        color: rgb(241, 241, 241) ;
+    }
     &__action-btnDetail:hover {
         background-color: rgb(199, 1, 1) !important;
+        cursor: pointer;
+    }
+    &__action-btnDetail-Select:hover {
+        background-color:rgb(9, 24, 137) !important;
         cursor: pointer;
     }
     // &__action-btn{
@@ -169,6 +246,7 @@ body {
 }
 
 
+
 .product__info, .product__actions {
     vertical-align: center;
     text-align: center;
@@ -176,6 +254,7 @@ body {
     border: none;
     
 }
+
 
 
 .btn-edit {
@@ -265,7 +344,7 @@ body {
         text-align:center;
         font-weight: 500;
         margin-bottom: 0.3rem;
-        pointer-events: none;   
+  
 
     }
     .enable2{

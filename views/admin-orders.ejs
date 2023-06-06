@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { tabTitle: 'Orden de compra' }) %>
+
+    <body>
+
+        <%- include('partials/header') %>
+
+            <!-- =================INFO=================  -->
+
+
+
+
+
+            <!-- 
+            <div class="adminContainer">
+                <h1 class="header1">ORDENES</h1>
+                <div class="container">
+
+                    <div class="table-container">
+                        <table class="table-product">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>ID de orden</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body-orders-user">
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div> -->
+
+
+            <main class="main">
+
+                <div class="">
+
+                    <h1 class="header1">ORDENES</h1>
+
+                    <div class="containerOrder">
+
+                        <div class="admin-user-form__form-items">
+                            <label for="selectUser1" class="inputBoxUserLabel">Seleccionar usuario </label><br>
+                            <select id="selectUser1" class="inputBoxOrder"> </select>
+                        </div>
+                        <button class="submit-btn-orders" id="submit-btn"
+                            onclick="obtenerOrdenUsuario(`${selectUser1.value}`)">Buscar Orden</button>
+
+                        <div class="container">
+
+                            <div class="table-container">
+                                <table class="table-product-order">
+                                    <thead>
+                                        <tr>
+                                            <th>Usuario</th>
+                                            <th>ID de orden</th>
+                                            <th>Precio Total</th>
+                                            <th>Cantidad de Productos</th>
+                                            <th>Fecha de Creacion</th>
+                                            <th>Status</th>
+                                            <th>Acciones</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body-orders">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <form id="edit-order" class="product-form-order" onsubmit="editStatusOrder(event)">
+                            <!-- <div class="input-box">
+                            <label for="priceOrder" >Precio</label>
+                            <input type="number" name="price" id="priceOrder" class="inputBoxOrderPrice">
+                        </div> -->
+                            <div class="admin-user-form__form-items">
+                                <label for="StatusOrder" class="inputBoxUserLabel">Status</label><br>
+                                <select name="status" id="StatusOrder" class="inputBoxOrder1" >
+                                    <option value="onhold">onhold</option>
+                                    <option value="inprogress">inprogress</option>
+                                    <option value="done">done</option>
+                                </select>
+                            </div>
+
+
+
+
+
+                            <button type="submit" class="submit-btn-orders2" id="submit-btn">Modificar Orden</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="adminContainerOrderID">
+
+                <div class="input-box-order">
+                    <label for="stockLabel">Obtener orden por ID</label>
+                    <input  name="stock" id="orderID" class="inputBoxOrder1" >
+                    <button class="submit-btn-orders" id="submit-btn"onclick="obtenerOrdenID(`${orderID.value}`)">Buscar</button>
+                </div>
+            </div>
+            <div class="container-OrderId">
+            <div class="table-container-orderID">
+                <table class="table-product">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th class="containerOriceId">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-orderID">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+            <%- include('partials/footer') %>
+                <div class="whatsapp-container">
+                    <a href="https://walink.co/1565a1" target="_blank">
+                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                            alt="whatsapp logo" class="logoWP">
+                    </a>
+                </div>
+
+                <!-- =================JS=================  -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="/js//date.js"></script>
+                <script src="/js/header.js"></script>
+                <script src="/js/alert.js"></script>
+                <script src="/js/loginUserAvatar.js"></script>
+                <script src="/js/filter.js"></script>
+                <script src="/js/btnBuy.js"></script>
+                <script src="/js/isAdmin.js"></script>
+                <!-- <script src="/js/orderFinal.js"></script> -->
+                <script src="/js/orderFinalMongoDB.js"></script>
+                <script src="/js/adminOrders.js"></script>
+                <script src="/js/date.js"></script>
+                <!-- <script src="/js/users.js"></script> -->
+
+
+    </body>
+
+</html>

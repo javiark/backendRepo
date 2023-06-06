@@ -53,16 +53,36 @@
 
 .main1 {
     display: flex;
-    background-color: #EBEAEA;
-    min-height: 100vh;
-    padding-bottom: 8rem;
+    // margin-top:50rem;
+    flex-grow: 1;
+    margin-top: 50px;
+    // padding-bottom: 2rem;
+    // padding: 1.5rem 0;
+    background-color: rgb(235, 234, 234);
+    // width: fit-content;
+    
+    // padding-bottom:11rem;
+    // position: absolute;
+    // min-height: 100vh;
+    height: 100%;
+    // padding-bottom: 8rem;
 }
 
 .mainLogin {
     display: flex;
-    background-color: #EBEAEA;
-    min-height: 100vh;
-    padding-bottom: 30rem;
+    // flex-grow: 1;
+    margin-top:50rem;
+    flex-grow: 1;
+    margin-top: 50px;
+    padding-bottom: 2rem;
+    // padding: 1.5rem 0;
+    background-color: rgb(235, 234, 234);
+    // width: fit-content;
+    
+    // padding-bottom:11rem;
+    // position: absolute;
+    // min-height: 100vh;
+    height: 100%;
 }
 
 
@@ -73,7 +93,7 @@
     // align-items: center;
     // justify-content: center;
     background-color: #EBEAEA;
-    padding-top: 4rem;
+    // padding-top:1rem;
     margin:  auto;
     &__login{
         opacity: 0.7;
@@ -103,7 +123,7 @@
         background-color:#eeeeee;
         padding: 15px;
         box-shadow: 0px 1px 2px rgb(20, 20, 20);
-        margin-bottom: 5.1rem;
+        // margin-bottom: 5.1rem;
         margin-top: 1rem;
        
     }
@@ -254,11 +274,11 @@
     @media screen and (max-width: 600px) {
         .register{
             height: 100%;
-            padding-top:5rem;
+            // padding-top:5rem;
             &__form{
                 padding-top: 1rem;
                 margin-top: 1rem;
-                margin-bottom: 18rem;
+                margin-bottom: 2rem;
             }
            
         }

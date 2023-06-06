@@ -7,14 +7,16 @@ const Order = require("../schemas/order.schema");
 async function createOrder(req, res) { // se hace async pq pide algo del backend
     // console.log(req.body);
     try {
-        const body = req.body;
+        const order = new Order(req.body)
+        await order.save()
+        // const body = req.body;
 
-        const data = new Order(body);
+        // const data = new Order(body);
         // data.totalPrice = await verifyOrderAndCalculate(req.body.products);
 
-        const newOrder = await data.save();
+        // const newOrder = await data.save();
 
-        responseCreator(res, 200, "Orden creada correctamente", { newOrder });
+        responseCreator(res, 200, "Orden creada correctamente");
 
     } catch (error) {
         console.log(error)
@@ -23,12 +25,27 @@ async function createOrder(req, res) { // se hace async pq pide algo del backend
 
 }
 
+
+// const addOrder = async (req,res) => {
+//     try {
+//         const order = new Order(req.body)
+//         await order.save()
+//         res.status(200).send('Orden añadida correctamente');
+//     } catch (error) {
+//         res.status(500).send({
+//             msg: 'La orden no se pudo guardar',
+//             error: error
+//         });
+//         console.log(error)
+//     }       
+// }
+
+
 async function getOrders(req, res) {
     // responseCreator(res, 200, "Orden obtenida correctamente");
     try {
-
-        const orders = await Order.find().populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.product", { name: 1, description: 1, image: 1 }); //Me busca un id con el que haya guardado en la coleccion de usuarios. Para que me traiga los nombres de mail y email en vez de un id
-        console.log(orders)
+        const orders = await Order.find().populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.productId", { name: 1, description: 1, image: 1 }); //Me busca un id con el que haya guardado en la coleccion de usuarios. Para que me traiga los nombres de mail y email en vez de un id
+        // console.log(orders)
 
         if (!orders) {
             return responseCreator(res, 404, "No se encontraron ordenes");
@@ -41,18 +58,21 @@ async function getOrders(req, res) {
     }
 
 }
+
+
+
 async function getOrdersById(req, res) {
     // responseCreator(res, 200, "Orden obtenida correctamente");
     try {
         const id =req.params.id;
-        const order = await Order.findById(id).populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.product", { name: 1, description: 1, image: 1 })
+        const order = await Order.findById(id).populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.productId", { name: 1, description: 1, image: 1 })
         //SI NO TENGO ORDEN DEVUELVO UN 404
         if (!order) {
             return res.status(400).send({
                 msg: "No devolvio una orden"
             })
         }
-        return responseCreator(res, 200,"Ordern obtenid correctamente", {order})
+        return responseCreator(res, 200,"Orden obtenida correctamente", {order})
     } catch (error) {
         console.log(error);
         return responseCreator(res, 500, "No se pudo obtener orden")
@@ -109,16 +129,43 @@ async function deleteOrders(req, res) {
 async function getUserOrders(req, res){
     const usrId=req.params.id;
 
-    const userOrders = await Order.find({userId: usrId}).populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.product", { name: 1, description: 1, image: 1 });
+    const userOrders = await Order.find({userId: usrId}).populate("userId", { fullName: 1, email: 1, surname: 1 }).populate("products.productId", { name: 1, description: 1, image: 1 });
 
-    responseCreator(res, 200, `Ordenes del usuario ${userOrders[0].userId.fullName} obtenidas correctamente`, {userOrders})
-
-
+    responseCreator(res, 200, `Ordenes del usuario obtenidas correctamente`, {userOrders})
 }
 
 //EXPORTO LOS ENDPOINTS
 
+async function updateOrderFinal(req,res) {
+    try {
+    const id = req.params.id;
+    const data = req.body
+
+   const newOrder =  await Order.findByIdAndUpdate(id,data,{new:true})
+    
+   if(!newOrder){
+        return res.status(404).send({
+            msg:`La Orden no se actualizo`
+        }) 
+   }
+
+   
+   return res.status(200).send({
+            msg: 'Orden encontrada',
+            newOrder: newOrder
+        })
+     
+    } catch(error)  {
+        console.log(error);
+        return res.status(500).send({
+            msg: `No se pudo actualizar la orden`
+            })
+        }
+}
+
+
 module.exports = {
+    updateOrderFinal,
     createOrder,
     getOrders,
     getOrdersById,
@@ -128,3 +175,4 @@ module.exports = {
     verifyOrderAndCalculate
 
 }
+

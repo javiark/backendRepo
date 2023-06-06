@@ -8,7 +8,6 @@ async function jwVerify(req, res, next) {
     try {
         // console.log(req.headers);
         const token=req.headers.authorization;
-
         const payload = jwt.verify(token, secret);
 
         // console.log(verify); // devuelve todo lo que contiene el token. Todo los datos del usuario

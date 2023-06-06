@@ -3,6 +3,11 @@
     padding-top: 3rem;
     background-color: rgb(235, 234, 234);
 }
+.card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 .card {
     display: flex;
     flex-direction: column;
@@ -106,6 +111,15 @@
         border-radius: 8px;
         // pointer-events: none;  
     }
+    &__btn-buy {
+        padding: 1rem 1.5rem;
+        background-color: #c3a343;
+        color: white;
+        border-radius: 8px;
+        border: 0;
+        cursor: pointer;
+        font-size: 1rem;
+    }
 
     &__btn:hover {
         box-shadow: 0 0 5px #858585;
@@ -119,7 +133,16 @@
         border: 0;
         cursor: pointer;
         font-size: 1rem;
-        pointer-events: none;   
+    }
+    &__btn-buy2   {
+        padding: 1rem 1.5rem;
+        background-color: #c3a343;
+        color: white;
+        border-radius: 8px;
+        border: 0;
+        cursor: pointer;
+        font-size: 1rem;
+
     }
     &__btn-buy1:hover{
         box-shadow: 0 0 5px #858585;
@@ -130,6 +153,7 @@
         box-shadow: 0 0 5px #858585;
         transition: all 0.5s ease;
     }
+    
 
 
 
@@ -156,5 +180,7 @@
     pointer-events: all;
     // background-color: red;
 }
+
+
 
 

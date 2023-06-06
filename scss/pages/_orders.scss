@@ -7,13 +7,14 @@
 body {
     font-family: Helvetica, sans-serif;
 }
-.adminContainer{
-    padding-top: 5rem;
+.adminContainerOrder{
+    padding-top: 2rem;
+    margin: 2rem 1rem 2rem  1rem ;
 }
 .header1{
     padding-bottom: 1rem;
     font-size: 1.2rem;
-    padding-left: 1rem;
+    // padding-left: 1rem;
 }
 .inputBox{
     width: 20rem;
@@ -36,7 +37,7 @@ body {
 }
 .product-form {
 
-    padding: 0rem 1rem 0rem 1rem;
+    // padding: 0rem 1rem 0rem 1rem;
     border: 0px solid salmon;
     margin:     1px;
 }
@@ -52,7 +53,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.submit-btn-products {
+.submit-btn-user {
     padding: .5rem 1rem;
     width: 20rem;
     border: 2px solid rgb(51, 87, 2);
@@ -78,6 +79,64 @@ body {
     width: 100vw;
     overflow-x: scroll;
 }
+
+.table-container-orderID{
+    display: flex;
+    flex-direction: column; 
+    padding: 1rem;
+    // width: 100vw;
+    width:55rem;
+    overflow-x: scroll;
+    margin-top: -3rem;
+    // margin-left: 0.5rem
+
+}
+.containerImageId{
+    width: 2rem !important;
+}
+.containerOriceId{
+    width: 5rem !important;
+}
+.product__img-cell-Order{
+    width: 1rem !important;
+}
+
+.container-OrderId {
+    display: flex;
+    flex-direction: column;    
+    /* padding: 2rem;
+    border: 3px solid salmon; */
+
+    // padding: 0.5rem;
+    
+}
+
+.table-product-order {
+    border-collapse: collapse;
+    width: 55rem;
+}
+
+.table-product-order thead tr {
+    background-color: dodgerblue;
+    color: white;
+    
+}
+.table-product-order th, .table-product-order td {
+    border: 1px solid skyblue;
+    font-size: .75rem;
+}
+
+.table-product-order tr td:not(:first-child) {
+    padding: .5rem;
+    
+}
+.table-product-order tbody tr:nth-child(odd) {
+    background-color: rgb(236, 250, 255);
+}
+.table-product-order tr th {
+    padding: .5rem;
+}
+
 
 .table-product {
     border-collapse: collapse;
@@ -141,8 +200,9 @@ body {
     &__info-icon.disabled{
         filter: grayscale(1);
         opacity: .5;
-        pointer-events: none; 
+
     }
+            // pointer-events: none; 
     &__info{
         font-size: 1.25rem ;
     }
@@ -289,9 +349,10 @@ body {
         width: 6rem;
         border: 1px solid rgba(20, 20, 20, 0.3);
         background-color: white;
-        pointer-events: none;
+
 
     }
+            // pointer-events: none;
     &__containerBtn{
         cursor: pointer;
         background-color: white;
@@ -301,6 +362,15 @@ body {
     }
     &__containerNumber{
         padding-top: 0.4rem;
+    }
+    &__containerNumber1{
+        height: 1.7rem;
+        width:1.5rem;
+        border: none;
+        background-color:white;
+        cursor: pointer;
+        text-align: center;
+        // padding: 0.5rem;
     }
     &__link{
         color: rgb(71, 71, 71);
@@ -355,7 +425,7 @@ body {
         border-radius: 1px;
         // margin: 0 auto;
         background-color:white;
-        width: 5rem;
+        width: 6rem;
         border: 1px solid rgba(20, 20, 20, 0.3);
 
     }
@@ -369,6 +439,24 @@ body {
         cursor: pointer;
         // padding: 0.5rem;
     }
+    &__boton-order1{
+
+        height: 1.7rem;
+        width:1.5rem;
+        border: none;
+        background-color:white;
+        cursor: pointer;
+        // padding: 0.5rem;
+    }
+    &__boton-number {
+        height: 1.7rem;
+        width:1.5rem;
+        border: none;
+        background-color:white;
+        cursor: pointer;
+        text-align: center;
+        // padding: 0.5rem;
+    }
 
 }
 .buy-btn-container{
@@ -377,18 +465,28 @@ body {
     text-align: center;
 
 }
-.buy-btn {
+// .buy-btn {
 
+//     margin-top: 1rem;
+//     padding: .5rem 1rem;
+//     width: 10rem;
+//     border: 2px solid green;
+//     color: white;
+//     background-color: green;
+//     cursor: pointer;
+// }
+.buy-btn{
     margin-top: 1rem;
-    padding: .5rem 1rem;
-    width: 10rem;
-    border: 2px solid green;
+    padding: 1rem 1.5rem;
+    background-color: #c3a343;
     color: white;
-    background-color: green;
+    border-radius: 8px;
+    border: 0;
     cursor: pointer;
+    font-size: 1rem;
 }
 .buy-btn:hover{
-    background-color: rgb(1, 105, 1);
+    background-color:  #ac954f;
 }
 .buy-btn-empty{
     visibility: hidden;

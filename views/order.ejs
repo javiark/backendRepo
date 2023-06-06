@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { tabTitle: 'Orden de compra' }) %>
+
+    <body>
+
+        <%- include('partials/header') %>
+
+            <!-- =================INFO=================  -->
+
+
+            <div class="main">
+                <div class="adminContainer">
+                    <h1 class="header1">ORDEN DE COMPRA</h1>
+                    <div class="container">
+                        <div class="table-container-order">
+                            <table class="table-product">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Subtotal</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body-order">
+
+
+                                </tbody>
+                                <tr>
+                                    <th colspan="4" class="final-price">PRECIO TOTAL</th>
+                                    <th class="final-price-number" id="totalPrice"></th>
+                                    <th class="final-price-number"></th>
+                                </tr>
+                            </table>
+                            <div class="buy-btn-container">
+                                <button class="buy-btn" onclick="buyEnd()" id="btnEnd">Finalizar Compra</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <%- include('partials/footer') %>
+
+                <div class="whatsapp-container">
+                    <a href="https://walink.co/1565a1" target="_blank">
+                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                            alt="whatsapp logo" class="logoWP">
+                    </a>
+                </div>
+
+                <!-- =================JS=================  -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="/js//date.js"></script>
+                <script src="/js/header.js"></script>
+                <script src="/js/alert.js"></script>
+                <script src="/js/loginUserAvatar.js"></script> 
+                <script src="/js/filter.js"></script>
+                <script src="/js/btnBuy.js"></script>
+                <!-- <script src="/js/orderFinal.js"></script> -->
+                <script src="/js/orderFinalMongoDB.js"></script>
+
+
+    </body>
+
+</html>

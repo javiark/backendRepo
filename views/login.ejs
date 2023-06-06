@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { tabTitle: 'Login' }) %>
+
+    <body>
+
+        <%- include('partials/header') %>
+
+            <!-- =================INFO=================  -->
+<!-- onsubmit="loginUser(event)-->
+            <main class="mainLogin">
+                <section class="register">
+                    <h1 class="register__login">LOGIN</h1>
+                    <form class="register__form1" id="loginForm">
+                        <div class="register__casillero">
+                            <label for="email" class="register__text1">Email:</label>
+                            <input type="email" placeholder="nombre@ejemplo.com" name="email" id="email"
+                                class="register__boxmail" minlength="8" maxlength="45"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        </div>
+                        <div class="register__casillero">
+                            <label for="password" class="register__text1">Contraseña:</label><br>
+                            <input type="password" name="password" id="password" required class="register__box"
+                                minlength="6" maxlength="40" size="50" autofocus>
+                        </div>
+                        <div class="button">
+                            <button type="submit" class="button__send" >Ingresar</button>
+                        </div> 
+                    </form>
+                </section>
+            </main>
+            <%- include('partials/footer') %>
+
+                <div class="whatsapp-container">
+                    <a href="https://walink.co/1565a1" target="_blank">
+                        <img src="https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5302_-_Whatsapp-512.png"
+                            alt="whatsapp logo" class="logoWP">
+                    </a>
+                </div>
+
+                <!-- =================JS=================  -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="/js/alert.js"></script>
+                <script src="/js/header.js"></script>
+                <script src="/js/register.js"></script>
+                <script src="/js/login.js"></script>
+                <script src="/js/orders.js"></script>
+                <script src="/js/loginUserAvatar.js"></script>
+
+
+    </body>
+
+</html>

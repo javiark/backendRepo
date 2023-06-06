@@ -1,6 +1,8 @@
 const express=require("express");
 const router=express.Router();
 const productController = require("../controllers/product.controller");
+const jwtVerify = require('../middlewares/jwtVerify');
+const isAdmin = require('../middlewares/isAdmin');
 const uploadController = require('../controllers/upload.controller');
 // const uploadController = require('../controllers/upload.controller');
 
@@ -20,8 +22,13 @@ router.get("/product/:id", productController.getProduct) // nose si va sin :id. 
 
 //Eliminar producto
 router.delete("/product/:id", productController.deleteProduct) // llamo a delete en postman. nombreDeParam seria el id del producto a borrar
+
 //Modificar producto. Hay que chequear con el token. Json Verify, los middlewares
-router.put("/product", productController.updateProduct)
+// router.put("/product/:id", productController.updateProduct)
+
+//Actualizar un producto
+router.put("/product/:id", productController.updateProduct)
+
 
 
 
