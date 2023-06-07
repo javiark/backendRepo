@@ -41,12 +41,13 @@
 
                             <div class="input-box" id="passwordName">
                                 <label for="passwordInput"   >Contraseña</label> <br>
-                                <input type="password" name="password" id="passwordInput" required class="inputBox" minlength="6" maxlength="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"> 
+                                <input type="password" name="password" id="passwordInput" required class="inputBox" minlength="6" maxlength="45" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"> 
                             </div>
+                            
                 
                             <div class="input-box" id="passwordName1">
                                 <label for="passwordInput2" > Repetir Contraseña</label> <br>
-                                <input type="password" name="password2" id="passwordInput2" required class="inputBox" minlength="6" maxlength="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"> 
+                                <input type="password" name="password2" id="passwordInput2" required class="inputBox" minlength="6" maxlength="45" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"> 
                             </div>
                             <div class="input-box">
                                 <label for="ageInput"> Edad </label> <br>
